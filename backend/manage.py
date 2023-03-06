@@ -2,7 +2,13 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+from djongo.base import DatabaseWrapper
+from djongo.operations import DatabaseOperations
 
+class PatchedDatabaseOperations(DatabaseOperations):
+
+    def conditional_expression_supported_in_where_clause(self, expression):
+        return False
 
 def main():
     """Run administrative tasks."""
