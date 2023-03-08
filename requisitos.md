@@ -3,7 +3,7 @@
 
 ## Para el backend con django
 
-Esto se hace con pip install <CosaAInstalar>
+Escribir en la línea de comandos: pip install -r requirements.txt
 
 * env --- python3 -m venv venv
 
@@ -12,8 +12,7 @@ Esto es para instalar un entorno virtual, el cual permitirá instalar librerias 
 * Django==3.2
 * pymongo==3.12.1
 * djongo==1.3.6
-*sqlparse==0.2.4
-
+* sqlparse==0.2.4
 * djangorestframework==3.14.0
 
 Para la api rest
