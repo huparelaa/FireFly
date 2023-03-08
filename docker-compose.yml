@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  react:
+    image: frontend
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 2G
+    build:
+      context: frontend
+      dockerfile: ./Dockerfile
+    restart: always
+    environment:
+      NODE_ENV: production
+    ports:
+      - 80:80

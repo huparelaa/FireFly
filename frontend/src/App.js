@@ -8,6 +8,8 @@ import Login from "./auth/containers/Login"
 import Signup from "./auth/containers/Signup";
 import Activate from "./auth/containers/Activate";
 import Layout from "./auth/hocs/Layout"
+import PreferenceForm from "./games/GameList"
+
 
 import { Provider } from "react-redux";
 import store from "./store";
@@ -25,6 +27,7 @@ function App() {
                         <Route path="/reset-password" element={<ResetPassword />} />
                         <Route path="/password/reset/confirm/:uid/:token" element={<ResetPasswordConfirm />} />
                         <Route path="/activate/:uid/:token" element={<Activate />} />
+                        <Route path="/games" element={<PreferenceForm/>} ></Route>
                     </Routes>
                 </Layout>
             </Router>   

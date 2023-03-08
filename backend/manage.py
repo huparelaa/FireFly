@@ -10,6 +10,9 @@ class PatchedDatabaseOperations(DatabaseOperations):
     def conditional_expression_supported_in_where_clause(self, expression):
         return False
 
+DatabaseWrapper.ops_class = PatchedDatabaseOperations
+
+
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'firefly.settings')
