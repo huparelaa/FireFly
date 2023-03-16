@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.contrib.postgres.fields import ArrayField
+from games.models import Game
+
 
 class UserAccountManager(BaseUserManager): 
     def create_user(self, email, name, password = None):
@@ -11,12 +14,13 @@ class UserAccountManager(BaseUserManager):
         user.save()
         return user
 
-
-class UserAccount(AbstractBaseUser, PermissionsMixin):
+class UserAccount(AbstractBaseUser, PermissionsMixin, models.Model):
     email = models.EmailField(max_length = 255, unique = True)
     name = models.CharField(max_length = 255)
     is_active = models.BooleanField(default = True)
     is_staff = models.BooleanField(default = False)
+    has_enter_before = models.BooleanField(default = False)
+    favorite_games = models.ManyToManyField(Game)
 
     objects = UserAccountManager()
 

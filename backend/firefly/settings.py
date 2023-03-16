@@ -103,7 +103,7 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': 'sampleApptest',
         'CLIENT': {
-            'host': 'mongodb+srv://julianv12:Julian.12@cluster0.pbec261.mongodb.net/test',
+            'host': 'mongodb+srv://julianv12:Julian.12@firefly.hzheqbi.mongodb.net/test',
             'username': 'julianv12',
             'password': 'Julian.12'
         }
@@ -168,7 +168,7 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
     'BLACKLIST_AFTER_ROTATION': False,
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=10),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),    
 }
 DJOSER = {
@@ -189,7 +189,8 @@ DJOSER = {
         'user_create': 'accounts.serializers.UserCreateSerializer',
         'user': 'accounts.serializers.UserCreateSerializer',
         'user_delete': 'djoser.serializers.UserDeleteSerializer',
-    }
+    }, 
 }
-
+SECRET_KEY = 'sTu^th#j-9z=_e8l)fo@p@f$&m0nq3c%*-r+2!f0n$k9ah6)v^'
 AUTH_USER_MODEL =  'accounts.UserAccount'
+CSRF_COOKIE_NAME = 'csrf_token'

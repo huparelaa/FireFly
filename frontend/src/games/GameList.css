@@ -1,0 +1,64 @@
+.form-games {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form-title {
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+}
+.form-input__search {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 100px 0;
+}
+.form-input__search input {
+
+}
+
+.container-games {
+    height: 400px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    place-items: center;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.card-game {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 20px;
+}
+
+.card-game img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+.card-game label {
+    color: white;
+}
+.form-games button {
+    background: linear-gradient(90deg, #7e37e5, #983df1 46.37%, #b24af3 93.62%);
+    border: 1px solid var(--color-blueviolet);
+    box-sizing: border-box;
+    width: 11.13rem;
+    height: 3.13rem;
+    color: white;
+    border-radius: 10px;
+
+}
+.hide {
+    display: none;
+}
+.selected {
+    background-color: #b24af3;
+}

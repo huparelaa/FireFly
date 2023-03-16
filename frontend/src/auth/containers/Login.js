@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Link, Navigate} from 'react-router-dom'
-
 import { connect } from 'react-redux'
 import { login } from '../actions/auth'
+import axios from 'axios'
 
 function Login({ login, isAuthenticated }) { 
     const [formData, setFormData] = useState({
@@ -15,11 +15,9 @@ function Login({ login, isAuthenticated }) {
         e.preventDefault()
         login(email, password)
     }
-
-    if(isAuthenticated) {
-        return <Navigate to="/" />
+    if(isAuthenticated ) {
+        return <Navigate to='/check-first-login'/>
     }
-
     return (
         <div className='container mt-5'>
             <h1>Sign in</h1>
@@ -55,7 +53,6 @@ function Login({ login, isAuthenticated }) {
         </div>  
     )
 }
-
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated
 })

@@ -92,6 +92,8 @@ export const verify = (uid, token) => async dispatch => {
         })
     }
 } 
+// Verify the first login 
+
 
 //LOAD USER
 export const load_user = () => async dispatch => {
