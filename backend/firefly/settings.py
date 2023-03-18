@@ -27,9 +27,7 @@ SECRET_KEY = 'django-insecure-op3ztjl97@z1_8_2@eiid$q)3&_nnej1f^&9bk_usf*1x=k253
 DEBUG = True    
 
 ALLOWED_HOSTS = [ 
-    'https://backend.onlinefirefly.social', 
-    'https://www.onlinefirefly.social',
-    'https://onlinefirefly.social'            
+        '*'          
     ]
 
 
