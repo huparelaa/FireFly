@@ -1,0 +1,30 @@
+name: Publish Docker image
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code checkout
+        uses: actions/checkout@v3
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build ExpressApi and publish to Docker Hub
+        uses: docker/build-push-action@v2
+        with:
+          context: backend
+          push: true
+          tags: julianv08/fireflybackend:latest, julianv08/fireflybackend:${{ github.run_number }}
+      - name: Build ReactJs and publish to Docker Hub
+        uses: docker/build-push-action@v2
+        with:
+          context: frontend
+          push: true
+          tags: julianv08/fireflyfrontend:latest, julianv08/fireflyfrontend:${{ github.run_number }}
