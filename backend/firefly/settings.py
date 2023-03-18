@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'accounts',
     'games',
     'corsheaders',
+    #--chat---
+    'chat',
+    'channels',
 
     
 ]
@@ -153,7 +156,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'build/static')
+    os.path.join(BASE_DIR, '../frontend/build/static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
@@ -194,3 +197,10 @@ DJOSER = {
 SECRET_KEY = 'sTu^th#j-9z=_e8l)fo@p@f$&m0nq3c%*-r+2!f0n$k9ah6)v^'
 AUTH_USER_MODEL =  'accounts.UserAccount'
 CSRF_COOKIE_NAME = 'csrf_token'
+#---chat---
+ASGI_APPLICATION = "firefly.routing.application" 
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': "channels.layers.InMemoryChannelLayer"
+        }
+    }
