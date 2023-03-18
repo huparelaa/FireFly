@@ -1,11 +1,10 @@
 import React from "react";
-import { SideBar } from "./components/sidebar";
+import { SideBar } from "../components/SideBar";
 
 function Dashboard(){
     return (
         <div>
             <SideBar/>
-            Esto es el dashboard
         </div>
     )
 }

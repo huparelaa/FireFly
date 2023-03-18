@@ -9,7 +9,7 @@ import Signup from "./auth/containers/Signup";
 import Activate from "./auth/containers/Activate";
 import PreferenceForm from "./games/GameList"
 import Dashboard from './dashboard/Dashboard'
-import { AfterLogin } from "./Middle/AfterLogin";
+import { AfterLogin } from "./auth/Middle/AfterLogin";
 import { Provider } from "react-redux";
 import store from "./store";
 

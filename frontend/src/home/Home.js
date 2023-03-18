@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import "./home.css";
 import principalImg from './principalimg.png'
 const Home = () => {
     return (
@@ -12,10 +11,10 @@ const Home = () => {
                             <div>Logo</div>
                         </section>
                         <section className='nav-side-right'>
-                            <li className='nav-side-right__li'><a href='#'>Explorar</a></li>
-                            <li className='nav-side-right__li'><a href='#'>Quienes somos</a></li>
-                            <li className='nav-side-right__li'><a href='#'>Comunidad</a></li>
-                            <li className='nav-side-right__li'><a href='#'>Ayuda</a></li>
+                            <li className='nav-side-right__li'><a href='/'>Explorar</a></li>
+                            <li className='nav-side-right__li'><a href='/'>Quienes somos</a></li>
+                            <li className='nav-side-right__li'><a href='/'>Comunidad</a></li>
+                            <li className='nav-side-right__li'><a href='/'>Ayuda</a></li>
                             <li className='nav-side-right__li'>
                                 <Link  to="/login">
                                     <button className="button-func">
