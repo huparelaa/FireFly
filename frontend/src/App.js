@@ -12,8 +12,8 @@ import Dashboard from './dashboard/Dashboard'
 import { AfterLogin } from "./auth/Middle/AfterLogin";
 import { Provider } from "react-redux";
 import store from "./store";
-
-
+import Admin from "./layouts/Admin";
+import Profile from "./profile/Profile"
 function App() {
     return (
         <Provider store={store}>
@@ -28,6 +28,8 @@ function App() {
                         <Route path="/games" element={<PreferenceForm/>} />
                         <Route path="/dashboard" element={<Dashboard/>} />
                         <Route path="/check-first-login" element={<AfterLogin/>} />
+                        <Route path="/admin/*" element={<Admin />} />  
+                        <Route path="/profile/*" element={<Profile />} />  
                     </Routes>
             </Router>   
         </Provider>
