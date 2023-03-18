@@ -24,10 +24,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'django-insecure-op3ztjl97@z1_8_2@eiid$q)3&_nnej1f^&9bk_usf*1x=k253'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True    
+DEBUG = True
 
-ALLOWED_HOSTS = [ 
-        '*'          
+ALLOWED_HOSTS = [
+        '*'
     ]
 
 
@@ -41,16 +41,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'rest_framework.authtoken',    
+    'rest_framework.authtoken',
     'djoser',
     'accounts',
     'games',
     'corsheaders',
     #--chat---
-    'chat',
-    'channels',
+    # 'chat',
+    # 'channels',
 
-    
+
 ]
 
 MIDDLEWARE = [
@@ -74,13 +74,13 @@ CORS_ALLOW_METHODS = [
     'PATCH',
     'POST',
     'PUT',
-] 
+]
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8000',
     'https://api.igdb.com',
     'https://backend.onlinefirefly.social',
     'https://www.onlinefirefly.social',
-    'https://onlinefirefly.social'            
+    'https://onlinefirefly.social'
 ]
 ROOT_URLCONF = 'firefly.urls'
 
@@ -177,7 +177,7 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
     'BLACKLIST_AFTER_ROTATION': False,
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=10),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),    
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
 DJOSER = {
     'LOGIN_FIELD': 'email',
@@ -197,15 +197,15 @@ DJOSER = {
         'user_create': 'accounts.serializers.UserCreateSerializer',
         'user': 'accounts.serializers.UserCreateSerializer',
         'user_delete': 'djoser.serializers.UserDeleteSerializer',
-    }, 
+    },
 }
 SECRET_KEY = 'sTu^th#j-9z=_e8l)fo@p@f$&m0nq3c%*-r+2!f0n$k9ah6)v^'
 AUTH_USER_MODEL =  'accounts.UserAccount'
 CSRF_COOKIE_NAME = 'csrf_token'
 #---chat---
-ASGI_APPLICATION = "firefly.routing.application" 
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': "channels.layers.InMemoryChannelLayer"
-        }
-    }
+# ASGI_APPLICATION = "firefly.routing.application"
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': "channels.layers.InMemoryChannelLayer"
+#         }
+#     }
