@@ -44,7 +44,7 @@ function PreferenceForm() {
         const url = `https://api.rawg.io/api/games?key=a6e0d61ecf5b4b66871ef58ce43806cd`
         async function fetchedGames()  {
             try {
-                const response = await axios.get(proxyURL+url);
+                const response = await axios.get(url);
                 setGames(response.data.results);
                 console.log(response.data.results)
             } catch (error) {
