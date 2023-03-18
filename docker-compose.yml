@@ -1,8 +1,18 @@
 version: '3.4'
-
 services:
-  react:
-    image: frontend
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 60 frontend backend
+    restart: always  
+    depends_on:
+      - frontend
+      - backend
+
+  frontend:
+    image: julianv08/fireflyfrontend:latest
+    container_name: frontend
     deploy:
       resources:
         limits:
@@ -11,11 +21,34 @@ services:
         reservations:
           cpus: '1'
           memory: 2G
-    build:
-      context: frontend
-      dockerfile: ./Dockerfile
     restart: always
     environment:
-      NODE_ENV: production
+      REACT_APP_API_URL: https://backend.onlinefirefly.social    
+    links:
+      - backend
     ports:
       - 80:80
+    networks:
+      - fireflynet
+
+  backend:
+    image: julianv08/fireflybackend:latest
+    container_name: backend
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 2G
+    restart: always
+    environment:
+      PORT: 8000
+    ports:
+      - 8000:8000
+    networks:
+      - fireflynet
+networks:
+  fireflynet:
+    driver: bridge
