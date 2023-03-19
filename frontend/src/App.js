@@ -14,7 +14,8 @@ import { Provider } from "react-redux";
 import { UserProfile } from "./components/UserProfile";
 import store from "./store";
 import { Chat } from "./chat/Chat";
-
+import Admin from "./layouts/Admin";
+import Profile from "./profile/Profile"
 function App() {
     return (
         <Provider store={store}>
@@ -29,10 +30,11 @@ function App() {
                         <Route path="/games" element={<PreferenceForm/>} />
                         <Route path="/dashboard" element={<Dashboard/>} />
                         <Route path="/check-first-login" element={<AfterLogin/>} />
-                        <Route path="/profile" element={<UserProfile/>} />
                         <Route path="/chat" element={<Chat/>}/>
                         {/* <Route path="/forum" element={<Forum/>}/> */} 
 
+                        <Route path="/admin/*" element={<Admin />} />  
+                        <Route path="/profile/*" element={<Profile />} />  
                     </Routes>
             </Router>   
         </Provider>
