@@ -22,10 +22,7 @@ function Login({ login, isAuthenticated }) {
     return (
         <>
             <div
-                className="absolute top-0 w-full h-full bg-center bg-cover"
-                style={{
-                    backgroundImage: `url(${backgroundImage})`
-                }}
+                
             >
             </div>
             <div
@@ -38,7 +35,7 @@ function Login({ login, isAuthenticated }) {
                             <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                                 <div className="text-center mb-3">
                                     <h1 className="text-blueGray-600 font-bold">
-                                        Sign in
+                                        Login
                                     </h1>
                                 </div>
                                 <form onSubmit={e => onSubmit(e)}>

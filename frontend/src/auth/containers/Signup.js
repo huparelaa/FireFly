@@ -35,9 +35,6 @@ function Signup({ signup, isAuthenticated }) {
         <>
             <div
                 className="absolute top-0 w-full h-full bg-center bg-cover"
-                style={{
-                    backgroundImage: `url(${backgroundImage})`
-                }}
             >
             </div>
             <div
@@ -134,6 +131,7 @@ function Signup({ signup, isAuthenticated }) {
                                             className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                                             type="submit"
                                         >
+
                                             Login
                                         </button>
                                     </div>
