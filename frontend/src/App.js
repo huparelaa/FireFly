@@ -11,8 +11,9 @@ import PreferenceForm from "./games/GameList"
 import Dashboard from './dashboard/Dashboard'
 import { AfterLogin } from "./auth/Middle/AfterLogin";
 import { Provider } from "react-redux";
+import { UserProfile } from "./components/UserProfile";
 import store from "./store";
-
+import { Chat } from "./chat/Chat";
 
 function App() {
     return (
@@ -28,6 +29,10 @@ function App() {
                         <Route path="/games" element={<PreferenceForm/>} />
                         <Route path="/dashboard" element={<Dashboard/>} />
                         <Route path="/check-first-login" element={<AfterLogin/>} />
+                        <Route path="/profile" element={<UserProfile/>} />
+                        <Route path="/chat" element={<Chat/>}/>
+                        {/* <Route path="/forum" element={<Forum/>}/> */} 
+
                     </Routes>
             </Router>   
         </Provider>

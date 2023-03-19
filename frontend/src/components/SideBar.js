@@ -1,13 +1,21 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
+
 import control from "../assets/control.png"
+import home from "../assets/home.svg"
+import match from "../assets/match.svg"
+import group from "../assets/group.svg"
+import chat from "../assets/chat.svg"
+import logout from "../assets/logout.svg"
+
 function SideBar() {
     const [open, setOpen] = useState(false);
     const Menus = [
-        { title: "Dashboard", src: "Chart_fill" },
-        { title: "Match", src: "match" },
-        { title: "Forum", src: "forum"},
-        { title: "Chat", src: "chat", },
-        { title: "Logout", src: "logout", gap: true},
+        { title: "Dashboard", src: home, path: "/dashboard" },
+        { title: "Match", src: match, path: "/match" },
+        { title: "Forum", src: group, path: "/forum"},
+        { title: "Chat", src: chat, path: "/chat" },
+        { title: "Logout", src: logout, gap: true, path: "/logout"},
         { title: "Analytics", src: "Chart" },
     ];
     return (
@@ -35,19 +43,20 @@ function SideBar() {
                 !open && "scale-0"
             }`}> Designer </h1>
             </div>
-            <ul className="pt-6">
+            <ul className="pt-6"> 
                 {Menus.map((Menu, index) => (
-                    <li
+                    <NavLink
+                        to = {Menu.path}
                         key={index}
                         className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
                         ${Menu.gap ? "mt-9" : "mt-2"} ${
                             index === 0 && "bg-light-white"
                         } `} >
-                            <img src={`../assets/${Menu.src}.svg`} />
+                            <img src= {`${Menu.src}`} />
                             <span className={`${!open && "hidden"} origin-left duration-200`}>
                                 {Menu.title}
                             </span>
-                    </li>
+                    </NavLink>
                 ))}
             </ul>
             </div>

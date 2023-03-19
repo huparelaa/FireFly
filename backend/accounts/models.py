@@ -21,6 +21,10 @@ class UserAccount(AbstractBaseUser, PermissionsMixin, models.Model):
     is_staff = models.BooleanField(default = False)
     has_enter_before = models.BooleanField(default = False)
     favorite_games = models.ManyToManyField(Game)
+    profile_photo = models.CharField(max_length = 250, default = "")
+    age = models.IntegerField(blank = True)
+    
+
 
     objects = UserAccountManager()
 
