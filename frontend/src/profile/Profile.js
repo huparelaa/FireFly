@@ -1,9 +1,34 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import axios from 'axios'
 import Navbar from "../components/Navbars/AuthNavbar.js";
 import Footer from "../components/Footers/Footer.js";
 
 export default function Profile() {
+  const [usuario, setUsuario] = useState(null);
+  const config = {
+      headers: { 
+          'Content-type': 'application/json',
+          'Authorization': `JWT ${localStorage.getItem('access')}`,
+          'Accept': 'application/json',
+      }
+  };
+  useEffect(() => {
+      async function getPhotoName(){
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/profile/`, config)
+      .then(response => {
+          setUsuario(response.data);
+      })
+      .catch(error => {
+          console.error(error);
+      });
+      }
+      getPhotoName()
+  }, []);
+  if (!usuario) {
+      return <p>Cargando...</p>;
+  }
+
+
   return (
     <>
       <Navbar transparent />
@@ -32,7 +57,7 @@ export default function Profile() {
                 </div>
                 <div className="text-center mt-12">
                   <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                    David Gonzalez Tamayo
+                      {usuario.name}
                   </h3>
 
                 </div>
@@ -40,15 +65,9 @@ export default function Profile() {
                   <div className="flex flex-wrap justify-center">
                     <div className="w-full lg:w-9/12 px-4">
                       <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                        Pienso luego pierdo ``Renea Descartes``
+                       {usuario.about_me}
                       </p>
-                      <a
-                        href="#pablo"
-                        className="font-normal text-lightBlue-500"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        About Me
-                      </a>
+                     
                     </div>
                   </div>
                 </div>

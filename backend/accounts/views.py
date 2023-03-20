@@ -98,7 +98,6 @@ def get_user_name_photo(request):
     photo_name = {
         'name': user.name, 
         'photo': user.profile_photo,
-        'about_me': user.about_me
     }
     return JsonResponse(photo_name)
 

@@ -6,7 +6,7 @@ import { UserInfo } from "../components/UserInfo";
 
 function Dashboard(){
     return (
-        <div>
+        <div className="flex">
             <SideBar/>
             <SearchPeople />
             <FriendList />

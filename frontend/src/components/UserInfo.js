@@ -25,10 +25,10 @@ function UserInfo(){
         getPhotoName()
     }, []);
     if (!usuario) {
-        return <p>Cargando...</p>;
+        return <p className='text-white'> Cargando...</p>;
     }
     return (
-        <div>
+        <div className='text-white'>
             <Link to="/profile">
                 <img src="43224"/> 
                 <p>{usuario.name}</p>

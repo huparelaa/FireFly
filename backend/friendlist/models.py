@@ -69,3 +69,13 @@ class FriendRequest(models.Model):
         """
         self.is_active = False
         self.save()
+
+
+
+
+class Amigo(models.Model):
+    usuario = models.ForeignKey(UserAccount, on_delete=models.CASCADE, related_name='amigos')
+    amigo = models.ForeignKey(UserAccount, on_delete=models.CASCADE, related_name='amigos_de')
+
+    class Meta:
+        unique_together = ('usuario', 'amigo')
