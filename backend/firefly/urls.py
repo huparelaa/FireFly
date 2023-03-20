@@ -8,7 +8,9 @@ urlpatterns = [
     # path('api/games/', vGames.game_list, name='game_list'),
     path('user/has_entered_before/', vAccounts.has_entered_before, name='has_entered_before'),
     path('user/has_entered_before_true/', vAccounts.has_entered_before_true, name='has_entered_before_true'), 
-    path('api/games_selected', vGames.select_games, name='select_games')
+    path('api/games_selected', vGames.select_games, name='select_games'),
+    path('api/profile/', vAccounts.get_user_profile, name = 'get_user_profile'),
+
 ]
 
 urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))]

@@ -59,3 +59,48 @@ def has_entered_before_true(request):
     user.has_enter_before = True
     user.save()
     return JsonResponse({'message': 'Cambio realizado'}, safe=False)
+
+@api_view(['GET'])
+def get_user_profile(request):
+    auth_header = request.headers.get('Authorization', None)
+    if auth_header is None: 
+        return HttpResponse(status=401)
+    auth_parts = auth_header.split(' ')
+    if len(auth_parts) != 2 or auth_parts[0] != 'JWT': 
+        return HttpResponse(status=401)
+    token = auth_parts[1]
+    payload = verify_token(token)
+    if payload is None: 
+        return HttpResponse(status=401)
+    user_id = payload.get('user_id', None)
+    user = UserAccount.objects.get(id = user_id)
+    # MIRAR ESTO PARA AGREGARLO AL PERFIL DE USUARIO
+    # favorite_games = [obj for obj in user.favorite_games.get(useraccount = user_id)]
+    # print(favorite_games)
+    # serializers_favorite_games = serializers.serialize('json', favorite_games)
+    profile = {
+        'name': user.name,
+        'email': user.email,
+        'photo': user.profile_photo,
+        'about_me': user.about_me
+    }
+    return JsonResponse(profile, safe = False)
+@api_view(['GET'])
+def get_user_name_photo(request): 
+    auth_header = request.headers.get('Authorization', None)
+    if auth_header is None: 
+        return HttpResponse(status=401)
+    auth_parts = auth_header.split(' ')
+    if len(auth_parts) != 2 or auth_parts[0] != 'JWT': 
+        return HttpResponse(status=401)
+    token = auth_parts[1]
+    payload = verify_token(token)
+    if payload is None: 
+        return HttpResponse(status=401)
+    user_id = payload.get('user_id', None)
+    user = UserAccount.objects.get(id = user_id)
+    photo_name = {
+        'name': user.name, 
+        'photo': user.profile_photo,
+    }
+    return JsonResponse(photo_name)
