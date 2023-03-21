@@ -27,10 +27,11 @@ export default function CardProfile() {
             <div className="flex flex-wrap justify-center">
               <div className="w-full lg:w-9/12 px-4">
                 <h1 className="text-xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2" >
-                  About me
+                  
+                  Acerca de mi
                 </h1>
                 <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                  Pienso Luego existo socio
+                    Pienso Luego existo socio
                 </p>
               </div>
             </div>
