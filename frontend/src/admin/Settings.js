@@ -9,6 +9,7 @@ export default function Settings() {
   const [nombre, setNombre] = useState("")
   const [edad, setEdad] = useState("")
   const [aboutMe, setAboutMe] = useState("")
+  const [profileImage, setProfileImage] = useState()
   return (
     <>
       <div className="flex flex-wrap">
@@ -20,6 +21,7 @@ export default function Settings() {
             setNombre={setNombre}
             setEdad={setEdad}
             setAboutMe={setAboutMe}
+            profileImage={profileImage}
           />
         </div>
         <div className="w-full lg:w-4/12 px-4">
@@ -27,6 +29,8 @@ export default function Settings() {
             nombre={nombre}
             edad={edad}
             aboutMe={aboutMe}
+            setProfileImage={setProfileImage}
+            profileImage={profileImage}
           />
         </div>
       </div>
