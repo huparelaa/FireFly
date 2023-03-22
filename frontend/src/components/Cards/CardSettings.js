@@ -4,7 +4,7 @@ import { changeUserInfo } from "../../auth/actions/auth"
 // components
 
 export default function CardSettings(props) {
-  var {nombre,edad,aboutMe,setNombre,setEdad,setAboutMe}=props
+  var {nombre, edad, aboutMe, setNombre, setEdad, setAboutMe}=props
   const [formData, setFormData] = useState({
     name: "",
     age: 0,
@@ -13,9 +13,11 @@ export default function CardSettings(props) {
   const { name , age, about_me } = formData;
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    console.log(formData);
   const onSubmit = (e) => {
     e.preventDefault();
     changeUserInfo(name, age, about_me) 
+    console.log('Se envio');
   };
 
   return (
@@ -50,9 +52,11 @@ export default function CardSettings(props) {
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     placeholder="David Gonzalez"
+                    name='name'
+                    value={name}
                     onChange={
                       e => {
-                        setNombre(e.target.value)
+                        setNombre(e.target.value); 
                         onChange(e)
                       } 
                     }
@@ -71,9 +75,11 @@ export default function CardSettings(props) {
                     type="number"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     placeholder="19"
+                    name='age'
+                    value={age}
                     onChange={
                       (e) => {
-                        setEdad(e.target.value)
+                        setEdad(e.target.value); 
                         onChange(e)
                       }
                     }
@@ -99,23 +105,24 @@ export default function CardSettings(props) {
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     placeholder="Amante de los videojuegos tipo shooters como fortnite, csgo y valorant"
                     rows="4"
+                    name='about_me'
+                    value = {about_me}
                     onChange={
                       (e) => {
-                        setAboutMe(e.target.value)
+                        setAboutMe(e.target.value); 
                         onChange(e)
                         }
                       }
                   ></textarea>
                 </div>
               </div>
-              <button
+            </div>
+            <button
                 className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                 type="submit"
               >
                 Guardar Cambios
-
               </button>
-            </div>
           </form>
         </div>
       </div>

@@ -50,7 +50,6 @@ function Signup({ signup, isAuthenticated }) {
                     <div className="w-full lg:w-4/12 px-4 pt-20">
                         <div
                             className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-white border-0">
-
                             <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                                 <div className="text-center mb-3">
                                     <h1 className="text-blueGray-600 font-bold">
