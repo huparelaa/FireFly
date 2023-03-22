@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
-from django.contrib.postgres.fields import ArrayField
 from games.models import Game
 
 
@@ -23,6 +22,7 @@ class UserAccount(AbstractBaseUser, PermissionsMixin, models.Model):
     favorite_games = models.ManyToManyField(Game)
     profile_photo = models.CharField(max_length = 250, default = "")
     age = models.IntegerField(blank = True)
+    about_me = models.TextField(max_length = 1000, blank = True)
     
 
 

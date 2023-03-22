@@ -12,7 +12,7 @@ function UserProfile(){
     };
     useEffect(() => {
         async function getProfile(){
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/profile/`, config)
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/profile`, config)
         .then(response => {
             setUsuario(response.data);
         })

@@ -14,16 +14,16 @@ export default function Profile() {
   };
   useEffect(() => {
       async function getPhotoName(){
-      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/profile/`, config)
-      .then(response => {
-          setUsuario(response.data);
-      })
-      .catch(error => {
-          console.error(error);
-      });
-      }
-      getPhotoName()
-  }, []);
+          await axios.get(`${process.env.REACT_APP_API_URL}/api/profile`, config)
+          .then(response => {
+              setUsuario(response.data);
+          })
+          .catch(error => {
+              console.error(error);
+          });
+          }
+          getPhotoName()
+      }, []);
   if (!usuario) {
       return <p>Cargando...</p>;
   }

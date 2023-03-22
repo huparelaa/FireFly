@@ -1,3 +1,4 @@
+import json
 from django.core import serializers
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -101,6 +102,33 @@ def get_user_name_photo(request):
     }
     return JsonResponse(photo_name)
 
+@api_view(['POST'])
+def change_user_info(request): 
+    # Tomar JWT de los headers que se envian y sacarle el id
+    auth_header = request.headers.get('Authorization', None)
+    if auth_header is None: 
+        return HttpResponse(status=401)
+    auth_parts = auth_header.split(' ')
+    if len(auth_parts) != 2 or auth_parts[0] != 'JWT': 
+        return HttpResponse(status=401)
+    token = auth_parts[1]
+    # Decodificar el token
+    payload = verify_token(token)
+    if payload is None: 
+        return HttpResponse(status=401)
+    user_id = payload.get('user_id', None)
+    user = UserAccount.objects.get(id = user_id)
+    data = json.loads(request.body.decode('utf-8'))
+    name = data.get('name')
+    age = data.get('age')
+    about_me = data.get('about_me')
+    user.name = name
+    user.about_me = about_me
+    user.age = age
+    user.save()
+    return JsonResponse({ 'Confirm': 'Info changed succesfull' })
 
 def get_user_by_search(request):
-    return ""
+    query = request.GET.get('q', '')
+    users = UserAccount.objects.filter(name__icontains=query)
+    return JsonResponse({ users })

@@ -19,6 +19,21 @@ import {
 } from "./types"
 
 
+export const changeUserInfo = (name, age, about_me) => async dispatch => {
+    const config = {
+        headers: { 
+            'Content-type': 'application/json',
+            'Authorization': `JWT ${localStorage.getItem('access')}`,
+        }
+    }
+    const body = JSON.stringify({ name, age, about_me })
+    try {
+        const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/profile/change_info`, body, config)
+        console.log(res);
+    } catch (err) { 
+        console.error(err);
+    }
+}
 
 //AUTHENTICATION CHECK 
 export const checkAuthenticated = () => async dispatch => {
