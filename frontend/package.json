@@ -6,11 +6,7 @@
     "@fortawesome/fontawesome-free": "5.15.3",
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.16",
-<<<<<<< HEAD
     "@popperjs/core": "^2.9.1",
-=======
-    "@popperjs/core": "2.9.1",
->>>>>>> 5a6664af691b804634acbc28973de1559e4a1690
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
