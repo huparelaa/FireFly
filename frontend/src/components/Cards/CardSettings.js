@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { changeUserInfo } from "../../auth/actions/auth"
-
+import axios from "axios";
 // components
 
 export default function CardSettings(props) {
@@ -14,12 +14,22 @@ export default function CardSettings(props) {
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
     console.log(formData);
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
+    const config = {
+      headers: { 
+          'Content-type': 'application/json',
+          'Authorization': `JWT ${localStorage.getItem('access')}`,
+          'Accept': 'application/json',
+      }
+  }
     e.preventDefault();
-    changeUserInfo(name, age, about_me) 
-    console.log('Se envio');
-  };
-
+    try {
+        const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/profile/change_info`, {'name': name, 'age': parseInt(age), 'about_me': about_me}, config)
+        console.log(res.data);
+    } catch (error) {
+        console.error(error);
+    }
+};
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">

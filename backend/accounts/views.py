@@ -78,7 +78,9 @@ def get_user_profile(request):
     profile = {
         'name': user.name,
         'email': user.email,
+        'age': user.age,
         'photo': user.profile_photo,
+        'about_me': user.about_me
     }
     return JsonResponse(profile, safe = False)
 

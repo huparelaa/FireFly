@@ -52,24 +52,31 @@ export default function Profile() {
             <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg ">
               <div className="px-6">
                 <div className="flex flex-wrap justify-center">
-
-                  <section class="hero container w-1/2  ">
-                    <img style={{}} class="mx-auto rounded-full w-1/2" src="https://cdn.discordapp.com/avatars/280421723080228865/dd36c1b817d7c8cf91ca5944a0768c13.webp?size=2048" alt="screenshot" />
+                  <section className="hero container w-1/2  ">
+                    <img style={{}} className="mx-auto rounded-full w-1/2" src="https://cdn.discordapp.com/avatars/280421723080228865/dd36c1b817d7c8cf91ca5944a0768c13.webp?size=2048" alt="screenshot" />
                   </section>
                 </div>
                 <div className="text-center mt-12">
                   <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
                       {usuario.name}
                   </h3>
-
+                </div> 
+                <div className="text-center mt-12">
+                  <p className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+                      Email: {usuario.email}
+                  </p>
+                </div>
+                <div className="text-center mt-12">
+                  <p className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+                      Edad: {usuario.age}
+                  </p>
                 </div>
                 <div className="mt-10 py-10 border-t border-blueGray-200 text-center">
                   <div className="flex flex-wrap justify-center">
                     <div className="w-full lg:w-9/12 px-4">
                       <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                       {usuario.about_me}
+                        {usuario.about_me}
                       </p>
-                     
                     </div>
                   </div>
                 </div>
