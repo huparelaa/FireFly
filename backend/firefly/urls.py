@@ -14,7 +14,8 @@ urlpatterns = [
     path('api/get_name_photo', vAccounts.get_user_name_photo, name = "get_user_photo"),
     path('api/get_friends', vFriendList.get_friends, name = "get_friends"), 
     path('api/profile/change_info', vAccounts.change_user_info, name = "change_user_info" ), 
-    path('search/', vAccounts.get_user_by_search, name='search_users'),
+    path('search/', vAccounts.get_user_by_search, name='buscar_usuario'),
+
     
 ]
 

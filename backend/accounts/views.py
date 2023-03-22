@@ -131,6 +131,10 @@ def change_user_info(request):
     return JsonResponse({ 'Confirm': 'Info changed succesfull' })
 
 def get_user_by_search(request):
-    query = request.GET.get('q', '')
-    users = UserAccount.objects.filter(name__icontains=query)
-    return JsonResponse({ users })
+    name = request.GET.get('name')
+    if name:
+        users = UserAccount.objects.filter(name__icontains=name)
+    else:
+        users = UserAccount.objects.all()
+    data = {'users': list(users.values())}
+    return JsonResponse(data)
