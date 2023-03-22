@@ -41,7 +41,8 @@ function SideBar() {
             <h1
                 className={`text-white origin-left font-medium text-xl duration-200 ${
                 !open && "scale-0"
-            }`}> Designer </h1>
+            }`}> Designer 
+            </h1>
             </div>
             <ul className="pt-6"> 
                 {Menus.map((Menu, index) => (

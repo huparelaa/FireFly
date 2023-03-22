@@ -5,6 +5,9 @@ import { login } from '../actions/auth'
 import backgroundImage from "./../../assets/login.png"
 import Footer from "../../components/Footers/Footer";
 import Swal from 'sweetalert2'
+//import Particles from '../../components/particles'
+
+
 function Login({ login, isAuthenticated }) {
     const [formData, setFormData] = useState({
         email: '',
@@ -30,11 +33,8 @@ function Login({ login, isAuthenticated }) {
     return (
         <>
             <div
-                
-            >
-            </div>
-            <div
                 className="container mx-auto px-4 h-full w-full">
+
                 <div className="flex content-center items-center justify-center ">
                     <div className="w-full lg:w-4/12 px-4 pt-40">
                         <div
