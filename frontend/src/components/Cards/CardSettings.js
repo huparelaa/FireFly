@@ -84,6 +84,7 @@ export default function CardSettings(props) {
                         onChange(e)
                       }
                     }
+                    required
                   />
                 </div>
               </div>
@@ -108,6 +109,7 @@ export default function CardSettings(props) {
                       onChange(e);
                     }
                     }
+                    required
                   />
                 </div>
               </div>
@@ -138,6 +140,7 @@ export default function CardSettings(props) {
                         onChange(e)
                       }
                     }
+                    required
                   ></textarea>
                 </div>
               </div>
