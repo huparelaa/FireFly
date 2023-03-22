@@ -1,35 +1,49 @@
 import React, { useState } from "react";
 import { changeUserInfo } from "../../auth/actions/auth"
 import axios from "axios";
+import Swal from 'sweetalert2'
+
 // components
 
 export default function CardSettings(props) {
-  var {nombre, edad, aboutMe, setNombre, setEdad, setAboutMe}=props
+  var { nombre, edad, aboutMe, setNombre, setEdad, setAboutMe } = props
   const [formData, setFormData] = useState({
     name: "",
     age: 0,
     about_me: "",
   });
-  const { name , age, about_me } = formData;
+  const { name, age, about_me } = formData;
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(formData);
+  console.log(formData);
   const onSubmit = async (e) => {
     const config = {
-      headers: { 
-          'Content-type': 'application/json',
-          'Authorization': `JWT ${localStorage.getItem('access')}`,
-          'Accept': 'application/json',
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': `JWT ${localStorage.getItem('access')}`,
+        'Accept': 'application/json',
       }
-  }
+    }
     e.preventDefault();
     try {
-        const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/profile/change_info`, {'name': name, 'age': parseInt(age), 'about_me': about_me}, config)
-        console.log(res.data);
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/profile/change_info`, { 'name': name, 'age': parseInt(age), 'about_me': about_me }, config)
+      console.log(res.data);
+      Swal.fire({
+        timer: 3000,
+        timerProgressBar: true,
+        icon: 'success',
+        title: `Se actualizaron los cambios de manera exitosa!!`,
+      })
     } catch (error) {
-        console.error(error);
+      Swal.fire({
+        timer: 3000,
+        timerProgressBar: true,
+        icon: 'fail',
+        title: `Opps ocurrio un error al actualizar los cambios`,
+      })
+      console.error(error);
     }
-};
+  };
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
@@ -66,9 +80,9 @@ export default function CardSettings(props) {
                     value={name}
                     onChange={
                       e => {
-                        setNombre(e.target.value); 
+                        setNombre(e.target.value);
                         onChange(e)
-                      } 
+                      }
                     }
                   />
                 </div>
@@ -89,7 +103,7 @@ export default function CardSettings(props) {
                     value={age}
                     onChange={
                       (e) => {
-                        setEdad(e.target.value); 
+                        setEdad(e.target.value);
                         onChange(e)
                       }
                     }
@@ -116,23 +130,23 @@ export default function CardSettings(props) {
                     placeholder="Amante de los videojuegos tipo shooters como fortnite, csgo y valorant"
                     rows="4"
                     name='about_me'
-                    value = {about_me}
+                    value={about_me}
                     onChange={
                       (e) => {
-                        setAboutMe(e.target.value); 
+                        setAboutMe(e.target.value);
                         onChange(e)
-                        }
                       }
+                    }
                   ></textarea>
                 </div>
               </div>
             </div>
             <button
-                className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                type="submit"
-              >
-                Guardar Cambios
-              </button>
+              className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+              type="submit"
+            >
+              Guardar Cambios
+            </button>
           </form>
         </div>
       </div>
