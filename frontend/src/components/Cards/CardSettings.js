@@ -3,7 +3,8 @@ import { changeUserInfo } from "../../auth/actions/auth"
 
 // components
 
-export default function CardSettings() {
+export default function CardSettings(props) {
+  var {nombre,edad,aboutMe,setNombre,setEdad,setAboutMe}=props
   const [formData, setFormData] = useState({
     name: "",
     age: 0,
@@ -48,8 +49,13 @@ export default function CardSettings() {
                   <input
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue="el pepe"
-                    onChange={(e) => onChange(e)}
+                    placeholder="David Gonzalez"
+                    onChange={
+                      e => {
+                        setNombre(e.target.value)
+                        onChange(e)
+                      } 
+                    }
                   />
                 </div>
               </div>
@@ -59,13 +65,18 @@ export default function CardSettings() {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    Correo Electronico
+                    Edad
                   </label>
                   <input
-                    type="email"
+                    type="number"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue="jesse@example.com"
-                    onChange={(e) => onChange(e)}
+                    placeholder="19"
+                    onChange={
+                      (e) => {
+                        setEdad(e.target.value)
+                        onChange(e)
+                      }
+                    }
                   />
                 </div>
               </div>
@@ -81,14 +92,19 @@ export default function CardSettings() {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    About me
+                    descripcion sobre ti
                   </label>
                   <textarea
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue="Descripcion acerca de ti"
+                    placeholder="Amante de los videojuegos tipo shooters como fortnite, csgo y valorant"
                     rows="4"
-                    onChange={(e) => onChange(e)}
+                    onChange={
+                      (e) => {
+                        setAboutMe(e.target.value)
+                        onChange(e)
+                        }
+                      }
                   ></textarea>
                 </div>
               </div>
@@ -97,6 +113,7 @@ export default function CardSettings() {
                 type="submit"
               >
                 Guardar Cambios
+
               </button>
             </div>
           </form>

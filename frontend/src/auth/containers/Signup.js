@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import backgroundImage from "./../../assets/login.png"
+import Swal from 'sweetalert2'
 
 import { connect } from 'react-redux'
 import { signup } from '../actions/auth'
@@ -28,6 +29,12 @@ function Signup({ signup, isAuthenticated }) {
         return <Navigate to="/" />
     }
     if (accountCreated) {
+        Swal.fire({
+            timer: 3000,
+            timerProgressBar: true,
+            icon: 'success',
+            title: `Registro completado`,
+        })
         return <Navigate to="/login" />
     }
 

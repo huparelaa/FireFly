@@ -12,7 +12,7 @@ export default function Navbar() {
           {/* Brand */}
 
           <p className="text-sm uppercase hidden lg:inline-block font-semibold">
-            <Link to="/">FireFly</Link>
+            <Link to="/dashboard">FireFly</Link>
           </p>
           {/* User */}
           <ul className="flex-col md:flex-row list-none items-center hidden md:flex">

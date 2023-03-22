@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios'
 import Navbar from "../components/Navbars/AuthNavbar.js";
 import Footer from "../components/Footers/Footer.js";
+import { useNavigate } from 'react-router-dom'
 
 export default function Profile() {
   const [usuario, setUsuario] = useState(null);
+  const Navigate = useNavigate();
   const config = {
       headers: { 
           'Content-type': 'application/json',
@@ -38,7 +40,7 @@ export default function Profile() {
           style={{
             height: "60%",
             backgroundImage:
-              "url('https://infolibros.org/wp-content/uploads/2021/11/Rene-Descartes.jpg')",
+              "url('https://www.xtrafondos.com/wallpapers/control-de-playstation-10819.jpg')",
           }}
         >
         </div>
@@ -72,6 +74,14 @@ export default function Profile() {
                   </div>
                 </div>
               </div>
+              <button
+                className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                type="submit"
+                onClick={e =>{Navigate("/admin")} }
+              >
+                Editar perfil
+
+              </button>
             </div>
           </div>
         </section>
