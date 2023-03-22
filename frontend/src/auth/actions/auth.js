@@ -19,21 +19,6 @@ import {
 } from "./types"
 
 
-export const changeUserInfo = (name, age, about_me) => async dispatch => {
-       
-    const body = { 'name': name, 'age': age, 'about_me': about_me }
-    try {
-        const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/profile/change_info`, body, config)
-        dispatch({
-            type: SIGNUP_SUCCESS,
-            payload: res.data
-        })
-    } catch (err) { 
-        dispatch({
-            type: SIGNUP_FAIL,
-        })
-    }
-}
 
 //AUTHENTICATION CHECK 
 export const checkAuthenticated = () => async dispatch => {
