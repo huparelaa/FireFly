@@ -2,6 +2,7 @@ import json
 from django.http import HttpResponse, JsonResponse
 from jwt import InvalidSignatureError
 import jwt
+import requests
 from accounts.models import UserAccount
 from django.conf import settings
 from accounts.models import Game
@@ -42,3 +43,24 @@ def select_games(request):
     user.save()
         # Devolver una respuesta JSON con un mensaje de éxito
     return JsonResponse({'message': 'Juegos seleccionados guardados correctamente'})
+
+
+
+def agregar_juegos(request):
+    # Usa la API de RAWG para obtener información sobre los juegos
+    response = requests.get('https://api.rawg.io/api/games?key=a6e0d61ecf5b4b66871ef58ce43806cd')
+    data = response.json()
+
+    # Crea instancias del modelo Juego con la información obtenida y guárdalas en la base de datos
+    for juego_data in data['results']:
+        juego = Game(
+            id_game=juego_data['id'],
+            titulo=juego_data['name'],
+            ano_lanzamiento=juego_data['released'],
+            genero=juego_data['genres'][0]['name'],
+            img=juego_data['background_image']
+        )
+        juego.save()
+
+    # Retorna una respuesta indicando que se agregaron los juegos correctamente
+    return JsonResponse({'Se agregaron los juegos correctamente'})

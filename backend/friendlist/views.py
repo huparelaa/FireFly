@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse
@@ -33,12 +34,20 @@ def get_friends(request):
     if payload is None: 
         return HttpResponse(status=401)
     user_id = payload.get('user_id', None)
+    print('user_id', user_id)
     user = UserAccount.objects.get(id = user_id)
-    friends = Amigo.objects.get(usuario = user_id)
-    return JsonResponse({ friends })
+    friends = Amigo.objects.filter(usuario_id = user_id)
+    print(friends)
+    amigos_data = []
+    for friend in friends:
+        amigo_data = friend.__dict__
+        print(friend.amigo.name)
+        amigos_data.append(friend.amigo.name)
+    print('amigos_data', amigos_data)
+    return JsonResponse({ 'friends': amigos_data }, safe = False)
 
 @api_view(['POST'])
-def agregar_amigo(request, amigo_id):
+def add_friend(request):
     auth_header = request.headers.get('Authorization', None)
     if auth_header is None: 
         return HttpResponse(status=401)
@@ -51,9 +60,14 @@ def agregar_amigo(request, amigo_id):
         return HttpResponse(status=401)
     user_id = payload.get('user_id', None)
     user = UserAccount.objects.get(id = user_id)
+    print('user', user)
+    body = json.loads(request.body)
+    amigo_id = body.get('user_id')
+    print('amigo_id', amigo_id)
     amigo = get_object_or_404(UserAccount, id=amigo_id)
+    print('amigo' , amigo)
     creado = Amigo.objects.get_or_create(usuario=user, amigo=amigo)
-    return JsonResponse({'creado': creado})
+    return JsonResponse({'creado': 'Friend save'}, safe = False)
 
 
 @api_view(['POST'])

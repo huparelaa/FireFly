@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import Link from 'react-router-dom'
+import {Navigate} from 'react-router-dom'
 import axios from 'axios'
 
 function SearchPeople(){
@@ -20,7 +20,7 @@ function SearchPeople(){
             <ul>
                 {usuarios.map((usuario) => (
                     <li key={usuario.id}>
-                        {usuario.name} - {usuario.age}
+                        <a href={`/profile/${usuario.id}/`}> {usuario.name} - {usuario.age} </a>
                     </li>
                 ))}
             </ul>

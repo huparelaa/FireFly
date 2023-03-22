@@ -3,14 +3,24 @@ import axios from 'axios';
 
 function FriendList() {
     const [amigos, setAmigos] = useState(null);
+    const config = {
+        headers: { 
+            'Content-type': 'application/json',
+            'Authorization': `JWT ${localStorage.getItem('access')}`,
+            'Accept': 'application/json',
+        }
+    };
     useEffect(() => {
-        axios.get('/api/get_friends/')
-        .then(response => {
-            setAmigos(response.data.amigos);
-        })
-        .catch(error => {
-            console.error(error);
-        });
+        async function getFriends(){
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/get_friends/`, config)            
+            .then(response => {
+                setAmigos(response.data.friends);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        }
+        getFriends()
     }, []);
     if (!amigos) {
         return <p>Cargando amigos...</p>;
@@ -18,11 +28,11 @@ function FriendList() {
     return (
         <div className='text-white' >
         <h2>Mis amigos:</h2>
-        <ul > 
-            <li>Hobar</li>
-            <li>David Gonzalez</li>
-            <li>Angel Martinez</li>
-        </ul>
+            {amigos.map(friend => (
+                <li>
+            {friend}
+            </li> 
+        ))}
         </div>
     );
 }

@@ -138,3 +138,14 @@ def get_user_by_search(request):
         users = UserAccount.objects.all()
     data = {'users': list(users.values())}
     return JsonResponse(data)
+
+def get_user_by_id(request, **kwargs): 
+    user_id = kwargs['user_id']
+    user = UserAccount.objects.get(id=user_id)
+    userInfo = {
+        'name': user.name, 
+        'age': user.age, 
+        'email' : user.email,
+        'about_me': user.about_me
+    }
+    return JsonResponse({'info': userInfo})

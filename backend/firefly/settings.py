@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'accounts',
     'games',
     'corsheaders',
-    'friendlist'
+    'friendlist',
+    'match',
     #--chat---
     # 'chat',
     # 'channels',
