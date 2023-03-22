@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { login } from '../actions/auth'
 import backgroundImage from "./../../assets/login.png"
 import Footer from "../../components/Footers/Footer";
-
+import Swal from 'sweetalert2'
 function Login({ login, isAuthenticated }) {
     const [formData, setFormData] = useState({
         email: '',
@@ -17,8 +17,16 @@ function Login({ login, isAuthenticated }) {
         login(email, password)
     }
     if (isAuthenticated) {
+        Swal.fire({
+            timer: 3000,
+            timerProgressBar: true,
+            icon: 'success',
+            title: `Inicio de sesion exitoso`,
+        })
         return <Navigate to='/check-first-login' />
+
     }
+    
     return (
         <>
             <div
