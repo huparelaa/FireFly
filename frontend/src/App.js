@@ -11,7 +11,6 @@ import PreferenceForm from "./games/GameList"
 import Dashboard from './dashboard/Dashboard'
 import { AfterLogin } from "./auth/Middle/AfterLogin";
 import { Provider } from "react-redux";
-import { UserProfile } from "./components/UserProfile";
 import store from "./store";
 import { Chat } from "./chat/Chat";
 import Admin from "./layouts/Admin";
