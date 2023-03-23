@@ -3,6 +3,8 @@ from django.views.generic import TemplateView
 from accounts import views as vAccounts
 from games import views as vGames
 from friendlist import views as vFriendList
+from match import views as vMatch
+
 urlpatterns = [
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
@@ -21,7 +23,8 @@ urlpatterns = [
 
 
     path('agregar_juegos/', vGames.agregar_juegos, name='agregar_juegos'),
-
+    path('match/', vMatch.match, name = "match"), 
+    path('analytics/more_played_games', vGames.more_played_games, name = "more_played_games"), 
     
 ]
 

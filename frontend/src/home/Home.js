@@ -37,7 +37,7 @@ const Home = () => {
             <main className='home-main'>
                 <section className='home-main__right'>
                     <p className='home-man-pg'>
-                        Encuentra a tus compañeros de juego ideales🎮
+                        Encuentra a tus compañeros de juego ideales para tus gustos🎮
                     </p>
                     <Link to="/signup"><button className="button-func">Sign Up</button></Link>
                 </section>
