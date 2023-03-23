@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User                                # Django Build in User Model
+from accounts.models import UserAccount as User
 from django.http.response import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
