@@ -12,7 +12,7 @@ import Dashboard from './dashboard/Dashboard'
 import { AfterLogin } from "./auth/Middle/AfterLogin";
 import { Provider } from "react-redux";
 import store from "./store";
-import { Chat } from "./chat/Chat";
+import { ChatApp } from "./chat/ChatApp";
 import Admin from "./layouts/Admin";
 import Profile from "./profile/Profile"
 import ProfileId from "./profile/ProfileId";
@@ -36,7 +36,7 @@ function App() {
                         <Route path="/games" element={<PreferenceForm/>} />
                         <Route path="/dashboard" element={<Dashboard/>} />
                         <Route path="/check-first-login" element={<AfterLogin/>} />
-                        <Route path="/chat" element={<Chat/>}/>
+                        <Route path="/chat" element={<ChatApp/>}/>
                         <Route path="/match" element={<Match/>} />
                         <Route path="/Analytics" element={<Analytics/>} />
                         {/* <Route path="/forum" element={<Forum/>}/> */} 

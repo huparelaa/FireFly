@@ -1,10 +1,14 @@
+from django.http import HttpResponse
 from accounts.models import UserAccount as User
 from django.http.response import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from chat.models import Message                                                   # Our Message model
 from chat.serializers import MessageSerializer, UserSerializer # Our Serializer Classes
+import jwt
+from jwt.exceptions import InvalidSignatureError
 # Users View
+
 @csrf_exempt                                                              # Decorator to make the view csrf excempt.
 def user_list(request, pk=None):
     
@@ -33,7 +37,7 @@ def message_list(request, sender=None, receiver=None):
     List all required messages, or create a new message.
     """
     if request.method == 'GET':
-        messages = Message.objects.filter(sender_id=sender, receiver_id=receiver)
+        messages = Message.objects.filter(sender_id= sender , receiver_id=receiver)
         serializer = MessageSerializer(messages, many=True, context={'request': request})
         return JsonResponse(serializer.data, safe=False)
     elif request.method == 'POST':
