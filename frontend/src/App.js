@@ -19,12 +19,15 @@ import ProfileId from "./profile/ProfileId";
 import Match from "./match/Match"
 import Analytics from "./analytics/Analytics";
 
+import Sample from "./home/test"
+
 function App() {
     return (
         <Provider store={store}>
             <Router>
                     <Routes>
                         <Route path="/" element={<Home />} />
+                        <Route path="/sample" element={<Sample />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />
                         <Route path="/reset-password" element={<ResetPassword />} />
