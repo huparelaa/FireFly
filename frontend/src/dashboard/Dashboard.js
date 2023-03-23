@@ -4,13 +4,15 @@ import { SearchPeople } from "../components/SearchPeople";
 import { FriendList } from "../components/FriendList";
 import { UserInfo } from "../components/UserInfo";
 
-function Dashboard(){
+function Dashboard() {
     return (
-        <div className="flex">
-            <SideBar/>
+        <div className={"flex"} style={{width:"100%", height:"100%"}}>
+            <SideBar />
             <SearchPeople />
             <FriendList />
-            <UserInfo/>
+            <div className={"ml-auto"}>
+                <UserInfo className={"ml-auto"}/>
+            </div>
         </div>
     )
 }
