@@ -49,10 +49,8 @@ INSTALLED_APPS = [
     'friendlist',
     'match',
     #--chat---
-    # 'chat',
-    # 'channels',
-
-
+    'chat',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
