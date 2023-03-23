@@ -35,7 +35,6 @@ def has_entered_before(request):
     user_id = payload.get('user_id', None)
     user = UserAccount.objects.get(id=user_id)
     has_entered = user.has_enter_before
-    print(has_entered)
     response_data = {'has_entered': has_entered}
     return JsonResponse(response_data)
 

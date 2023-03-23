@@ -16,6 +16,9 @@ import { Chat } from "./chat/Chat";
 import Admin from "./layouts/Admin";
 import Profile from "./profile/Profile"
 import ProfileId from "./profile/ProfileId";
+import Match from "./match/Match"
+import Analytics from "./analytics/Analytics";
+
 import Sample from "./home/test"
 
 function App() {
@@ -34,6 +37,8 @@ function App() {
                         <Route path="/dashboard" element={<Dashboard/>} />
                         <Route path="/check-first-login" element={<AfterLogin/>} />
                         <Route path="/chat" element={<Chat/>}/>
+                        <Route path="/match" element={<Match/>} />
+                        <Route path="/Analytics" element={<Analytics/>} />
                         {/* <Route path="/forum" element={<Forum/>}/> */} 
                         <Route path="/admin/*" element={<Admin />} />  
                         <Route path="/profile/*" element={<Profile />} /> 

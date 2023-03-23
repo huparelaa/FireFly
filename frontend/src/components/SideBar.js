@@ -16,7 +16,7 @@ function SideBar() {
         { title: "Forum", src: group, path: "/forum"},
         { title: "Chat", src: chat, path: "/chat" },
         { title: "Logout", src: logout, gap: true, path: "/logout"},
-        { title: "Analytics", src: "Chart" },
+        { title: "Analytics", src: "da", path: "/Analytics"  },
     ];
     return (
         <div className="flex">
@@ -61,9 +61,6 @@ function SideBar() {
                 ))}
             </ul>
             </div>
-            <div className="h-screen flex-1 p-7">
-                    <h1 className="text-2xl font-semibold ">Home Page</h1>
-                </div>
         </div>
     )
 } 

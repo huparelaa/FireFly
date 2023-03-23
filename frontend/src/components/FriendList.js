@@ -29,7 +29,7 @@ function FriendList() {
         <div className='text-white' >
         <h2>Mis amigos:</h2>
             {amigos.map(friend => (
-                <li>
+                <li key={friend}>
             {friend}
             </li> 
         ))}
