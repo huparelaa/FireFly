@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 import {
     LOGIN_SUCCESS, 
@@ -66,7 +67,13 @@ export const signup = (name, email, password, re_password) => async dispatch => 
             type: SIGNUP_SUCCESS,
             payload: res.data
         })
-    } catch (err) { 
+    } catch (err) {
+        Swal.fire({
+            timer: 3000,
+            timerProgressBar: true,
+            icon: 'error',
+            title: `Ocurrio un error al registrarse`,
+        }) 
         dispatch({
             type: SIGNUP_FAIL,
         })
@@ -139,6 +146,12 @@ export const login = (email, password) => async dispatch => {
         })
         dispatch(load_user());
     } catch (err) { 
+        Swal.fire({
+            timer: 3000,
+            timerProgressBar: true,
+            icon: 'error',
+            title: `Credenciales invalidas`,
+        })
         dispatch({
             type: LOGIN_FAIL,
         })

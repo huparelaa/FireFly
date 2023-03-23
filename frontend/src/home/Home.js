@@ -1,26 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import principalImg from './principalimg.png'
+import useScript from '../components/script';
+import FireFlyPng from './FireFlyPng.png'
+
+
 const Home = () => {
+    useScript('https://app.embed.im/snow.js');
     return (
         <React.Fragment>
             <header>
                 <nav className='header-nav'>
-                    <ul className='header-nav__ul'> 
+                    <ul className='header-nav__ul'>
                         <section className='nav-side-left'>
-                            <div>Logo</div>
+                            <div>
+                                <img className='logo' src={FireFlyPng} alt='' style={{ position: 'relative', top: '10px' , height: '50px' }} />
+                            </div>
+
                         </section>
                         <section className='nav-side-right'>
-                            <li className='nav-side-right__li'><a href='/'>Explorar</a></li>
-                            <li className='nav-side-right__li'><a href='/'>Quienes somos</a></li>
-                            <li className='nav-side-right__li'><a href='/'>Comunidad</a></li>
-                            <li className='nav-side-right__li'><a href='/'>Ayuda</a></li>
+                            <li className='nav-side-right__li'><a href='/'>Explorar🌎</a></li>
+                            <li className='nav-side-right__li'><a href='/'>Quienes somos❓</a></li>
+                            <li className='nav-side-right__li'><a href='/'>Comunidad👥</a></li>
+                            <li className='nav-side-right__li'><a href='/'>Ayuda🆘</a></li>
                             <li className='nav-side-right__li'>
-                                <Link  to="/login">
+                                <Link to="/login">
                                     <button className="button-func">
                                         Login
                                     </button>
-                                </Link> 
+                                </Link>
                             </li>
                         </section>
                     </ul>
@@ -29,16 +37,16 @@ const Home = () => {
             <main className='home-main'>
                 <section className='home-main__right'>
                     <p className='home-man-pg'>
-                    Encuentra a tus compañeros de juego ideales
+                        Encuentra a tus compañeros de juego ideales🎮
                     </p>
                     <Link to="/signup"><button className="button-func">Sign Up</button></Link>
                 </section>
                 <section className='home-main__left'>
                     <div className='home-main__circle'>
-                        <img className='home-img' src={principalImg} alt=''/>
+                        <img className='home-img' src={principalImg} alt='' />
                     </div>
 
-            
+
                 </section>
             </main>
         </React.Fragment>

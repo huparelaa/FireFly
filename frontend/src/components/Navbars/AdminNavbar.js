@@ -2,6 +2,7 @@ import React from "react";
 
 import UserDropdown from "../Dropdowns/UserDropdown";
 import { Link } from 'react-router-dom'
+import FireFlyPng from './FireFlyPng.png'
 
 export default function Navbar() {
   return (
@@ -12,8 +13,11 @@ export default function Navbar() {
           {/* Brand */}
 
           <p className="text-sm uppercase hidden lg:inline-block font-semibold">
-            <Link to="/dashboard">FireFly</Link>
+            <Link to="/dashboard">
+              <img src={FireFlyPng} alt="FireFly" style={{ position: 'relative', top: '10px' , height: '50px' }} />
+            </Link>
           </p>
+
           {/* User */}
           <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
             <UserDropdown />
