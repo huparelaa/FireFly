@@ -4,7 +4,7 @@ from accounts import views as vAccounts
 from games import views as vGames
 from friendlist import views as vFriendList
 from match import views as vMatch
-
+from chat import views as vChat
 urlpatterns = [
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
@@ -26,6 +26,14 @@ urlpatterns = [
     path('match/', vMatch.match, name = "match"), 
     path('analytics/more_played_games', vGames.more_played_games, name = "more_played_games"), 
     
+    path('agregar_juegos/', vGames.agregar_juegos, name='agregar_juegos'),
+     # URL form : "/api/messages/1/2"
+    path('api/messages/<int:sender>/<int:receiver>', vChat.message_list, name='message-detail'),  # For GET request.
+    # URL form : "/api/messages/"
+    path('api/messages/', vChat.message_list, name='message-list'),   # For POST
+    # URL form "/api/users/1"
+    path('api/users/<int:pk>', vChat.user_list, name='user-detail'),      # GET request for user with id
+    path('api/users/', vChat.user_list, name='user-list'),    # POST for new user and GET for all users list
 ]
 
 urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))]
