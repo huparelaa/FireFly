@@ -8,9 +8,11 @@ function Dashboard(){
     return (
         <div className="flex">
             <SideBar/>
-            <SearchPeople />
-            <FriendList />
-            <UserInfo/>
+            <div className="flex">
+                <SearchPeople/>
+                <UserInfo/>
+                <FriendList />
+            </div>
         </div>
     )
 }

@@ -26,7 +26,7 @@ function FriendList() {
         return <p>Cargando amigos...</p>;
     }
     return (
-        <div className='text-white' >
+        <div className='text-white'>
         <h2>Mis amigos:</h2>
             {amigos.map(friend => (
                 <li key={friend}>

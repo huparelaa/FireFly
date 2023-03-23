@@ -16,7 +16,7 @@ function SideBar() {
         { title: "Forum", src: group, path: "/forum"},
         { title: "Chat", src: chat, path: "/chat" },
         { title: "Logout", src: logout, gap: true, path: "/logout"},
-        { title: "Analytics", src: "da", path: "/Analytics"  },
+        { title: "Analytics", src: "da", path: "/Analytics"},
     ];
     return (
         <div className="flex">
