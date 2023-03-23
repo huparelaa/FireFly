@@ -16,12 +16,15 @@ import { Chat } from "./chat/Chat";
 import Admin from "./layouts/Admin";
 import Profile from "./profile/Profile"
 import ProfileId from "./profile/ProfileId";
+import Sample from "./home/test"
+
 function App() {
     return (
         <Provider store={store}>
             <Router>
                     <Routes>
                         <Route path="/" element={<Home />} />
+                        <Route path="/sample" element={<Sample />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />
                         <Route path="/reset-password" element={<ResetPassword />} />
