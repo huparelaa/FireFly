@@ -315,3 +315,45 @@ body {
 .selected {
     background-color: #b24af3;
 }
+
+.Barra{
+    padding: 32px;
+    max-width: 150%;
+    height: 50%;
+}
+
+.Barra input{
+    width: 150%;
+    padding: 5px;
+    padding-left: 35px;
+    background: #ffffff;
+    color: #000000;
+    border-radius: 45px 45px 45px 45px;
+    text-indent: justify;
+}
+
+.Barra input::placeholder{
+    padding: 0px;
+    color: rgb(56, 56, 56);
+    font-style: italic;
+}
+
+.Icono{
+    padding: 3px;
+    position: absolute;
+    font-size: 30px;
+    color: #000000;
+    min-width: 40px;
+    text-align: center;
+}
+
+.Barra ul{
+    background-color: #17152a;
+    padding: 10px;
+    color: #ffffff;
+    border-color:rgb(56, 56, 56);
+}
+
+.Barra ul li{
+    padding: 5px;
+}
