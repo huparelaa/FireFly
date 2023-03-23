@@ -26,7 +26,7 @@ function FriendList() {
         return <p>Cargando amigos...</p>;
     }
     return (
-        <div className='text-white' style={{ position: 'absolute', top: '20px', right: '240px' }}>
+        <div className='text-white' style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
           <h2>Mis amigos:</h2>
           {amigos.map(friend => (
             <li key={friend}>
@@ -34,7 +34,7 @@ function FriendList() {
             </li> 
           ))}
         </div>
-      );        
+      );
 }
 
 export { FriendList }
