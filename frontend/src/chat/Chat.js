@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
+import Swal from 'sweetalert2'
 
 class Chat extends Component {
   state = {
     text: '',
     sender: '',
     receiver: ''
-  };
-
-  handleChange = event => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
   };
 
   handleSubmit = event => {
@@ -21,10 +17,25 @@ class Chat extends Component {
       body: JSON.stringify({ "sender": sender, "receiver": receiver, "message": message })
     })
       .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.log(error));
+      .then(data => {
+        console.log(data);
+        Swal.fire({
+          timer: 3000,
+          timerProgressBar: true,
+          icon: 'success',
+          title: `El mensaje se envió correctamente.`,
+        });
+      })
+      .catch(error => {
+        console.log(error);
+        Swal.fire({
+          timer: 3000,
+          timerProgressBar: true,
+          icon: 'error',
+          title: `Ocurrió un error al enviar el mensaje.`,
+        });
+      });
   };
-
   render() {
     const { message, sender, receiver } = this.state;
     return (
