@@ -12,28 +12,12 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from django.db.models import Count
 
-def verify_token(token):
-    try:
-        payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
-        return payload
-    except InvalidSignatureError:
-        # Handle invalid signature
-        return None
+from firefly.utils import get_user_id
     
 @csrf_exempt
 @api_view(['POST'])
 def select_games(request): 
-    auth_header = request.headers.get('Authorization', None)
-    if auth_header is None: 
-        return HttpResponse(status=401)
-    auth_parts = auth_header.split(' ')
-    if len(auth_parts) != 2 or auth_parts[0] != 'JWT': 
-        return HttpResponse(status=401)
-    token = auth_parts[1]
-    payload = verify_token(token)
-    if payload is None: 
-        return HttpResponse(status=401)
-    user_id = payload.get('user_id', None)
+    user_id = get_user_id(request)
     user = UserAccount.objects.get(id = user_id)
     data = json.loads(request.body.decode('utf-8'))
     id_juego = data.get('id')

@@ -5,7 +5,7 @@ function Analytics(){
     const [data, setData] = useState(null)
     useEffect (() => {
         async function getAnalytics(){
-            const res =  await axios.get(`${process.env.REACT_APP_API_URL}/analytics/more_played_games`)
+            const res =  await axios.get(`${process.env.REACT_APP_API_URL}/analytics/more_played_games/`)
             try {
                 console.log(res);
                 setData(res.data.juegos_populares)

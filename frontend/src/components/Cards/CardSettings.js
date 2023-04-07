@@ -26,7 +26,7 @@ export default function CardSettings(props) {
     }
     e.preventDefault();
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/profile/change_info`, { 'name': name, 'age': parseInt(age), 'about_me': about_me }, config)
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/profile/change_info/`, { 'name': name, 'age': parseInt(age), 'about_me': about_me }, config)
       console.log(res.data);
       Swal.fire({
         timer: 3000,

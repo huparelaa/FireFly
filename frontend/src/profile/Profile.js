@@ -16,7 +16,7 @@ export default function Profile() {
   };
   useEffect(() => {
       async function getPhotoName(){
-          await axios.get(`${process.env.REACT_APP_API_URL}/api/profile`, config)
+          await axios.get(`${process.env.REACT_APP_API_URL}/api/profile/`, config)
           .then(response => {
               setUsuario(response.data);
           })

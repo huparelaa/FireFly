@@ -11,28 +11,27 @@ urlpatterns = [
     # path('api/games/', vGames.game_list, name='game_list'),
     path('user/has_entered_before/', vAccounts.has_entered_before, name='has_entered_before'),
     path('user/has_entered_before_true/', vAccounts.has_entered_before_true, name='has_entered_before_true'), 
-    path('api/games_selected', vGames.select_games, name='select_games'),
-    path('api/profile', vAccounts.get_user_profile, name = 'get_user_profile'),
-    path('api/get_name_photo', vAccounts.get_user_name_photo, name = "get_user_photo"),
+    path('api/games_selected/', vGames.select_games, name='select_games'),
+    path('api/profile/', vAccounts.get_user_profile, name = 'get_user_profile'),
+    path('api/get_name_photo/', vAccounts.get_user_name_photo, name = "get_user_photo"),
     path('api/get_friends/', vFriendList.get_friends, name = "get_friends"), 
-    path('api/add_friends', vFriendList.add_friend, name = "add_friend"),
+    path('api/add_friends/', vFriendList.add_friend, name = "add_friend"),
 
-    path('api/profile/change_info', vAccounts.change_user_info, name = "change_user_info" ), 
+    path('api/profile/change_info/', vAccounts.change_user_info, name = "change_user_info" ), 
     path('search/', vAccounts.get_user_by_search, name='buscar_usuario'),
     path('profile/<int:user_id>/', vAccounts.get_user_by_id, name='profile_by_id'),
 
 
     path('agregar_juegos/', vGames.agregar_juegos, name='agregar_juegos'),
     path('match/', vMatch.match, name = "match"), 
-    path('analytics/more_played_games', vGames.more_played_games, name = "more_played_games"), 
+    path('analytics/more_played_games/', vGames.more_played_games, name = "more_played_games"), 
     
     path('agregar_juegos/', vGames.agregar_juegos, name='agregar_juegos'),
-     # URL form : "/api/messages/1/2"
-    path('api/messages/<int:sender>/<int:receiver>', vChat.message_list, name='message-detail'),  # For GET request.
-    # URL form : "/api/messages/"
-    path('api/messages/', vChat.message_list, name='message-list'),   # For POST
-    # URL form "/api/users/1"
-    path('api/users/<int:pk>', vChat.user_list, name='user-detail'),      # GET request for user with id
+
+    path('api/messages/<int:receiver_id>/', vChat.lista_mensajes, name='message-detail'),  # For GET request.
+    path('api/messenger/<int:receiver_id>/', vChat.send_message, name='message-list'),   # For POST
+    path('api/contacts/', vChat.lista_contactos, name="message-contacts"),      #GET
+    path('api/users/<int:pk>/', vChat.user_list, name='user-detail'),      # GET request for user with id
     path('api/users/', vChat.user_list, name='user-list'),    # POST for new user and GET for all users list
 ]
 
