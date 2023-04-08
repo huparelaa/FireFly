@@ -15,7 +15,7 @@ function SearchPeople() {
     console.log('usuarios', usuarios);
     return (
         <div className="Barra">
-            <MdOutlinePersonSearch class="Icono" />
+            <MdOutlinePersonSearch className="Icono" />
             <input type="text" value={nombre} onChange={handleChange} placeholder="Buscar Usuarios..." />
             {nombre !== "" && (
                 <div className="Espacio">

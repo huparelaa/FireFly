@@ -49,7 +49,7 @@ function SideBar() {
                     <NavLink
                         to = {Menu.path}
                         key={index}
-                        className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
+                        className={`flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
                         ${Menu.gap ? "mt-9" : "mt-2"} ${
                             index === 0 && "bg-light-white"
                         } `} >

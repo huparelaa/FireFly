@@ -8,13 +8,14 @@ from django.http import HttpResponse, JsonResponse
 import jwt
 from jwt.exceptions import InvalidSignatureError
 
+
 def verify_token(token):
     try:
         payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
         return payload
     except InvalidSignatureError:
         return None
-    
+
 @api_view(['GET'])
 def has_entered_before(request):
     auth_header = request.headers.get('Authorization', None)

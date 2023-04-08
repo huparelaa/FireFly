@@ -8,7 +8,6 @@ from chat import views as vChat
 urlpatterns = [
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
-    # path('api/games/', vGames.game_list, name='game_list'),
     path('user/has_entered_before/', vAccounts.has_entered_before, name='has_entered_before'),
     path('user/has_entered_before_true/', vAccounts.has_entered_before_true, name='has_entered_before_true'), 
     path('api/games_selected', vGames.select_games, name='select_games'),

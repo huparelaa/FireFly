@@ -124,7 +124,6 @@ EMAIL_HOST_USER = 'valenciajulian277@gmail.com'
 EMAIL_HOST_PASSWORD = 'ouoovdqjhputpaui'
 EMAIL_USE_TLS = True
 
-
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -142,7 +141,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -189,7 +187,7 @@ DJOSER = {
     'SET_PASSWORD_RETYPE': True,
     'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
     'USERNAME_RESET_CONFIRM_URL': 'email/reset/confirm/{uid}/{token}',
-    'ACTIVATION_URL': 'activate/{uid}/{token} ?site={url}',
+    'ACTIVATION_URL': 'activate/{uid}/{token}/',
     'SEND_ACTIVATION_EMAIL': True,
     'SOCIAL_AUTH_TOKEN_STRATEGY': 'djoser.social.token.jwt.TokenStrategy',
     'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': ['http://localhost:8000/google', 'http://localhost:8000/facebook'],
@@ -199,14 +197,11 @@ DJOSER = {
         'user_delete': 'djoser.serializers.UserDeleteSerializer',
     },
 }
-SITE_URL = 'http://localhost:3000'
+
+# DOMAIN = 'www.onlinefirefly.social' # Para despliegue
+# Para desarrollo
+DOMAIN = 'localhost:3000'
+SITE_NAME = 'FireFly'
 SECRET_KEY = 'sTu^th#j-9z=_e8l)fo@p@f$&m0nq3c%*-r+2!f0n$k9ah6)v^'
 AUTH_USER_MODEL =  'accounts.UserAccount'
 CSRF_COOKIE_NAME = 'csrf_token'
-#---chat---
-# ASGI_APPLICATION = "firefly.routing.application"
-# CHANNEL_LAYERS = {
-#     'default': {
-#         'BACKEND': "channels.layers.InMemoryChannelLayer"
-#         }
-#     }

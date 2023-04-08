@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Navigate } from 'react-router-dom';
 
 function PreferenceForm() {
+    const [page, setPage] = useState(1);
     const [games, setGames] = useState([]);
     const [searchTerm, setSearchTerm] = useState('')
     const [selectedGames, setSelectedGames] = useState([]);
@@ -40,7 +41,7 @@ function PreferenceForm() {
         }
     };
     useEffect(() => {
-        const url = `https://api.rawg.io/api/games?key=a6e0d61ecf5b4b66871ef58ce43806cd`
+        const url = `https://api.rawg.io/api/games?key=a6e0d61ecf5b4b66871ef58ce43806cd&page=${page}`
         async function fetchedGames()  {
             try {
                 const response = await axios.get(url);
@@ -51,7 +52,10 @@ function PreferenceForm() {
             }
         }
         fetchedGames()
-    }, []);
+    }, [page]);
+    const handlePageChange = (newPage) => {
+        setPage(newPage);
+    };
     return (
         <>
             {redirectToDashboard && <Navigate to='/dashboard'/>}
@@ -89,6 +93,15 @@ function PreferenceForm() {
             </div>
             <button type="submit">Continuar</button>
         </form>
+        <div className="pagination">
+            <button
+                disabled={page === 1}
+                onClick={() => handlePageChange(page - 1)}
+            >
+                Anterior
+            </button>
+            <button onClick={() => handlePageChange(page + 1)}>Siguiente</button>
+        </div>
     </>
     );
 }
