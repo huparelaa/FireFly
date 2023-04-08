@@ -198,9 +198,9 @@ DJOSER = {
     },
 }
 
-# DOMAIN = 'www.onlinefirefly.social' # Para despliegue
+DOMAIN = 'www.onlinefirefly.social' # Para despliegue
 # Para desarrollo
-DOMAIN = 'localhost:3000'
+#DOMAIN = 'localhost:3000'
 SITE_NAME = 'FireFly'
 SECRET_KEY = 'sTu^th#j-9z=_e8l)fo@p@f$&m0nq3c%*-r+2!f0n$k9ah6)v^'
 AUTH_USER_MODEL =  'accounts.UserAccount'
