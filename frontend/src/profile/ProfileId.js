@@ -1,17 +1,16 @@
 import React, {useEffect, useState,} from "react";
 import axios from "axios";
 import  {useParams} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 function ProfileId(){
     const { id } = useParams();
-    console.log(id);
     const [user, setUser] = useState(null);
     const [requestSent, setRequestSent] = useState(false);
 
     useEffect(() => {
         async function fetchUser() {
             const res = await axios(`${process.env.REACT_APP_API_URL}/profile/${id}/`);
-            console.log(res);
             setUser(res.data.info);
         }
         fetchUser();
@@ -28,7 +27,7 @@ function ProfileId(){
                 'Accept': 'application/json',
             }
         };
-        const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/add_friends`, {
+        const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/add_friends/`, {
             'user_id': id // el ID del usuario al que se le quiere enviar la solicitud
         }, config);
         setRequestSent(true);
@@ -76,6 +75,14 @@ function ProfileId(){
                         >
                         Añadir amigo
                     </button>
+                    <Link to={`../chat/${id}`} className="mt-auto">
+                    <button
+                        className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                        type="submit"
+                        >
+                        Enviar Mensaje
+                    </button>
+                    </Link>
                 </div>
                 </div>
             </div>

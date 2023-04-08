@@ -5,7 +5,6 @@ import FireFlyPng from './FireFlyPng.png'
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import particlesConfig from "./particles2.json";
-
 const Home = () => {
     const particlesInit = useCallback(async engine => {
         console.log(engine);
@@ -23,7 +22,6 @@ const Home = () => {
 
 
         <div>
-
             <Particles
                 style={{ position: "relative" }}
                 id="tsparticles"

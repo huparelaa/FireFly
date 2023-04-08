@@ -15,7 +15,7 @@ function UserInfo() {
     };
     useEffect(() => {
         async function getPhotoName() {
-            const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/get_name_photo`, config)
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/get_name_photo/`, config)
                 .then(response => {
                     setUsuario(response.data);
                 })
