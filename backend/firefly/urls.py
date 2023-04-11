@@ -30,8 +30,6 @@ urlpatterns = [
     path('api/messages/<int:receiver_id>/', vChat.lista_mensajes, name='message-detail'),  # For GET request.
     path('api/messenger/<int:receiver_id>/', vChat.send_message, name='message-list'),   # For POST
     path('api/contacts/', vChat.lista_contactos, name="message-contacts"),      #GET
-    path('api/users/<int:pk>/', vChat.user_list, name='user-detail'),      # GET request for user with id
-    path('api/users/', vChat.user_list, name='user-list'),    # POST for new user and GET for all users list
 ]
 
 urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))]
