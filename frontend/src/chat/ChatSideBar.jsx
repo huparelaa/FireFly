@@ -42,11 +42,11 @@ function ChatSideBar() {
   }
   
   return (
-    <div className="flex flex-col h-screen w-1/4 bg-dark-purple border-white border-4 ">
+    <div className="flex flex-col h-screen w-1/4  ">
       <div className="bg-dark-purple text-white text-lg font-bold p-4 border-white border text-center">
         CHATS RECIENTES
       </div>
-      <ul className="flex flex-col">
+      <ul className="flex flex-col bg-dark-purple border-white border-4">
         {contactos.map((contact) => (
           <Link to={`${contact.id}`} key={contact.id}>
           <li className="p-4 border-t border-white hover:bg-purple-500">
