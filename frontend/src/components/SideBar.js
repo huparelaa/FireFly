@@ -7,6 +7,7 @@ import match from "../assets/match.svg"
 import group from "../assets/group.svg"
 import chat from "../assets/chat.svg"
 import logout from "../assets/logout.svg"
+import logo from "../home/FireFlyPng.png"
 
 function SideBar() {
     const [open, setOpen] = useState(false);
@@ -33,15 +34,15 @@ function SideBar() {
             />
             <div className="flex gap-x-4 items-center">
                 <img
-                src="./src/assets/logo.png"
-                className={`cursor-pointer duration-500 ${
+                src={logo}
+                className={`w-1/2 cursor-pointer duration-500 ${
                 open && "rotate-[360deg]"
                 }`}
             />
             <h1
                 className={`text-white origin-left font-medium text-xl duration-200 ${
                 !open && "scale-0"
-            }`}> Designer 
+            }`}> FireFly
             </h1>
             </div>
             <ul className="pt-6"> 
