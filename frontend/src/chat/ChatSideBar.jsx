@@ -112,7 +112,7 @@ function ChatSideBar() {
           Create group
         </button>
       </div>
-      <Modal
+      {/* <Modal
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
         className="flex justify-center items-center h-screen overflow-auto fixed top-0 left-0 right-0 bottom-0 "
@@ -152,7 +152,7 @@ function ChatSideBar() {
             </button>
           </form>
         </div>
-      </Modal>
+      </Modal> */}
 
       <ul className="flex flex-col bg-dark-purple border-white border-4">
         {contactos.map((contact) => (
