@@ -5,7 +5,7 @@ from games import views as vGames
 from friendlist import views as vFriendList
 from match import views as vMatch
 from chat import views as vChat
-from chatRoom import views as vRoom
+from roomChat import views as vRoom
 from review import views as vReview
 urlpatterns = [
     path('auth/', include('djoser.urls')),

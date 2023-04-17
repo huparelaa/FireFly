@@ -4,8 +4,6 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner, faUsers, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-
-
 import Modal from "react-modal";
 
 const addMember = async (roomName, members) => {
@@ -112,11 +110,12 @@ function ChatSideBar() {
           Create group
         </button>
       </div>
-      {/* <Modal
+      <Modal
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
         className="flex justify-center items-center h-screen overflow-auto fixed top-0 left-0 right-0 bottom-0 "
         overlayClassName="fixed top-0 left-0 right-0 bottom-0 bg-gray-800 bg-opacity-90"
+        ariaHideApp={false}
       >
         <div className="bg-dark-purple rounded-lg w-1/2 p-6">
           <button
@@ -129,9 +128,10 @@ function ChatSideBar() {
           <form onSubmit={handleAddMember}>
             <ul>
               <li>
-              <label for="room_name" className="text-white pr-3">Nombre del grupo:</label>
+              <label htmlFor="room_name" className="text-white pr-3">Nombre del grupo:</label>
               <input type="text" id="room_name" onChange={(event) => setRoomName(event.target.value)} className="pl-1 border border-black"/>
-              <label for="members" className="text-white pr-3">Miembros</label>
+              <div></div>
+              <label htmlFor="members" className="text-white pr-3">Miembros</label>
               <input type="" />
               </li>
             </ul>
@@ -152,7 +152,7 @@ function ChatSideBar() {
             </button>
           </form>
         </div>
-      </Modal> */}
+      </Modal>
 
       <ul className="flex flex-col bg-dark-purple border-white border-4">
         {contactos.map((contact) => (
