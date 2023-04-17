@@ -1,15 +1,9 @@
-from django.db.models import Q
 import json
-from django.http import HttpResponse
 from accounts.models import UserAccount as User
 from django.http.response import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.parsers import JSONParser
 from firefly.utils import get_user_id
 from chat.models import Message                                                   # Our Message model
-from chat.serializers import MessageSerializer, UserSerializer # Our Serializer Classes
 from rest_framework.decorators import api_view
-from jwt.exceptions import InvalidSignatureError
 # Users View
 
 @api_view(['GET'])

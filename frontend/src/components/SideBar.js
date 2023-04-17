@@ -36,7 +36,7 @@ function SideBar() {
                 <img
                 src={logo}
                 className={`w-1/2 cursor-pointer duration-500 ${
-                open && "rotate-[360deg]"
+                open && "rotate-[0deg]"
                 }`}
             />
             <h1
@@ -51,9 +51,7 @@ function SideBar() {
                         to = {Menu.path}
                         key={index}
                         className={`flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
-                        ${Menu.gap ? "mt-9" : "mt-2"} ${
-                            index === 0 && "bg-light-white"
-                        } `} >
+                        ${Menu.gap ? "mt-9" : "mt-2"}`} >
                             <img src= {`${Menu.src}`} />
                             <span className={`${!open && "hidden"} origin-left duration-200`}>
                                 {Menu.title}

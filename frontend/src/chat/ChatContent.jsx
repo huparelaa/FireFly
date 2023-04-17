@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+
 //Esta clase es muy mejorable usando websockets, pero hay que hacer muchos cambios en el backend.
 //Pero no consumiría tantos recursos
 const ChatContent = () => {
@@ -17,7 +18,6 @@ const ChatContent = () => {
       Accept: "application/json",
     },
   };
-
   useEffect(() => {
     async function getMessages() {
       try {

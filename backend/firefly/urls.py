@@ -5,6 +5,8 @@ from games import views as vGames
 from friendlist import views as vFriendList
 from match import views as vMatch
 from chat import views as vChat
+from chatRoom import views as vRoom
+from review import views as vReview
 urlpatterns = [
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
@@ -24,12 +26,24 @@ urlpatterns = [
     path('agregar_juegos/', vGames.agregar_juegos, name='agregar_juegos'),
     path('match/', vMatch.match, name = "match"), 
     path('analytics/more_played_games/', vGames.more_played_games, name = "more_played_games"), 
-    
     path('agregar_juegos/', vGames.agregar_juegos, name='agregar_juegos'),
 
+    #MENSAJERIA ENTRE USUARIOS
     path('api/messages/<int:receiver_id>/', vChat.lista_mensajes, name='message-detail'),  # For GET request.
     path('api/messenger/<int:receiver_id>/', vChat.send_message, name='message-list'),   # For POST
     path('api/contacts/', vChat.lista_contactos, name="message-contacts"),      #GET
+
+    #MENSAJERÍA DE ROOMS
+    path('api/room/', vRoom.create_room, name='room-post'),
+    path('api/room/<room_id>/', vRoom.get_chatroom_members, name='room-get-member'),
+    path('api/room_contacts/', vRoom.get_rooms, name='room-get-list-rooms'),
+    path('api/room_messenger/<room_id>/', vRoom.send_message, name='send-message-to-room'),
+    path('api/room_messages/<room_id>/', vRoom.lista_mensajes, name='message-list-room'),
+
+    #REVIEWS
+    path('api/review/', vReview.save_review, name='review-post'),
+
+
 ]
 
 urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))]
