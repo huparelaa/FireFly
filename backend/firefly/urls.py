@@ -5,6 +5,7 @@ from games import views as vGames
 from friendlist import views as vFriendList
 from match import views as vMatch
 from chat import views as vChat
+
 urlpatterns = [
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
@@ -13,13 +14,15 @@ urlpatterns = [
     path('api/games_selected/', vGames.select_games, name='select_games'),
     path('api/profile/', vAccounts.get_user_profile, name = 'get_user_profile'),
     path('api/get_name_photo/', vAccounts.get_user_name_photo, name = "get_user_photo"),
+    
     path('api/get_friends/', vFriendList.get_friends, name = "get_friends"), 
     path('api/add_friends/', vFriendList.add_friend, name = "add_friend"),
+    path('api/delete_friends/', vFriendList.delete_friend, name = "delete_friend"),
+    path('api/block_friends/', vFriendList.block_friend, name = "block_friend"),
 
     path('api/profile/change_info/', vAccounts.change_user_info, name = "change_user_info" ), 
     path('search/', vAccounts.get_user_by_search, name='buscar_usuario'),
     path('profile/<int:user_id>/', vAccounts.get_user_by_id, name='profile_by_id'),
-
 
     path('agregar_juegos/', vGames.agregar_juegos, name='agregar_juegos'),
     path('match/', vMatch.match, name = "match"), 
@@ -33,5 +36,4 @@ urlpatterns = [
     path('api/users/<int:pk>/', vChat.user_list, name='user-detail'),      # GET request for user with id
     path('api/users/', vChat.user_list, name='user-list'),    # POST for new user and GET for all users list
 ]
-
 urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))]

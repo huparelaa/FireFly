@@ -23,7 +23,7 @@ function SideBar() {
             <div
                 className={` ${
                 open ? "w-72" : "w-20 "
-                } bg-dark-purple h-screen p-5  pt-8 relative duration-300`}
+                } bg-dark-bg h-screen p-5  pt-8 relative duration-300 rounded-2xl`}
             >
             <img
                 src={control}
@@ -39,7 +39,7 @@ function SideBar() {
                 }`}
             />
             <h1
-                className={`text-white origin-left font-medium text-xl duration-200 ${
+                className={`text-white origin-left font-medium text-xl duration-200  ${
                 !open && "scale-0"
             }`}> Designer 
             </h1>

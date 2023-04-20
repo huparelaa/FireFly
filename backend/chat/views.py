@@ -61,7 +61,6 @@ def send_message(request, **kwargs):
     message = Message(sender=sender, receiver=receiver, message=message_content)
     message.save()
     # guardar el mensaje en la base de datos
-       
     return JsonResponse({ 'Confirm': 'Message sended' })
 
 
