@@ -18,8 +18,12 @@ def get_friends(request):
     amigos_data = []
     if friends:
         for friend in friends:
-            amigos_data.append(UserAccount.objects.get(id=friend.amigo_id).name)
+            amigo = UserAccount.objects.get(id=friend.amigo_id)
+            amigos_data.append((amigo.name, amigo.id, amigo.email))
+    
     return JsonResponse({ 'friends': amigos_data }, safe=False)
+
+
 
 @api_view(['POST'])
 def add_friend(request):

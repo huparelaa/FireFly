@@ -63,28 +63,24 @@ function Signup({ signup, isAuthenticated }) {
                 options={particlesConfig}
             />
             <main className="box">
-                <div
-                    className="absolute top-0 w-full h-full bg-center bg-cover"
-                >
-                </div>
-                <div
-                    className="container mx-auto px-4 h-full w-full">
-                    <div className="flex content-center items-center justify-center ">
+                <div className="container mx-auto px-4 h-full w-full">
+                    <div className="flex content-center items-center justify-center bg-white">
                         <div className="w-full lg:w-4/12 px-4 pt-20">
-                            <div
-                                className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-white border-0">
+                            <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg border-0" style={{ backgroundColor: '#2e084d' }}>
                                 <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                                     <div className="text-center mb-3">
-                                        <h1 className="text-blueGray-600 font-bold">
+                                        <h1 className="text-blueGray-600 font-bold text-white mt-2">
+
                                             Sign Up
-                                        </h1>
-                                        <p>Create your account</p>
+                                        </h1 >
+                                        <p className=" text-white mt-2">Create your account</p>
                                     </div>
                                     <form onSubmit={e => onSubmit(e)}>
                                         <div className="relative w-full mb-3">
                                             <label
                                                 className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                                 htmlFor="grid-password"
+                                                style={{ color: 'white' }}
                                             >
                                                 Nombre
                                             </label>
@@ -103,6 +99,7 @@ function Signup({ signup, isAuthenticated }) {
                                             <label
                                                 className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                                 htmlFor="grid-password"
+                                                style={{ color: 'white' }}
                                             >
                                                 Correo
                                             </label>
@@ -121,6 +118,7 @@ function Signup({ signup, isAuthenticated }) {
                                             <label
                                                 className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                                 htmlFor="grid-password"
+                                                style={{ color: 'white' }}
                                             >
                                                 Contraseña
                                             </label>
@@ -139,6 +137,7 @@ function Signup({ signup, isAuthenticated }) {
                                             <label
                                                 className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                                 htmlFor="grid-password"
+                                                style={{ color: 'white' }}
                                             >
                                                 Confirmar contraseña
                                             </label>
@@ -158,6 +157,7 @@ function Signup({ signup, isAuthenticated }) {
                                         <div className="text-center mt-6">
                                             <button
                                                 className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                                                style={{ backgroundColor: '#7f0ddb' }}
                                                 type="submit"
                                             >
 

@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+
 //Esta clase es muy mejorable usando websockets, pero hay que hacer muchos cambios en el backend.
 //Pero no consumiría tantos recursos
 const ChatContent = () => {
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [newMessage, setNewMessage] = useState("");
+  const [isSending, setIsSending] = useState(false);
   const { id } = useParams();
   const config = {
     headers: {
@@ -16,7 +18,6 @@ const ChatContent = () => {
       Accept: "application/json",
     },
   };
-
   useEffect(() => {
     async function getMessages() {
       try {
@@ -34,14 +35,18 @@ const ChatContent = () => {
 
     const interval = setInterval(() => {
       getMessages();
-    }, 1000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [id]);
 
   const handleSendMessage = async (event) => {
     event.preventDefault();
+    if (!newMessage) {
+      return; // Si el mensaje es vacío, no hacemos nada
+    }
     try {
+      setIsSending(true);
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/messenger/${id}/`,
         { message: newMessage },
@@ -51,6 +56,8 @@ const ChatContent = () => {
       setNewMessage("");
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsSending(false);
     }
   };
 
@@ -92,13 +99,15 @@ const ChatContent = () => {
           <button
             className="bg-purple-500 rounded-r-lg px-4 py-1 text-white hover:bg-purple-600 focus:outline-none"
             type="submit"
+            disabled={isSending}
           >
-            Enviar
+            {isSending ? "Enviando..." : "Enviar"}
           </button>
         </div>
       </form>
     </div>
   );
+
 };
 
 export default ChatContent;

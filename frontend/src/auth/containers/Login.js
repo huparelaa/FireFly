@@ -8,6 +8,7 @@ import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import particlesConfig from "./particles.json";
 
+
 function Login({ login, isAuthenticated }) {
     const particlesInit = useCallback(async engine => {
         console.log(engine);
@@ -54,19 +55,20 @@ function Login({ login, isAuthenticated }) {
             />
 
 
-            <main  className="box">
+            <main className="box">
 
                 <div
                     className="container mx-auto px-4 h-full w-full">
 
-                    <div className="flex content-center items-center justify-center ">
-                        <div className="w-full lg:w-4/12 px-4 pt-40">
+                    <div className="flex content-center items-center justify-center bg-white">
+                        <div className="w-fullg l:w-4/12 px-4 pt-40">
                             <div
-                                className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-white border-0">
-
+                                className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg border-0"
+                                style={{ backgroundColor: '#2e084d' }}
+                            >
                                 <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                                     <div className="text-center mb-3">
-                                        <h1 className="text-blueGray-600 font-bold">
+                                        <h1 className="text-blueGray-600 font-bold text-white mt-6">
                                             Login
                                         </h1>
                                     </div>
@@ -75,17 +77,19 @@ function Login({ login, isAuthenticated }) {
                                             <label
                                                 className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                                 htmlFor="grid-password"
+                                                style={{ color: 'white' }}
                                             >
                                                 Email
                                             </label>
                                             <input
                                                 className="form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                 type="email"
-                                                placeholder='email'
+                                                placeholder='Email'
                                                 name='email'
                                                 value={email}
                                                 onChange={e => onChange(e)}
                                                 required
+                                                style={{ backgroundColor: "" }}
                                             />
                                         </div>
 
@@ -93,6 +97,7 @@ function Login({ login, isAuthenticated }) {
                                             <label
                                                 className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                                 htmlFor="grid-password"
+                                                style={{ color: 'white' }}
                                             >
                                                 Password
                                             </label>
@@ -112,18 +117,24 @@ function Login({ login, isAuthenticated }) {
                                         <div className="text-center mt-6">
                                             <button
                                                 className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                                                style={{ backgroundColor: '#7f0ddb' }}
                                                 type="submit"
                                             >
                                                 Login
                                             </button>
+
                                         </div>
                                     </form>
                                     <div className="flex flex-wrap mt-6 relative">
                                         <div className="w-1/2">
-                                            <p className="mt-3">Don't have an account? <Link to="/signup">Sign up</Link></p>
+                                            <p className="mt-3" style={{ color: 'white', textDecoration: 'underline' }}>
+                                                Don't have an account? <Link to="/signup" style={{ color: 'white' }}>Sign up</Link>
+                                            </p>
+
                                         </div>
                                         <div className="w-1/2 text-right">
-                                            <p className="mt-3">Forgot your password?  <Link to="/reset-password">Reset Password</Link></p>
+                                            <p className="mt-3" style={{ color: 'white', textDecoration: 'underline' }}>
+                                                Forgot your password?  <Link to="/reset-password" style={{ color: 'white' }}>Reset Password</Link></p>
                                         </div>
                                     </div>
                                 </div>

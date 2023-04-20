@@ -1,40 +1,51 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 function FriendList() {
-    const [amigos, setAmigos] = useState(null);
-    const config = {
-        headers: {
-            'Content-type': 'application/json',
-            'Authorization': `JWT ${localStorage.getItem('access')}`,
-            'Accept': 'application/json',
+  const [amigos, setAmigos] = useState(null);
+
+  useEffect(() => {
+    async function getFriends() {
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/get_friends/`,
+        {
+          headers: {
+            Authorization: `JWT ${localStorage.getItem("access")}`,
+          },
         }
-    };
-    useEffect(() => {
-        async function getFriends() {
-            const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/get_friends/`, config)
-                .then(response => {
-                    setAmigos(response.data.friends);
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        }
-        getFriends()
-    }, []);
-    if (!amigos) {
-        return <p>Cargando amigos...</p>;
-    }
-    return (
-        <div className='text-white' style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
-          <h2>Mis amigos:</h2>
-          {amigos.map(friend => (
-            <li key={friend}>
-              {friend}
-            </li> 
-          ))}
-        </div>
       );
+      setAmigos(response.data.friends);
+    }
+    getFriends();
+  }, []);
+
+  if (!amigos) {
+    return <p>Cargando amigos...</p>;
+  }
+
+  return (
+    <div
+      className="text-white"
+      style={{
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+      }}
+    >
+      <h2 className="font-bold">Mis amigos:</h2>
+      <ul>
+        {amigos.map((friend) => (
+          <Link to= {`../profile/${friend[1]}`}>
+            <button type="submit">
+              <li key={friend[1]}>{friend[0]}</li>
+            </button>
+          </Link>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
-export { FriendList }
+export { FriendList };

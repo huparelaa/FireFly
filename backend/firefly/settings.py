@@ -51,6 +51,9 @@ INSTALLED_APPS = [
     #--chat---
     'chat',
     'widget_tweaks',
+    'roomChat',
+    #---review---
+    'review'
 ]
 
 MIDDLEWARE = [
