@@ -37,8 +37,8 @@ urlpatterns = [
     path('api/room/', vRoom.create_room, name='room-post'),
     path('api/room/<room_id>/', vRoom.get_chatroom_members, name='room-get-member'),
     path('api/room_contacts/', vRoom.get_rooms, name='room-get-list-rooms'),
-    path('api/room_messenger/<room_id>/', vRoom.send_message, name='send-message-to-room'),
-    path('api/room_messages/<room_id>/', vRoom.lista_mensajes, name='message-list-room'),
+    path('api/room_messenger/<room_id>/', vRoom.send_message, name='send-message-to-room'), #POST
+    path('api/room_messages/<room_id>/', vRoom.lista_mensajes, name='message-list-room'), 
 
     #REVIEWS
     path('api/review/', vReview.save_review, name='review-post'),
