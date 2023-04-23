@@ -72,9 +72,9 @@ def change_user_info(request):
 def get_user_by_search(request):
     name = request.GET.get('name')
     if name:
+        # TODO
+        # MIRAR PARA QUE SOLO MANDE EL NOMBRE COMO TAL, Para QUE NO ENVIE TODOS LOS ELEMENTOS DEL USER XD
         users = UserAccount.objects.filter(name__icontains=name)
-    else:
-        users = UserAccount.objects.all()
     data = {'users': list(users.values())}
     return JsonResponse(data)
 

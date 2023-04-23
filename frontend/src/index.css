@@ -319,22 +319,20 @@ body {
 .Barra{
     padding: 32px;
     max-width: 150%;
-    height: 50%;
+    height: 100%;
 }
-
 .Barra input{
-    width: 150%;
-    padding: 5px;
+    width: 200%;
+    height: 40%;
+    padding: 10px;
     padding-left: 35px;
-    background: #ffffff;
     color: #000000;
-    border-radius: 45px 45px 45px 45px;
-    text-indent: justify;
+    border-radius: 45px 45px 45px 45px;   
 }
 
 .Barra input::placeholder{
     padding: 0px;
-    color: rgb(56, 56, 56);
+    color: #fff;
     font-style: italic;
 }
 
@@ -342,7 +340,7 @@ body {
     padding: 3px;
     position: absolute;
     font-size: 30px;
-    color: #000000;
+    color: #fff;
     min-width: 40px;
     text-align: center;
 }

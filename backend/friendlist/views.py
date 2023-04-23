@@ -15,11 +15,17 @@ from accounts.models import UserAccount
 def get_friends(request):
     user_id = get_user_id(request)
     friends = Amigo.objects.filter(usuario_id=user_id)
+    print('user_id', user_id)
+    print('friends', friends)
     amigos_data = []
     if friends:
         for friend in friends:
-            amigo = UserAccount.objects.get(id=friend.amigo_id)
-            amigos_data.append((amigo.name, amigo.id, amigo.email))
+            try:                
+                amigo = UserAccount.objects.get(id=friend.amigo_id)
+                print('amigo', amigo)
+                amigos_data.append((amigo.name, amigo.id, amigo.email))
+            except UserAccount.DoesNotExist: 
+                continue
     
     return JsonResponse({ 'friends': amigos_data }, safe=False)
 
@@ -57,3 +63,11 @@ def block_friend(request):
     data_friend.estado = 'block'
     return JsonResponse({'bloqueado': True})
 
+def get_friends_state(request): 
+    user_id = get_user_id(request)
+    user = UserAccount.objects.get(id = user_id)
+    body = json.loads(request.body)
+    amigo_id = body.get('user_id')
+    amigo = get_object_or_404(UserAccount, id=amigo_id)
+    data_friend = Amigo.objects.get(usuario = user, amigo = amigo)
+    return JsonResponse({ data_friend.estado })

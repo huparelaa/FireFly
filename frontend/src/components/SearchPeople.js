@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios'
-import { MdOutlinePersonSearch } from 'react-icons/md';
+import { MdSearch } from 'react-icons/md';
 
 function SearchPeople() {
     const [nombre, setNombre] = useState('');
@@ -14,15 +14,15 @@ function SearchPeople() {
     console.log('nombre', nombre)
     console.log('usuarios', usuarios);
     return (
-        <div className="Barra">
-            <MdOutlinePersonSearch className="Icono" />
-            <input type="text" value={nombre} onChange={handleChange} placeholder="Buscar Usuarios..." />
+        <div className="bg-dark-bg w-6/12 ml-5 flex items-center justify-center rounded-full shadow-lg">
+            <MdSearch className="bg-no-repeat bg-center bg-contain w-5 h-5 mx-1 text-white" />
+            <input className="text-white h-14 bg-inherit w-9/12 border-transparent outline-none" type="text" value={nombre} onChange={handleChange} placeholder="Busca en FireFly" />
             {nombre !== "" && (
-                <div className="Espacio">
-                    <ul>
-                        {usuarios.map((usuario) => (
-                            <li key={usuario.id}>
-                                <a href={`/profile/${usuario.id}/`}> {usuario.name} - {usuario.age} </a>
+                <div className="absolute top-16 w-60 bg-white rounded-md shadow-lg z-10">
+                    <ul className="flex flex-col max-h-60 overflow-y-auto">
+                        {usuarios.slice(0, 8).map((usuario) => (
+                            <li key={usuario.id} className="px-4 py-2 hover:bg-gray-100">
+                                <a href={`/profile/${usuario.id}/`}> {usuario.name} </a>
                             </li>
                         ))}
                     </ul>
