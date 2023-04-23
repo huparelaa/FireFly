@@ -1,0 +1,65 @@
+@keyframes blink {
+    50% {
+      opacity: 0.5;
+    }
+  }
+  
+  @keyframes shine {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.5);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(2);
+    }
+  }
+  
+  .logo-container {
+    position: relative;
+    display: inline-block;
+    border: 2px solid #fff;
+    padding: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .logo-container::before,
+  .logo-container::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+  }
+  
+  .logo-container::before {
+    top: -2px;
+    left: -2px;
+  }
+  
+  .logo-container::after {
+    bottom: -2px;
+    right: -2px;
+  }
+  
+  .blinking {
+    position: relative;
+    animation: blink 1s infinite;
+  }
+  
+  .shining {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle, rgba(171, 169, 32, 0.678) 0%, rgba(255, 255, 255, 0) 70%);
+    animation: shine 2s infinite;
+  }
+  
+  
