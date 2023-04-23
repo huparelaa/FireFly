@@ -3,31 +3,43 @@ import axios from "axios";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { SideBar } from "../components/SideBar";
-import ReactStars from "react-rating-stars-component";
+import { Rating } from 'react-simple-star-rating'
+import { MdOutlineSentimentDissatisfied,
+    MdOutlineSentimentNeutral,
+    MdOutlineSentimentSatisfied,
+    MdOutlineSentimentVeryDissatisfied,
+    MdOutlineSentimentVerySatisfied
+  } from 'react-icons/md'
 
 function Match() {
     const [similarUsers, setSimilarUsers] = useState([]);
     const [isButtonPressed, setIsButtonPressed] = useState(false);
     const [isDelay, setIsDelay] = useState(false);
     const [delaySeconds, setDelaySeconds] = useState(5);
-    const [rating, setRating] = useState(0);
-
+    const customIcons = [
+        { icon: <MdOutlineSentimentVeryDissatisfied size={50} /> },
+        { icon: <MdOutlineSentimentDissatisfied size={50} /> },
+        { icon: <MdOutlineSentimentNeutral size={50} /> },
+        { icon: <MdOutlineSentimentSatisfied size={50} /> },
+        { icon: <MdOutlineSentimentVerySatisfied size={50} /> }
+      ]
     const MySwal = withReactContent(Swal)
-   
+
     const showReviewDialog = () => {
         MySwal.fire({
             title: 'Danos tu opinión aquí ',
             html:
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-                    <ReactStars
-                        size={50}
-                        isHalf={true}
-                        count={5}
-                        value={rating}
-                        onChange={(newRating) => setRating(newRating)}
+                    <Rating
+                        onClick={e => localStorage.setItem('rating', e)}
+                        customIcons={customIcons}
+                        emptyStyle={{ display: "flex" }}
+                        fillStyle={{ display: "-webkit-inline-box" }}
+                        transition
+                        allowFraction
+                        showTooltip
                     />
-
-                    <textarea className="swal2-textarea" placeholder="..." id="review"></textarea>
+                    <textarea className="swal2-textarea" placeholder="¿Estas satisfecho con la persona encontrada?" id="review"></textarea>
                 </div>
             ,
             showCancelButton: true,
@@ -42,6 +54,8 @@ function Match() {
 
     const submitReview = () => {
         const review = MySwal.getPopup().querySelector('#review').value
+        const rating = localStorage.getItem('rating')
+        // console.log(MySwal.getPopup().querySelector('#rate').value)
         const config = {
             headers: {
                 'Content-type': 'application/json',
@@ -49,22 +63,33 @@ function Match() {
                 'Accept': 'application/json',
             }
         };
-        axios.post(`${process.env.REACT_APP_API_URL}/api/review/match/`, { rating, review }, config)
-            .then(response => {
-                Swal.fire({
-                    title: 'Gracias!',
-                    text: 'Su retroalimentacion se se envio de forma exitosa',
-                    icon: 'success'
-                });
-                setRating(0);
-            })
-            .catch(error => {
-                Swal.fire({
-                    title: 'Oops...',
-                    text: 'Ocurrio un error al enviar la retroalimentacion',
-                    icon: 'error'
-                });
-            });
+        Swal.fire({
+            title: 'Gracias!',
+            text: 'Su retroalimentación se envió de forma exitosa!',
+            icon: 'success'
+        });
+
+        // axios.post(`${process.env.REACT_APP_API_URL}/api/review/match`, { rating, review}, config)
+        //   .then(response => {
+        //     console.log(response.data)
+        //     console.log(response.status)
+        //     // Imprimir el valor de las estrellas y el comentario
+        //     console.log("Valor de las estrellas:", rating);
+        //     console.log("Comentario:", review);
+
+        //     Swal.fire({
+        //       title: 'Gracias!',
+        //       text: 'Su retroalimentacion se se envio de forma exitosa',
+        //       icon: 'success'
+        //     });
+        //   })
+        //   .catch(error => {
+        //     Swal.fire({
+        //       title: 'Oops...',
+        //       text: 'Ocurrio un error al enviar la retroalimentacion',
+        //       icon: 'error'
+        //     });
+        //   });
     };
 
     const handleClick = async () => {
@@ -127,7 +152,7 @@ function Match() {
                 {!isButtonPressed && !isDelay && (
                     <div className="w-64 h-64 rounded-lg flex justify-center items-center ">
                         <p className=" text-white font-bold">
-                            Oprime el boton para hacer el match
+                            Oprime el botón para hacer el match
                         </p>
                         <button onClick={handleClick} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                             Match

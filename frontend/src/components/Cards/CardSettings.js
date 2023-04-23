@@ -39,7 +39,7 @@ export default function CardSettings(props) {
         timer: 3000,
         timerProgressBar: true,
         icon: 'fail',
-        title: `Opps ocurrio un error al actualizar los cambios`,
+        title: `Opps ocurrió un error al actualizar los cambios`,
       })
       console.error(error);
     }
@@ -125,7 +125,7 @@ export default function CardSettings(props) {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    descripcion sobre ti
+                    Descripción sobre ti
                   </label>
                   <textarea
                     type="text"
