@@ -10,7 +10,6 @@ body {
     display: flex;
     flex-direction: row;
 } 
-
 .header-nav__ul {
     width: 100vw;
     margin: 0;
@@ -19,17 +18,14 @@ body {
     justify-content: space-between;
     margin-top: 24px;
 }
-
 .nav-side-left {
     
 }
-
 .nav-side-right {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
-
 .nav-side-right__li {
     list-style: none;
     margin-right: 20px;
@@ -54,7 +50,6 @@ body {
     align-items: center;
     margin: 0 20px;
 }
-
 .home-main__left {
     display: flex;
     justify-content: center;
@@ -66,7 +61,6 @@ body {
     font-size: 3.25rem;
     text-align: center;
 }
-
 .home-main__circle {
     display: flex;
     justify-content: center;
@@ -76,8 +70,6 @@ body {
     background: linear-gradient(180deg, #8739E9 3%, #983DF1 53.31%, #AF49F3 101.24%);
     border-radius: 50%;
 }
-
-
 .home-img {
     width: 400px;
     height: 400px;
@@ -180,7 +172,6 @@ body {
     justify-content: center;
 }
 .button-func {
-   
     border-radius: 10px;
     background: linear-gradient(90deg, #7e37e5, #983df1 46.37%, #b24af3 93.62%);
     border: 1px solid var(--color-blueviolet);
@@ -189,6 +180,9 @@ body {
     height: 3.13rem;
     overflow: hidden;
     color: white;
+}
+.button-func:hover {
+    background: #983DF1;
 }
 .encuentra-a-tus {
     position: absolute;
@@ -223,6 +217,8 @@ body {
     height: 3.81rem;
     overflow: hidden;
 }
+
+
 .button-func1,
 .iconst,
 .logo {
@@ -272,7 +268,6 @@ body {
 .form-input__search input {
 
 }
-
 .container-games {
     height: 400px;
     display: grid;
@@ -282,7 +277,6 @@ body {
     overflow: scroll;
     overflow-x: hidden;
 }
-
 .card-game {
     width: 300px;
     height: 300px;
@@ -290,7 +284,6 @@ body {
     flex-direction: column;
     margin: 20px 20px;
 }
-
 .card-game img {
     width: 300px;
     height: 200px;
@@ -307,51 +300,10 @@ body {
     height: 3.13rem;
     color: white;
     border-radius: 10px;
-
 }
 .hide {
     display: none;
 }
 .selected {
     background-color: #b24af3;
-}
-
-.Barra{
-    padding: 32px;
-    max-width: 150%;
-    height: 100%;
-}
-.Barra input{
-    width: 200%;
-    height: 40%;
-    padding: 10px;
-    padding-left: 35px;
-    color: #000000;
-    border-radius: 45px 45px 45px 45px;   
-}
-
-.Barra input::placeholder{
-    padding: 0px;
-    color: #fff;
-    font-style: italic;
-}
-
-.Icono{
-    padding: 3px;
-    position: absolute;
-    font-size: 30px;
-    color: #fff;
-    min-width: 40px;
-    text-align: center;
-}
-
-.Barra ul{
-    background-color: #17152a;
-    padding: 10px;
-    color: #ffffff;
-    border-color:rgb(56, 56, 56);
-}
-
-.Barra ul li{
-    padding: 5px;
 }

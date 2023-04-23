@@ -3,7 +3,6 @@ import { SideBar } from "../components/SideBar";
 import { FriendList } from "../components/FriendList";
 import { Header } from "../components/Header" 
 
-
 function Dashboard() {
     return (
         <div className="flex w-full h-full">

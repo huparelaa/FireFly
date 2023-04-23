@@ -11,9 +11,7 @@ function Match() {
     const [isDelay, setIsDelay] = useState(false);
     const [delaySeconds, setDelaySeconds] = useState(5);
     const [rating, setRating] = useState(0);
-
     const MySwal = withReactContent(Swal)
-   
     const showReviewDialog = () => {
         MySwal.fire({
             title: 'Danos tu opinión aquí ',
@@ -26,7 +24,6 @@ function Match() {
                         value={rating}
                         onChange={(newRating) => setRating(newRating)}
                     />
-
                     <textarea className="swal2-textarea" placeholder="..." id="review"></textarea>
                 </div>
             ,
@@ -38,7 +35,6 @@ function Match() {
             allowOutsideClick: () => !Swal.isLoading()
         });
     };
-
 
     const submitReview = () => {
         const review = MySwal.getPopup().querySelector('#review').value
@@ -137,7 +133,7 @@ function Match() {
                 {isDelay && (
                     <div className="w-64 h-64 rounded-lg flex justify-center items-center">
                         <p className="text-white font-bold">
-                            Esperando respuesta del servidor en {delaySeconds} segundos...
+                            Buscando los mejores compañeros de juego para ti. Tiempo: {delaySeconds} segundos...
                         </p>
                         <button onClick={handleCancel} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                             Cancelar

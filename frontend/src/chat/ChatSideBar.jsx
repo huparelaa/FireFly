@@ -113,12 +113,6 @@ function ChatSideBar() {
           </Link>
         ))}
       </ul>
-
-      <Link to="/dashboard" className="mt-auto">
-        <button className="bg-purple-900 text-white rounded-lg p-3 hover:bg-purple-500 relative bottom-2 left-2">
-          Volver
-        </button>
-      </Link>
     </div>
   );
 }

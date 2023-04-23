@@ -45,10 +45,10 @@ function Signup({ signup, isAuthenticated }) {
     }
     if (accountCreated) {
         Swal.fire({
-            timer: 3000,
+            timer: 5000,
             timerProgressBar: true,
             icon: 'success',
-            title: `Registro completado`,
+            title: `Registro completado - Te hemos enviado un link autenticación a tu correo. (Es posible que llegue a spam)`,
         })
         return <Navigate to="/login" />
     }
@@ -160,8 +160,8 @@ function Signup({ signup, isAuthenticated }) {
                                                 style={{ backgroundColor: '#7f0ddb' }}
                                                 type="submit"
                                             >
-
-                                                Login
+                                            
+                                                Sign Up
                                             </button>
                                         </div>
                                     </form>

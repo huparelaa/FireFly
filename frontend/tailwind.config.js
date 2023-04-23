@@ -9,6 +9,7 @@ module.exports = {
         "light-white": "rgba(255,255,255,0.17)",
         "background": "#151627" ,
         "friend-list": "#252040",
+        "dark-purple": "#1F1D35",
       },
     },
   },

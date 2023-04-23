@@ -5,6 +5,7 @@ import FireFlyPng from './Recurso_1.svg';
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import particlesConfig from "./particles2.json";
+import logo from "../assets/Recurso 3.svg"
 import './diseño.css';
 
 const Home = () => {
@@ -39,7 +40,7 @@ const Home = () => {
             <header>
                 <nav className='header-nav'>
                     <ul className='header-nav__ul'>
-                        <section className='nav-side-left'>
+                        <section className='nav-side-left ml-8'>
                             <Link to="https://github.com/huparelaa/FireFly" target="_blank">
                                 <div className="container" style={{ position: "relative" }}>
                                     {isHovered && (
@@ -79,7 +80,7 @@ const Home = () => {
                             <li className='nav-side-right__li'><a href='/'>Ayuda🆘</a></li>
                             <li className='nav-side-right__li'>
                                 <Link to="/login">
-                                    <button className="button-func">
+                                    <button className="button-func hover:bg-slate-600  shadow-md">
                                         Login
                                     </button>
                                 </Link>
@@ -90,14 +91,14 @@ const Home = () => {
             </header>
             <main className='home-main'>
                 <section className='home-main__right'>
-                    <p className='home-man-pg'>
-                        Encuentra a tus compañeros de juego ideales para tus gustos🎮
+                    <p className='home-man-pg mb-6'>
+                        Encuentra a tus compañeros de juego ideales para tus gustos
                     </p>
-                    <Link to="/signup"><button className="button-func">Sign Up</button></Link>
+                    <Link to="/signup"><button className="button-func hover:bg-slate-600 shadow-md">Sign Up</button></Link>
                 </section>
                 <section className='home-main__left'>
                     <div className='home-main__circle'>
-                        <img className='home-img' src={principalImg} alt='' />
+                        <img className='home-img' src={logo} alt='' />
                     </div>
                 </section>
             </main>
