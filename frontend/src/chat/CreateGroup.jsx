@@ -7,7 +7,6 @@ function CreateGroup({ setModalIsOpen, config }) {
   const [filtro, setFiltro] = useState("");
   const [amigos, setAmigos] = useState(null);
   const [personasSeleccionadas, setPersonasSeleccionadas] = useState({});
-  const [redirectToChatRoom, setRedirectToChatRoom] = useState(false);
   const [idRoom, setIdRoom] = useState("");
   useEffect(() => {
     async function getFriends() {
@@ -70,12 +69,12 @@ function CreateGroup({ setModalIsOpen, config }) {
         <div
           key={persona}
           className="flex items-center cursor-pointer"
-          onClick={() => handleSeleccionarPersona(persona)}
+          onClick={() => handleSeleccionarPersona(persona[1])}
         >
           <input
             type="checkbox"
-            checked={personasSeleccionadas[persona]}
-            onChange={() => handleSeleccionarPersona(persona)}
+            checked={personasSeleccionadas[persona[1]]}
+            onChange={() => handleSeleccionarPersona(persona[1])}
           />
           <span className="text-white pl-6">{persona[0]}</span>
         </div>
