@@ -2,7 +2,7 @@ import React, {useEffect, useState,} from "react";
 import axios from "axios";
 import  {useParams} from 'react-router-dom'
 import { Link } from "react-router-dom";
-
+import { MdArrowBackIos } from "react-icons/md";
 function ProfileId(){
     const { id } = useParams();
     const [user, setUser] = useState(null);
@@ -35,6 +35,7 @@ function ProfileId(){
 
     return (
         <main className="profile-page bg-white flex items-center justify-center">
+        <Link className="flex items-center  relative bottom-96 right-32" to={"/dashboard"}>< MdArrowBackIos /> <p>Volver</p></Link>
         <section className="py-20 w-3/4">
             <div className="container mx-auto px-10">
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg ">
@@ -45,17 +46,17 @@ function ProfileId(){
                         </section>
                     </div>
                     <div className="text-center mt-12">
-                        <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+                        <h3 className="text-4xl font-semibold leading-normal text-blueGray-700 mb-2">
                             {user.name}
                         </h3>
                     </div> 
                     <div className="text-center mt-12">
-                        <p className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+                        <p className="text-4xl font-semibold leading-normal text-blueGray-700 mb-2">
                             Email: {user.email}
                         </p>
                     </div>
                     <div className="text-center mt-12">
-                        <p className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+                        <p className="text-4xl font-semibold leading-normaltext-blueGray-700 mb-2">
                             Edad: {user.age}
                         </p>
                     </div>

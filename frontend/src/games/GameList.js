@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
+import { MdSearch } from 'react-icons/md';
 
 function PreferenceForm() {
     const [page, setPage] = useState(1);
@@ -16,7 +17,7 @@ function PreferenceForm() {
             'Accept': 'application/json',
         }
     };
-    const handleChange = (e) => {
+    const handleChange = async (e) => {
         setSearchTerm(e.target.value)
     }
     const handleGameSelection = (e) => {
@@ -57,13 +58,14 @@ function PreferenceForm() {
         setPage(newPage);
     };
     return (
-        <>
+        <div className='flex items-center justify-center flex-col '>
             {redirectToDashboard && <Navigate to='/dashboard'/>}
-        <form className='form-games' onSubmit={handleSubmit}>
             <h2 className='form-title'>Selecciona tus juegos favoritos</h2>
-            <div className='form-input__search' onChange={handleChange}>
-                <input />
+            <div className=' bg-dark-bg w-3/5 my-8 flex items-center justify-center rounded-full shadow-lg' onChange={handleChange}>
+                <MdSearch className="bg-no-repeat bg-center bg-contain w-5 h-5 mx-1 text-white" />
+                <input className="text-white h-14 bg-inherit w-9/12 border-transparent outline-none" type="text" placeholder="Busca tus juegos favoritos"/>
             </div>
+        <form className='form-games mb-8 bg-dark-bg' onSubmit={handleSubmit}>
             <div className='container-games'>
                 {games.length > 0 ? (
                     games
@@ -91,18 +93,19 @@ function PreferenceForm() {
                     <p>No se encontraron juegos</p>
                 )}
             </div>
-            <button type="submit">Continuar</button>
+            <button type="submit mt-6">Continuar</button>
         </form>
-        <div className="pagination">
+        <div className="pagination w-full flex justify-center mt-6 text-white">
             <button
                 disabled={page === 1}
                 onClick={() => handlePageChange(page - 1)}
+                className='mr-5 hover:bg-slate-500 cursor-pointer'
             >
                 Anterior
             </button>
-            <button onClick={() => handlePageChange(page + 1)}>Siguiente</button>
+            <button onClick={() => handlePageChange(page + 1)} className={"hover:bg-slate-500"}>Siguiente</button>
         </div>
-    </>
+    </div>
     );
 }
 export default PreferenceForm;

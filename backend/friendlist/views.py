@@ -29,8 +29,6 @@ def get_friends(request):
     
     return JsonResponse({ 'friends': amigos_data }, safe=False)
 
-
-
 @api_view(['POST'])
 def add_friend(request):
     user_id = get_user_id(request)

@@ -44,8 +44,14 @@ function FriendList() {
       console.error('Error al eliminar amigo:', error);
     }
   }
-  const bloquearAmigo = (amigoId) => {
+  const bloquearAmigo = async (amigoId) => {
     // Lógica para eliminar el amigo
+    try {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/block_friends/`, {  "user_id": amigoId } , config)
+      setDropdownOpen(null)
+    } catch (error) {
+        console.error('Error al eliminar amigo:', error);
+    }
   }
 
   if (!amigos) {
@@ -75,7 +81,6 @@ function FriendList() {
                     <div className="absolute right-0 mt-2 py-2 w-40 bg-white rounded-md shadow-xl z-10">
                       <Link to={`../profile/${friend[1]}`}><button className="block px-4 py-2 text-gray-800 hover:bg-gray-100 w-full text-left">Ver perfil</button></Link> 
                       <button className="block px-4 py-2 text-red-600 hover:bg-gray-100 w-full text-left" onClick={() => eliminarAmigo(friend[1])}>Eliminar amigo</button>
-                      <button className="block px-4 py-2 text-gray-800 hover:bg-gray-100 w-full text-left" onClick={() => bloquearAmigo(friend[1])}>bloquear</button>
                     </div>
               )}
                 </div>

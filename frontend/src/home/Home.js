@@ -98,7 +98,7 @@ const Home = () => {
                 </section>
                 <section className='home-main__left'>
                     <div className='home-main__circle'>
-                        <img className='home-img' src={logo} alt='' />
+                        <img className='home-img' src={principalImg} alt='' />
                     </div>
                 </section>
             </main>
