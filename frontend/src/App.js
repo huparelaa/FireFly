@@ -41,6 +41,7 @@ function App() {
                         <Route path="/check-first-login" element={<AfterLogin/>} />
                         <Route path="/chat/*" element={<Chat/>}/>
                         <Route path="/chat/:id" element={<ChatContent/>}/>
+                        <Route path="/chatroom/*" element={<Chat/>}/>
                         <Route path="/chatroom/:id" element={<ChatRoomContent/>}/>
                         <Route path="/match" element={<Match/>} />
                         <Route path="/Analytics" element={<Analytics/>} />
