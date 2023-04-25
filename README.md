@@ -1,10 +1,10 @@
 # FireFly
 
 Realizado en conjunto por: 
-Angel David Martinez Soria
-David Gonzalez Tamayo
-Hobarlan Uparela Arroyo
-Julian David Valencia Restrepo
+* Angel David Martinez Soria
+* David Gonzalez Tamayo
+* Hobarlan Uparela Arroyo
+* Julian David Valencia Restrepo
 
 
 # Instalar 
