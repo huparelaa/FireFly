@@ -41,7 +41,9 @@ def get_user_profile(request):
         'email': user.email,
         'age': user.age,
         'photo': user.profile_photo,
-        'about_me': user.about_me
+        'about_me': user.about_me,
+        'intereses': user.intereses,
+        'logros_y_trofeos': user.logros_y_trofeos
     }
     return JsonResponse(profile, safe = False)
 
@@ -63,9 +65,28 @@ def change_user_info(request):
     name = data.get('name')
     age = data.get('age')
     about_me = data.get('about_me')
-    user.name = name
-    user.about_me = about_me
-    user.age = age
+    interests = data.get('interests')
+    achievements_and_trophies = data.get('achievements_and_trophies')
+    if(name):
+        user.name = name
+    else:
+        user.name = user.name
+    if(about_me):
+        user.about_me = about_me
+    else:
+        user.about_me = user.about_me
+    if(age):
+        user.age = age
+    else:
+        user.age = user.age
+    if(interests):
+        user.intereses = interests
+    else:
+        user.intereses = user.intereses
+    if(achievements_and_trophies):
+        user.logros_y_trofeos = achievements_and_trophies
+    else:
+        user.logros_y_trofeos = user.logros_y_trofeos
     user.save()
     return JsonResponse({ 'Confirm': 'Info changed succesfull' })
 
@@ -85,6 +106,8 @@ def get_user_by_id(request, **kwargs):
         'name': user.name, 
         'age': user.age, 
         'email' : user.email,
-        'about_me': user.about_me
+        'about_me': user.about_me,
+        'intereses': user.intereses,
+        'logros_y_trofeos': user.logros_y_trofeos
     }
     return JsonResponse({'info': userInfo})

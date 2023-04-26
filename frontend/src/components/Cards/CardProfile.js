@@ -66,6 +66,30 @@ export default function CardProfile(props) {
               </div>
             </div>
           </div>
+          <div className="mt-10 py-10 border-t border-blueGray-200 text-center">
+            <div className="flex flex-wrap justify-center">
+              <div className="w-full lg:w-9/12 px-4">
+                <h1 className="text-xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2" >
+                 Intereses
+                </h1>
+                <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
+                  {props.intereses}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="mt-10 py-10 border-t border-blueGray-200 text-center">
+            <div className="flex flex-wrap justify-center">
+              <div className="w-full lg:w-9/12 px-4">
+                <h1 className="text-xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2" >
+                  Logros y Trofeos
+                </h1>
+                <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
+                  {props.logros_y_trofeos}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
