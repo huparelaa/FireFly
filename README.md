@@ -4,6 +4,11 @@ Firefly is a project that consists of two main folders: backend and frontend. Th
 
 For your convenience, you can visit the website at: https://onlinefirefly.social
 
+## Requirements
+To run the project, you need to have the following installed:
+
+* Python (version 3.8 or higher)
+* Node.js (version 12 or higher)
 ## Installation and Setup
 
 To run the backend, you need to install the required dependencies using the following command:
