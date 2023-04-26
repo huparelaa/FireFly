@@ -44,6 +44,7 @@ function ChatSideBar() {
   }, []);
 
   if (isLoading) {
+    
     return (
       <div className="text-white flex items-center justify-center h-screen">
         <FontAwesomeIcon
@@ -71,13 +72,13 @@ function ChatSideBar() {
           Create group
         </button>
       </div>
-      <Modal
+      <Modal //Ventana emergente
         isOpen={modalIsOpen}
         className="flex justify-center items-center h-screen overflow-auto fixed top-0 left-0 right-0 bottom-0 "
         overlayClassName="fixed top-0 left-0 right-0 bottom-0 bg-gray-800 bg-opacity-90"
         ariaHideApp={false}
       >
-        <CreateGroup setModalIsOpen={setModalIsOpen} config={config}/>
+        <CreateGroup setModalIsOpen={setModalIsOpen} config={config} />
       </Modal>
 
       <ul className="flex flex-col bg-dark-purple border-white border-4">
