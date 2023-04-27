@@ -6,22 +6,27 @@ import { SuggestedGames } from "../components/Cards/CardSuggestions"
 
 function Dashboard() {
     return (
+
         <div className="flex w-full h-full">
-            <SideBar />
-            <div className="flex flex-col w-full">
-                <div className="flex justify-center mt-7 h-16">
-                    <Header />
-                </div>
-                <div className="flex flex-1">
-                    <SuggestedGames/>
-                    <div className="flex flex-col justify-center items-end w-full h-full" >        
-                        <div className="h-full w-1/4 flex items-center justify-center">
+        <div className="absolute top-96 left-24"> 
+                <SuggestedGames/>
+            </div>
+        <SideBar />
+       
+        <div className="flex flex-col w-full">
+            <div className="flex justify-center mt-7 h-16">
+                <Header />
+            </div>
+            
+            <div className="w-full h-full flex flex-col items-end">
+                <div className="flex flex-1 w-2/5">
+                    <div className="flex flex-col items-end w-full h-full ml-auto">       
                             <FriendList/>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     )
 }
 

@@ -21,11 +21,10 @@ def select_games(request):
     user = UserAccount.objects.get(id = user_id)
     data = json.loads(request.body.decode('utf-8'))
     id_juego = data.get('id')
-    print("id_juego", id_juego)
     game_list_select = []
     for id in id_juego: 
-        game = Game.objects.filter(id_game = id)
-        game_list_select.append(game.get().id)
+        game = Game.objects.get(id_game = id)
+        game_list_select.append(game.id)
     user.favorite_games.set(game_list_select)
     user.save()
         # Devolver una respuesta JSON con un mensaje de éxito
@@ -39,8 +38,9 @@ def select_gamesRecommended(request):
         user = UserAccount.objects.get(id = user_id)
         data = json.loads(request.body.decode('utf-8'))
         id_juego = data.get('id')
-        print(id_juego)
-        user.favorite_games.set([id_juego])
+        game = Game.objects.get(id_game = id_juego)
+    
+        user.favorite_games.add(game.id)
         user.save()
         # Devolver una respuesta JSON con un mensaje de éxito
         return JsonResponse({'message': 'Juego seleccionado guardado correctamente'})
@@ -68,7 +68,7 @@ def more_played_games(request):
     popular_games = Game.objects.annotate(num_users=Count('useraccount')).order_by('-num_users')
     most_played_games = []
     for game in popular_games:
-        num_users = UserAccount.favorite_games.through.objects.filter(game_id = game.id_game).count()
+        num_users = UserAccount.favorite_games.through.objects.filter(game_id = game.id).count()
         game.count = num_users  # Agregamos el atributo 'count' al objeto Game
         most_played_games.append(game)
 
@@ -97,14 +97,11 @@ def recommended_games(request):
     popular_games = Game.objects.annotate(num_users=Count('useraccount')).order_by('-num_users')
     most_played_games = []
     for game in popular_games:
-        num_users = UserAccount.favorite_games.through.objects.filter(game_id = game.id_game).count()
+        num_users = UserAccount.favorite_games.through.objects.filter(game_id = game.id).count()
         game.count = num_users  # Agregamos el atributo 'count' al objeto Game
         most_played_games.append(game)
     most_played_games_sorted = sorted(most_played_games, key=attrgetter('count'), reverse=True)
-    print(most_played_games_sorted)
     user_games = user.favorite_games.all() 
-    print('usergames', user_games)
-    print('mostplayed',most_played_games_sorted)
     recommended_games = []
     for game in most_played_games_sorted:
         if game not in user_games:

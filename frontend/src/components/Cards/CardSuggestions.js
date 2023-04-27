@@ -25,28 +25,23 @@ const SuggestedGames = () => {
         const gameId = parseInt(gameIdP)
         console.log(gameId);
         await axios.post(`${process.env.REACT_APP_API_URL}/api/games_selected_recommended/`, { "id": gameId }, config )
-          .then(() => {
-            // Actualizar la lista de juegos sugeridos
-            axios.get(`${process.env.REACT_APP_API_URL}/analytics/select_more_played_games/`, config)
-              .then((response) => {
-                setSuggestedGames(suggestedGames.filter((game) => game.id !== gameIdP));
-              })
-          })
-      };
+        const amigosActualizados = suggestedGames.filter((game) => game["id_game"] !== gameIdP);
+        setSuggestedGames(amigosActualizados);
+        };
     if (!loading) {
         return <p>Cargando Sugerencias...</p>;
     }
     return (
-    <div className="suggested-games-container flex w-80 flex-row">
-        <h3>Juegos sugeridos:</h3>
-            <div className="row">
+    <div className="text-center">
+        <h3 className='text-white mb-7 font-bold s'>Juegos sugeridos:</h3>
+            <div className="flex w-full h-40">
                 {suggestedGames.map((game) => (
                     <div key={game.id_game} className="col-md-4">
-                        <div className="card">
-                            <img src={game.img} className="card-img-top" alt={game.title} />
+                        <div className="flex flex-col mx-2 text-white bg-friend-list p-3 box-border shadow-md">
+                            <img src={game.img} className="w-44" alt={game.title} />
                             <div className="card-body">
-                                <h5 className="card-title">{game.title}</h5>
-                                <button onClick={() => handleSelectGame(game.id_game)} className="btn btn-primary">
+                                <h5 className="my-4">{game.title}</h5>
+                                <button onClick={() => handleSelectGame(game.id_game)} className="border rounded-md p-2 hover:bg-dark-purple">
                                     Seleccionar
                                 </button>
                             </div>

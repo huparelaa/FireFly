@@ -9,6 +9,8 @@ import { MdOutlineSentimentDissatisfied,
         MdOutlineSentimentSatisfied,
         MdOutlineSentimentVeryDissatisfied,
         MdOutlineSentimentVerySatisfied } from 'react-icons/md'
+import defaultProfile from "../assets/defaultProfile.jpg"
+import { Link } from "react-router-dom";
 
 function Match() {
     const [similarUsers, setSimilarUsers] = useState([]);
@@ -141,8 +143,8 @@ function Match() {
             <SideBar />
             <div className=" w-screen flex justify-center items-center">
                 {!isButtonPressed && !isDelay && (
-                    <div className="w-64 h-64 rounded-lg flex justify-center items-center ">
-                        <p className=" text-white font-bold">
+                    <div className="w-64 h-64 rounded-lg flex flex-col justify-center items-center text-center">
+                        <p className=" text-white font-bold mb-4">
                             Oprime el botón para hacer el match
                         </p>
                         <button onClick={handleClick} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
@@ -151,8 +153,8 @@ function Match() {
                     </div>
                 )}
                 {isDelay && (
-                    <div className="w-64 h-64 rounded-lg flex justify-center items-center">
-                        <p className="text-white font-bold">
+                    <div className="w-64 h-64 rounded-lg flex flex-col justify-center items-center">
+                        <p className="text-white font-bold mb-4">
                             Buscando los mejores compañeros de juego para ti. Tiempo: {delaySeconds} segundos...
                         </p>
                         <button onClick={handleCancel} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
@@ -162,20 +164,26 @@ function Match() {
                 )}
                 {isButtonPressed && similarUsers.length > 0 && (
                     // PONER LA GRID PARA QUE APAREZCAN SOLO LOS USUARIOS
-                    <>
-                        <ul className='text-white'>
-                            {similarUsers.map(user => (
-                                <li key={user.id}>
-                                    {user.name} - Similitud: {Math.round(user.similarity * 100, 0)} %
-                                </li>
-                            ))}
-                        </ul>
-                        <div className="w-64 h-64 rounded-lg flex justify-center items-center ">
-                            <button onClick={showReviewDialog} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <div className="flex flex-col text-center items-center ">
+                    <h2 className="text-white mb-12 text-3xl font-bold">¡Felicidades! Estos son los usuarios con gustos similares a los tuyos: </h2>
+                    <div className="w-34 grid grid-cols-3 gap-7 justify-items-center place-items-center">
+                        {similarUsers.map(user => (
+                        <Link key={user.id} to={`/profile/${user.id}`}>
+                            <div  className="flex flex-col items-center mb w-72 h-72 py-20 bg-friend-list">
+                                <img
+                                    alt="..."
+                                    className="rounded-md align-middle border-none bg-cover shadow-lg w-24 h-24 mb-4"
+                                    src={defaultProfile}
+                                />
+                               <p className="text-white"> {user.name} - Similitud: {Math.round(user.similarity * 100, 0)} </p>
+                            </div>
+                        </Link>
+                        ))}
+                    </div>
+                    <button onClick={showReviewDialog} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-2/4 mt-6">
                                 Review del Match
-                            </button>
-                        </div>
-                    </>
+                        </button>
+                    </div>
                 )}
             </div>
         </div>

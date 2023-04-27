@@ -60,7 +60,7 @@ function FriendList() {
   }
 
   return (
-    <div className="text-white w-full h-full flex flex-col bg-friend-list rounded-3xl shadow-sm" >
+    <div className="text-white w-2/4 h-full flex flex-col bg-friend-list rounded-3xl shadow-sm" >
       <h2 className="font-bold ml-5 mt-5 botto">Mis amigos:</h2>
       <ul className="flex flex-col m-2">
         {amigos.map((friend, index) => (

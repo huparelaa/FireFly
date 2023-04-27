@@ -7,10 +7,21 @@ import defaultProfile from "../../assets/defaultProfile.jpg"
 
 // components
 export default function CardSettings(props) {
-  const [image, setProfileImage] = useState(null)
   const imageChange = (e) => {
-      setProfileImage(e.target.files[0])
-  }
+    if (e.target.files && e.target.files.length > 0) {
+      const image = e.target.files[0];
+      const reader = new FileReader();
+      const base = reader.readAsDataURL(image);
+      props.setCodigoFoto(base);
+
+      reader.onloadend = () => {
+        props.setFotoUsuario(reader.result);
+      };
+    }
+  };
+
+  const [image, setProfileImage] = useState(null)
+
   const navigate = useNavigate()
   var { nombre, edad, aboutMe, setNombre, setEdad, setAboutMe } = props
   const [formData, setFormData] = useState({
@@ -22,14 +33,12 @@ export default function CardSettings(props) {
     codePhoto: "",
   });
 
-  const { name, age, about_me } = formData;
+  const { name, age, about_me, interests, achievements_and_trophies } = formData;
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = async (e) => {
-    const formData = new FormData();
-    formData.append('image', image);
     const config = {
       headers: {
         'Content-type': 'application/json',
@@ -39,7 +48,7 @@ export default function CardSettings(props) {
     }
     e.preventDefault();
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/profile/change_info/`, { 'name': name, 'age': parseInt(age), 'about_me': about_me, 'profile': formData }, config)
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/profile/change_info/`, { 'name': name, 'age': parseInt(age), 'about_me': about_me, 'interests': interests, 'achievements_and_trophies': achievements_and_trophies}, config)
       console.log(res.data);
       Swal.fire({
         timer: 3000,
@@ -85,31 +94,6 @@ export default function CardSettings(props) {
         </div>
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
           <form onSubmit={(e) => onSubmit(e)}>
-          <div className="flex flex-wrap justify-center">
-            <div className="w-full px-4 flex justify-center">
-              <div className="relative">
-                {
-                  props.profileImage ?
-                    <img
-                      alt="..."
-                      src={URL.createObjectURL(props.profileImage)}
-                      className="shadow-xl rounded-full h-auto align-middle border-none relative   max-w-150-px"
-                    />
-                    :
-                    <img
-                      alt="..."
-                      src={defaultProfile}
-                      className="shadow-xl rounded-full h-auto align-middle border-none relative   max-w-150-px"
-                    />
-                }
-              </div>
-            </div>
-            <input
-              accept="image/*"
-              type="file"
-              onChange={imageChange}
-            />
-          </div>
             <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
               Información Personal
             </h6>
@@ -212,7 +196,7 @@ export default function CardSettings(props) {
                     placeholder="Comparte tus intereses para los demás usuarios puedan verlos"
                     rows="4"
                     name='interests'
-                    value={props.interests}
+                    value={interests}
                     onChange={
                       (e) => {
                         props.setIntereses(e.target.value);
@@ -242,7 +226,7 @@ export default function CardSettings(props) {
                     placeholder="Comparte los logros y trofeos de los que estes más orgulloso para los demás usuarios puedan verlos"
                     rows="4"
                     name='achievements_and_trophies'
-                    value={props.achievements_and_trophies}
+                    value={achievements_and_trophies}
                     onChange={
                       (e) => {
                         props.setLogros_y_trofeos(e.target.value);
@@ -262,6 +246,6 @@ export default function CardSettings(props) {
           </form>
         </div>
       </div>
-    </>
-  );
+    </>
+  );
 }
