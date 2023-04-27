@@ -23,8 +23,7 @@ class UserAccount(AbstractBaseUser, PermissionsMixin, models.Model):
     profile_photo = models.CharField(max_length = 250, default = "")
     age = models.IntegerField(blank = True)
     about_me = models.TextField(max_length = 1000, blank = True)
-    intereses = models.TextField(max_length = 1000, blank = True)
-    logros_y_trofeos = models.TextField(max_length = 1000, blank = True)    
+    
 
 
     objects = UserAccountManager()
