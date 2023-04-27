@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, Navigate } from "react-router-dom";
+import defaultProfile from "../assets/defaultProfile.jpg"
 
 function FriendList() {
   const [amigos, setAmigos] = useState(null);
@@ -67,7 +68,7 @@ function FriendList() {
                 <img
                     alt="..."
                     className="rounded-full align-middle border-none shadow-lg w-7 h-7 mr-3"
-                    src={"https://images-ext-1.discordapp.net/external/HAsgIuwHoE50N1mJaV6a-9BsPH458Yee1ORJikX25oQ/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/280421723080228865/dd36c1b817d7c8cf91ca5944a0768c13.png?width=578&height=578"}
+                    src={defaultProfile}
                 /> 
                 {friend[0]}
                 <div className="ml-auto relative">

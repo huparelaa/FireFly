@@ -74,8 +74,35 @@ export default function Profile() {
                 <div className="mt-10 py-10 border-t border-blueGray-200 text-center">
                   <div className="flex flex-wrap justify-center">
                     <div className="w-full lg:w-9/12 px-4">
+                      <p className="text-2xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+                        Acerca de mi:
+                      </p>
                       <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
                         {usuario.about_me}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="py-10 border-t border-blueGray-200 text-center">
+                  <div className="flex flex-wrap justify-center">
+                    <div className="w-full lg:w-9/12 px-4">
+                      <p className="text-2xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+                        Intereses:
+                      </p>              
+                      <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
+                      {usuario.intereses}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="py-10 border-t border-blueGray-200 text-center">
+                  <div className="flex flex-wrap justify-center">
+                    <div className="w-full lg:w-9/12 px-4">
+                      <p className="text-2xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+                        Logros y Trofeos:
+                      </p>
+                      <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
+                      {usuario.logros_y_trofeos}
                       </p>
                     </div>
                   </div>
