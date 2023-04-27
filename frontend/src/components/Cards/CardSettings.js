@@ -11,7 +11,7 @@ export default function CardSettings(props) {
   const imageChange = (e) => {
       setProfileImage(e.target.files[0])
   }
-
+  const navigate = useNavigate()
   var { nombre, edad, aboutMe, setNombre, setEdad, setAboutMe } = props
   const [formData, setFormData] = useState({
     name: "",
@@ -212,7 +212,7 @@ export default function CardSettings(props) {
                     placeholder="Comparte tus intereses para los demás usuarios puedan verlos"
                     rows="4"
                     name='interests'
-                    value={interests}
+                    value={props.interests}
                     onChange={
                       (e) => {
                         props.setIntereses(e.target.value);
@@ -242,7 +242,7 @@ export default function CardSettings(props) {
                     placeholder="Comparte los logros y trofeos de los que estes más orgulloso para los demás usuarios puedan verlos"
                     rows="4"
                     name='achievements_and_trophies'
-                    value={achievements_and_trophies}
+                    value={props.achievements_and_trophies}
                     onChange={
                       (e) => {
                         props.setLogros_y_trofeos(e.target.value);
