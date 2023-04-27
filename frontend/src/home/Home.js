@@ -7,6 +7,8 @@ import { loadFull } from "tsparticles";
 import particlesConfig from "./particles2.json";
 import logo from "../assets/Recurso 3.svg"
 import './diseño.css';
+import Footer from './Footer.js';
+
 
 const Home = () => {
     const [isHovered, setIsHovered] = useState(false);
@@ -29,7 +31,7 @@ const Home = () => {
     };
 
     return (
-        <div>
+        <div className='w-screen h-screen'>
             <Particles
                 style={{ position: "relative" }}
                 id="tsparticles"
@@ -102,6 +104,9 @@ const Home = () => {
                     </div>
                 </section>
             </main>
+            <div className="footer-container bg-gray-900 py-30 fixed bottom-0 w-full">
+                <Footer />
+            </div>
         </div>
     );
 };
