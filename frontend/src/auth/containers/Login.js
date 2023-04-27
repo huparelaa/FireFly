@@ -37,7 +37,7 @@ function Login({ login, isAuthenticated }) {
             timer: 3000,
             timerProgressBar: true,
             icon: 'success',
-            title: `Inicio de sesion exitoso`,
+            title: `Inicio de sesión exitoso`,
         })
         return <Navigate to='/check-first-login' />
 

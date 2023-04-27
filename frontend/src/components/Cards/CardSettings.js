@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { changeUserInfo } from "../../auth/actions/auth"
 import axios from "axios";
 import Swal from 'sweetalert2'
+import { useNavigate } from "react-router-dom";
 import defaultProfile from "../../assets/defaultProfile.jpg"
 
 // components
@@ -16,6 +17,9 @@ export default function CardSettings(props) {
     name: "",
     age: 0,
     about_me: "",
+    interests: "",
+    achievements_and_trophies: "",
+    codePhoto: "",
   });
 
   const { name, age, about_me } = formData;
@@ -43,16 +47,18 @@ export default function CardSettings(props) {
         icon: 'success',
         title: `Se actualizaron los cambios de manera exitosa!!`,
       })
+      navigate('/profile');
     } catch (error) {
       Swal.fire({
         timer: 3000,
         timerProgressBar: true,
         icon: 'fail',
-        title: `Opps ocurrió un error al actualizar los cambios`,
+        title: `Opps ocurrio un error al actualizar los cambios`,
       })
       console.error(error);
     }
   };
+
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
@@ -60,12 +66,22 @@ export default function CardSettings(props) {
           <div className="text-center flex justify-between">
             <h6 className="text-blueGray-700 text-xl font-bold">Mi perfil</h6>
             <button
-              className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+              className="bg-lightBlue-500 active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
               type="button"
             >
-              Settings
+              Ajustes
             </button>
           </div>
+        </div>
+        <div className="flex flex-wrap justify-center">
+            <h6 className="text-blueGray-400 text-sm mt-3 mb-6 m-2 font-bold uppercase">
+              Foto de perfil:
+            </h6>
+          <input
+            accept="image/*"
+            type="file"
+            onChange={imageChange}
+          />
         </div>
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
           <form onSubmit={(e) => onSubmit(e)}>
@@ -112,13 +128,13 @@ export default function CardSettings(props) {
                     placeholder="David Gonzalez"
                     name='name'
                     value={name}
+                    autoComplete="off"
                     onChange={
                       e => {
-                        setNombre(e.target.value);
+                        props.setNombre(e.target.value);
                         onChange(e)
                       }
                     }
-                    required
                   />
                 </div>
               </div>
@@ -139,11 +155,10 @@ export default function CardSettings(props) {
                     min={12}
                     max={99}
                     onChange={(e) => {
-                      setEdad(e.target.value);
+                      props.setEdad(e.target.value);
                       onChange(e);
                     }
                     }
-                    required
                   />
                 </div>
               </div>
@@ -159,7 +174,7 @@ export default function CardSettings(props) {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    Descripción sobre ti
+                    descripción sobre tí
                   </label>
                   <textarea
                     type="text"
@@ -170,11 +185,70 @@ export default function CardSettings(props) {
                     value={about_me}
                     onChange={
                       (e) => {
-                        setAboutMe(e.target.value);
+                        props.setAboutMe(e.target.value);
                         onChange(e)
                       }
                     }
-                    required
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            <hr className="mt-6 border-b-1 border-blueGray-300" />
+            <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+              Intereses
+            </h6>
+            <div className="flex flex-wrap">
+              <div className="w-full lg:w-12/12 px-4">
+                <div className="relative w-full mb-3">
+                  <label
+                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    htmlFor="grid-password"
+                  >
+                    tus intereses
+                  </label>
+                  <textarea
+                    type="text"
+                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    placeholder="Comparte tus intereses para los demás usuarios puedan verlos"
+                    rows="4"
+                    name='interests'
+                    value={interests}
+                    onChange={
+                      (e) => {
+                        props.setIntereses(e.target.value);
+                        onChange(e)
+                      }
+                    }
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            <hr className="mt-6 border-b-1 border-blueGray-300" />
+            <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+              Logros y Trofeos
+            </h6>
+            <div className="flex flex-wrap">
+              <div className="w-full lg:w-12/12 px-4">
+                <div className="relative w-full mb-3">
+                  <label
+                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    htmlFor="grid-password"
+                  >
+                    tus logros y trofeos
+                  </label>
+                  <textarea
+                    type="text"
+                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    placeholder="Comparte los logros y trofeos de los que estes más orgulloso para los demás usuarios puedan verlos"
+                    rows="4"
+                    name='achievements_and_trophies'
+                    value={achievements_and_trophies}
+                    onChange={
+                      (e) => {
+                        props.setLogros_y_trofeos(e.target.value);
+                        onChange(e)
+                      }
+                    }
                   ></textarea>
                 </div>
               </div>

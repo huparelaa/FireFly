@@ -1,13 +1,27 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {Navigate, Link} from 'react-router-dom'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
-function CreateGroup({ setModalIsOpen, config }) {
+function CreateGroup({ setModalIsOpen }) {
+  const [roomCreated, setroomCreated] = useState(false);
   const [roomName, setRoomName] = useState("");
   const [filtro, setFiltro] = useState("");
-  const [amigos, setAmigos] = useState(null);
+  const [amigos, setAmigos] = useState([]);
   const [personasSeleccionadas, setPersonasSeleccionadas] = useState({});
   const [idRoom, setIdRoom] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+      Authorization: `JWT ${localStorage.getItem("access")}`,
+      Accept: "application/json",
+    },
+  };
   useEffect(() => {
     async function getFriends() {
       const response = await axios.get(
@@ -19,36 +33,54 @@ function CreateGroup({ setModalIsOpen, config }) {
         }
       );
       setAmigos(response.data.friends);
+      setIsLoading(false);
     }
     getFriends();
   }, []);
 
-  const handleAddMember = async (event) => {
-    event.prevetnDefault();
-    
-  };
+  async function createRoom(event) {
+    event.preventDefault();
+    if (!roomName.trim()) {
+      Swal.fire({
+        title: "Un buen nombre es difícil",
+        text: "Tú grupo debe tener algún nombre",
+        icon: "error",
+      });
+      return;
+    }
+    const selectedPeople = Object.keys(personasSeleccionadas).filter(
+      (person) => personasSeleccionadas[person]
+    );
+    const selectedPeopleInt = selectedPeople.map((idPerson) =>
+      parseInt(idPerson)
+    );
+    if (selectedPeople.length === 0) {
+      Swal.fire({
+        title: "¿Por qué tan solito?",
+        text: "Debes seleccionar al menos un amigo",
+        icon: "error",
+      });
+      return;
+    }
 
-  async function createRoom (){
     const url = `${process.env.REACT_APP_API_URL}/api/room/`;
-
     try {
       const response = await axios.post(
         url,
         {
           room_name: roomName,
-          members: personasSeleccionadas,
+          members: selectedPeopleInt,
         },
         config
       );
-        
-      
-      setIdRoom(response.data.id_room)
-    
+      setIdRoom(response.data.id_room);
+      setroomCreated(true);
+      //esperamos a que se cargue el id de la Room
     } catch (error) {
       console.error(error);
       return null;
     }
-  };
+  }
 
   const handleSeleccionarPersona = (nombrePersona) => {
     setPersonasSeleccionadas({
@@ -64,8 +96,9 @@ function CreateGroup({ setModalIsOpen, config }) {
           persona.toLowerCase().includes(filtro.toLowerCase())
         );
 
-  const listaSugerencias = amigos
-    ? listaFiltrada.map((persona) => (
+  const listaSugerencias =
+    amigos.length > 0 ? (
+      listaFiltrada.map((persona) => (
         <div
           key={persona}
           className="flex items-center cursor-pointer"
@@ -79,7 +112,26 @@ function CreateGroup({ setModalIsOpen, config }) {
           <span className="text-white pl-6">{persona[0]}</span>
         </div>
       ))
-    : null;
+    ) : (
+      <div className="text-white">
+        Primero agrega amigos para crear una chat-room
+      </div>
+    );
+  if (isLoading) {
+    return (
+      <div className="text-white flex items-center justify-center h-screen">
+        <FontAwesomeIcon
+          icon={faSpinner}
+          spin
+          className="text-white text-4xl"
+        />
+        Cargando lista de amigos...
+      </div>
+    );
+  }
+  if (roomCreated) {
+    return navigate(`../chatroom/${idRoom}`);
+  }
 
   return (
     <div className="bg-dark-purple rounded-lg w-1/2 p-6">
@@ -89,7 +141,7 @@ function CreateGroup({ setModalIsOpen, config }) {
       ></button>
       <h2 className="text-lg font-medium mb-4 text-white">Crear grupo</h2>
 
-      <form onSubmit={handleAddMember}>
+      <form onSubmit={createRoom}>
         <ul>
           <li>
             <label htmlFor="room_name" className="text-white pr-3">
@@ -100,24 +152,24 @@ function CreateGroup({ setModalIsOpen, config }) {
               id="room_name"
               onChange={(event) => setRoomName(event.target.value)}
               className="pl-1 border border-black"
+              autoComplete="off"
             />
             <div></div>
             <label htmlFor="members" className="text-white pr-3">
               Selecciona a tus amigos:
             </label>
-            <div className="flex items-center">
-              
-            </div>
+            <div className="flex items-center"></div>
             <div className="mt-2">{listaSugerencias}</div>
           </li>
         </ul>
+        {amigos && amigos.length > 0 && (
           <button
-            type="submit"
             className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4"
-            onClick={createRoom}
+            type="submit"
           >
             Crear grupo
           </button>
+        )}
         <button
           type="button"
           className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4 ml-4"
