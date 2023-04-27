@@ -1,25 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const SuggestedGames = () => {
-    const [loading, setLoading] = useState(false);
-    const [suggestedGames, setSuggestedGames] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [suggestedGames, setSuggestedGames] = useState([]);
 
-    const config = {
-        headers: {
-            'Authorization': `JWT ${localStorage.getItem('access')}`,
-        }
+  const config = {
+    headers: {
+      Authorization: `JWT ${localStorage.getItem("access")}`,
+    },
+  };
+  useEffect(() => {
+    const fetchSuggestedGames = async () => {
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/analytics/select_more_played_games/`,
+        config
+      );
+      setSuggestedGames(response.data.juegos_recomendados);
+      setLoading(true);
+      console.log(response.data.juegos_recomendados);
     };
-    useEffect(() => {
-        const fetchSuggestedGames = async () => {
-            const response = await axios.get(`${process.env.REACT_APP_API_URL}/analytics/select_more_played_games/`, config)
-            setSuggestedGames(response.data.juegos_recomendados);
-            setLoading(true)
-            console.log(response.data.juegos_recomendados);
-        };
-        fetchSuggestedGames();
-    }, []);
-
+    fetchSuggestedGames();
+  }, []);
 
     const handleSelectGame = async (gameIdP) => {
         const gameId = parseInt(gameIdP)
@@ -50,7 +52,7 @@ const SuggestedGames = () => {
                 ))}
             </div>
     </div>
-    );
+  );
 };
 
 export { SuggestedGames };
