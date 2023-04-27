@@ -3,21 +3,35 @@ import { changeUserInfo } from "../../auth/actions/auth"
 import axios from "axios";
 import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom";
+import defaultProfile from "../../assets/defaultProfile.jpg"
 
 // components
 
 export default function CardSettings(props) {
-  var { nombre, edad, aboutMe, intereses, logros_y_trofeos, setNombre, setEdad, setAboutMe, setIntereses, setLogros_y_trofeos } = props
-  const navigate = useNavigate();
+  
+  const imageChange = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const image = e.target.files[0];
+      const reader = new FileReader();
+      const base = reader.readAsDataURL(image);
+      props.setCodigoFoto(base);
 
+      reader.onloadend = () => {
+        props.setFotoUsuario(reader.result);
+      };
+    }
+  };
+
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     age: 0,
     about_me: "",
     interests: "",
     achievements_and_trophies: "",
+    codePhoto: "",
   });
-  const { name, age, about_me, interests, achievements_and_trophies } = formData;
+  const { name, age, about_me, interests, achievements_and_trophies, codePhoto} = formData;
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
   console.log(formData);
@@ -31,7 +45,7 @@ export default function CardSettings(props) {
     }
     e.preventDefault();
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/profile/change_info/`, { 'name': name, 'age': parseInt(age), 'about_me': about_me, 'interests': interests, 'achievements_and_trophies': achievements_and_trophies}, config)
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/profile/change_info/`, { 'name': name, 'age': parseInt(age), 'about_me': about_me, 'interests': interests, 'achievements_and_trophies': achievements_and_trophies, 'codePhoto': codePhoto }, config)
       console.log(res.data);
       Swal.fire({
         timer: 3000,
@@ -58,12 +72,22 @@ export default function CardSettings(props) {
           <div className="text-center flex justify-between">
             <h6 className="text-blueGray-700 text-xl font-bold">Mi perfil</h6>
             <button
-              className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+              className="bg-lightBlue-500 active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
               type="button"
             >
-              Settings
+              Ajustes
             </button>
           </div>
+        </div>
+        <div className="flex flex-wrap justify-center">
+            <h6 className="text-blueGray-400 text-sm mt-3 mb-6 m-2 font-bold uppercase">
+              Foto de perfil:
+            </h6>
+          <input
+            accept="image/*"
+            type="file"
+            onChange={imageChange}
+          />
         </div>
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
           <form onSubmit={(e) => onSubmit(e)}>
@@ -88,7 +112,7 @@ export default function CardSettings(props) {
                     autoComplete="off"
                     onChange={
                       e => {
-                        setNombre(e.target.value);
+                        props.setNombre(e.target.value);
                         onChange(e)
                       }
                     }
@@ -112,7 +136,7 @@ export default function CardSettings(props) {
                     min={12}
                     max={99}
                     onChange={(e) => {
-                      setEdad(e.target.value);
+                      props.setEdad(e.target.value);
                       onChange(e);
                     }
                     }
@@ -142,7 +166,7 @@ export default function CardSettings(props) {
                     value={about_me}
                     onChange={
                       (e) => {
-                        setAboutMe(e.target.value);
+                        props.setAboutMe(e.target.value);
                         onChange(e)
                       }
                     }
@@ -172,7 +196,7 @@ export default function CardSettings(props) {
                     value={interests}
                     onChange={
                       (e) => {
-                        setIntereses(e.target.value);
+                        props.setIntereses(e.target.value);
                         onChange(e)
                       }
                     }
@@ -202,7 +226,7 @@ export default function CardSettings(props) {
                     value={achievements_and_trophies}
                     onChange={
                       (e) => {
-                        setLogros_y_trofeos(e.target.value);
+                        props.setLogros_y_trofeos(e.target.value);
                         onChange(e)
                       }
                     }
