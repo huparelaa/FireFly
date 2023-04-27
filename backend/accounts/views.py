@@ -8,7 +8,7 @@ from django.http import HttpResponse, JsonResponse
 import jwt
 from jwt.exceptions import InvalidSignatureError
 from firefly.utils import verify_token, get_user_id
-
+from google.cloud import storage
     
 @api_view(['GET'])
 def has_entered_before(request):
@@ -63,9 +63,11 @@ def change_user_info(request):
     name = data.get('name')
     age = data.get('age')
     about_me = data.get('about_me')
+    photo = data.get('profile')
     user.name = name
     user.about_me = about_me
     user.age = age
+    user.profile_photo = photo
     user.save()
     return JsonResponse({ 'Confirm': 'Info changed succesfull' })
 

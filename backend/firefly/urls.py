@@ -28,6 +28,9 @@ urlpatterns = [
     path('agregar_juegos/', vGames.agregar_juegos, name='agregar_juegos'),
     path('match/', vMatch.match, name = "match"), 
     path('analytics/more_played_games/', vGames.more_played_games, name = "more_played_games"), 
+    path('analytics/select_more_played_games/', vGames.recommended_games, name = "recommended_games"),
+    path('api/games_selected_recommended/', vGames.select_gamesRecommended, name='select_games'),
+
     path('agregar_juegos/', vGames.agregar_juegos, name='agregar_juegos'),
 
     #MENSAJERIA ENTRE USUARIOS

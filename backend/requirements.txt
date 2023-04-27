@@ -13,3 +13,4 @@ django-templated-mail==1.1.1
 django-widget-tweaks==1.4.12
 scikit-learn==1.2.2
 numpy==1.24.2
+google-cloud-storage

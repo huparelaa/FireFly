@@ -1,22 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { changeUserInfo } from "../../auth/actions/auth"
 import axios from "axios";
 import Swal from 'sweetalert2'
+import defaultProfile from "../../assets/defaultProfile.jpg"
 
 // components
-
 export default function CardSettings(props) {
+  const [image, setProfileImage] = useState(null)
+  const imageChange = (e) => {
+      setProfileImage(e.target.files[0])
+  }
+
   var { nombre, edad, aboutMe, setNombre, setEdad, setAboutMe } = props
   const [formData, setFormData] = useState({
     name: "",
     age: 0,
     about_me: "",
   });
+
   const { name, age, about_me } = formData;
+
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  console.log(formData);
+
   const onSubmit = async (e) => {
+    const formData = new FormData();
+    formData.append('image', image);
     const config = {
       headers: {
         'Content-type': 'application/json',
@@ -26,7 +35,7 @@ export default function CardSettings(props) {
     }
     e.preventDefault();
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/profile/change_info/`, { 'name': name, 'age': parseInt(age), 'about_me': about_me }, config)
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/profile/change_info/`, { 'name': name, 'age': parseInt(age), 'about_me': about_me, 'profile': formData }, config)
       console.log(res.data);
       Swal.fire({
         timer: 3000,
@@ -60,6 +69,31 @@ export default function CardSettings(props) {
         </div>
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
           <form onSubmit={(e) => onSubmit(e)}>
+          <div className="flex flex-wrap justify-center">
+            <div className="w-full px-4 flex justify-center">
+              <div className="relative">
+                {
+                  props.profileImage ?
+                    <img
+                      alt="..."
+                      src={URL.createObjectURL(props.profileImage)}
+                      className="shadow-xl rounded-full h-auto align-middle border-none relative   max-w-150-px"
+                    />
+                    :
+                    <img
+                      alt="..."
+                      src={defaultProfile}
+                      className="shadow-xl rounded-full h-auto align-middle border-none relative   max-w-150-px"
+                    />
+                }
+              </div>
+            </div>
+            <input
+              accept="image/*"
+              type="file"
+              onChange={imageChange}
+            />
+          </div>
             <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
               Información Personal
             </h6>

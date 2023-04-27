@@ -19,7 +19,7 @@ class UserAccount(AbstractBaseUser, PermissionsMixin, models.Model):
     is_active = models.BooleanField(default = True)
     is_staff = models.BooleanField(default = False)
     has_enter_before = models.BooleanField(default = False)
-    favorite_games = models.ManyToManyField(Game)
+    favorite_games = models.ManyToManyField(Game, symmetrical=False)
     profile_photo = models.CharField(max_length = 250, default = "")
     age = models.IntegerField(blank = True)
     about_me = models.TextField(max_length = 1000, blank = True)

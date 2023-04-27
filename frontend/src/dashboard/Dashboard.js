@@ -2,6 +2,7 @@ import React from "react";
 import { SideBar } from "../components/SideBar";
 import { FriendList } from "../components/FriendList";
 import { Header } from "../components/Header" 
+import { SuggestedGames } from "../components/Cards/CardSuggestions"
 
 function Dashboard() {
     return (
@@ -12,7 +13,8 @@ function Dashboard() {
                     <Header />
                 </div>
                 <div className="flex flex-1">
-                    <div className="flex flex-col justify-center items-end w-full h-full" >
+                    <SuggestedGames/>
+                    <div className="flex flex-col justify-center items-end w-full h-full" >        
                         <div className="h-full w-1/4 flex items-center justify-center">
                             <FriendList/>
                         </div>

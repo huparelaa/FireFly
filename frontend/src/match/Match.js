@@ -5,11 +5,10 @@ import withReactContent from 'sweetalert2-react-content'
 import { SideBar } from "../components/SideBar";
 import { Rating } from 'react-simple-star-rating'
 import { MdOutlineSentimentDissatisfied,
-    MdOutlineSentimentNeutral,
-    MdOutlineSentimentSatisfied,
-    MdOutlineSentimentVeryDissatisfied,
-    MdOutlineSentimentVerySatisfied
-  } from 'react-icons/md'
+        MdOutlineSentimentNeutral,
+        MdOutlineSentimentSatisfied,
+        MdOutlineSentimentVeryDissatisfied,
+        MdOutlineSentimentVerySatisfied } from 'react-icons/md'
 
 function Match() {
     const [similarUsers, setSimilarUsers] = useState([]);
@@ -22,9 +21,8 @@ function Match() {
         { icon: <MdOutlineSentimentNeutral size={50} /> },
         { icon: <MdOutlineSentimentSatisfied size={50} /> },
         { icon: <MdOutlineSentimentVerySatisfied size={50} /> }
-      ]
+    ]
     const MySwal = withReactContent(Swal)
-
     const showReviewDialog = () => {
         MySwal.fire({
             title: 'Danos tu opinión aquí ',
@@ -50,7 +48,6 @@ function Match() {
             allowOutsideClick: () => !Swal.isLoading()
         });
     };
-
     const submitReview = () => {
         const review = MySwal.getPopup().querySelector('#review').value
         const rating = localStorage.getItem('rating')
@@ -67,7 +64,6 @@ function Match() {
             text: 'Su retroalimentación se envió de forma exitosa!',
             icon: 'success'
         });
-
         // axios.post(`${process.env.REACT_APP_API_URL}/api/review/match`, { rating, review}, config)
         //   .then(response => {
         //     console.log(response.data)
@@ -90,7 +86,6 @@ function Match() {
         //     });
         //   });
     };
-
     const handleClick = async () => {
         const config = {
             headers: {
@@ -118,7 +113,6 @@ function Match() {
             })
         }
     }
-
     const handleCancel = () => {
         setIsDelay(false);
         setIsButtonPressed(false);
@@ -129,7 +123,6 @@ function Match() {
             title: 'Match cancelado',
         });
     }
-
     useEffect(() => {
         let interval = null;
         if (isDelay) {
@@ -143,7 +136,6 @@ function Match() {
         }
         return () => clearInterval(interval);
     }, [isDelay, delaySeconds]);
-
     return (
         <div className="flex" style={{ width: "100%", height: "100%" }}>
             <SideBar />
@@ -169,6 +161,7 @@ function Match() {
                     </div>
                 )}
                 {isButtonPressed && similarUsers.length > 0 && (
+                    // PONER LA GRID PARA QUE APAREZCAN SOLO LOS USUARIOS
                     <>
                         <ul className='text-white'>
                             {similarUsers.map(user => (
@@ -188,5 +181,4 @@ function Match() {
         </div>
     )
 }
-
 export default Match;

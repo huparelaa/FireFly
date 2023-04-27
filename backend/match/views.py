@@ -44,6 +44,6 @@ def match(request):
             'age': user.age,
             'similarity': similarity,
         }
-        if(similarity > 0):
+        if(similarity > 0 and len(serialized_users) <= 3):
             serialized_users.append(serialized_user)
     return JsonResponse({'similar_users': serialized_users})

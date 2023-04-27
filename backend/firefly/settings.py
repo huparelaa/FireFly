@@ -112,9 +112,9 @@ WSGI_APPLICATION = 'firefly.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'sampleApptest',
+        'NAME': 'FireFly1',
         'CLIENT': {
-            'host': 'mongodb+srv://julianv12:Julian.12@firefly.hzheqbi.mongodb.net/test',
+            'host': 'mongodb+srv://julianv12:Julian.12@cluster0.qckjtl4.mongodb.net/test',
             'username': 'julianv12',
             'password': 'Julian.12'
         }
