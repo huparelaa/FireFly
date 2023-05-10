@@ -17,7 +17,7 @@ import Profile from "./profile/Profile"
 import ProfileId from "./profile/ProfileId";
 import Match from "./match/Match"
 import Analytics from "./analytics/Analytics";
-import Sample from "./home/test"
+
 import Chat from "./chat/Chat";
 import ChatContent from './chat/ChatContent'
 import ChatRoomContent from "./chat/ChatRoomContent";
@@ -30,7 +30,6 @@ function App() {
             <Router>
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/sample" element={<Sample />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />
                         <Route path="/reset-password" element={<ResetPassword />} />

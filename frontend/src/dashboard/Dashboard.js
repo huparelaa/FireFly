@@ -6,13 +6,11 @@ import { SuggestedGames } from "../components/Cards/CardSuggestions"
 
 function Dashboard() {
     return (
-
         <div className="flex w-full h-full">
         <div className="absolute top-96 left-24"> 
                 <SuggestedGames/>
             </div>
         <SideBar />
-       
         <div className="flex flex-col w-full">
             <div className="flex justify-center mt-7 h-16">
                 <Header />

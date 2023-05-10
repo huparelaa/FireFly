@@ -1,73 +1,315 @@
 import React from "react";
+import Logo from "../assets/Logo-principal.svg"
+import { AiOutlineInstagram } from "react-icons/ai";
+import { AiFillFacebook } from "react-icons/ai";
+import { AiFillTwitterSquare } from "react-icons/ai";
+import { AiFillYoutube } from "react-icons/ai";
+import { FaTiktok } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { useMediaQuery } from 'react-responsive'
 
-export default function Footer() {
+function FooterComponent(){
   return (
-    <>
-      <footer className="relative bg-blueGray-200 pt-1 pb-3 bg-purple" style={{ marginTop: "-30px" }}>
-        <div
-          className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
-          style={{ transform: "translateZ(0)" }}
-        >
-        </div>
-        <div className="container mx-auto px-4">
-          <hr className="my-0 border-purple-900 bg-dark-purple" />
-          <div className="flex flex-wrap text-center lg:text-left">
-            <div className="w-full lg:w-6/12 px-4">
-              <div className="mt-3 lg:mb-0 mb-6">
-                <button
-                  className="bg-purple-500 text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-                  type="button"
-                >
-                  <a href="https://www.instagram.com/davidgonza0326/" target="_blank" rel="noopener noreferrer">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png" alt="Logo de Instagram" />
-                  </a>
-                </button>
-
-
-                <button
-                  className="bg-purple-400 text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-                  type="button"
-                >
-                  <a href="https://www.instagram.com/jdvalencia_r/" target="_blank" rel="noopener noreferrer">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png" alt="Logo de Instagram" />
-                  </a>
-                </button>
-
-                <button
-                  className="bg-purple-300 text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-                  type="button"
-                >
-                  <a href="https://www.instagram.com/hobar_upa/" target="_blank" rel="noopener noreferrer">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png" alt="Logo de Twitter" />
-                  </a>
-                </button>
-
-                <button
-                  className="bg-purple-300 text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-                  type="button"
-                >
-                  <a href="https://github.com/huparelaa/FireFly" target="_blank" rel="noopener noreferrer">
-                    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="Logo de Twitter" />
-                  </a>
-                </button>
-
-
-              </div>
+    <div
+    className="bottom-0 absolute w-full top-0 left-0 right-0 overflow-hidden"
+    style={{ transform: "translateZ(0)", height: "579px"  }}
+  >
+      <div className="grid grid-cols-12 p-16 gap-x-4 font-roboto text-white box-border h-auto"> 
+          <div className="flex flex-col col-span-3">
+            <img src={Logo} className="w-48"/>
+            <div className="flex w-full  mt-10 text-4xl ">
+                <Link className="mr-4"><span><AiOutlineInstagram/></span></Link>
+                <Link className="mr-4"><span><AiFillFacebook/></span></Link>
+                <Link className="mr-4"><span><AiFillTwitterSquare/></span></Link>
+                <Link className="mr-4"><span ><AiFillYoutube/></span></Link>
+                <Link className="mr-4"><span><FaTiktok/></span></Link>
             </div>
           </div>
-          <div className="flex flex-wrap items-center md:justify-between justify-center" style={{ marginTop: "-48px" }}>
-            <div className="w-full md:w-4/12 px-4 mx-auto text-center">
-              <div className="text-sm text-blueGray-500 font-semibold py-1" style={{ backgroundImage: "linear-gradient(to bottom, #9F7AEA, #805AD5)", textAlign: "center", borderRadius: "10px", padding: "10px", color: "#ffffff" }}>
-                &copy; {new Date().getFullYear()} FireFly. Todos los derechos reservados.
-                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" target="_blank" rel="noopener noreferrer" className="bg-purple-600 text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none ml-2">
-                  ⚠️
-                </a>
-              </div>
+          <div className="col-span-1"></div>
+          <div className="col-span-2 flex flex-col">
+            <h5 className="text-purple-400 font-bold">Explorar</h5>
+            <Link to="#" className="mt-4">
+              Item 1
+            </Link >
+            <Link to="#" className="mt-4">
+              Item 2
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 3
+            </Link>
+          </div>
+          <div className="col-span-2 flex flex-col">
+            <h5 className="text-purple-400 font-bold">Seguridad</h5>
+            <Link to="#" className="mt-4">
+              Item 1
+            </Link >
+            <Link to="#" className="mt-4">
+              Item 2
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 3
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 4
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 5
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 6
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 7
+            </Link>
+          </div>
+          <div className="col-span-2 flex flex-col">
+            <h5 className="text-purple-400 font-bold">Soporte</h5>
+            <Link to="#" className="mt-4">
+              Item 1
+            </Link >
+            <Link to="#" className="mt-4">
+              Item 2
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 3
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 4
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 5
+            </Link>
+          </div>
+          <div className="col-span-2 flex flex-col">
+            <h5 className="text-purple-400 font-bold">Acerca de nosotros</h5>
+            <Link to="#" className="mt-4">
+              Item 1
+            </Link >
+            <Link to="#" className="mt-4">
+              Item 2
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 3
+            </Link>
+          </div>
+      </div>
+      <hr className="w-11/12 px-16 mb-10 mx-16"/>
+      <div className="grid grid-cols-12 gap-x-5 w-full px-16 text-white font-roboto ">
+          <p className="col-span-2">© 2023 FireFly</p>
+          <p className="col-start-8 col-end-10"><Link>Política de privacidad</Link></p>
+          <p className="col-start-10 col-span-3"><Link>Términos y condiciones</Link></p>
+      </div>
+  </div>
+  )
+}
+function FooterComponentT(){
+  return (
+    <div
+    className="bottom-0 absolute w-full top-0 left-0 right-0 overflow-hidden"
+    style={{ transform: "translateZ(0)", height: "782px"  }}
+  >
+      <div className="grid grid-cols-8 p-16 gap-x-4 font-roboto text-white box-border h-auto"> 
+          <div className="flex flex-col col-span-3 row-span-2">
+            <img src={Logo} className="w-48"/>
+            <div className="flex w-full mt-10 text-4xl ">
+                <Link className="mr-4"><span><AiOutlineInstagram/></span></Link>
+                <Link className="mr-4"><span><AiFillFacebook/></span></Link>
+                <Link className="mr-4"><span><AiFillTwitterSquare/></span></Link>
+                <Link className="mr-4"><span ><AiFillYoutube/></span></Link>
+                <Link className="mr-4"><span><FaTiktok/></span></Link>
             </div>
           </div>
+          <div className="col-span-1 row-span-2"></div>
+          <div className="col-span-2 flex flex-col">
+            <h5 className="text-purple-400 font-bold">Explorar</h5>
+            <Link to="#" className="mt-4">
+              Item 1
+            </Link >
+            <Link to="#" className="mt-4">
+              Item 2
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 3
+            </Link>
+          </div>
+          <div className="col-span-2 flex flex-col">
+            <h5 className="text-purple-400 font-bold">Seguridad</h5>
+            <Link to="#" className="mt-4">
+              Item 1
+            </Link >
+            <Link to="#" className="mt-4">
+              Item 2
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 3
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 4
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 5
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 6
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 7
+            </Link>
+          </div>
+          <div className="col-span-2 flex flex-col mt-5">
+            <h5 className="text-purple-400 font-bold">Soporte</h5>
+            <Link to="#" className="mt-4">
+              Item 1
+            </Link >
+            <Link to="#" className="mt-4">
+              Item 2
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 3
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 4
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 5
+            </Link>
+          </div>
+          <div className="col-span-2 flex flex-col mt-5">
+            <h5 className="text-purple-400 font-bold">Acerca de nosotros</h5>
+            <Link to="#" className="mt-4">
+              Item 1
+            </Link >
+            <Link to="#" className="mt-4">
+              Item 2
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 3
+            </Link>
+          </div>
+      </div>
+      <hr className="w-11/12 px-16 mb-10 mx-16"/>
+      <div className="grid grid-cols-8 gap-x-5 w-full px-16 text-white font-roboto ">
+          <p className="col-span-3">© 2023 FireFly</p>
+          <p className="col-start-5 col-end-8"><Link>Política de privacidad</Link></p>
+          <p className="col-start-9 col-span-10"><Link>Términos y condiciones</Link></p>
+      </div>
+  </div>
+  )
+}
+function FooterComponentM(){
+  return (
+    <div
+    className="bottom-0 absolute w-full top-0 left-0 right-0 overflow-hidden pt-5"
+    style={{ transform: "translateZ(0)", height: "908px"  }}
+  >
+      <div className="grid grid-cols-4 p-10 gap-x-4 font-roboto text-white box-border h-auto "> 
+          <div className="flex flex-col col-span-3 mb-14">
+            <img src={Logo} className="w-48 mb-5"/>
+            <div className="flex w-full mt-2 text-2xl ">
+                <Link className="mr-4"><span><AiOutlineInstagram/></span></Link>
+                <Link className="mr-4"><span><AiFillFacebook/></span></Link>
+                <Link className="mr-4"><span><AiFillTwitterSquare/></span></Link>
+                <Link className="mr-4"><span ><AiFillYoutube/></span></Link>
+                <Link className="mr-4"><span><FaTiktok/></span></Link>
+            </div>
+          </div>
+          <div className="col-span-1"></div>
+          <div className="col-span-2 flex flex-col">
+            <h5 className="text-purple-400 font-bold">Explorar</h5>
+            <Link to="#" className="mt-4">
+              Item 1
+            </Link >
+            <Link to="#" className="mt-4">
+              Item 2
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 3
+            </Link>
+          </div>
+          <div className="col-span-2 flex flex-col">
+            <h5 className="text-purple-400 font-bold">Seguridad</h5>
+            <Link to="#" className="mt-4">
+              Item 1
+            </Link >
+            <Link to="#" className="mt-4">
+              Item 2
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 3
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 4
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 5
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 6
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 7
+            </Link>
+          </div>
+          <div className="col-span-2 flex flex-col">
+            <h5 className="text-purple-400 font-bold mt-6">Soporte</h5>
+            <Link to="#" className="mt-4">
+              Item 1
+            </Link >
+            <Link to="#" className="mt-4">
+              Item 2
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 3
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 4
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 5
+            </Link>
+          </div>
+          <div className="col-span-2 flex flex-col mt-6">
+            <h5 className="text-purple-400 font-bold">Acerca de nosotros</h5>
+            <Link to="#" className="mt-4">
+              Item 1
+            </Link >
+            <Link to="#" className="mt-4">
+              Item 2
+            </Link>
+            <Link to="#" className="mt-4">
+              Item 3
+            </Link>
+          </div>
+      </div>
+      <hr className="w-11/12 px-16 mb-10 mx-4"/>
+      <div className="grid grid-cols-4 gap-x-5 w-full px-8 text-white font-roboto text-xs ">
+          <p className="col-span-4">© 2023 FireFly</p>
+          <p className="col-start-8 col-end-10"><Link>Política de privacidad</Link></p>
+      </div>
+  </div>
+  )
+}
 
-        </div>
+function Footer() {
+  const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 1024px)' })
+  const isTablet = useMediaQuery({ query: '(min-width: 768px) and (max-width: 1023px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+  
+  return (
+    <div>
+      <footer className="relative bg-footer-color">
+      {isDesktopOrLaptop && (
+        <FooterComponent />
+      )}
+      {isTablet && (
+        <FooterComponentT/>
+      )}
+      {isMobile && (
+        <FooterComponentM/>
+      )}
       </footer >
-    </>
+    </div>
   );
 }
+
+export { Footer }
