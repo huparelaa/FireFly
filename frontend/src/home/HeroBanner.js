@@ -34,7 +34,7 @@ function HeroBanner(){
                         <Link to="/signup">
                             <button className="w-48 bg-blue-900 transition duration-500 ease-in-out 
                                 p-4 text-center rounded-full shadow-xl hover:bg-register-button">
-                                Registrate
+                                Regístrate
                             </button>
                         </Link>
                         {isMobile && (
@@ -48,7 +48,7 @@ function HeroBanner(){
                             </Link>
                             <div className="w-full flex flex-col items-center relative top-24 box-border">
                             <hr className="w-11/12"/>
-                            <h4 className="font-bold font-roboto mt-3">Aquí encontraras</h4>
+                            <h4 className="font-bold font-roboto mt-3">Aquí encontrarás</h4>
                             </div>
                             </>
                         )}

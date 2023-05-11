@@ -47,10 +47,10 @@ function Header(){
                 <div className="box-border flex flex-col ml-5 justify-between h-full">
                     <div className="flex flex-col">
                         <Link key="Quienes-somos" className="mr-24 transition rounded-full duration-500 hover:bg-login-button hover:shadow-xl p-4">
-                            Quiénes somos
+                            ¿Quiénes somos?
                         </Link>
                         <Link key="comunidad" className="mr-8 hover:bg-login-button hover:shadow-xl p-4 transition rounded-full duration-500" >
-                            Comunidad
+                            Comunidad👥
                         </Link> 
                     </div>
                     <div className="flex flex-col mb-10 md:mb-20">
@@ -84,10 +84,10 @@ function Header(){
                     <>
                     <div className="mx-28 mb-1 box-border">
                         <Link key="Quienes-somos" className="mr-24 transition rounded-full duration-500 hover:bg-login-button hover:shadow-xl p-4">
-                            Quiénes somos
+                            ¿Quiénes somos?
                         </Link>
                         <Link key="comunidad" className="mr-8 hover:bg-login-button hover:shadow-xl p-4 transition rounded-full duration-500" >
-                            Comunidad
+                            Comunidad 
                         </Link>
                     </div>
                     <Link to="/login">
