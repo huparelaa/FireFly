@@ -156,17 +156,17 @@ function Content() {
                 <>
                     <SectionTablet
                         h3='Selecciona tus juegos favoritos'
-                        description={'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'}
+                        description={'FireFly es una plataforma para los apasionados de los videojuegos que buscan un compañero de equipo ideal. Ofrecemos una amplia selección de juegos, desde los clásicos hasta los más modernos, para que puedas seleccionar tus favoritos y buscar a alguien con quien compartir la experiencia de juego. Contamos con una comunidad activa de jugadores que están buscando lo mismo que tú: compañeros de equipo con los que disfrutar de sus juegos favoritos.'}
                         img={img1}
                     />
                     <SectionTablet2
                         h3='Encuentra tus compañeros de juego ideales'
-                        description={'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'}
+                        description={'Firefly cuenta con una función llamada Match que funciona de la siguiente manera: seleccionas algunos juegos predeterminados sobre tus preferencias y estilo de juego, luego el algoritmo Match analiza tus respuestas y las compara con las de otros usuarios para encontrar a aquellos que tienen intereses similares. Finalmente, en la función Match encontrarás los perfiles de los usuarios que coinciden contigo para que puedas empezar a hablar con ellos y formar un equipo.'}
                         img={img2}
                     />
                     <SectionTablet
                         h3='Interactúa con tus amigos y todas las personas que puedas conocer'
-                        description={'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'}
+                        description={'FireFly ofrece chat en tiempo real para comunicarte con otros usuarios y la posibilidad de crear grupos privados para hablar y jugar juntos. Además, sin importar el tipo de videojuego que te guste, en FireFly siempre encontrarás compañeros de juego.'}
                         img={img3}
                     />
                     <SectionTablet3 />
@@ -176,18 +176,18 @@ function Content() {
                 <>
                     <SectionMobile
                         h3='Selecciona tus juegos favoritos'
-                        description={'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'}
+                        description={'FireFly es una plataforma para los apasionados de los videojuegos que buscan un compañero de equipo ideal. Ofrecemos una amplia selección de juegos, desde los clásicos hasta los más modernos, para que puedas seleccionar tus favoritos y buscar a alguien con quien compartir la experiencia de juego. Contamos con una comunidad activa de jugadores que están buscando lo mismo que tú: compañeros de equipo con los que disfrutar de sus juegos favoritos.'}
                         img={img1}
                     />
                     <SectionMobile
                         bg='info-home'
                         h3='Encuentra tus compañeros de juego ideales'
-                        description={'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'}
+                        description={'Firefly cuenta con una función llamada Match que funciona de la siguiente manera: seleccionas algunos juegos predeterminados sobre tus preferencias y estilo de juego, luego el algoritmo Match analiza tus respuestas y las compara con las de otros usuarios para encontrar a aquellos que tienen intereses similares. Finalmente, en la función Match encontrarás los perfiles de los usuarios que coinciden contigo para que puedas empezar a hablar con ellos y formar un equipo.'}
                         img={img2}
                     />
                     <SectionMobile
                         h3='Interactúa con tus amigos y todas las personas que puedas conocer'
-                        description={'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'}
+                        description={'FireFly ofrece chat en tiempo real para comunicarte con otros usuarios y la posibilidad de crear grupos privados para hablar y jugar juntos. Además, sin importar el tipo de videojuego que te guste, en FireFly siempre encontrarás compañeros de juego.'}
                         img={img3}
                     />
                     <SectionMobile2 />
