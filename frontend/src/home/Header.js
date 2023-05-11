@@ -50,7 +50,7 @@ function Header(){
                             ¿Quiénes somos?
                         </Link>
                         <Link key="comunidad" className="mr-8 hover:bg-login-button hover:shadow-xl p-4 transition rounded-full duration-500" >
-                            Comunidad👥
+                            Comunidad
                         </Link> 
                     </div>
                     <div className="flex flex-col mb-10 md:mb-20">
