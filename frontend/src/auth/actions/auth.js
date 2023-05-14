@@ -1,5 +1,5 @@
 import axios from 'axios'
-import  axiosInstance from '../../src/apiConnection.js'
+import  axiosInstance from '../../apiConnection.js'
 
 
 import {
