@@ -1,12 +1,7 @@
 import axios from "axios";
 import Swal from 'sweetalert2'
 
-const axiosInstance = axios.create({
-    headers: {
-        "Content-type": "application/json",
-        "Authorization": `JWT ${localStorage.getItem("access")}`,
-    }
-});
+const axiosInstance = axios.create({});
 
 axiosInstance.defaults.baseURL = process.env.REACT_APP_API_URL;
 

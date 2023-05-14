@@ -26,6 +26,7 @@ function Login() {
 
     function submit(data) {
         UserApi.login(data).then(res => {
+            console.log(data);
             localStorage.setItem('access', res.data.access);
             localStorage.setItem('refreshToken', res.data.refresh);
             UserApi.verify().then(() => {

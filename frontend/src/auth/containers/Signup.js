@@ -38,27 +38,29 @@ function Signup() {
         })
     function submit(data){
         console.log(data);
-        if (data["password"] === data["re_password"]) {
-            UserApi.signup(data)
-            .then(res => {
-                Swal.fire({
-                    timer: 3000,
-                    timerProgressBar: true,
-                    icon: 'success',
-                    title: `Registro exitoso`,
-                    text: `¡Te llegará un correo de activación a tu correo!`,
-                }).then(() => navigate('/login'));
-            }).catch(err => {
-                console.log(err)
-                Swal.fire({
-                    timer: 2000,
-                    timerProgressBar: true,
-                    icon: 'error',
-                    title: 'Error',
-                    text: err.response.data,
-                })
-            });
-        }
+        if(localStorage.getItem('access')){
+            localStorage.setItem('access', '')
+        } 
+        console.log(localStorage.getItem('access'));
+        UserApi.signup(data)
+        .then(res => {
+            Swal.fire({
+                timer: 3000,
+                timerProgressBar: true,
+                icon: 'success',
+                title: `Registro exitoso`,
+                text: `¡Te llegará un correo de activación a tu correo!`,
+            }).then(() => navigate('/login'));
+        }).catch(err => {
+            console.log(err.response)
+            Swal.fire({
+                timer: 2000,
+                timerProgressBar: true,
+                icon: 'error',
+                title: 'Error',
+                text: err.response.data,
+            })
+        });
     }
     return (
         <div className="container h-screen w-full flex items-center justify-center">
@@ -70,7 +72,7 @@ function Signup() {
             </div>
             <Formik
                     validationSchema={schema}
-                    initialValues={{ 'name': "", 'lastname': "", 'email':"", 'password':"", 're_password':"" }}
+                    initialValues={{ name: "", lastname: "", email:"", password:"", re_password:"" }}
                     onSubmit={submit}
                 >
                     {({
@@ -101,7 +103,6 @@ function Signup() {
                             name='name'
                             value={values.name}
                             onChange={handleChange}
-                            required
                         />
                         <p className="text-red-400 text-xs mt-2">
                             {errors.name && touched.name && errors.name}
@@ -121,7 +122,6 @@ function Signup() {
                             name='lastname'
                             value={values.lastname}
                             onChange={handleChange}
-                            required
                         />
                         <p className="text-red-400 text-xs mt-2">
                             {errors.lastname && touched.lastname && errors.lastname}
@@ -141,7 +141,6 @@ function Signup() {
                             name='email'
                             value={values.email}
                             onChange={handleChange}
-                            required
                         />
                             <p className="text-red-400 text-xs mt-2">
                                 {errors.email && touched.email && errors.email}
@@ -182,7 +181,6 @@ function Signup() {
                             name='password'
                             value={values.password}
                             onChange={handleChange}
-                            required
                         />
 
                         </Tooltip>
@@ -204,7 +202,6 @@ function Signup() {
                             name='re_password'
                             value={values.re_password}
                             onChange={handleChange}
-                            required
                         />
                             <p className="text-red-400 text-xs mt-2">
                                 {errors.re_password && touched.re_password && errors.re_password}
@@ -230,4 +227,5 @@ function Signup() {
         </div>
     )
 }
-export default Signup
+
+export default Signup 
