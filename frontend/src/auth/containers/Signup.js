@@ -53,7 +53,6 @@ function Signup() {
         }).catch(err => {
             console.log(err.response)
             const email = err.response.data.email[0]  
-            console.log(email);
             if(email == "user account with this email already exists."){
                 Swal.fire({
                     timer: 2000,
