@@ -26,6 +26,7 @@ module.exports = {
         "help-color": "#b1a9ff",
         "button-color-principal": "#7f0ddb",
         "button-color-pr-hov": "#531684",
+        "button-cancel-pass": "#342F69",
       },
     },
   },
