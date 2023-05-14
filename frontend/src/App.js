@@ -12,7 +12,7 @@ import Dashboard from './dashboard/Dashboard'
 import { AfterLogin } from "./auth/Middle/AfterLogin";
 import { Provider } from "react-redux";
 import store from "./store";
-import Admin from "./layouts/Admin";
+import EditProfile from "./layouts/EditProfile";
 import Profile from "./profile/Profile"
 import ProfileId from "./profile/ProfileId";
 import Match from "./match/Match"
@@ -45,8 +45,8 @@ function App() {
                         <Route path="/match" element={<Match/>} />
                         <Route path="/Analytics" element={<Analytics/>} />
                         {/* <Route path="/forum" element={<Forum/>}/> */} 
-                        <Route path="/admin/*" element={<Admin />} />  
                         <Route path="/profile/*" element={<Profile />} /> 
+                        <Route path="/profile/edit" element={<EditProfile />} />  
                         <Route path="/profile/:id"  element={<ProfileId />}/>
                     </Routes>
             </Router>   
