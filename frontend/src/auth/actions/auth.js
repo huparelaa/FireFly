@@ -1,5 +1,5 @@
 import axios from 'axios'
-import  axiosInstance from '/home/julianv/FireFly/frontend/src/apiConnection.js'
+import  axiosInstance from '../../src/apiConnection.js'
 
 
 import {
