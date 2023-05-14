@@ -4,8 +4,8 @@ import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import Stack from '@mui/material/Stack';
 import RadioButtonCheckedTwoToneIcon from '@mui/icons-material/RadioButtonCheckedTwoTone';
-import cloud1 from "/home/julianv/FireFly/frontend/src/assets/cloudbig.svg"
-import cloud2 from "/home/julianv/FireFly/frontend/src/assets/cloudMiddle.svg"
+import cloud1 from "../../assets/cloudbig.svg"
+import cloud2 from "../../assets/cloudMiddle.svg"
 import UserApi from '../actions/auth'
 import { Formik } from 'formik';
 import Swal from 'sweetalert2'

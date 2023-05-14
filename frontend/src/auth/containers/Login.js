@@ -3,8 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import UserApi from '../actions/auth'
 import { useMediaQuery } from 'react-responsive'
-import cloud1 from "/home/julianv/FireFly/frontend/src/assets/cloudbig.svg"
-import cloud2 from "/home/julianv/FireFly/frontend/src/assets/cloudMiddle.svg"
+import cloud1 from "../../assets/cloudbig.svg"
+import cloud2 from "../../assets/cloudMiddle.svg"
 import { Formik } from 'formik'
 import * as Yup from "yup";
 
