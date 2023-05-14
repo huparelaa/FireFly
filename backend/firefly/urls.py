@@ -7,6 +7,7 @@ from match import views as vMatch
 from chat import views as vChat
 from roomChat import views as vRoom
 from review import views as vReview
+
 urlpatterns = [
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
@@ -26,7 +27,6 @@ urlpatterns = [
     path('profile/<int:user_id>/', vAccounts.get_user_by_id, name='profile_by_id'),
 
     path('agregar_juegos/', vGames.agregar_juegos, name='agregar_juegos'),
-    path('match/', vMatch.match, name = "match"), 
     path('analytics/more_played_games/', vGames.more_played_games, name = "more_played_games"), 
     path('analytics/select_more_played_games/', vGames.recommended_games, name = "recommended_games"),
     path('api/games_selected_recommended/', vGames.select_gamesRecommended, name='select_games'),
@@ -47,6 +47,12 @@ urlpatterns = [
 
     #REVIEWS
     path('api/review/', vReview.save_review, name='review-post'),
+
+    #MATCH HISTORY
+    path('match/', vMatch.match, name = "match"), 
+    path('do_match/', vMatch.doMatch, name = "do_match"), #POST
+    path('get_matches/', vMatch.getMatches, name = "get_matches"), #GET
+
 
 
 ]

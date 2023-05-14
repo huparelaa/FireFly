@@ -42,6 +42,7 @@ def send_message(request, **kwargs):
 def lista_contactos(request):
     user_id = get_user_id(request)
     chats = Message.objects.filter(sender_id=user_id) | Message.objects.filter(receiver_id=user_id)
+    print(chats)
     contacts = set()
     for chat in chats:
         if chat.sender_id == user_id:

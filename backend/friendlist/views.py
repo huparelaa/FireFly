@@ -15,8 +15,6 @@ from accounts.models import UserAccount
 def get_friends(request):
     user_id = get_user_id(request)
     friends = Amigo.objects.filter(usuario_id=user_id)
-    print('user_id', user_id)
-    print('friends', friends)
     amigos_data = []
     if friends:
         for friend in friends:

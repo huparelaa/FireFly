@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 import jwt
 import numpy as np
 from accounts.models import UserAccount
@@ -9,7 +9,8 @@ from jwt import InvalidSignatureError
 from rest_framework.decorators import api_view
 from firefly.utils import get_user_id
 from games.models import Game    
-
+import json
+from match.models import Match
 def get_similar_users(user_profile):
     # Obtener todos los perfiles de usuario excepto el usuario actual
     other_profiles = UserAccount.objects.exclude(id=user_profile.id)
@@ -52,3 +53,51 @@ def match(request):
             serialized_users.append(serialized_user)
             count += 1
     return JsonResponse({'similar_users': serialized_users})
+
+@api_view(['POST'])
+def doMatch(request):
+    try:
+        user_id = get_user_id(request)
+        body = json.loads(request.body)
+        amigo_id = body.get('user_id')
+        user = UserAccount.objects.get(id=user_id)
+        amigo = get_object_or_404(UserAccount, id=amigo_id)
+        match = Match(usuario = user, user_matched = amigo)
+        match.save()
+    except:
+        return JsonResponse({'Error':'Match already done'})
+   
+    return JsonResponse({ 'Confirm': 'Match done with: '+ amigo.name })
+
+@api_view(['GET'])
+def getMatches(request):
+    user_id = get_user_id(request)
+    matches = Match.objects.filter(usuario=user_id).order_by('id')[::-1]
+    matches_data = []
+    if matches:
+        for match in matches:
+
+            try:       
+                if not len(matches_data) >= 3:          
+                    amigo = UserAccount.objects.get(id=match.user_matched.id)
+                    matches_data.append((amigo.name, amigo.id, amigo.email))
+            except UserAccount.DoesNotExist:
+                continue
+    
+    return JsonResponse({ 'matches': matches_data }, safe=False)
+
+
+@api_view(['GET'])
+def getLastThreeMatches(request):
+    user_id = get_user_id(request)
+    matches = Match.objects.filter(usuario=user_id).order_by('timestamp')[:3] # Obtener solo los últimos 3 partidos
+    matches_data = []
+    if matches:
+        for match in matches:
+            try:                
+                amigo = UserAccount.objects.get(id=match.user_matched.id)
+                matches_data.append((amigo.name, amigo.id, amigo.email))
+            except UserAccount.DoesNotExist:
+                continue
+    
+    return JsonResponse({ 'matches': matches_data }, safe=False)
