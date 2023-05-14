@@ -7,6 +7,7 @@ from match import views as vMatch
 from chat import views as vChat
 from roomChat import views as vRoom
 from review import views as vReview
+
 urlpatterns = [
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),

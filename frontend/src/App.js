@@ -17,7 +17,6 @@ import Profile from "./profile/Profile"
 import ProfileId from "./profile/ProfileId";
 import Match from "./match/Match"
 import Analytics from "./analytics/Analytics";
-
 import Chat from "./chat/Chat";
 import ChatContent from './chat/ChatContent'
 import ChatRoomContent from "./chat/ChatRoomContent";
@@ -26,7 +25,6 @@ function App() {
     return (
         
         <Provider store={store}>
-            
             <Router>
                     <Routes>
                         <Route path="/" element={<Home />} />
