@@ -28,7 +28,7 @@ const ResetPassword = ({ reset_password }) => {
     return (
         <div className="container mx-auto px-4 h-screen w-full flex items-center justify-center">
             <div className="clouds -z-20"></div>
-            <div className="bg-form-color lg:w-1/3 md:w-3/4 h-2/5 rounded-lg flex flex-col items-center py-16 shadow-2xl">
+            <div className="bg-form-color lg:w-1/3 md:w-3/4 h-45vh rounded-lg flex flex-col items-center py-16 shadow-2xl">
                 <div className="text-center mb-3 flex flex-col items-center">
                     <h2 className="text-blueGray-600 font-bold text-white mt-2 mb-2 font-roboto text-2xl">
                         ¿Olvidaste tu contraseña?
