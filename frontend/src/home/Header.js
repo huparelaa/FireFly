@@ -33,7 +33,7 @@ function Header(){
             <div className={`flex flex-col bg-login-button fixed top-0 -bottom-1 right-0 box-border z-50 w-80 rounded-tl-lg rounded-bl-lg 
                 `} >
                 <div className="flex justify-between p-6 items-center ">
-                    <img src={logoPrincipal} className="w-36"/>
+                    <img src={logoPrincipal} className="w-36" alt =""/>
                     <button onClick={closeMenu}>
                         <svg width="20" height="20" viewBox="0 0 12 12">
                             <g fill="none" fillRule="evenodd" aria-hidden="true"><path d="M0 0h12v12H0"></path>
@@ -57,7 +57,7 @@ function Header(){
                         <Link to="/login">
                             <button className="bg-login-button-hover transition duration-500 ease-in-out 
                                     p-4 flex items-center rounded-full shadow-xl hover:bg-login-button-hover mr-6 w-48">
-                                <img src={btn1_enter} className="w-5  mr-3"/>
+                                <img src={btn1_enter} className="w-5  mr-3" lt =""/>
                                 Iniciar Sesión
                             </button>
                         </Link>
@@ -93,7 +93,7 @@ function Header(){
                     <Link to="/login">
                         <button className="bg-login-button transition duration-500 ease-in-out 
                                 p-4 flex items-center rounded-full shadow-xl hover:bg-blue-900 mr-6">
-                            <img src={btn1_enter} className="w-5 mr-3"/>
+                            <img src={btn1_enter} className="w-5 mr-3" alt =""/>
                             Iniciar Sesión
                         </button>
                     </Link>
@@ -105,7 +105,7 @@ function Header(){
                         <Link to="/login">
                             <button className="bg-login-button transition duration-500 ease-in-out 
                                 p-4 flex items-center rounded-full shadow-xl hover:bg-login-button-hover mr-6">
-                                <img src={btn1_enter} className="w-5 mr-3"/>
+                                <img src={btn1_enter} className="w-5 mr-3" alt =""/>
                                 Iniciar Sesión
                             </button>
                         </Link>

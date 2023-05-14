@@ -29,7 +29,7 @@ class UserApi {
         return axiosInstance.post("/auth/users/activation/", data)
     }
     resetPassword(data){
-        return axiosInstance.post("/auth/users/reset_password/", data)
+        return axiosInstance.post("/auth/users/reset_password/",  data )
     }
     retsetPasswordConfirm(data){
         return axiosInstance.post("/auth/users/reset_password_confirm/", data)

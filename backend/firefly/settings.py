@@ -201,6 +201,7 @@ DJOSER = {
     },
 }
 
+# Se cambia el dominio para el despliegue
 DOMAIN = 'www.onlinefirefly.social' # Para despliegue
 # Para desarrollo
 # DOMAIN = 'localhost:3000'

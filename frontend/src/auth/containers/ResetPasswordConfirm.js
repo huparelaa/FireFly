@@ -51,10 +51,10 @@ function ResetPasswordConfirm() {
     return (
         <div className="container h-screen w-full flex items-center justify-center">
             <div className="clouds -z-20">
-                <img src={cloud1} className='absolute left-0'/>
-                <img src={cloud2} className='absolute top-0'/>
-                <img src={cloud2} className='absolute right-0'/>
-                <img src={cloud2} className='absolute top-1/3 right-1/4'/>
+                <img src={cloud1} className='absolute left-0' alt=""/>
+                <img src={cloud2} className='absolute top-0' alt=""/>
+                <img src={cloud2} className='absolute right-0' alt=""/>
+                <img src={cloud2} className='absolute top-1/3 right-1/4' alt=""/>
             </div>
             <Formik
                     validationSchema={schema}

@@ -16,7 +16,7 @@ function FooterComponent() {
     >
       <div className="grid grid-cols-12 p-16 gap-x-4 font-roboto text-white box-border h-auto">
         <div className="flex flex-col col-span-3">
-          <img src={Logo} className="w-48" />
+          <img src={Logo} className="w-48" alt =""/>
           <div className="flex w-full  mt-10 text-4xl ">
             <Link className="mr-4"><span><AiOutlineInstagram /></span></Link>
             <Link className="mr-4"><span><AiFillFacebook /></span></Link>
@@ -114,7 +114,7 @@ function FooterComponentT() {
     >
       <div className="grid grid-cols-8 p-16 gap-x-4 font-roboto text-white box-border h-auto">
         <div className="flex flex-col col-span-3 row-span-2">
-          <img src={Logo} className="w-48" />
+          <img src={Logo} className="w-48" alt =""/>
           <div className="flex w-full mt-10 text-4xl ">
             <Link className="mr-4"><span><AiOutlineInstagram /></span></Link>
             <Link className="mr-4"><span><AiFillFacebook /></span></Link>
@@ -208,7 +208,7 @@ function FooterComponentM() {
     >
       <div className="grid grid-cols-4 p-10 gap-x-4 font-roboto text-white box-border h-auto ">
         <div className="flex flex-col col-span-3 mb-14">
-          <img src={Logo} className="w-48 mb-5" />
+          <img src={Logo} className="w-48 mb-5" alt=""/>
           <div className="flex w-full mt-2 text-2xl ">
             <Link className="mr-4"><span><AiOutlineInstagram /></span></Link>
             <Link className="mr-4"><span><AiFillFacebook /></span></Link>

@@ -30,6 +30,7 @@ function SideBar() {
                 className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple
                 border-2 rounded-full  ${!open && "rotate-180"}`}
                 onClick={() => setOpen(!open)}
+                alt = ""
             />
             <Link to={"/dashboard"}>
                 <div className="flex gap-x-4 items-center justify-items-center ml-1">
@@ -38,6 +39,7 @@ function SideBar() {
                         className={`cursor-pointer w-9 duration-500 ${
                         open && "rotate-[360deg]"
                         }`}
+                        alt = ""
                     />
                     <h1
                         className={`text-white origin-left font-medium text-xl duration-200  ${
@@ -53,7 +55,7 @@ function SideBar() {
                         key={index}
                         className={`flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
                         ${Menu.gap ? "mt-96" : "mt-2"}`} >
-                            <img src= {`${Menu.src}`} className="w-6" />
+                            <img src= {`${Menu.src}`} className="w-6" alt = ""/>
                             <span className={`${!open && "hidden"} origin-left duration-200`}>
                                 {Menu.title}
                             </span>

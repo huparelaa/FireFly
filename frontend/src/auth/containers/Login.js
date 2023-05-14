@@ -52,10 +52,10 @@ function Login() {
     return (
         <div className="container mx-auto px-4 h-screen w-full flex items-center justify-center">
             <div className="clouds -z-20">
-                <img src={cloud1} className='absolute right-2/4'/>
-                <img src={cloud1} className='absolute top-0 right-1/4'/>
-                <img src={cloud2} className='absolute left-3/4'/>
-                <img src={cloud1} className='absolute top-0 right-3/4'/>
+                <img src={cloud1} className='absolute right-2/4' alt=""/>
+                <img src={cloud1} className='absolute top-0 right-1/4' alt=""/>
+                <img src={cloud2} className='absolute left-3/4' alt=""/>
+                <img src={cloud1} className='absolute top-0 right-3/4' alt=""/>
             </div>
             <Formik
                     validationSchema={schema}

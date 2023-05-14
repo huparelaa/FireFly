@@ -14,10 +14,10 @@ function HeroBanner(){
         <div className="w-full relative">
             <div className="w-full">
             <div className="flex justify-center relative">
-                <img src={moon} className="mix-blend-screen xl:w-2/6 md:w-2/6 sm:w-1/3 relative bottom-20 -z-10"/>
+                <img src={moon} className="mix-blend-screen xl:w-2/6 md:w-2/6 sm:w-1/3 relative bottom-20 -z-10" alt =""/>
             </div>
             {(isDesktopOrLaptop || isTablet) && (
-                <img src={mountains} className="absolute w-full bottom-0 -z-40"/>
+                <img src={mountains} className="absolute w-full bottom-0 -z-40" alt = ""/>
             )}
 
             </div>
@@ -42,7 +42,7 @@ function HeroBanner(){
                             <Link to="/login">
                                 <button className="w-48 bg-login-button
                                         p-4 flex items-center justify-center rounded-full shadow-xl hover:bg-blue-900 mt-6">
-                                    <img src={btn1_enter} className="w-5  mr-3"/>
+                                    <img src={btn1_enter} className="w-5  mr-3" alt =""/>
                                     Iniciar Sesión
                                 </button>
                             </Link>
