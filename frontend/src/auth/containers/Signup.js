@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import UserApi from '../actions/auth'
@@ -37,11 +37,10 @@ function Signup() {
             .required("Por favor confirma tu contraseña"),
         })
     function submit(data){
-        console.log(data);
         if(localStorage.getItem('access')){
             localStorage.setItem('access', '')
+            localStorage.setItem('refreshToken', '')
         } 
-        console.log(localStorage.getItem('access'));
         UserApi.signup(data)
         .then(res => {
             Swal.fire({
@@ -53,16 +52,28 @@ function Signup() {
             }).then(() => navigate('/login'));
         }).catch(err => {
             console.log(err.response)
-            Swal.fire({
-                timer: 2000,
-                timerProgressBar: true,
-                icon: 'error',
-                title: 'Error',
-                text: err.response.data,
-            })
+            const email = err.response.data.email[0]  
+            console.log(email);
+            if(email == "user account with this email already exists."){
+                Swal.fire({
+                    timer: 2000,
+                    timerProgressBar: true,
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Tu correo ya existe, por favor ingresa otro',
+                })
+            } else {
+                Swal.fire({
+                    timer: 2000,
+                    timerProgressBar: true,
+                    icon: 'error',
+                    title: 'Error',
+                    text: err.response.data,
+                })
+            }
         });
     }
-    return (
+    return ( 
         <div className="container h-screen w-full flex items-center justify-center">
             <div className="clouds -z-20">
                 <img src={cloud1} className='absolute left-0'/>

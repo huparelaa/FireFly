@@ -39,7 +39,7 @@ const ResetPassword = () => {
             </div>
             <Formik
                     validationSchema={schema}
-                    initialValues={{ 'email':""}}
+                    initialValues={{ email:""}}
                     onSubmit={submit}
                 >
                     {({
