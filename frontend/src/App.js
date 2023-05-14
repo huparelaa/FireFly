@@ -12,12 +12,11 @@ import Dashboard from './dashboard/Dashboard'
 import { AfterLogin } from "./auth/Middle/AfterLogin";
 import { Provider } from "react-redux";
 import store from "./store";
-import Admin from "./layouts/Admin";
+import EditProfile from "./layouts/EditProfile";
 import Profile from "./profile/Profile"
 import ProfileId from "./profile/ProfileId";
 import Match from "./match/Match"
 import Analytics from "./analytics/Analytics";
-import Sample from "./home/test"
 import Chat from "./chat/Chat";
 import ChatContent from './chat/ChatContent'
 import ChatRoomContent from "./chat/ChatRoomContent";
@@ -26,11 +25,9 @@ function App() {
     return (
         
         <Provider store={store}>
-            
             <Router>
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/sample" element={<Sample />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />
                         <Route path="/reset-password" element={<ResetPassword />} />
@@ -46,8 +43,8 @@ function App() {
                         <Route path="/match" element={<Match/>} />
                         <Route path="/Analytics" element={<Analytics/>} />
                         {/* <Route path="/forum" element={<Forum/>}/> */} 
-                        <Route path="/admin/*" element={<Admin />} />  
                         <Route path="/profile/*" element={<Profile />} /> 
+                        <Route path="/profile/edit" element={<EditProfile />} />  
                         <Route path="/profile/:id"  element={<ProfileId />}/>
                     </Routes>
             </Router>   

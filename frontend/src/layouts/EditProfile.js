@@ -10,7 +10,7 @@ import FooterAdmin from "../components/Footers/FooterAdmin.js";
 
 import Settings from "../admin/Settings.js";
 
-export default function Admin() {
+export default function EditProfile() {
   return (
     <div className="bg-white">
       <AdminNavbar />

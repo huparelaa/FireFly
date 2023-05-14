@@ -1,20 +1,34 @@
-import React, { useState } from "react";
-import { Navigate, useParams } from "react-router-dom";
-import { connect } from "react-redux";
-import { verify } from "../actions/auth";
+import React from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import UserApi from '../actions/auth'
+import Swal from 'sweetalert2'
 
-function Activate({ verify }) {
+function Activate() {
   const routeParams = useParams();
-  const [verified, setVerified] = useState(false);
-  const verify_account = (e) => {
+  const navigate = useNavigate();
+  const verify_account = () => {
     const uid = routeParams.uid;
     const token = routeParams.token;
-    verify(uid, token);
-    setVerified(true);
+    UserApi.activateAccount({ uid, token })
+    .then(() => {
+      Swal.fire({
+          timer: 1000,
+          timerProgressBar: true,
+          icon: 'success',
+          title: `Activación de cuenta exitosa`,
+          text: ``,
+      }).then(() => navigate('/login'));
+    }).catch(err => {
+      console.log(err)
+      Swal.fire({
+          timer: 2000,
+          timerProgressBar: true,
+          icon: 'error',
+          title: 'Error',
+          text: err.response.data.password,
+      })
+  });
   };
-  if (verified) {
-    return <Navigate to="/" />;
-  }
 
   return (
     <>
@@ -35,4 +49,4 @@ function Activate({ verify }) {
   );
 }
 
-export default connect(null, { verify })(Activate);
+export default Activate;

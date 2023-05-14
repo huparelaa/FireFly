@@ -56,7 +56,7 @@ function Match() {
         // console.log(MySwal.getPopup().querySelector('#rate').value)
         const config = {
             headers: {
-                'Content-type': 'application/json',
+                'Content-type': 'application/json', 
                 'Authorization': `JWT ${localStorage.getItem('access')}`,
                 'Accept': 'application/json',
             }

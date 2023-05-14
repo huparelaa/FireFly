@@ -1,152 +1,146 @@
-import React, { useState, useCallback } from 'react'
-import { Link, Navigate } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { login } from '../actions/auth'
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
-//import Particles from '../../components/particles'
-import Particles from "react-particles";
-import { loadFull } from "tsparticles";
-import particlesConfig from "./particles.json";
+import UserApi from '../actions/auth'
+import { useMediaQuery } from 'react-responsive'
+import cloud1 from "../../assets/cloudbig.svg"
+import cloud2 from "../../assets/cloudMiddle.svg"
+import { Formik } from 'formik'
+import * as Yup from "yup";
 
+function Login() {
+    const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 1024px)' })
+    const isTablet = useMediaQuery({ query: '(min-width: 768px) and (max-width: 1023px)' });
+    const isMobile = useMediaQuery({ query: '(min-width: 360px) and (max-width: 767px)' });
+    const navigate = useNavigate();
 
-function Login({ login, isAuthenticated }) {
-    const particlesInit = useCallback(async engine => {
-        console.log(engine);
-        // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
-        // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-        // starting from v2 you can add only the features you need reducing the bundle size
-        await loadFull(engine);
-    }, []);
+    const schema = Yup.object().shape({
+        email: Yup.string()
+            .required("El correo es requerido")
+            .email("Correo invalido"),
+        password: Yup.string()
+            .required("La contraseña es requerida")
+            .min(8, "Contraseña debe tener al menos 8 caracteres")
+            .max(100, "Contraseña debe tener maximo 50 caracteres"),
+    });
 
-    const particlesLoaded = useCallback(async container => {
-        await console.log(container);
-    }, []);
-
-    const [formData, setFormData] = useState({
-        email: '',
-        password: ''
-    })
-    const { email, password } = formData
-    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
-    const onSubmit = e => {
-        e.preventDefault()
-        login(email, password)
+    function submit(data) {
+        UserApi.login(data).then(res => {
+            console.log(data);
+            localStorage.setItem('access', res.data.access);
+            localStorage.setItem('refreshToken', res.data.refresh);
+            UserApi.verify().then(() => {
+                Swal.fire({
+                    timer: 1000,
+                    timerProgressBar: true,
+                    icon: 'success',
+                    title: `Inicio de sesion exitoso`,
+                    text: `Bienvenido a FireFly`,
+                }).then(() => navigate('/check-first-login'));
+            })
+        }).catch(err => {
+            console.log(err)
+            Swal.fire({
+                timer: 2000,
+                timerProgressBar: true,
+                icon: 'error',
+                title: 'Error',
+                text: err.response.data.password,
+            })
+        });
     }
-    if (isAuthenticated) {
-        Swal.fire({
-            timer: 3000,
-            timerProgressBar: true,
-            icon: 'success',
-            title: `Inicio de sesión exitoso`,
-        })
-        return <Navigate to='/check-first-login' />
-
-    }
-
     return (
-        <div>
-
-            <Particles
-                style={{ position: "relative" }}
-                id="tsparticles"
-                init={particlesInit}
-                loaded={particlesLoaded}
-                options={particlesConfig}
-            />
-
-
-            <main className="box">
-
-                <div
-                    className="container mx-auto px-4 h-full w-full">
-
-                    <div className="flex content-center items-center justify-center bg-white">
-                        <div className="w-fullg l:w-4/12 px-4 pt-40">
-                            <div
-                                className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg border-0"
-                                style={{ backgroundColor: '#2e084d' }}
-                            >
-                                <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                                    <div className="text-center mb-3">
-                                        <h1 className="text-blueGray-600 font-bold text-white mt-6">
-                                            Login
-                                        </h1>
-                                    </div>
-                                    <form onSubmit={e => onSubmit(e)}>
-                                        <div className="relative w-full mb-3">
-                                            <label
-                                                className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                                                htmlFor="grid-password"
-                                                style={{ color: 'white' }}
-                                            >
-                                                Email
-                                            </label>
-                                            <input
-                                                className="form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                                type="email"
-                                                placeholder='Email'
-                                                name='email'
-                                                value={email}
-                                                onChange={e => onChange(e)}
-                                                required
-                                                style={{ backgroundColor: "" }}
-                                            />
-                                        </div>
-
-                                        <div className="relative w-full mb-3">
-                                            <label
-                                                className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                                                htmlFor="grid-password"
-                                                style={{ color: 'white' }}
-                                            >
-                                                Password
-                                            </label>
-                                            <input
-                                                className="form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-
-                                                type="password"
-                                                placeholder='Password'
-                                                name='password'
-                                                value={password}
-                                                onChange={e => onChange(e)}
-                                                minLength="6"
-                                                required
-                                            />
-                                        </div>
-
-                                        <div className="text-center mt-6">
-                                            <button
-                                                className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                                                style={{ backgroundColor: '#7f0ddb' }}
-                                                type="submit"
-                                            >
-                                                Login
-                                            </button>
-
-                                        </div>
-                                    </form>
-                                    <div className="flex flex-wrap mt-6 relative">
-                                        <div className="w-1/2">
-                                            <p className="mt-3" style={{ color: 'white', textDecoration: 'underline' }}>
-                                                Don't have an account? <Link to="/signup" style={{ color: 'white' }}>Sign up</Link>
-                                            </p>
-
-                                        </div>
-                                        <div className="w-1/2 text-right">
-                                            <p className="mt-3" style={{ color: 'white', textDecoration: 'underline' }}>
-                                                Forgot your password?  <Link to="/reset-password" style={{ color: 'white' }}>Reset Password</Link></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+        <div className="container mx-auto px-4 h-screen w-full flex items-center justify-center">
+            <div className="clouds -z-20">
+                <img src={cloud1} className='absolute right-2/4'/>
+                <img src={cloud1} className='absolute top-0 right-1/4'/>
+                <img src={cloud2} className='absolute left-3/4'/>
+                <img src={cloud1} className='absolute top-0 right-3/4'/>
+            </div>
+            <Formik
+                    validationSchema={schema}
+                    initialValues={{ email: "", password: "" }}
+                    onSubmit={submit}
+                >
+                    {({
+                        values,
+                        errors,
+                        touched,
+                        handleChange,
+                        handleBlur,
+                        handleSubmit,
+                    }) => (
+            <div className="bg-form-color lg:w-1/3 md:w-3/4 h-3/4 rounded-lg flex flex-col items-center py-16 shadow-2xl">
+                <div className="text-center mb-3 flex flex-col items-center">
+                        <h2 className="text-blueGray-600 font-bold text-white mt-2 mb-2 font-roboto text-2xl">
+                            ¡Bienvenido de nuevo!
+                        </h2>
+                        <h3 className='text-white'>
+                            ¡Nos alegra verte en FireFly!
+                        </h3>
+                </div>
+                <form onSubmit={handleSubmit} className='w-5/6'>
+                    <div className="relative w-full mb-3">
+                        <label
+                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2 text-white"
+                            htmlFor="grid-password"
+                        >
+                            Correo
+                        </label>
+                        <input
+                            className="text-white form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-input_color rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            type="email"
+                            name='email'
+                            value={values.email}
+                            onChange={handleChange}
+                        />
+                        <p className="text-red-400 text-xs mt-2">
+                            {errors.email && touched.email && errors.email}
+                        </p>
+                    </div>
+                    <div className="relative w-full mb-3">
+                        <label
+                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2 text-white"
+                            htmlFor="grid-password"
+                        >
+                            Contraseña
+                        </label>
+                        <input
+                            className="text-white form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-input_color rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            type="password"
+                            name='password'
+                            value={values.password}
+                            onChange={handleChange}
+                            minLength="8"
+                        />
+                        <p className="text-red-400 text-xs mt-2">
+                            {errors.password && touched.password && errors.password}
+                        </p>
+                        <div className="w-3/4">
+                            <p className="mt-3">
+                                <Link to="/reset-password" className='text_help_color text-white underline hover:text-footer-text'>¿Olvidaste tu constraseña?</Link>
+                            </p>
                         </div>
                     </div>
+                    <div className="text-center mt-6">
+                        <button
+                            className="text-white bg-blueGray-800 active:bg-blueGray-600 bg-button-color-principal text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg hover:bg-button-color-pr-hov outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                            type="submit"
+                        >
+                            Iniciar sesión
+                        </button>
+                    </div>
+                </form>
+                <div className="w-full flex justify-center">
+                    <p className="mt-3 text-white">
+                        ¿No tienes una cuenta? <Link to="/signup" className='underline hover:text-footer-text'>Regístrate</Link>
+                    </p>
                 </div>
-            </main>
+            
+            </div>
+                )}
+            </Formik>
         </div>
     )
 }
-const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
-})
-export default connect(mapStateToProps, { login })(Login)
+export default Login
