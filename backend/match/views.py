@@ -17,20 +17,16 @@ def get_similar_users(user_profile):
     # Crear una matriz de juegos favoritos para todos los usuarios
     user_profiles = [user_profile] + list(other_profiles)
     all_game_ids = list(Game.objects.values_list('id', flat=True))
-    print(all_game_ids)
     game_matrix = []
     for profile in user_profiles:
         game_ids = UserAccount.favorite_games.through.objects.filter(useraccount = profile).values_list('game_id', flat=True)
-        print(game_ids)
         game_matrix.append([1 if game_id in game_ids else 0 for game_id in all_game_ids])
     game_matrix = np.array(game_matrix)
-    print(game_matrix)
     # Calcular las similitudes de coseno entre los perfiles de usuario
     similarity_matrix = cosine_similarity(game_matrix)
     # Obtener los usuarios más similares al usuario actual
     similar_users = [(other_profiles[i], similarity_matrix[0][i+1]) for i in range(len(other_profiles))]
     similar_users.sort(key=lambda x: x[1], reverse=True)
-    print('similar_user', similar_users)
     return similar_users
 
 @api_view(['GET'])
@@ -60,14 +56,31 @@ def doMatch(request):
         user_id = get_user_id(request)
         body = json.loads(request.body)
         amigo_id = body.get('user_id')
+        print(amigo_id)
         user = UserAccount.objects.get(id=user_id)
         amigo = get_object_or_404(UserAccount, id=amigo_id)
-        match = Match(usuario = user, user_matched = amigo)
+        match = Match(usuario = user, user_matched = amigo,match_successful=True)
         match.save()
     except:
-        return JsonResponse({'Error':'Match already done'})
+        return JsonResponse({'Error':'Match already saved'})
    
     return JsonResponse({ 'Confirm': 'Match done with: '+ amigo.name })
+
+@api_view(['POST'])
+def blockMatch(request):
+    try:
+        user_id = get_user_id(request)
+        body = json.loads(request.body)
+        amigo_id = body.get('user_id')
+        print(amigo_id)
+        user = UserAccount.objects.get(id=user_id)
+        amigo = get_object_or_404(UserAccount, id=amigo_id)
+        match = Match(usuario = user, user_matched = amigo, match_successful=False)
+        match.save()
+    except:
+        return JsonResponse({'Error':'Match already saved'})
+   
+    return JsonResponse({ 'Confirm': 'Match blocked with: '+ amigo.name })
 
 @api_view(['GET'])
 def getMatches(request):
