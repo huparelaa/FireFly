@@ -86,8 +86,122 @@ function ContentHelper() {
             <Carousel>
                 {images1.map((image, index) => (
                     <div key={index}>
+                        {console.log(image)}
                         <img src={image} alt={`Imagen ${index}`} />
-                        <p className="description custom-color description-container" style={{ width: '100%', height: '50px' }}>{descriptions1[index]}</p>
+                        <p className="description custom-color description-container" style={{ width: '100%', height: '50px' }}>
+                            {descriptions1[index]}
+                        </p>
+                        {index === 0 && (
+                            <div>
+                                <a href="https://onlinefirefly.social/login" target="_blank" rel="noopener noreferrer">
+                                    <button
+                                        style={{
+                                            position: 'absolute',
+                                            top: '25%',
+                                            left: '91%',
+                                            transform: 'translate(-50%, -50%)',
+                                            boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+                                            backgroundColor: 'red',
+                                            color: 'white',
+                                            padding: '10px 20px',
+                                            fontSize: '16px',
+                                            borderRadius: '5px',
+                                            border: 'none',
+                                            cursor: 'pointer',
+                                        }}
+                                    >
+                                        Ir al login
+                                    </button>
+                                </a>
+                                <a href="https://onlinefirefly.social/signup" target="_blank" rel="noopener noreferrer">
+                                    <button
+                                        style={{
+                                            position: 'absolute',
+                                            top: '83%',
+                                            left: '58%',
+                                            transform: 'translate(-50%, -50%)',
+                                            boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+                                            backgroundColor: '#00a3a3',
+                                            color: 'white',
+                                            padding: '10px 20px',
+                                            fontSize: '16px',
+                                            borderRadius: '5px',
+                                            border: 'none',
+                                            cursor: 'pointer',
+                                        }}
+                                    >
+                                        Ir al signup
+                                    </button>
+                                </a>
+                            </div>
+                        )}
+
+                        {index === 1 && (
+                            <a href="https://onlinefirefly.social/login" target="_blank" rel="noopener noreferrer">
+                                <button
+                                    style={{
+                                        position: 'absolute',
+                                        top: '70%',
+                                        left: '50%',
+                                        transform: 'translate(-50%, -50%)',
+                                        boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+                                        backgroundColor: 'darkviolet',
+                                        color: 'white',
+                                        padding: '10px 20px',
+                                        fontSize: '16px',
+                                        borderRadius: '5px',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                    }}
+                                >
+                                    Ir al login
+                                </button>
+                            </a>
+                        )}
+                        {index === 2 && (
+                            <a href="https://onlinefirefly.social/reset-password" target="_blank" rel="noopener noreferrer">
+                                <button
+                                    style={{
+                                        position: 'absolute',
+                                        top: '75%',
+                                        left: '50%',
+                                        transform: 'translate(-50%, -50%)',
+                                        boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+                                        backgroundColor: 'darkviolet',
+                                        color: 'white',
+                                        padding: '10px 20px',
+                                        fontSize: '16px',
+                                        borderRadius: '5px',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                    }}
+                                >
+                                    Ir al reset password
+                                </button>
+                            </a>
+                        )}
+                        {index === 3 && (
+                            <a href="https://onlinefirefly.social/signup" target="_blank" rel="noopener noreferrer">
+                                <button
+                                    style={{
+                                        position: 'absolute',
+                                        top: '45%',
+                                        left: '75%',
+                                        transform: 'translate(-50%, -50%)',
+                                        boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+                                        backgroundColor: 'darkviolet',
+                                        color: 'white',
+                                        padding: '10px 20px',
+                                        fontSize: '16px',
+                                        borderRadius: '5px',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                    }}
+                                >
+                                    Ir al signup
+                                </button>
+                            </a>
+                        )}
                     </div>
                 ))}
             </Carousel>
@@ -99,16 +213,82 @@ function ContentHelper() {
                     <div key={index}>
                         <img src={image} alt={`Imagen ${index}`} />
                         <p className="description custom-color description-container" style={{ width: '100%', height: '50px' }}>{descriptions2[index]}</p>
+                        {index === 1 && (
+                            <a href="https://onlinefirefly.social/dashboard" target="_blank" rel="noopener noreferrer">
+                                <button
+                                    style={{
+                                        position: 'absolute',
+                                        top: '80%',
+                                        left: '50%',
+                                        transform: 'translate(-50%, -50%)',
+                                        boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+                                        backgroundColor: 'darkviolet',
+                                        color: 'white',
+                                        padding: '10px 20px',
+                                        fontSize: '16px',
+                                        borderRadius: '5px',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                    }}
+                                >
+                                    Ir al dashboard
+                                </button>
+                            </a>
+                        )}
                     </div>
                 ))}
             </Carousel>
 
-            
+
             <Carousel>
                 {images3.map((image, index) => (
                     <div key={index}>
                         <img src={image} alt={`Imagen ${index}`} />
                         <p className="description custom-color description-container" style={{ width: '100%', height: '50px' }}>{descriptions3[index]}</p>
+                        {index === 2 && (
+                            <a href="https://onlinefirefly.social/match" target="_blank" rel="noopener noreferrer">
+                                <button
+                                    style={{
+                                        position: 'absolute',
+                                        top: '57%',
+                                        left: '52.5%',
+                                        transform: 'translate(-50%, -50%)',
+                                        boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+                                        backgroundColor: 'darkviolet',
+                                        color: 'white',
+                                        padding: '10px 20px',
+                                        fontSize: '16px',
+                                        borderRadius: '5px',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                    }}
+                                >
+                                    Ir al match
+                                </button>
+                            </a>
+                        )}
+                        {index === 7 && (
+                            <a href="https://onlinefirefly.social/chat" target="_blank" rel="noopener noreferrer">
+                                <button
+                                    style={{
+                                        position: 'absolute',
+                                        top: '57%',
+                                        left: '52.5%',
+                                        transform: 'translate(-50%, -50%)',
+                                        boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+                                        backgroundColor: 'darkviolet',
+                                        color: 'white',
+                                        padding: '10px 20px',
+                                        fontSize: '16px',
+                                        borderRadius: '5px',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                    }}
+                                >
+                                    Ir a tu chats
+                                </button>
+                            </a>
+                        )}
                     </div>
                 ))}
             </Carousel>
@@ -118,6 +298,51 @@ function ContentHelper() {
                     <div key={index}>
                         <img src={image} alt={`Imagen ${index}`} />
                         <p className="description custom-color description-container" style={{ width: '100%', height: '50px' }}>{descriptions4[index]}</p>
+                        {index === 2 && (
+                            <a href="https://onlinefirefly.social/profile" target="_blank" rel="noopener noreferrer">
+                                <button
+                                    style={{
+                                        position: 'absolute',
+                                        top: '20%',
+                                        left: '65%',
+                                        transform: 'translate(-50%, -50%)',
+                                        boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+                                        backgroundColor: 'darkviolet',
+                                        color: 'white',
+                                        padding: '10px 20px',
+                                        fontSize: '16px',
+                                        borderRadius: '5px',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                    }}
+                                >
+                                    Ir a tu perfil
+                                </button>
+                            </a>
+                        )}
+                        {index === 3 && (
+                            <a href="https://onlinefirefly.social/profile/edit" target="_blank" rel="noopener noreferrer">
+                                <button
+                                    style={{
+                                        position: 'absolute',
+                                        top: '85%',
+                                        left: '82%',
+                                        transform: 'translate(-50%, -50%)',
+                                        boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+                                        backgroundColor: 'darkviolet',
+                                        color: 'white',
+                                        padding: '10px 20px',
+                                        fontSize: '16px',
+                                        borderRadius: '5px',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                    }}
+                                >
+                                    Ir a editar perfil
+                                </button>
+                            </a>
+                        )}
+
                     </div>
                 ))}
             </Carousel>
