@@ -1,0 +1,10 @@
+.carousel-container {
+    max-width: 1200px; /* Define el ancho máximo del carrusel */
+    margin: 0 auto; /* Centra el carrusel horizontalmente en la página */
+  }
+  
+  .description.custom-color {
+    color: #ffffff; /* Cambia #FF0000 al color deseado */
+  }
+  
+  
