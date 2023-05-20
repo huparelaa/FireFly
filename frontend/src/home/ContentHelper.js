@@ -40,10 +40,10 @@ function ContentHelper() {
         'Descripción de la función del chat y creación de grupos privados.',
     ];
     const descriptions1 = [
-        'Vista general de la página de inicio que ofrece las opciones de registrarse (azul) o iniciar sesión (rojo).',
-        'Para iniciar sesión, tienes la opción de recuperar tu contraseña o registrarte.',
-        'Vista de recuperación de contraseña donde recibirás un correo electrónico para reactivar tu cuenta.',
-        'En la vista de registro, encontrarás un formulario con campos para nombre, apellido, correo electrónico, contraseña y confirmación de contraseña. También se proporciona un enlace para acceder a la vista de inicio de sesión si ya tienes una cuenta registrada.',
+        'Vista general de la página de inicio que ofrece las opciones de registrarse o iniciar sesión. Si deseas acceder a las funciones, hay unos botones que especifican cada función y te redirigen a la sección correspondiente.',
+        'Para iniciar sesión, tienes la opción de recuperar tu contraseña o registrarte. Cuenta con un botón que te redirige a la función deseada.',
+        'Vista de recuperación de contraseña en la que recibirás un correo electrónico para reactivar tu cuenta. Al oprimir el botón, serás redirigido/a a la vista correspondiente de la función.',
+        'En la vista de registro, encontrarás un formulario con campos para nombre, apellido, correo electrónico, contraseña y confirmación de contraseña. Además, se proporciona un enlace para acceder a la vista de inicio de sesión en caso de que ya tengas una cuenta registrada.',
         'Alerta de inicio de sesión exitoso.',
     ];
     const descriptions2 = [
@@ -76,7 +76,7 @@ function ContentHelper() {
                     <div key={index}>
                         {console.log(image)}
                         <img src={image} alt={`Imagen ${index}`} />
-                        <p className="description custom-color description-container" style={{ width: '100%', height: '50px' }}>{descriptions[index]}</p>
+                        <p className="description custom-color description-container" style={{ width: '100%', height: '65px', fontSize: '27px' }}>{descriptions[index]}</p>
                     </div>
                 ))}
             </Carousel>
@@ -88,7 +88,7 @@ function ContentHelper() {
                     <div key={index}>
                         {console.log(image)}
                         <img src={image} alt={`Imagen ${index}`} />
-                        <p className="description custom-color description-container" style={{ width: '100%', height: '50px' }}>
+                        <p className="description custom-color description-container" style={{ width: '100%', height: '90px', fontSize: '22px' }}>
                             {descriptions1[index]}
                         </p>
                         {index === 0 && (
@@ -97,11 +97,11 @@ function ContentHelper() {
                                     <button
                                         style={{
                                             position: 'absolute',
-                                            top: '25%',
-                                            left: '91%',
+                                            top: '26%',
+                                            left: '90.9%',
                                             transform: 'translate(-50%, -50%)',
                                             boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
-                                            backgroundColor: 'red',
+                                            backgroundColor: 'darkviolet',
                                             color: 'white',
                                             padding: '10px 20px',
                                             fontSize: '16px',
@@ -110,18 +110,19 @@ function ContentHelper() {
                                             cursor: 'pointer',
                                         }}
                                     >
-                                        Ir al login
+                                        Ir al inicio
+                                        de sesión
                                     </button>
                                 </a>
                                 <a href="https://onlinefirefly.social/signup" target="_blank" rel="noopener noreferrer">
                                     <button
                                         style={{
                                             position: 'absolute',
-                                            top: '83%',
+                                            top: '80%',
                                             left: '58%',
                                             transform: 'translate(-50%, -50%)',
                                             boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
-                                            backgroundColor: '#00a3a3',
+                                            backgroundColor: 'darkviolet',
                                             color: 'white',
                                             padding: '10px 20px',
                                             fontSize: '16px',
@@ -130,7 +131,7 @@ function ContentHelper() {
                                             cursor: 'pointer',
                                         }}
                                     >
-                                        Ir al signup
+                                        Ir al registro
                                     </button>
                                 </a>
                             </div>
@@ -154,7 +155,7 @@ function ContentHelper() {
                                         cursor: 'pointer',
                                     }}
                                 >
-                                    Ir al login
+                                    Ir al inicio de sesión
                                 </button>
                             </a>
                         )}
@@ -176,7 +177,7 @@ function ContentHelper() {
                                         cursor: 'pointer',
                                     }}
                                 >
-                                    Ir al reset password
+                                    Ir a restaurar contraseña
                                 </button>
                             </a>
                         )}
@@ -198,7 +199,7 @@ function ContentHelper() {
                                         cursor: 'pointer',
                                     }}
                                 >
-                                    Ir al signup
+                                    Ir al registro
                                 </button>
                             </a>
                         )}
@@ -206,13 +207,11 @@ function ContentHelper() {
                 ))}
             </Carousel>
 
-
-
             <Carousel>
                 {images2.map((image, index) => (
                     <div key={index}>
                         <img src={image} alt={`Imagen ${index}`} />
-                        <p className="description custom-color description-container" style={{ width: '100%', height: '50px' }}>{descriptions2[index]}</p>
+                        <p className="description custom-color description-container" style={{ width: '100%', height: '60px', fontSize: '22px'  }}>{descriptions2[index]}</p>
                         {index === 1 && (
                             <a href="https://onlinefirefly.social/dashboard" target="_blank" rel="noopener noreferrer">
                                 <button
@@ -231,7 +230,7 @@ function ContentHelper() {
                                         cursor: 'pointer',
                                     }}
                                 >
-                                    Ir al dashboard
+                                    Ir a la página de control
                                 </button>
                             </a>
                         )}
@@ -244,7 +243,7 @@ function ContentHelper() {
                 {images3.map((image, index) => (
                     <div key={index}>
                         <img src={image} alt={`Imagen ${index}`} />
-                        <p className="description custom-color description-container" style={{ width: '100%', height: '50px' }}>{descriptions3[index]}</p>
+                        <p className="description custom-color description-container" style={{ width: '100%', height: '77px', fontSize: '22px' }}>{descriptions3[index]}</p>
                         {index === 2 && (
                             <a href="https://onlinefirefly.social/match" target="_blank" rel="noopener noreferrer">
                                 <button
@@ -297,7 +296,7 @@ function ContentHelper() {
                 {images4.map((image, index) => (
                     <div key={index}>
                         <img src={image} alt={`Imagen ${index}`} />
-                        <p className="description custom-color description-container" style={{ width: '100%', height: '50px' }}>{descriptions4[index]}</p>
+                        <p className="description custom-color description-container" style={{ width: '100%', height: '87px', fontSize: '22px' }}>{descriptions4[index]}</p>
                         {index === 2 && (
                             <a href="https://onlinefirefly.social/profile" target="_blank" rel="noopener noreferrer">
                                 <button
