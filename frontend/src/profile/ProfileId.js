@@ -18,7 +18,12 @@ function ProfileId(){
         fetchUser();
     }, [id]);
     if (!user) {
-        return <div>Loading...</div>;
+        return (
+            <div className="flex w-1/6 items-center justify-end mr-10" id="contenedor">
+              <div className="loaderChatSide" id="loaderChatSide"> </div>
+              <p className="text-white"> Cargando Perfil de Usuario...</p> 
+            </div>
+          )
     }
 
     const handleAddFriend = async () => {

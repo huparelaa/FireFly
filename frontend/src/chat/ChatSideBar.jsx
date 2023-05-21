@@ -44,15 +44,10 @@ function ChatSideBar() {
   }, []);
 
   if (isLoading) {
-    
-    return (
-      <div className="text-white flex items-center justify-center h-screen">
-        <FontAwesomeIcon
-          icon={faSpinner}
-          spin
-          className="text-white text-4xl"
-        />
-        Cargando contactos recientes...
+        return (
+      <div className="flex w-1/5 items-center justify-end mr-10" id="contenedor">
+        <div className="loaderChatSide" id="loaderChatSide"> </div>
+        <p className="text-white"> Cargando Contactos Recientes...</p> 
       </div>
     );
   }
