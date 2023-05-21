@@ -97,46 +97,50 @@ export default function Profile() {
                   </button>
 
 
+                </div >
+                <div className="flex flex-col items-center mt-8">
+                  <button
+                    className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    style={{
+                      marginLeft: "-800px", // Ajusta este valor para mover el botón a la izquierda
+                      marginTop: "-200px", // Ajusta este valor para subir más el botón
+                      width: "200px", // Ajusta este valor para cambiar el ancho del botón
+                      height: "40px" // Ajusta este valor para cambiar la altura del botón
+                    }}
+                    type="submit"
+                    onClick={e => { Navigate("/") }}
+                  >
+                    Información
+                  </button>
+
+                  <button
+                    className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    style={{
+                      marginLeft: "-500px", // Ajusta este valor para mover el botón a la izquierda
+                      marginTop: "-50px", // Ajusta este valor para subir más el botón
+                      width: "200px", // Ajusta este valor para cambiar el ancho del botón
+                      height: "40px" // Ajusta este valor para cambiar la altura del botón
+                    }}
+                    type="submit"
+                    onClick={e => { Navigate("/") }}
+                  >
+                    Intereses
+                  </button>
+
+                  <button
+                    className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    style={{
+                      marginLeft: "-50px", // Ajusta este valor para mover el botón a la izquierda
+                      marginTop: "-40px", // Ajusta este valor para subir más el botón
+                      width: "200px", // Ajusta este valor para cambiar el ancho del botón
+                      height: "40px" // Ajusta este valor para cambiar la altura del botón
+                    }}
+                    type="submit"
+                    onClick={e => { Navigate("/") }}
+                  >
+                    Logros y trofeos
+                  </button>
                 </div>
-
-                <button
-                  className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                  style={{
-                    marginTop: "-200px", // Ajusta este valor para subir más el botón
-                    width: "200px", // Ajusta este valor para cambiar el ancho del botón
-                    height: "40px" // Ajusta este valor para cambiar la altura del botón
-                  }}
-                  type="submit"
-                  onClick={e => { Navigate("/") }}
-                >
-                  Información
-                </button>
-
-                <button
-                  className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                  style={{
-                    marginTop: "-200px", // Ajusta este valor para subir más el botón
-                    width: "200px", // Ajusta este valor para cambiar el ancho del botón
-                    height: "40px" // Ajusta este valor para cambiar la altura del botón
-                  }}
-                  type="submit"
-                  onClick={e => { Navigate("/") }}
-                >
-                  Intereses
-                </button>
-
-                <button
-                  className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                  style={{
-                    marginTop: "-200px", // Ajusta este valor para subir más el botón
-                    width: "200px", // Ajusta este valor para cambiar el ancho del botón
-                    height: "40px" // Ajusta este valor para cambiar la altura del botón
-                  }}
-                  type="submit"
-                  onClick={e => { Navigate("/") }}
-                >
-                  Logros y trofeos
-                </button>
 
                 <div className="text-center mt-12">
                   <p className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">

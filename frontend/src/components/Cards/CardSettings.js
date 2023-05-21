@@ -71,7 +71,7 @@ export default function CardSettings(props) {
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-        <div className="rounded-t bg-white mb-0 px-6 py-6">
+        <div className="rounded-t bg-dark-purple mb-0 px-6 py-6 ">
           <div className="text-center flex justify-between">
             <h6 className="text-blueGray-700 text-xl font-bold">Mi perfil</h6>
             <button
@@ -109,7 +109,7 @@ export default function CardSettings(props) {
                   <input
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    placeholder="David Gonzalez"
+                    placeholder="Nombre"
                     name='name'
                     value={name}
                     autoComplete="off"
@@ -133,7 +133,7 @@ export default function CardSettings(props) {
                   <input
                     type="number"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    placeholder="19"
+                    placeholder="Edad"
                     name="age"
                     value={age}
                     min={12}
@@ -163,7 +163,7 @@ export default function CardSettings(props) {
                   <textarea
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    placeholder="Amante de los videojuegos tipo shooters como fortnite, csgo y valorant"
+                    placeholder="Descripción básica"
                     rows="4"
                     name='about_me'
                     value={about_me}
