@@ -2,6 +2,7 @@ import React from "react";
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 import Home from "./home/Home";
+import Helper from "./home/Helper";
 import ResetPassword from "./auth/containers/ResetPassword";
 import ResetPasswordConfirm from "./auth/containers/ResetPasswordConfirm"
 import Login from "./auth/containers/Login"
@@ -21,6 +22,7 @@ import Chat from "./chat/Chat";
 import ChatContent from './chat/ChatContent'
 import ChatRoomContent from "./chat/ChatRoomContent";
 
+
 function App() {
     return (
         
@@ -28,6 +30,7 @@ function App() {
             <Router>
                     <Routes>
                         <Route path="/" element={<Home />} />
+                        <Route path="/help" element={<Helper/>} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />
                         <Route path="/reset-password" element={<ResetPassword />} />

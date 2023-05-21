@@ -34,7 +34,7 @@ function Login() {
                     timer: 1000,
                     timerProgressBar: true,
                     icon: 'success',
-                    title: `Inicio de sesion exitoso`,
+                    title: `Inicio de sesión exitoso`,
                     text: `Bienvenido a FireFly`,
                 }).then(() => navigate('/check-first-login'));
             })
