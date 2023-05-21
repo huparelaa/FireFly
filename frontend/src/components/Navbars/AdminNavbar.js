@@ -2,7 +2,7 @@ import React from "react";
 
 import UserDropdown from "../Dropdowns/UserDropdown";
 import { Link } from 'react-router-dom'
-import FireFlyPng from './FireFlyPng.png'
+import FireFlyPng from '../../assets/Logo-principal.svg'
 
 export default function Navbar() {
   return (
