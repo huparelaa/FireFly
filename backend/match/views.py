@@ -12,8 +12,8 @@ from games.models import Game
 import json
 from match.models import Match
 def get_similar_users(user_profile):
-    # Obtener todos los perfiles de usuario excepto el usuario actual
-    other_profiles = UserAccount.objects.exclude(id=user_profile.id)
+    matched_users = Match.objects.filter(usuario=user_profile).values_list('user_matched', flat=True)
+    other_profiles = UserAccount.objects.exclude(id__in=[user_profile.id] + list(matched_users))
     # Crear una matriz de juegos favoritos para todos los usuarios
     user_profiles = [user_profile] + list(other_profiles)
     all_game_ids = list(Game.objects.values_list('id', flat=True))
@@ -56,7 +56,6 @@ def doMatch(request):
         user_id = get_user_id(request)
         body = json.loads(request.body)
         amigo_id = body.get('user_id')
-        print(amigo_id)
         user = UserAccount.objects.get(id=user_id)
         amigo = get_object_or_404(UserAccount, id=amigo_id)
         match = Match(usuario = user, user_matched = amigo,match_successful=True)
@@ -72,7 +71,6 @@ def blockMatch(request):
         user_id = get_user_id(request)
         body = json.loads(request.body)
         amigo_id = body.get('user_id')
-        print(amigo_id)
         user = UserAccount.objects.get(id=user_id)
         amigo = get_object_or_404(UserAccount, id=amigo_id)
         match = Match(usuario = user, user_matched = amigo, match_successful=False)
@@ -83,7 +81,7 @@ def blockMatch(request):
     return JsonResponse({ 'Confirm': 'Match blocked with: '+ amigo.name })
 
 @api_view(['GET'])
-def getMatches(request):
+def getLastThreeMatches(request):
     user_id = get_user_id(request)
     matches = Match.objects.filter(usuario=user_id).order_by('id')[::-1]
     matches_data = []
@@ -93,7 +91,8 @@ def getMatches(request):
             try:       
                 if not len(matches_data) >= 3:          
                     amigo = UserAccount.objects.get(id=match.user_matched.id)
-                    matches_data.append((amigo.name, amigo.id, amigo.email))
+                    if match.match_successful:
+                        matches_data.append((amigo.name, amigo.id, amigo.email))
             except UserAccount.DoesNotExist:
                 continue
     
@@ -101,15 +100,15 @@ def getMatches(request):
 
 
 @api_view(['GET'])
-def getLastThreeMatches(request):
+def getMatches(request):
     user_id = get_user_id(request)
-    matches = Match.objects.filter(usuario=user_id).order_by('timestamp')[:3] # Obtener solo los últimos 3 partidos
+    matches = Match.objects.filter(usuario=user_id)# Obtener solo los últimos 3 partidos
     matches_data = []
     if matches:
         for match in matches:
             try:                
                 amigo = UserAccount.objects.get(id=match.user_matched.id)
-                matches_data.append((amigo.name, amigo.id, amigo.email))
+                matches_data.append((amigo.name, amigo.id, amigo.email,match.match_successful))
             except UserAccount.DoesNotExist:
                 continue
     
