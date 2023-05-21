@@ -63,26 +63,26 @@ function Match() {
       <SideBar />
       <div className=" w-screen flex justify-center items-center">
         {!isButtonPressed && !isLoading && (
-          <div className="w-64 h-64 rounded-lg flex flex-col justify-center items-center text-center">
+          <div className="w-80 h-80 rounded-lg flex flex-col justify-center items-center text-center">
             <p className=" text-white font-bold mb-4">
               Oprime el botón para hacer el match
             </p>
             <button
               onClick={handleClick}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="botonMatch"
             >
               Match
             </button>
           </div>
         )}
         {isLoading && (
-          <div className="w-64 h-64 rounded-lg flex flex-col justify-center items-center">
+          <div className="w-100 h-100 rounded-lg flex flex-col justify-center items-center">
             <p className="text-white font-bold mb-4">
               Buscando los mejores compañeros de juego para ti...
             </p>
             <button
               onClick={handleCancel}
-              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+              className="botoCancelar"
             >
               Cancelar
             </button>

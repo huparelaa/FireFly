@@ -31,7 +31,12 @@ const SuggestedGames = () => {
         setSuggestedGames(amigosActualizados);
         };
     if (!loading) {
-        return <p>Cargando Sugerencias...</p>;
+      return (
+        <div className="flex w-full items-center justify-end mr-10" id="contenedor">
+          <div className="loaderSuge" id="loaderSuge"> </div>
+          <p className="text-white"> Cargando Sugerencias... </p> 
+        </div>
+      )
     }
     return (
     <div className="text-center">
