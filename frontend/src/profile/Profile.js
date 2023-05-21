@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios'
 import Navbar from "../components/Navbars/AuthNavbar.js";
-import Footer from "../components/Footers/Footer.js";
+import { Footer } from "../home/Footer.js"
 import { useNavigate } from 'react-router-dom'
+import UserInformation from './UserInformation';
+import UserIntereses from "./UserIntereses.jsx";
+import UserLogros from "./UserLogros.jsx";
 
 export default function Profile() {
   const [usuario, setUsuario] = useState(null);
+  const [view, setView] = useState({ showInfo: true, showIntereses: false, showLogros: false });
   const Navigate = useNavigate();
   const config = {
     headers: {
@@ -14,6 +18,15 @@ export default function Profile() {
       'Accept': 'application/json',
     }
   };
+  function showInfo() {
+    setView({ ...view, showInfo: true, showIntereses: false, showLogros: false });
+  }
+  function showIntereses() {
+    setView({ ...view, showInfo: false, showIntereses: true, showLogros: false });
+  }
+  function showLogros() {
+    setView({ ...view, showInfo: false, showIntereses: false, showLogros: true });
+  }
   useEffect(() => {
     async function getPhotoName() {
       await axios.get(`${process.env.REACT_APP_API_URL}/api/profile/`, config)
@@ -30,7 +43,7 @@ export default function Profile() {
     return (
       <div className="flex w-1/6 items-center justify-end mr-10" id="contenedor">
         <div className="loaderChatSide" id="loaderChatSide"> </div>
-        <p className="text-white"> Cargando Perfil de Usuario...</p> 
+        <p className="text-white"> Cargando Perfil de Usuario...</p>
       </div>
     )
   }
@@ -54,151 +67,87 @@ export default function Profile() {
         <section
           className="py-80 w-full">
           <div className="container mx-auto px-10">
-            <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg ">
+            <div className="relative flex flex-col min-w-0 break-words bg-white w-full shadow-xl rounded-lg ">
               <div className="px-6">
-                <div className="flex flex-wrap justify-center">
-                  <section className="hero container w-1/2  ">
-                    <img
-                      className="rounded-full w-1/3"
-                      src="https://cdn.discordapp.com/avatars/280421723080228865/dd36c1b817d7c8cf91ca5944a0768c13.webp?size=2048"
-                      alt="screenshot"
-                      style={{
-                        position: 'relative',
-                        left: '-300px',
-                        top: '-40px'
-                      }}
-                    />
+                <div className="container ">
+                  <div className="flex flex-wrap">
+                    <section className="w-1/6">
+                      <img
+                        className="rounded-full w-full object-contain"
+                        src="https://cdn.discordapp.com/avatars/280421723080228865/dd36c1b817d7c8cf91ca5944a0768c13.webp?size=2048"
+                        alt="screenshot"
+                      />
+                    </section>
 
-                  </section>
+                    <div className="text-center  w-64 h-64 flex justify-center items-center">
+                      <div className="flex flex-col items-center">
+                        <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700">
+                          {usuario.name}
+                        </h3>
+                        <p className="text-2xl font-semibold leading-normal mb-2 text-blueGray-700">
+                          {usuario.age} años
+                        </p>
+                        <button
+                          className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mb-1 w-full ease-linear transition-all duration-150"
+                          type="submit"
+                          onClick={(e) => {
+                            Navigate("/profile/edit");
+                          }}
+                        >
+                          Editar perfil
+                        </button>
+                      </div>
+                    </div>
+
+                  </div>
+
+
                 </div>
-                <div className="text-center mt-12" style={{ position: 'relative', left: '-200px', top: '-200px' }}>
-                  <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                    {usuario.name}
-                  </h3>
-                  <p
-                    className="text-2xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2"
-                    style={{
-                      position: "relative",
-                      left: "-150px", // Ajusta este valor para cambiar la posición horizontal (izquierda-derecha)
-                      top: "-10px" // Ajusta este valor para cambiar la posición vertical (arriba-abajo)
-                    }}
-                  >
-                    {usuario.age} años
-                  </p>
 
-                  <button
-                    className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                    style={{
-                      marginTop: "-200px",
-                      width: "200px",
-                      height: "40px",
-                      textAlign: "left",
-                      marginLeft: "-200px" // Ajusta el valor según sea necesario
-                    }}
-                    type="submit"
-                    onClick={e => { Navigate("/profile/edit") }}
-                  >
-                    Editar perfil
-                  </button>
-
-
-                </div >
-                <div className="flex flex-col items-center mt-8">
+                <div className="flex flex-row items-center mt-8 ">
                   <button
                     className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    style={{
-                      marginLeft: "-800px", // Ajusta este valor para mover el botón a la izquierda
-                      marginTop: "-200px", // Ajusta este valor para subir más el botón
-                      width: "200px", // Ajusta este valor para cambiar el ancho del botón
-                      height: "40px" // Ajusta este valor para cambiar la altura del botón
-                    }}
                     type="submit"
-                    onClick={e => { Navigate("/") }}
+                    onClick={showInfo}
                   >
                     Información
                   </button>
 
                   <button
                     className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    style={{
-                      marginLeft: "-500px", // Ajusta este valor para mover el botón a la izquierda
-                      marginTop: "-50px", // Ajusta este valor para subir más el botón
-                      width: "200px", // Ajusta este valor para cambiar el ancho del botón
-                      height: "40px" // Ajusta este valor para cambiar la altura del botón
-                    }}
                     type="submit"
-                    onClick={e => { Navigate("/") }}
+                    onClick={showIntereses}
                   >
                     Intereses
                   </button>
 
                   <button
                     className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    style={{
-                      marginLeft: "-50px", // Ajusta este valor para mover el botón a la izquierda
-                      marginTop: "-40px", // Ajusta este valor para subir más el botón
-                      width: "200px", // Ajusta este valor para cambiar el ancho del botón
-                      height: "40px" // Ajusta este valor para cambiar la altura del botón
-                    }}
                     type="submit"
-                    onClick={e => { Navigate("/") }}
+                    onClick={showLogros}
                   >
                     Logros y trofeos
                   </button>
                 </div>
+                <div className="container ">
+                  <div>
+                    {view.showInfo && <UserInformation usuario={usuario} />}
+                  </div>
 
-                <div className="text-center mt-12">
-                  <p className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                    Email: {usuario.email}
-                  </p>
-                </div>
-                <div className="text-center mt-12">
-                  <p className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                    Edad: {usuario.age}
-                  </p>
-                </div>
-                <div className="mt-10 py-10 border-t border-blueGray-200 text-center">
-                  <div className="flex flex-wrap justify-center">
-                    <div className="w-full lg:w-9/12 px-4">
-                      <p className="text-2xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                        Acerca de mi:
-                      </p>
-                      <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                        {usuario.about_me}
-                      </p>
-                    </div>
+                  <div>
+                    {view.showIntereses && <UserIntereses usuario={usuario} />}
                   </div>
-                </div>
-                <div className="py-10 border-t border-blueGray-200 text-center">
-                  <div className="flex flex-wrap justify-center">
-                    <div className="w-full lg:w-9/12 px-4">
-                      <p className="text-2xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                        Intereses:
-                      </p>
-                      <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                        {usuario.intereses}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="py-10 border-t border-blueGray-200 text-center">
-                  <div className="flex flex-wrap justify-center">
-                    <div className="w-full lg:w-9/12 px-4">
-                      <p className="text-2xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                        Logros y Trofeos:
-                      </p>
-                      <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                        {usuario.logros_y_trofeos}
-                      </p>
-                    </div>
+
+                  <div>
+                    {view.showLogros && <UserLogros usuario={usuario} />}
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <Footer />
         </section>
       </main>
-      <Footer />
     </>
   );
 }
