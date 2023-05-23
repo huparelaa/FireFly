@@ -43,15 +43,16 @@ export default function RecentMatches() {
     );
   }
   return (
-    <div className="bg-friend-list text-white">
+    <div className=" text-white">
       {recentMatches.length > 0 ? (
         <>
           <h1 className="text-2xl font-bold">Matches Recientes:</h1>
           {recentMatches.map((match) => (
-            <div key={match.id}>
-              {/* Render your match data here */}
+            <Link to = {`../profile/${match[1]}`}>
+            <div key={match[1]} className="bg-friend-list mt-3 pl-3 mr-10 rounded-2xl">
               <p>{match[0]}</p>
             </div>
+            </Link>
           ))}
         </>
       ) : (

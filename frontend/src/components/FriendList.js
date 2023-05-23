@@ -90,7 +90,7 @@ const getState = async () => {
                     src={defaultProfile}
                 /> 
                 <p>{friend[0]} {friend[1]}</p>
-                <span className="ml-4">{(friend[4].toLowerCase() == "true") ? <RadioButtonCheckedTwoToneIcon sx={{ fontSize: 15, color: "green" }} /> : <RadioButtonUncheckedTwoToneIcon sx={{ fontSize: 15, color: "red" }} />}</span>
+                <span className="ml-4">{(friend[4]== "true") ? <RadioButtonCheckedTwoToneIcon sx={{ fontSize: 15, color: "green" }} /> : <RadioButtonUncheckedTwoToneIcon sx={{ fontSize: 15, color: "red" }} />}</span>
                 <div className="ml-auto relative">
                   <button className="bg-transparent border-0 text-gray-400 hover:text-white focus:outline-none" onClick={() => toggleDropdown(index)}>
                     <svg viewBox="0 0 20 20" fill="currentColor" className="w-6 h-6">
