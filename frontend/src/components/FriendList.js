@@ -70,7 +70,12 @@ const getState = async () => {
   }
 
   if (!amigos) {
-    return <p>Cargando amigos...</p>;
+    return (
+      <div className="flex w-full items-center justify-end mr-10" id="contenedor">
+        <div className="loaderAmigos" id="loaderAmigos"> </div>
+        <p className="text-white"> Cargando Amigos... </p> 
+    </div>
+    )
   }
 
   return (

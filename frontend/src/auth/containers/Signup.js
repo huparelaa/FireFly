@@ -167,19 +167,19 @@ function Signup() {
                                         <Fragment>
                                             <Stack direction='column' width="100%" spacing={2} justifyContent="flex-start" alignItems="flex-center" paddingY={2}>
                                                 <Typography fontSize={12}>
-                                                    <RadioButtonCheckedTwoToneIcon sx={{ fontSize: 15, color: "blue" }} /> Contraseña debe tener al menos 8 caracteres
+                                                    <RadioButtonCheckedTwoToneIcon sx={{ fontSize: 15, color: "blue" }} /> La contraseña debe tener al menos 8 caracteres
                                                 </Typography>
                                                 <Typography fontSize={12}>
-                                                    <RadioButtonCheckedTwoToneIcon sx={{ fontSize: 15, color: "blue" }} /> Contraseña debe tener una letra mayuscula
+                                                    <RadioButtonCheckedTwoToneIcon sx={{ fontSize: 15, color: "blue" }} /> La contraseña debe tener una letra mayuscula
                                                 </Typography>
                                                 <Typography fontSize={12}>
-                                                    <RadioButtonCheckedTwoToneIcon sx={{ fontSize: 15, color: "blue" }} /> Contraseña debe tener maximo 100 caracteres
+                                                    <RadioButtonCheckedTwoToneIcon sx={{ fontSize: 15, color: "blue" }} /> La contraseña debe tener maximo 100 caracteres
                                                 </Typography>
                                                 <Typography fontSize={12}>
-                                                    <RadioButtonCheckedTwoToneIcon sx={{ fontSize: 15, color: "blue" }} /> Contraseña debe tener una letra minuscula
+                                                    <RadioButtonCheckedTwoToneIcon sx={{ fontSize: 15, color: "blue" }} /> La contraseña debe tener una letra minuscula
                                                 </Typography>
                                                 <Typography fontSize={12}>
-                                                    <RadioButtonCheckedTwoToneIcon sx={{ fontSize: 15, color: "blue" }} /> Contraseña debe tener un numero
+                                                    <RadioButtonCheckedTwoToneIcon sx={{ fontSize: 15, color: "blue" }} /> La contraseña debe tener un numero
                                                 </Typography>
                                             </Stack>
                                         </Fragment>

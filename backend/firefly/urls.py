@@ -53,8 +53,9 @@ urlpatterns = [
     #MATCH HISTORY
     path('match/', vMatch.match, name = "match"), 
     path('do_match/', vMatch.doMatch, name = "do_match"), #POST
+    path('get_last_matches/', vMatch.getLastThreeMatches, name = "get_last_matches"), #GET
     path('get_matches/', vMatch.getMatches, name = "get_matches"), #GET
-
+    path('block_match/', vMatch.blockMatch, name = "block_match"), #POST
 
 
 ]

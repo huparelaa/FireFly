@@ -26,8 +26,9 @@ function UserInfo() {
     }, []);
     if (!usuario) {
         return (
-            <div className="flex w-full items-center justify-end mr-5">
-                <p className="text-white"> Cargando...</p> 
+            <div className="flex w-full items-center justify-end mr-10" id="contenedor">
+                <div className="loaderPerfil" id="loaderPerfil"> </div>
+                <p className="text-white"> Cargando Perfil... </p> 
             </div>
         )
     }

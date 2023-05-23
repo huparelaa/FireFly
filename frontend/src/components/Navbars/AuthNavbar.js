@@ -1,7 +1,7 @@
 /*eslint-disable*/
 import React from "react";
 import { Link } from "react-router-dom";
-import FireFlyPng from './FireFlyPng.png'
+import FireFlyPng from '../../assets/Logo-principal.svg'
 
 // components
 

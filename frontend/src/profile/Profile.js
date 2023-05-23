@@ -1,33 +1,51 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios'
 import Navbar from "../components/Navbars/AuthNavbar.js";
-import Footer from "../components/Footers/Footer.js";
+import { Footer } from "../home/Footer.js"
 import { useNavigate } from 'react-router-dom'
+import UserInformation from './UserInformation';
+import UserIntereses from "./UserIntereses.jsx";
+import UserLogros from "./UserLogros.jsx";
 
 export default function Profile() {
   const [usuario, setUsuario] = useState(null);
+  const [view, setView] = useState({ showInfo: true, showIntereses: false, showLogros: false });
   const Navigate = useNavigate();
   const config = {
-      headers: { 
-          'Content-type': 'application/json',
-          'Authorization': `JWT ${localStorage.getItem('access')}`,
-          'Accept': 'application/json',
-      }
+    headers: {
+      'Content-type': 'application/json',
+      'Authorization': `JWT ${localStorage.getItem('access')}`,
+      'Accept': 'application/json',
+    }
   };
+  function showInfo() {
+    setView({ ...view, showInfo: true, showIntereses: false, showLogros: false });
+  }
+  function showIntereses() {
+    setView({ ...view, showInfo: false, showIntereses: true, showLogros: false });
+  }
+  function showLogros() {
+    setView({ ...view, showInfo: false, showIntereses: false, showLogros: true });
+  }
   useEffect(() => {
-      async function getPhotoName(){
-          await axios.get(`${process.env.REACT_APP_API_URL}/api/profile/`, config)
-          .then(response => {
-              setUsuario(response.data);
-          })
-          .catch(error => {
-              console.error(error);
-          });
-          }
-          getPhotoName()
-      }, []);
+    async function getPhotoName() {
+      await axios.get(`${process.env.REACT_APP_API_URL}/api/profile/`, config)
+        .then(response => {
+          setUsuario(response.data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+    getPhotoName()
+  }, []);
   if (!usuario) {
-      return <p>Cargando...</p>;
+    return (
+      <div className="flex w-1/6 items-center justify-end mr-10" id="contenedor">
+        <div className="loaderChatSide" id="loaderChatSide"> </div>
+        <p className="text-white"> Cargando Perfil de Usuario...</p>
+      </div>
+    )
   }
 
 
@@ -38,89 +56,98 @@ export default function Profile() {
         <div
           className="absolute top-0 w-full h-full bg-center bg-cover"
           style={{
-            height: "60%",
+            height: "55%",
             backgroundImage:
               "url('https://www.xtrafondos.com/wallpapers/control-de-playstation-10819.jpg')",
           }}
         >
         </div>
       </section>
-      <main className="profile-page bg-white flex items-center justify-center">
+      <main className="profile-page bg-dark-purple flex items-center justify-center">
         <section
-          className="py-20 w-3/4">
+          className="py-80 w-full">
           <div className="container mx-auto px-10">
-            <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg ">
+            <div className="relative flex flex-col min-w-0 break-words bg-white w-full shadow-xl rounded-lg ">
               <div className="px-6">
-                <div className="flex flex-wrap justify-center">
-                  <section className="hero container w-1/2  ">
-                    <img style={{}} className="mx-auto rounded-full w-1/2" src="https://cdn.discordapp.com/avatars/280421723080228865/dd36c1b817d7c8cf91ca5944a0768c13.webp?size=2048" alt="screenshot" />
-                  </section>
-                </div>
-                <div className="text-center mt-12">
-                  <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                      {usuario.name}
-                  </h3>
-                </div> 
-                <div className="text-center mt-12">
-                  <p className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                      Email: {usuario.email}
-                  </p>
-                </div>
-                <div className="text-center mt-12">
-                  <p className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                      Edad: {usuario.age}
-                  </p>
-                </div>
-                <div className="mt-10 py-10 border-t border-blueGray-200 text-center">
-                  <div className="flex flex-wrap justify-center">
-                    <div className="w-full lg:w-9/12 px-4">
-                      <p className="text-2xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                        Acerca de mi:
-                      </p>
-                      <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                        {usuario.about_me}
-                      </p>
+                <div className="container ">
+                  <div className="flex flex-wrap">
+                    <section className="w-1/6">
+                      <img
+                        className="rounded-full w-full object-contain"
+                        src="https://cdn.discordapp.com/avatars/280421723080228865/dd36c1b817d7c8cf91ca5944a0768c13.webp?size=2048"
+                        alt="screenshot"
+                      />
+                    </section>
+
+                    <div className="text-center  w-64 h-64 flex justify-center items-center">
+                      <div className="flex flex-col items-center">
+                        <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700">
+                          {usuario.name}
+                        </h3>
+                        <p className="text-2xl font-semibold leading-normal mb-2 text-blueGray-700">
+                          {usuario.age} años
+                        </p>
+                        <button
+                          className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mb-1 w-full ease-linear transition-all duration-150"
+                          type="submit"
+                          onClick={(e) => {
+                            Navigate("/profile/edit");
+                          }}
+                        >
+                          Editar perfil
+                        </button>
+                      </div>
                     </div>
+
                   </div>
+
+
                 </div>
-                <div className="py-10 border-t border-blueGray-200 text-center">
-                  <div className="flex flex-wrap justify-center">
-                    <div className="w-full lg:w-9/12 px-4">
-                      <p className="text-2xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                        Intereses:
-                      </p>              
-                      <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                      {usuario.intereses}
-                      </p>
-                    </div>
+
+                <div className="flex flex-row items-center mt-8 ">
+                  <button
+                    className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="submit"
+                    onClick={showInfo}
+                  >
+                    Información
+                  </button>
+
+                  <button
+                    className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="submit"
+                    onClick={showIntereses}
+                  >
+                    Intereses
+                  </button>
+
+                  <button
+                    className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="submit"
+                    onClick={showLogros}
+                  >
+                    Logros y trofeos
+                  </button>
+                </div>
+                <div className="container ">
+                  <div>
+                    {view.showInfo && <UserInformation usuario={usuario} />}
                   </div>
-                </div>
-                <div className="py-10 border-t border-blueGray-200 text-center">
-                  <div className="flex flex-wrap justify-center">
-                    <div className="w-full lg:w-9/12 px-4">
-                      <p className="text-2xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                        Logros y Trofeos:
-                      </p>
-                      <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                      {usuario.logros_y_trofeos}
-                      </p>
-                    </div>
+
+                  <div>
+                    {view.showIntereses && <UserIntereses usuario={usuario} />}
+                  </div>
+
+                  <div>
+                    {view.showLogros && <UserLogros usuario={usuario} />}
                   </div>
                 </div>
               </div>
-              <button
-                className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                type="submit"
-                onClick={e =>{Navigate("/admin")} }
-              >
-                Editar perfil
-
-              </button>
             </div>
           </div>
+          <Footer />
         </section>
       </main>
-      <Footer />
     </>
   );
 }

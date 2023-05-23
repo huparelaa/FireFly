@@ -20,8 +20,8 @@ function Login() {
             .email("Correo invalido"),
         password: Yup.string()
             .required("La contraseña es requerida")
-            .min(8, "Contraseña debe tener al menos 8 caracteres")
-            .max(100, "Contraseña debe tener maximo 50 caracteres"),
+            .min(8, "La contraseña debe tener al menos 8 caracteres")
+            .max(100, "La contraseña debe tener maximo 50 caracteres"),
     });
 
     function submit(data) {
@@ -34,7 +34,7 @@ function Login() {
                     timer: 1000,
                     timerProgressBar: true,
                     icon: 'success',
-                    title: `Inicio de sesion exitoso`,
+                    title: `Inicio de sesión exitoso`,
                     text: `Bienvenido a FireFly`,
                 }).then(() => navigate('/check-first-login'));
             })
