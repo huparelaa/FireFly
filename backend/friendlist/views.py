@@ -21,7 +21,7 @@ def get_friends(request):
             try:                
                 amigo = UserAccount.objects.get(id=friend.amigo_id)
                 print('amigo', amigo)
-                amigos_data.append((amigo.name, amigo.id, amigo.email))
+                amigos_data.append((amigo.name, amigo.lastname, amigo.id, amigo.email, amigo.is_online))
             except UserAccount.DoesNotExist: 
                 continue
     

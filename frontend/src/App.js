@@ -7,6 +7,7 @@ import ResetPasswordConfirm from "./auth/containers/ResetPasswordConfirm"
 import Login from "./auth/containers/Login"
 import Signup from "./auth/containers/Signup";
 import Activate from "./auth/containers/Activate";
+import Logout from "./auth/containers/Logout";
 import PreferenceForm from "./games/GameList"
 import Dashboard from './dashboard/Dashboard'
 import { AfterLogin } from "./auth/Middle/AfterLogin";
@@ -33,6 +34,7 @@ function App() {
                         <Route path="/reset-password" element={<ResetPassword />} />
                         <Route path="/password/reset/confirm/:uid/:token" element={<ResetPasswordConfirm />} />
                         <Route path="/activate/:uid/:token" element={<Activate />} />
+                        <Route path="/logout" element={<Logout/>}/>
                         <Route path="/games" element={<PreferenceForm/>} />
                         <Route path="/dashboard" element={<Dashboard/>} />
                         <Route path="/check-first-login" element={<AfterLogin/>} />
