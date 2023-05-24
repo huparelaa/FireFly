@@ -26,7 +26,7 @@ class UserAccount(AbstractBaseUser, PermissionsMixin, models.Model):
     about_me = models.TextField(max_length = 1000, blank = True)
     intereses = models.TextField(max_length = 1000, blank = True)
     logros_y_trofeos = models.TextField(max_length = 1000, blank = True)   
-
+    is_online = models.CharField(max_length=15, default="false")
 
     objects = UserAccountManager()
 

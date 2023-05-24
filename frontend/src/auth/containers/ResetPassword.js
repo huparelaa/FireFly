@@ -26,9 +26,17 @@ const ResetPassword = () => {
                 title: '¡Correo enviado con éxito!',
                 text:
                 'Se ha enviado un correo electrónico a tu cuenta con las instrucciones para restablecer la contraseña. Puede que el correo llegue a spam.',
-            });
+            }).then(() => navigate('/login'));
+        }).catch(err => {
+            console.log(err);
+            Swal.fire({
+                timer: 2000,
+                timerProgressBar: true,
+                icon: 'error',
+                title: 'Error',
+                text: err.response.data,
+            })
         })
-        .then(() => navigate('/login'));
     };
     return (
         <div className="container mx-auto px-4 h-screen w-full flex items-center justify-center">

@@ -9,7 +9,7 @@ import jwt
 from jwt.exceptions import InvalidSignatureError
 from firefly.utils import verify_token, get_user_id
 from google.cloud import storage
-    
+
 @api_view(['GET'])
 def has_entered_before(request):
     
@@ -111,3 +111,21 @@ def get_user_by_id(request, **kwargs):
         'logros_y_trofeos': user.logros_y_trofeos
     }
     return JsonResponse({'info': userInfo})
+
+
+@api_view(['GET'])
+def set_status_user(request):
+    user_id = get_user_id(request)
+    user = UserAccount.objects.get(id = user_id)
+    user.is_online = "true"
+    user.save()
+    return JsonResponse({'state': 'online', "state1": user.is_online})
+
+
+@api_view(['GET'])
+def logout_status(request):
+    user_id = get_user_id(request)
+    user = UserAccount.objects.get(id = user_id)
+    user.is_online = "false"
+    user.save()
+    return JsonResponse({'state': 'offline', "state1": user.is_online})

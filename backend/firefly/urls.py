@@ -16,6 +16,8 @@ urlpatterns = [
     path('api/games_selected/', vGames.select_games, name='select_games'),
     path('api/profile/', vAccounts.get_user_profile, name = 'get_user_profile'),
     path('api/get_name_photo/', vAccounts.get_user_name_photo, name = "get_user_photo"),
+    path('api/get_user_state/', vAccounts.set_status_user, name = "set_user_state"),
+    path('api/logout_user/', vAccounts.logout_status, name = "logout_state"),
     
     path('api/get_friends/', vFriendList.get_friends, name = "get_friends"), 
     path('api/add_friends/', vFriendList.add_friend, name = "add_friend"),

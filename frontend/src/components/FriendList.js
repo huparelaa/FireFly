@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, Navigate } from "react-router-dom";
 import defaultProfile from "../assets/defaultProfile.jpg"
+import RadioButtonCheckedTwoToneIcon from '@mui/icons-material/RadioButtonCheckedTwoTone';
+import RadioButtonUncheckedTwoToneIcon from '@mui/icons-material/RadioButtonUncheckedTwoTone';
+import { logout } from "../auth/actions/auth";
 
 function FriendList() {
   const [amigos, setAmigos] = useState(null);
@@ -11,20 +14,31 @@ function FriendList() {
     }
   };
   useEffect(() => {
-    async function getFriends() {
-      const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/get_friends/`,
-        {
-          headers: {
-            Authorization: `JWT ${localStorage.getItem("access")}`,
-          },
-        }
-      );
-      setAmigos(response.data.friends);
-    }
-    getFriends();
+    getState()
+    const intervalId = setInterval(() => {
+      getState();
+    }, 5000); // Realizar la consulta cada 5 segundos (ajusta el intervalo según tus necesidades)
+
+    return () => {
+      clearInterval(intervalId);
+    };
   }, []);
   
+const getState = async () => { 
+  try {
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/get_friends/`, 
+      {
+        headers: {
+          Authorization: `JWT ${localStorage.getItem("access")}`,
+        },
+      }
+    );
+    setAmigos(response.data.friends);
+  }
+  catch(err){
+    console.error('Error al obtener el estado de la persona:', err);
+  }
+}  
   const [dropdownOpen, setDropdownOpen] = useState(null);
   const toggleDropdown = (index) => {
     if (dropdownOpen === index) {
@@ -75,7 +89,8 @@ function FriendList() {
                     className="rounded-full align-middle border-none shadow-lg w-7 h-7 mr-3"
                     src={defaultProfile}
                 /> 
-                {friend[0]}
+                <p>{friend[0]} {friend[1]}</p>
+                <span className="ml-4">{(friend[4]== "true") ? <RadioButtonCheckedTwoToneIcon sx={{ fontSize: 15, color: "green" }} /> : <RadioButtonUncheckedTwoToneIcon sx={{ fontSize: 15, color: "red" }} />}</span>
                 <div className="ml-auto relative">
                   <button className="bg-transparent border-0 text-gray-400 hover:text-white focus:outline-none" onClick={() => toggleDropdown(index)}>
                     <svg viewBox="0 0 20 20" fill="currentColor" className="w-6 h-6">

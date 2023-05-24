@@ -17,6 +17,9 @@ class UserApi {
     login(data) {
         return axiosInstance.post("/auth/jwt/create/", data)
     }
+    stateOnline(){
+        return axiosInstance.get("/api/get_user_state/", { headers: {Authorization: `JWT ${localStorage.getItem('access')}`}})
+    }
     verify(){
         return axiosInstance.post("/auth/jwt/verify/", {
             "token": localStorage.getItem('access')
@@ -29,11 +32,15 @@ class UserApi {
         return axiosInstance.post("/auth/users/activation/", data)
     }
     resetPassword(data){
-        return axiosInstance.post("/auth/users/reset_password/",  data )
+        return axiosInstance.post("/auth/users/reset_password/",  data)
     }
     retsetPasswordConfirm(data){
         return axiosInstance.post("/auth/users/reset_password_confirm/", data)
     }
+    logout(){
+        return axiosInstance.get("api/logout_user/", { headers: {Authorization: `JWT ${localStorage.getItem('access')}`}})
+    }
+
 }
 
 export default new UserApi();

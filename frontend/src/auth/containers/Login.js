@@ -26,9 +26,9 @@ function Login() {
 
     function submit(data) {
         UserApi.login(data).then(res => {
-            console.log(data);
             localStorage.setItem('access', res.data.access);
             localStorage.setItem('refreshToken', res.data.refresh);
+            UserApi.stateOnline().then(res => { console.log(res);})
             UserApi.verify().then(() => {
                 Swal.fire({
                     timer: 1000,
@@ -118,7 +118,7 @@ function Login() {
                         </p>
                         <div className="w-3/4">
                             <p className="mt-3">
-                                <Link to="/reset-password" className='text_help_color text-white underline hover:text-footer-text'>¿Olvidaste tu constraseña?</Link>
+                                <Link to="/reset-password" className='text_help_color text-white underline hover:text-footer-text'>¿Olvidaste tu contraseña?</Link>
                             </p>
                         </div>
                     </div>
