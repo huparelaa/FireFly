@@ -3,11 +3,16 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import defaultProfile from "../assets/defaultProfile.jpg";
 import { Link, useNavigate } from "react-router-dom";
-
+import Confetti from "react-confetti";
+import useWindowSize from "react-use/lib/useWindowSize";
+import celebrationSound from "./Match_sound.mp3";
 const MatchRecomendations = ({ similarUsers, setSimilarUsers }) => {
   const [matched, setMatched] = useState(false);
+  const { width, height } = useWindowSize();
   const [match, setMatch] = useState("");
   const navigate = useNavigate();
+  const [showConfetti, setShowConfetti] = useState(false);
+  const sound = new Audio(celebrationSound);
 
   const config = {
     headers: {
@@ -16,7 +21,20 @@ const MatchRecomendations = ({ similarUsers, setSimilarUsers }) => {
       Accept: "application/json",
     },
   };
-  useEffect(() => {}, [similarUsers]);
+  useEffect(() => {
+    if (match !== "" && matched) {
+      setShowConfetti(true);
+      sound.play();
+      handleDoMatch();
+      setTimeout(() => {
+        setShowConfetti(false);
+        navigate(`/profile/${match}`);
+      }, 5000);
+    }
+    if (match !== "" && !matched) {
+      handleBlockMatch(match);
+    }
+  }, [match, matched]);
   const handleBlockMatch = async (userId) => {
     try {
       await axios.post(
@@ -51,11 +69,13 @@ const MatchRecomendations = ({ similarUsers, setSimilarUsers }) => {
     }
   }, [match, matched]); // Agrega matched a las dependencias
 
-  if (match !== "" && matched) {
-    return navigate(`/profile/${match}`);
-  }
   return (
     <div className="flex flex-col text-center items-center ">
+      {showConfetti && (
+        <div>
+          <Confetti width={width} height={height} />
+        </div>
+      )}
       <h2 className="text-white mb-12 text-3xl font-bold">
         ¡Felicidades! Estos son los usuarios con gustos similares a los tuyos:{" "}
       </h2>
@@ -70,7 +90,8 @@ const MatchRecomendations = ({ similarUsers, setSimilarUsers }) => {
               />
               <p className="text-white">
                 {" "}
-                {user.name} - Similitud: {Math.round(user.similarity * 100, 0)}{"%"}
+                {user.name} - Similitud: {Math.round(user.similarity * 100, 0)}
+                {"%"}
               </p>
               <div className="flex justify-between mt-4">
                 <button
