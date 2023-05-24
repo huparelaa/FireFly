@@ -26,7 +26,6 @@ import ChatRoomContent from "./chat/ChatRoomContent";
 
 function App() {
     return (
-        
         <Provider store={store}>
             <Router>
                     <Routes>
