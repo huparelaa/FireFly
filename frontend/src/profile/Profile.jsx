@@ -129,7 +129,6 @@ function Profile() {
                                     >
                                         Editar perfil
                                     </button>
-                                    <FriendList />
                                 </div>
                             </div>
                             <div className="profileBottomRight">
