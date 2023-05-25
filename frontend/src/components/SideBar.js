@@ -80,10 +80,10 @@ function SideBar() {
 
     const [open, setOpen] = useState(false);
     const Menus = [
-        { title: "Dashboard", src: home, path: "/dashboard" },
+        { title: "Inicio", src: home, path: "/dashboard" },
         { title: "Match", src: match, path: "/match" },
         { title: "Chat", src: chat, path: "/chat" },
-        { title: "Logout", src: logout, gap: true, path: "/logout" },
+        { title: "Cerrar sesión", src: logout, gap: true, path: "/logout" },
     ];
     return (
         <div className="flex shadow-sm">
@@ -128,7 +128,7 @@ function SideBar() {
                     <button onClick={Report} className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 mt-2" >
                         <img src={report} alt="" className="w-6" />
                         <span className={`${!open && "hidden"} origin-left duration-200`}>
-                            Report
+                            Reportar error
                         </span>
                     </button>
                 </ul>

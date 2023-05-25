@@ -10,23 +10,27 @@ import UserInformation from './UserInformation';
 import UserIntereses from "./UserIntereses.jsx";
 import UserLogros from "./UserLogros.jsx";
 import { Footer } from "../home/Footer.js"
+import UserGames from "./UserGames.jsx";
 
 function ProfileId() {
     const { id } = useParams();
     const Navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [requestSent, setRequestSent] = useState(false);
-    const [view, setView] = useState({ showInfo: true, showIntereses: false, showLogros: false });
+    const [view, setView] = useState({ showInfo: true, showIntereses: false, showLogros: false, showGames: false });
 
     function showInfo() {
-        setView({ ...view, showInfo: true, showIntereses: false, showLogros: false });
+        setView({ ...view, showInfo: true, showIntereses: false, showLogros: false, showGames: false });
     }
     function showIntereses() {
-        setView({ ...view, showInfo: false, showIntereses: true, showLogros: false });
+        setView({ ...view, showInfo: false, showIntereses: true, showLogros: false, showGames: false });
     }
     function showLogros() {
-        setView({ ...view, showInfo: false, showIntereses: false, showLogros: true });
+        setView({ ...view, showInfo: false, showIntereses: false, showLogros: true, showGames: false });
     }
+    function showGames() {
+        setView({ ...view, showInfo: false, showIntereses: false, showLogros: false, showGames: true });
+      }
 
     useEffect(() => {
         async function fetchUser() {
@@ -39,7 +43,7 @@ function ProfileId() {
         return (
             <div className="flex w-1/6 items-center justify-end mr-10" id="contenedor">
                 <div className="loaderChatSide" id="loaderChatSide"> </div>
-                <p className="text-white"> Cargando Perfil de user...</p>
+                <p className="text-white"> Cargando perfil de usuario...</p>
             </div>
         )
     }
@@ -129,6 +133,13 @@ function ProfileId() {
                                         Logros y trofeos
                                     </button>
                                     <button
+                                        className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                        type="submit"
+                                        onClick={showGames}
+                                    >
+                                        Juegos Preferidos
+                                    </button>
+                                    <button
                                         className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="submit"
                                         onClick={handleAddFriend}
 
@@ -156,11 +167,14 @@ function ProfileId() {
                                     <div>
                                         {view.showLogros && <UserLogros usuario={user} />}
                                     </div>
+
+                                    <div>
+                                        {view.showGames && <UserGames usuario={user} itsMe={false} id={id}/>}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <Footer />
                 </section>
             </main>
         </>

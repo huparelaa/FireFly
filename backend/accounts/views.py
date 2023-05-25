@@ -48,6 +48,42 @@ def get_user_profile(request):
     return JsonResponse(profile, safe = False)
 
 @api_view(['GET'])
+def user_games(request):
+    user_id = get_user_id(request)
+    user = UserAccount.objects.get(id=user_id)
+    user_games = user.favorite_games.all() 
+    response_data = {'juegos_favoritos': []}
+    for game in user_games:
+        # if len(response_data['juegos_favoritos']) >= 5:
+        #     break            
+        game_data = {
+            'title': game.titulo,
+            'id_game': game.id_game,
+            'genero': game.genero,
+            'img': game.img
+        }
+        response_data['juegos_favoritos'].append(game_data)
+    return JsonResponse(response_data)
+
+@api_view(['GET'])
+def user_games_by_id(request, **kwargs):
+    user_id = kwargs['user_id']
+    user = UserAccount.objects.get(id=user_id)
+    user_games = user.favorite_games.all() 
+    response_data = {'juegos_favoritos': []}
+    for game in user_games:
+        # if len(response_data['juegos_favoritos']) >= 5:
+        #     break            
+        game_data = {
+            'title': game.titulo,
+            'id_game': game.id_game,
+            'genero': game.genero,
+            'img': game.img
+        }
+        response_data['juegos_favoritos'].append(game_data)
+    return JsonResponse(response_data)
+
+@api_view(['GET'])
 def get_user_name_photo(request): 
     user_id = get_user_id(request)
     user = UserAccount.objects.get(id = user_id)

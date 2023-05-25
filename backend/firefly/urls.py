@@ -7,6 +7,7 @@ from match import views as vMatch
 from chat import views as vChat
 from roomChat import views as vRoom
 from review import views as vReview
+from notificaciones import views as vNotificaciones
 
 urlpatterns = [
     path('auth/', include('djoser.urls')),
@@ -15,6 +16,8 @@ urlpatterns = [
     path('user/has_entered_before_true/', vAccounts.has_entered_before_true, name='has_entered_before_true'), 
     path('api/games_selected/', vGames.select_games, name='select_games'),
     path('api/profile/', vAccounts.get_user_profile, name = 'get_user_profile'),
+    path('api/profile_juegos/', vAccounts.user_games, name = 'user_games'),
+    path('api/profile_juegos/<int:user_id>/', vAccounts.user_games_by_id, name = 'user_games_by_id'),
     path('api/get_name_photo/', vAccounts.get_user_name_photo, name = "get_user_photo"),
     path('api/get_user_state/', vAccounts.set_status_user, name = "set_user_state"),
     path('api/logout_user/', vAccounts.logout_status, name = "logout_state"),
