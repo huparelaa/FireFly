@@ -1,8 +1,7 @@
-import { useState } from "react";
+import React,{ useState, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
 
 import control from "../assets/control.png"
@@ -16,8 +15,8 @@ import report from "../assets/report.png"
 
 function SideBar() {
     const form = useRef();
-    const sendEmail = (e) => {
-        e.preventDefault();
+    const sendEmail = (event) => {
+        event.preventDefault();
         emailjs.sendForm('service_wsmvq0j', 'template_04co69t', form.current, 'k8ix7MNKP0nIkPwYA')
             .then((result) => {
                 console.log(result.text);
@@ -33,13 +32,15 @@ function SideBar() {
             html:
                 <form ref={form} onSubmit={sendEmail}>
                     <label className="mt-2">Name</label><br/>
-                    <input className="h-12 bg-slate-200 w-8/12" type="text" name="user_name" /> <br/>
+                    <input className="h-12 bg-slate-200 w-8/12" type="text" name="user_name" required/> <br/>
                     <label>Email</label> <br/>
-                    <input className="h-12 bg-slate-200 w-8/12" type="email" name="user_email" /><br/>
+                    <input className="h-12 bg-slate-200 w-8/12" type="email" name="user_email" required/><br/>
                     <label>Message</label> <br/>
-                    <textarea className="h-12 bg-slate-200 w-8/12" name="message" />
+                    <textarea className="h-12 bg-slate-200 w-8/12" name="message" required/> <br/>
+                    <button type="submit" className="text-white bg-teal-700 border rounded-md p-2 hover:bg-teal-800"> Guargar Reporte </button>
                 </form>,
-            confirmButtonText: 'Enviar',
+            confirmButtonText: 'Confirmar',
+            confirmButtonColor: '#0e756e',
             preConfirm: submitReview,
             showCancelButton: true,
             cancelButtonText: 'Cancelar',
