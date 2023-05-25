@@ -31,7 +31,7 @@ function ProfileId() {
     }
     function showGames() {
         setView({ ...view, showInfo: false, showIntereses: false, showLogros: false, showGames: true });
-      }
+    }
 
     useEffect(() => {
         async function fetchUser() {
@@ -42,9 +42,11 @@ function ProfileId() {
     }, [id]);
     if (!user) {
         return (
-            <div className="flex w-1/6 items-center justify-end mr-10" id="contenedor">
-                <div className="loaderChatSide" id="loaderChatSide"> </div>
-                <p className="text-white"> Cargando perfil de usuario...</p>
+            <div className="flex w-screen items-center justify-center h-screen" id="contenedor">
+                <div className="flex flex-col">
+                    <div className="loaderChatSide" id="loaderChatSide"> </div>
+                    <h1 className="text-white font-bold"> Cargando perfil de usuario...</h1>
+                </div>
             </div>
         )
     }
@@ -170,7 +172,7 @@ function ProfileId() {
                                     </div>
 
                                     <div>
-                                        {view.showGames && <UserGames usuario={user} itsMe={false} id={id}/>}
+                                        {view.showGames && <UserGames usuario={user} itsMe={false} id={id} />}
                                     </div>
                                 </div>
                             </div>

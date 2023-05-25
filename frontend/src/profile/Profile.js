@@ -46,9 +46,11 @@ export default function Profile() {
   }, []);
   if (!usuario) {
     return (
-      <div className="flex w-1/6 items-center justify-end mr-10" id="contenedor">
-        <div className="loaderChatSide" id="loaderChatSide"> </div>
-        <p className="text-white"> Cargando Perfil de Usuario...</p>
+      <div className="flex w-screen items-center justify-center h-screen" id="contenedor">
+        <div className="flex flex-col">
+          <div className="loaderChatSide" id="loaderChatSide"> </div>
+          <h1 className="text-white font-bold"> Cargando perfil de usuario...</h1>
+        </div>
       </div>
     )
   }
@@ -133,7 +135,7 @@ export default function Profile() {
                   >
                     Logros y trofeos
                   </button>
-                  
+
                   <button
                     className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="submit"

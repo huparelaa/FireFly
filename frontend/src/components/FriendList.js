@@ -73,7 +73,7 @@ const getState = async () => {
     return (
       <div className="flex w-full items-center justify-end mr-10" id="contenedor">
         <div className="loaderAmigos" id="loaderAmigos"> </div>
-        <p className="text-white"> Cargando Amigos... </p> 
+        <p className="text-white"> Cargando amigos... </p> 
     </div>
     )
   }

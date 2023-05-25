@@ -11,7 +11,7 @@ import { FriendList } from "../components/FriendList";
 function Profile() {
     const Navigate = useNavigate();
     const [usuario, setUsuario] = useState(null);
-    const [viewData, setViewData] = useState({data:"",title:""});
+    const [viewData, setViewData] = useState({ data: "", title: "" });
 
     const config = {
         headers: {
@@ -26,7 +26,7 @@ function Profile() {
             await axios.get(`${process.env.REACT_APP_API_URL}/api/profile/`, config)
                 .then(response => {
                     setUsuario(response.data);
-                    setViewData({data:response.data.intereses,title:"Intereses"});
+                    setViewData({ data: response.data.intereses, title: "Intereses" });
                 })
                 .catch(error => {
                     console.error(error);
@@ -37,17 +37,19 @@ function Profile() {
 
 
     function showIntereses() {
-        setViewData({data:usuario.intereses,title:"Intereses"});
+        setViewData({ data: usuario.intereses, title: "Intereses" });
     }
     function showLogros() {
-        setViewData({data:usuario.logros_y_trofeos,title:"Logros y trofeos"});
+        setViewData({ data: usuario.logros_y_trofeos, title: "Logros y trofeos" });
     }
 
     if (!usuario) {
         return (
-            <div className="flex w-1/6 items-center justify-end mr-10" id="contenedor">
-                <div className="loaderChatSide" id="loaderChatSide"> </div>
-                <p className="text-white"> Cargando Perfil de Usuario...</p>
+            <div className="flex w-screen items-center justify-center h-screen" id="contenedor">
+                <div className="flex flex-col">
+                    <div className="loaderChatSide" id="loaderChatSide"> </div>
+                    <h1 className="text-white font-bold"> Cargando perfil de usuario...</h1>
+                </div>
             </div>
         )
     }
@@ -94,7 +96,7 @@ function Profile() {
                                 </h4>
                             </div>
                         </div>
-                        
+
                         <div className="buttonSettings">
                             <button
                                 className="bg-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -114,7 +116,7 @@ function Profile() {
                         </div>
 
                         <div className="profileBottom">
-                            
+
                             <div className="profileBottomLeft">
                                 <div className="profileUserInfo">
                                     <h2 className="aboutMeHeading">Acerca de mi</h2>
@@ -127,7 +129,7 @@ function Profile() {
                                     >
                                         Editar perfil
                                     </button>
-                                    <FriendList/>
+                                    <FriendList />
                                 </div>
                             </div>
                             <div className="profileBottomRight">

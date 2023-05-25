@@ -29,7 +29,7 @@ function UserInfo() {
         return (
             <div className="flex w-full items-center justify-end mr-10" id="contenedor">
                 <div className="loaderPerfil" id="loaderPerfil"> </div>
-                <p className="text-white"> Cargando Perfil... </p> 
+                <p className="text-white"> Cargando perfil... </p> 
             </div>
         )
     }

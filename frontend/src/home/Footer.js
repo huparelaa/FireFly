@@ -34,9 +34,6 @@ function FooterComponent() {
           <Link to="#" className="mt-4">
             Item 2
           </Link>
-          <Link to="#" className="mt-4">
-            Item 3
-          </Link>
         </div>
         <div className="col-span-2 flex flex-col">
           <h5 className="text-purple-400 font-bold">Seguridad</h5>
@@ -45,21 +42,6 @@ function FooterComponent() {
           </Link >
           <Link to="#" className="mt-4">
             Item 2
-          </Link>
-          <Link to="#" className="mt-4">
-            Item 3
-          </Link>
-          <Link to="#" className="mt-4">
-            Item 4
-          </Link>
-          <Link to="#" className="mt-4">
-            Item 5
-          </Link>
-          <Link to="#" className="mt-4">
-            Item 6
-          </Link>
-          <Link to="#" className="mt-4">
-            Item 7
           </Link>
         </div>
         <div className="col-span-2 flex flex-col">
@@ -70,15 +52,6 @@ function FooterComponent() {
           <Link to="#" className="mt-4">
             Item 2
           </Link>
-          <Link to="#" className="mt-4">
-            Item 3
-          </Link>
-          <Link to="#" className="mt-4">
-            Item 4
-          </Link>
-          <Link to="#" className="mt-4">
-            Item 5
-          </Link>
         </div>
         <div className="col-span-2 flex flex-col">
           <h5 className="text-purple-400 font-bold">Acerca de nosotros</h5>
@@ -87,9 +60,6 @@ function FooterComponent() {
           </Link >
           <Link to="#" className="mt-4">
             Item 2
-          </Link>
-          <Link to="#" className="mt-4">
-            Item 3
           </Link>
         </div>
       </div>
