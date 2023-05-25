@@ -1,6 +1,7 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
 import { Link } from 'react-router-dom'
+import ProfileIcon from '../../assets/profileicon.jpg'
 
 const UserDropdown = (props) => {
   // dropdown props
@@ -32,7 +33,7 @@ const UserDropdown = (props) => {
             <img
               alt="..."
               className="w-full rounded-full align-middle border-none shadow-lg"
-              src={"https://images-ext-1.discordapp.net/external/HAsgIuwHoE50N1mJaV6a-9BsPH458Yee1ORJikX25oQ/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/280421723080228865/dd36c1b817d7c8cf91ca5944a0768c13.png?width=578&height=578"}
+              src={ProfileIcon}
             />
           </span>
         </div>

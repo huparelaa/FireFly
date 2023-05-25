@@ -1,0 +1,14 @@
+.feed{
+    flex:6;
+    height: calc(100vh - 67px);
+    overflow-y: scroll;
+}
+
+.feedWrapper{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+

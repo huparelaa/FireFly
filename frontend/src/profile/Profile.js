@@ -7,6 +7,7 @@ import UserInformation from './UserInformation';
 import UserIntereses from "./UserIntereses.jsx";
 import UserLogros from "./UserLogros.jsx";
 import UserGames from "./UserGames.jsx";
+import ProfileIcon from '../assets/profileicon.jpg'
 
 export default function Profile() {
   const [usuario, setUsuario] = useState(null);
@@ -78,7 +79,7 @@ export default function Profile() {
                     <section className="w-1/6">
                       <img
                         className="rounded-full w-full object-contain"
-                        src="https://cdn.discordapp.com/avatars/280421723080228865/dd36c1b817d7c8cf91ca5944a0768c13.webp?size=2048"
+                        src={ProfileIcon}
                         alt="screenshot"
                       />
                     </section>

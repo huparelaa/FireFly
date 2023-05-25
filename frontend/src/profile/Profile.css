@@ -1,0 +1,274 @@
+.profile {
+    width: 100%;
+}
+
+.profileContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profileCenter {
+    margin: 0;
+    width: 100%;
+    height: 405px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profileCenterTop {
+    width: 70%;
+    height: 75%;
+    position: relative;
+}
+
+.coverPhoto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    cursor: pointer;
+}
+
+.editCoverPhotoBtn {
+    height: 35px;
+    width: 150px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    background-color: aliceblue;
+}
+
+.editCoverPhotoBtn:hover {
+    cursor: pointer;
+    background-color: gainsboro;
+}
+
+.editCoverPhotoBtn:active {
+    opacity: 0.7;
+}
+
+.profileCenterDown {
+    width: 40%;
+    height: 40%;
+    position: relative;
+}
+
+.profileCenterDownCont {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    gap: 8px;
+    top: -40px;
+    left: -180px;
+}
+
+.profilePhotoCont {
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+    border: 4px solid white;
+    position: relative;
+}
+
+.profilePhoto {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.profileUsername {
+    margin: 0;
+    font-size: 30px;
+    cursor: pointer;
+    color: white; /* Set text color to white */
+}
+
+.profileBottom {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 500px;
+}
+
+.buttonSettings {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 450px;
+}
+
+.profileBottomLeft {
+    margin-top: 20px;
+    margin-left: 50px;
+    width: clamp(30%, 300px, 300px);
+    background-color: white;
+    -webkit-box-shadow: 0px 1px 5px -1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 1px 5px -1px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 1px 5px -1px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+}
+
+.profileUserInfo {
+    height: auto;
+    text-align: center;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Add align-items center to center the content horizontally */
+}
+
+.aboutMeText {
+    margin: 10px 0;
+}
+
+.aboutMeHeading {
+    font-weight: bold;
+    font-size: 24px;
+    /* Adjust the font size to your desired value */
+}
+
+.buttonContainer {
+    justify-content: center;
+    /* Add justify-content center to center the button horizontally */
+}
+
+.editBioButton {
+    width: 70%;
+    height: 35px;
+    background-color: gainsboro;
+    border: 1.5px solid rgb(236, 224, 224);
+    border-radius: 5px;
+    width: 95%;
+    cursor: pointer;
+    font-size: medium;
+    opacity: 0.8;
+}
+
+.editBioButton:hover {
+    opacity: 1;
+}
+
+.profileMutualFriendCont {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.mutualFriend {
+    display: flex;
+    flex-direction: column;
+    margin-left: 4px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.profileMutualFriendImg {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.profileMutualFriendName {
+    font-size: 14px;
+    width: 80px;
+}
+
+.profileBottomRight {
+    width: clamp(50%, 400px, 400px);
+}
+
+.fbIcon {
+    display: flex;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 4
+}
+
+@media only screen and (max-width: 600px) {
+    .profileCenterTop {
+        width: 100%;
+        height: 200px;
+    }
+
+    .profilePhoto,
+    .profilePhotoCont {
+        height: 120px;
+        width: 120px;
+    }
+
+    .profileCenterDownCont {
+        top: -20px;
+        left: -100px;
+
+    }
+
+    .profileContainer {
+        height: 200px;
+    }
+
+    .profileBottom {
+        top: 240px;
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .profileBottomLeft {
+        box-shadow: none;
+        height: 100px;
+    }
+
+    .profileUserInfo h4 {
+        display: none;
+        margin: 0;
+    }
+
+    .profileMutualFriendCont {
+        display: none;
+    }
+
+    .editCoverPhotoBtn {
+        width: 80px
+    }
+
+    .editPicText {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .profileBottomLeft {
+        height: 640px;
+    }
+
+    .profileMutualFriendCont {
+        top: -75px
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .profileBottomLeft {
+        height: 500px;
+    }
+
+    .profileMutualFriendCont {
+        top: 0px
+    }
+}

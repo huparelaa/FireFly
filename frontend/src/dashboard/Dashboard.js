@@ -19,7 +19,7 @@ function Dashboard() {
             <div className="w-full h-full flex flex-col items-end">
                 <div className="flex flex-1 w-2/5">
                     <div className="flex flex-col items-end w-full h-full ml-auto">       
-                            <FriendList/>
+                        <FriendList/>
                     </div>
                 </div>
             </div>

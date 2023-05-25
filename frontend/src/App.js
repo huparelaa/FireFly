@@ -15,13 +15,16 @@ import { AfterLogin } from "./auth/Middle/AfterLogin";
 import { Provider } from "react-redux";
 import store from "./store";
 import EditProfile from "./layouts/EditProfile";
-import Profile from "./profile/Profile"
-import ProfileId from "./profile/ProfileId";
+import Profile from "./profile/Profile.jsx"
+import ProfileId from "./profile/ProfileId.jsx";
+import Profile2 from "./profile/Profile"
+import ProfileId2 from "./profile/ProfileId";
 import Match from "./match/Match"
 import Analytics from "./analytics/Analytics";
 import Chat from "./chat/Chat";
 import ChatContent from './chat/ChatContent'
 import ChatRoomContent from "./chat/ChatRoomContent";
+import Page404 from "./Page404";
 
 
 function App() {
@@ -50,6 +53,9 @@ function App() {
                         <Route path="/profile/*" element={<Profile />} /> 
                         <Route path="/profile/edit" element={<EditProfile />} />  
                         <Route path="/profile/:id"  element={<ProfileId />}/>
+                        <Route path="/profile2/*" element={<Profile2 />} /> 
+                        <Route path="/profile2/:id"  element={<ProfileId2 />}/>
+                        <Route path="*" element={<Page404 />} />
                     </Routes>
             </Router>   
         </Provider>

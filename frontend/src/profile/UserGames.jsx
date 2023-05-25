@@ -40,6 +40,7 @@ const UserGames = ({itsMe,id}) => {
 
   return (
     <div className="py-10 border-t border-blueGray-200 text-center">
+      <h2 class="text-4xl text-white">Juegos favoritos</h2>
       <div className="flex flex-wrap justify-center">
           {favoriteGames.map((game) => (
              <div key={game.id_game} className="col-md-4 m-1">
