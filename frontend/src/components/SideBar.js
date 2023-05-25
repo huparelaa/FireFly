@@ -60,16 +60,14 @@ function SideBar() {
     const Menus = [
         { title: "Dashboard", src: home, path: "/dashboard" },
         { title: "Match", src: match, path: "/match" },
-        { title: "Forum", src: group, path: "/forum" },
         { title: "Chat", src: chat, path: "/chat" },
-        { title: "Logout", src: logout, gap: true, path: "/" },
-        { title: "Analytics", src: "da", path: "/Analytics" },
+        { title: "Logout", src: logout, gap: true, path: "/logout" },
     ];
     return (
         <div className="flex shadow-sm">
             <div
                 className={` ${open ? "w-72" : "w-20 "
-                    } bg-dark-bg h-screen p-5 rounded-md pt-8 relative duration-300 `}
+                    } bg-dark-bg h-full p-5 rounded-md pt-10 -bottom-0 relative duration-300 `}
             >
                 <img
                     src={control}

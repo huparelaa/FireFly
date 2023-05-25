@@ -17,7 +17,7 @@ function FriendList() {
     getState()
     const intervalId = setInterval(() => {
       getState();
-    }, 5000); // Realizar la consulta cada 5 segundos (ajusta el intervalo según tus necesidades)
+    }, 10000); // Realizar la consulta cada 5 segundos (ajusta el intervalo según tus necesidades)
 
     return () => {
       clearInterval(intervalId);
@@ -52,7 +52,7 @@ const getState = async () => {
     // Lógica para eliminar el amigo
     try {
       await axios.post(`${process.env.REACT_APP_API_URL}/api/delete_friends/`, {  "user_id": amigoId } , config)
-      const amigosActualizados = amigos.filter((amigo) => amigo[1] !== amigoId);
+      const amigosActualizados = amigos.filter((amigo) => amigo[2] !== amigoId);
       setAmigos(amigosActualizados);
       setDropdownOpen(null)
     } catch (error) {
@@ -83,7 +83,7 @@ const getState = async () => {
       <h2 className="font-bold ml-5 mt-5 botto">Mis amigos:</h2>
       <ul className="flex flex-col m-2">
         {amigos.map((friend, index) => (
-              <li className="m-2 h-8 flex items-center hover:bg-light-white rounded-md p-2" key={friend[1]}>
+              <li className="m-2 h-8 flex items-center hover:bg-light-white rounded-md p-2" key={friend[2]}>
                 <img
                     alt="..."
                     className="rounded-full align-middle border-none shadow-lg w-7 h-7 mr-3"
@@ -100,8 +100,8 @@ const getState = async () => {
                   </button>
                   {dropdownOpen === index && (
                     <div className="absolute right-0 mt-2 py-2 w-40 bg-white rounded-md shadow-xl z-10">
-                      <Link to={`../profile/${friend[1]}`}><button className="block px-4 py-2 text-gray-800 hover:bg-gray-100 w-full text-left">Ver perfil</button></Link> 
-                      <button className="block px-4 py-2 text-red-600 hover:bg-gray-100 w-full text-left" onClick={() => eliminarAmigo(friend[1])}>Eliminar amigo</button>
+                      <Link to={`../profile/${friend[2]}`}><button className="block px-4 py-2 text-gray-800 hover:bg-gray-100 w-full text-left">Ver perfil</button></Link> 
+                      <button className="block px-4 py-2 text-red-600 hover:bg-gray-100 w-full text-left" onClick={() => eliminarAmigo(friend[2])}>Eliminar amigo</button>
                     </div>
               )}
                 </div>
