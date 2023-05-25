@@ -6,10 +6,12 @@ import { useNavigate } from 'react-router-dom'
 import UserInformation from './UserInformation';
 import UserIntereses from "./UserIntereses.jsx";
 import UserLogros from "./UserLogros.jsx";
+import UserGames from "./UserGames.jsx";
+import ProfileIcon from '../assets/profileicon.jpg'
 
 export default function Profile() {
   const [usuario, setUsuario] = useState(null);
-  const [view, setView] = useState({ showInfo: true, showIntereses: false, showLogros: false });
+  const [view, setView] = useState({ showInfo: true, showIntereses: false, showLogros: false, showGames: false});
   const Navigate = useNavigate();
   const config = {
     headers: {
@@ -19,13 +21,16 @@ export default function Profile() {
     }
   };
   function showInfo() {
-    setView({ ...view, showInfo: true, showIntereses: false, showLogros: false });
+    setView({ ...view, showInfo: true, showIntereses: false, showLogros: false, showGames: false });
   }
   function showIntereses() {
-    setView({ ...view, showInfo: false, showIntereses: true, showLogros: false });
+    setView({ ...view, showInfo: false, showIntereses: true, showLogros: false, showGames: false });
   }
   function showLogros() {
-    setView({ ...view, showInfo: false, showIntereses: false, showLogros: true });
+    setView({ ...view, showInfo: false, showIntereses: false, showLogros: true, showGames: false });
+  }
+  function showGames() {
+    setView({ ...view, showInfo: false, showIntereses: false, showLogros: false, showGames: true });
   }
   useEffect(() => {
     async function getPhotoName() {
@@ -41,9 +46,11 @@ export default function Profile() {
   }, []);
   if (!usuario) {
     return (
-      <div className="flex w-1/6 items-center justify-end mr-10" id="contenedor">
-        <div className="loaderChatSide" id="loaderChatSide"> </div>
-        <p className="text-white"> Cargando Perfil de Usuario...</p>
+      <div className="flex w-screen items-center justify-center h-screen" id="contenedor">
+        <div className="flex flex-col">
+          <div className="loaderChatSide" id="loaderChatSide"> </div>
+          <h1 className="text-white font-bold"> Cargando perfil de usuario...</h1>
+        </div>
       </div>
     )
   }
@@ -74,7 +81,7 @@ export default function Profile() {
                     <section className="w-1/6">
                       <img
                         className="rounded-full w-full object-contain"
-                        src="https://cdn.discordapp.com/avatars/280421723080228865/dd36c1b817d7c8cf91ca5944a0768c13.webp?size=2048"
+                        src={ProfileIcon}
                         alt="screenshot"
                       />
                     </section>
@@ -128,6 +135,14 @@ export default function Profile() {
                   >
                     Logros y trofeos
                   </button>
+
+                  <button
+                    className="bg-blueGray-800 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="submit"
+                    onClick={showGames}
+                  >
+                    Juegos Preferidos
+                  </button>
                 </div>
                 <div className="container ">
                   <div>
@@ -141,11 +156,14 @@ export default function Profile() {
                   <div>
                     {view.showLogros && <UserLogros usuario={usuario} />}
                   </div>
+
+                  <div>
+                    {view.showGames && <UserGames usuario={usuario} itsMe={true} id={0}/>}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <Footer />
         </section>
       </main>
     </>

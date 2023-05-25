@@ -1,8 +1,9 @@
-import React,{ useState, useRef } from "react";
+import React,{ useState, useRef, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import emailjs from '@emailjs/browser';
+import axios from 'axios'
 
 import control from "../assets/control.png"
 import home from "../assets/home.svg"
@@ -14,6 +15,28 @@ import logo from "../assets/Recurso 3.svg"
 import report from "../assets/report.png"
 
 function SideBar() {
+    const [usuario, setUsuario] = useState(null);
+    const config = {
+        headers: {
+          'Content-type': 'application/json',
+          'Authorization': `JWT ${localStorage.getItem('access')}`,
+          'Accept': 'application/json',
+        }
+      };
+
+    useEffect(() => {
+        async function getUser() {
+          await axios.get(`${process.env.REACT_APP_API_URL}/api/profile/`, config)
+            .then(response => {
+              setUsuario(response.data);
+            })
+            .catch(error => {
+              console.error(error);
+            });
+        }
+        getUser()
+      }, []);
+
     const form = useRef();
     const sendEmail = (event) => {
         event.preventDefault();
@@ -28,16 +51,14 @@ function SideBar() {
     const Report = () => {
         const MySwal = withReactContent(Swal)
         MySwal.fire({
-            title: 'Reporte De Error Del Sistema',
+            title: 'Reporte de Error del Sistema',
             html:
                 <form ref={form} onSubmit={sendEmail}>
-                    <label className="mt-2">Name</label><br/>
-                    <input className="h-12 bg-slate-200 w-8/12" type="text" name="user_name" required/> <br/>
-                    <label>Email</label> <br/>
-                    <input className="h-12 bg-slate-200 w-8/12" type="email" name="user_email" required/><br/>
-                    <label>Message</label> <br/>
-                    <textarea className="h-12 bg-slate-200 w-8/12" name="message" required/> <br/>
-                    <button type="submit" className="text-white bg-teal-700 border rounded-md p-2 hover:bg-teal-800"> Guargar Reporte </button>
+                    <input className="h-12 bg-slate-200 w-8/12" type="hidden" name="user_name" value={usuario.name}/>
+                    <input className="h-12 bg-slate-200 w-8/12" type="hidden" name="user_email" value={usuario.email}/>
+                    <label>Mensaje:</label> <br/>
+                    <textarea className="h-12 bg-slate-200 w-8/12" name="message" required/> <br/><br/>
+                    <button type="submit" className="text-white bg-teal-700 border border-blue-200 border-4 border-style:solid rounded-md p-2 hover:bg-teal-800"> Guargar Mensaje </button>
                 </form>,
             confirmButtonText: 'Confirmar',
             confirmButtonColor: '#0e756e',

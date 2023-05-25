@@ -34,7 +34,7 @@ const SuggestedGames = () => {
       return (
         <div className="flex w-full items-center justify-end mr-10" id="contenedor">
           <div className="loaderSuge" id="loaderSuge"> </div>
-          <p className="text-white"> Cargando Sugerencias... </p> 
+          <p className="text-white"> Cargando sugerencias... </p> 
         </div>
       )
     }
