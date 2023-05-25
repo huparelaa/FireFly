@@ -7,7 +7,6 @@ from match import views as vMatch
 from chat import views as vChat
 from roomChat import views as vRoom
 from review import views as vReview
-from notificaciones import views as vNotificaciones
 
 urlpatterns = [
     path('auth/', include('djoser.urls')),
