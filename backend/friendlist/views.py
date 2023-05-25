@@ -1,7 +1,7 @@
 import json
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from rest_framework.decorators import api_view
 from accounts.models import UserAccount
 from firefly.utils import get_user_id
@@ -20,12 +20,30 @@ def get_friends(request):
         for friend in friends:
             try:                
                 amigo = UserAccount.objects.get(id=friend.amigo_id)
-                print('amigo', amigo)
                 amigos_data.append((amigo.name, amigo.lastname, amigo.id, amigo.email, amigo.is_online))
             except UserAccount.DoesNotExist: 
                 continue
     
     return JsonResponse({ 'friends': amigos_data }, safe=False)
+
+def search_specific_friend(request, id):
+    user_id = get_user_id(request)
+    if isinstance(user_id, HttpResponse):
+        # Maneja el caso cuando get_user_id() devuelve un HttpResponse
+        # Podría ser retornando None, False, o quizás levantando un error
+        return None
+    friends = Amigo.objects.filter(usuario_id=user_id)
+    friend_found = False
+    if friends:
+        for friend in friends:
+            try:                
+                if friend.amigo_id == id:
+                    friend_found = True
+            except UserAccount.DoesNotExist: 
+                continue
+    
+    return friend_found
+
 
 @api_view(['POST'])
 def add_friend(request):

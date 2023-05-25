@@ -9,7 +9,7 @@ import jwt
 from jwt.exceptions import InvalidSignatureError
 from firefly.utils import verify_token, get_user_id
 from google.cloud import storage
-
+from friendlist.views import search_specific_friend
 @api_view(['GET'])
 def has_entered_before(request):
     
@@ -101,14 +101,18 @@ def get_user_by_search(request):
 
 def get_user_by_id(request, **kwargs): 
     user_id = kwargs['user_id']
+    is_friend = search_specific_friend(request, user_id)
     user = UserAccount.objects.get(id=user_id)
+
     userInfo = {
         'name': user.name, 
         'age': user.age, 
         'email' : user.email,
         'about_me': user.about_me,
         'intereses': user.intereses,
-        'logros_y_trofeos': user.logros_y_trofeos
+        'logros_y_trofeos': user.logros_y_trofeos,
+        'is_friend': is_friend
+
     }
     return JsonResponse({'info': userInfo})
 
