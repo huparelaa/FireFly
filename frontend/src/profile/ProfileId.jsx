@@ -79,10 +79,6 @@ function Profile() {
                                 alt="coverphoto"
                                 className="coverPhoto"
                             />
-                            <button className="editCoverPhotoBtn">
-                                {/* <CameraAltIcon /> */}
-                                <b>Edit <span className="editPicText">Cover Photo</span></b>
-                            </button>
                         </div>
                         <div className="profileCenterDown">
                             <div className="profileCenterDownCont">

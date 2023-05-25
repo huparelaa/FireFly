@@ -71,7 +71,7 @@ function Profile() {
                             />
                             <button className="editCoverPhotoBtn">
                                 {/* <CameraAltIcon /> */}
-                                <b>Edit <span className="editPicText">Cover Photo</span></b>
+                                <b>Subir <span className="editPicText">fondo</span></b>
                             </button>
                         </div>
                         <div className="profileCenterDown">
