@@ -28,17 +28,14 @@ def get_friends(request):
 
 def search_specific_friend(request, id):
     user_id = get_user_id(request)
-    if isinstance(user_id, HttpResponse):
-        # Maneja el caso cuando get_user_id() devuelve un HttpResponse
-        # Podría ser retornando None, False, o quizás levantando un error
-        return None
     friends = Amigo.objects.filter(usuario_id=user_id)
     friend_found = False
     if friends:
         for friend in friends:
             try:                
-                if friend.amigo_id == id:
+                if friend.amigo_id == int(id):
                     friend_found = True
+                    break
             except UserAccount.DoesNotExist: 
                 continue
     

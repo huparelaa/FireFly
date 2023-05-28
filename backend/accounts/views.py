@@ -135,10 +135,12 @@ def get_user_by_search(request):
     data = {'users': list(users.values())}
     return JsonResponse(data)
 
+@api_view(['POST'])
 def get_user_by_id(request, **kwargs): 
-    user_id = kwargs['user_id']
-    is_friend = search_specific_friend(request, user_id)
-    user = UserAccount.objects.get(id=user_id)
+    body = json.loads(request.body)
+    amigo_id = body.get('id_friend')
+    is_friend = search_specific_friend(request, amigo_id)
+    user = UserAccount.objects.get(id=amigo_id)
 
     userInfo = {
         'name': user.name, 

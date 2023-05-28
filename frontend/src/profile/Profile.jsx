@@ -119,7 +119,7 @@ function Profile() {
 
                             <div className="profileBottomLeft">
                                 <div className="profileUserInfo">
-                                    <h2 className="aboutMeHeading">Acerca de mi</h2>
+                                    <h2 className="aboutMeHeading">Acerca de mí</h2>
                                     <div className="aboutMeText">{usuario.about_me}</div>
                                     <button className="bg-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mb-1 w-full ease-linear transition-all duration-150"
                                         type="submit"

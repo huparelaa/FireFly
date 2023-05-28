@@ -15,7 +15,13 @@ function Profile() {
     const [usuario, setUsuario] = useState(null);
     const [viewData, setViewData] = useState({ data: "", title: "" });
     const [requestSent, setRequestSent] = useState(false);
-
+    const config = {
+        headers: {
+            'Content-type': 'application/json',
+            'Authorization': `JWT ${localStorage.getItem('access')}`,
+            'Accept': 'application/json',
+        }
+    };
     function showIntereses() {
         setViewData({ data: usuario.intereses, title: "Intereses" });
     }
@@ -24,13 +30,7 @@ function Profile() {
     }
 
     const handleAddFriend = async () => {
-        const config = {
-            headers: {
-                'Content-type': 'application/json',
-                'Authorization': `JWT ${localStorage.getItem('access')}`,
-                'Accept': 'application/json',
-            }
-        };
+        
         const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/add_friends/`, {
             'user_id': id // el ID del user al que se le quiere enviar la solicitud
         }, config);
@@ -46,8 +46,13 @@ function Profile() {
 
     useEffect(() => {
         async function fetchUser() {
-            const res = await axios(`${process.env.REACT_APP_API_URL}/profile/${id}/`);
+            const res = await axios.post(
+                `${process.env.REACT_APP_API_URL}/profile/${id}/`,
+                {"id_friend":id},
+                config
+                );
             setUsuario(res.data.info);
+            console.log(usuario)
             setViewData({ data: res.data.info.intereses, title: "Intereses" });
         }
         fetchUser();
@@ -133,9 +138,9 @@ function Profile() {
 
                             <div className="profileBottomLeft">
                                 <div className="profileUserInfo">
-                                    <h2 className="aboutMeHeading">Acerca de mi</h2>
+                                    <h2 className="aboutMeHeading">Acerca de mí</h2>
                                     <div className="aboutMeText">{usuario.about_me}</div>
-                                    {!requestSent &&
+                                    {!requestSent && !usuario.is_friend &&
                                         <button className="bg-gray active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mb-1 w-full ease-linear transition-all duration-150"
                                             type="submit"
                                             onClick={handleAddFriend}
