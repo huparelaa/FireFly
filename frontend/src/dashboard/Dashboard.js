@@ -14,13 +14,16 @@ function Dashboard() {
                 </div>
                 <div className="flex h-full w-full">
                     <div className="w-4/5">
-                        <div className="w-full h-auto">
-                            <img
-                                src={Banner}
-                                alt="coverphoto"
-                                className="w-full h-auto"
-                            />
+                        <div className="w-full h-auto" style={{ cursor: 'pointer' }}>
+                            <a href="https://discord.gg/SPdaPuhdKH" target="_blank">
+                                <img
+                                    src={Banner}
+                                    alt="coverphoto"
+                                    className="w-2/3 h-auto mx-auto"
+                                />
+                            </a>
                         </div>
+
                         <SuggestedGames />
                     </div>
                     <div className="w-1/5">
