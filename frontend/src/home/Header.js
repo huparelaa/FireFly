@@ -88,7 +88,7 @@ function Header() {
                                     ¿Necesitas ayuda?
                                 </Link>
 
-                                <Link key="comunidad" className="mr-8 hover:bg-login-button hover:shadow-xl p-4 transition rounded-full duration-500" >
+                                <Link key="comunidad" to="/comunidad" className="mr-8 hover:bg-login-button hover:shadow-xl p-4 transition rounded-full duration-500" >
                                     Comunidad
                                 </Link>
                             </div>

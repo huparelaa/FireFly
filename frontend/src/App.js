@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 import Home from "./home/Home";
 import Helper from "./home/Helper";
+import Comunidad from "./home/Comunidad"
 import ResetPassword from "./auth/containers/ResetPassword";
 import ResetPasswordConfirm from "./auth/containers/ResetPasswordConfirm"
 import Login from "./auth/containers/Login"
@@ -34,6 +35,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/help" element={<Helper/>} />
+                        <Route path="/comunidad" element={<Comunidad/>} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />
                         <Route path="/reset-password" element={<ResetPassword />} />

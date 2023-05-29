@@ -4,7 +4,7 @@ import logoPrincipal from "../assets/Logo-principal.svg"
 import btn1_enter from "../assets/enter.svg"
 import { useMediaQuery } from 'react-responsive'
 
-function HeaderHelp() {
+function HeaderComunidad() {
     const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 1024px)' })
     const isTablet = useMediaQuery({ query: '(min-width: 768px) and (max-width: 1023px)' });
     const isMinor = useMediaQuery({ query: '(min-width: 641px) and (max-width: 767px)' });
@@ -46,19 +46,25 @@ function HeaderHelp() {
                     <hr className="w-10/12 ml-7" />
                     <div className="box-border flex flex-col ml-5 justify-between h-full">
                         <div className="flex flex-col">
-                            <Link
+                            <Link to="/help"
                                 className="mr-24 transition rounded-full duration-500 hover:bg-login-button p-4"
-                                style={{ boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.5)" }}
+
                             >
                                 ¿Necesitas ayuda?
                             </Link>
-
-                            <Link to="/comunidad" key="comunidad" className="mr-8 hover:bg-login-button hover:shadow-xl p-4 transition rounded-full duration-500" >
+                            <a href="https://discord.gg/SPdaPuhdKH"
+                                className="mr-8 hover:bg-login-button hover:shadow-xl p-4 transition rounded-full duration-500"
+                                style={{ boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.5)" }}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
                                 Comunidad
-                            </Link>
+                            </a>
+
+
                         </div>
                         <div className="flex flex-col mb-10 md:mb-20">
-                            <Link >
+                            <Link to="/help" >
                                 <button className="bg-login-button-hover transition duration-500 ease-in-out 
                                     p-4 flex items-center rounded-full shadow-xl hover:bg-login-button-hover mr-6 w-48">
                                     <img src={btn1_enter} className="w-5  mr-3" lt="" />
@@ -87,16 +93,23 @@ function HeaderHelp() {
                     {(isDesktopOrLaptop) && (
                         <>
                             <div className="mx-28 mb-1 box-border">
-                                <Link
+                                <Link to="/help"
                                     className="mr-24 transition rounded-full duration-500 hover:bg-login-button p-4"
-                                    style={{ boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.5)" }}
+
                                 >
                                     ¿Necesitas ayuda?
                                 </Link>
 
-                                <Link to="/comunidad" key="comunidad" className="mr-8 hover:bg-login-button hover:shadow-xl p-4 transition rounded-full duration-500" >
+                                <a href="https://discord.gg/SPdaPuhdKH"
+                                    className="mr-8 hover:bg-login-button hover:shadow-xl p-4 transition rounded-full duration-500"
+                                    style={{ boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.5)" }}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
                                     Comunidad
-                                </Link>
+                                </a>
+
+
                             </div>
                             <Link to="/signup">
                                 <button className="bg-login-button transition duration-500 ease-in-out 
@@ -144,4 +157,4 @@ function HeaderHelp() {
         </div>
     )
 }
-export { HeaderHelp }
+export { HeaderComunidad }
