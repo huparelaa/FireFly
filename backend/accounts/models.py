@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from games.models import Game
 
+def upload_to(instance, filename):
+    user_id = instance.id
+    return 'users/{user_id}/{filename}'.format(user_id=user_id, filename=filename)
 
 class UserAccountManager(BaseUserManager): 
     def create_user(self, email, name, lastname, password = None):
@@ -21,7 +24,8 @@ class UserAccount(AbstractBaseUser, PermissionsMixin, models.Model):
     is_staff = models.BooleanField(default = False)
     has_enter_before = models.BooleanField(default = False)
     favorite_games = models.ManyToManyField(Game, symmetrical=False)
-    profile_photo = models.CharField(max_length = 250, default = "")
+    profile_photo = models.ImageField(upload_to=upload_to, blank=True, null=True)
+    background_photo = models.ImageField(upload_to=upload_to, blank=True, null=True)
     age = models.IntegerField(blank = True)
     about_me = models.TextField(max_length = 1000, blank = True)
     intereses = models.TextField(max_length = 1000, blank = True)

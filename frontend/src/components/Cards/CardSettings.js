@@ -7,20 +7,26 @@ import defaultProfile from "../../assets/defaultProfile.jpg"
 
 // components
 export default function CardSettings(props) {
+
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [image, setImage] = useState(null);
+
   const imageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
+      props.setNewFotoUsuario(false);
       const image = e.target.files[0];
       const reader = new FileReader();
-      const base = reader.readAsDataURL(image);
-      props.setCodigoFoto(base);
-
+      setImage(image);
       reader.onloadend = () => {
-        props.setFotoUsuario(reader.result);
+        const imageDataUrl = reader.result;
+        props.setFotoUsuario(imageDataUrl);
+        props.setNewFotoUsuario(true);
+        setSelectedImage(imageDataUrl);
       };
+
+      reader.readAsDataURL(image);
     }
   };
-
-  const [image, setProfileImage] = useState(null)
 
   const navigate = useNavigate()
   var { nombre, edad, aboutMe, setNombre, setEdad, setAboutMe } = props
@@ -48,13 +54,30 @@ export default function CardSettings(props) {
     }
     e.preventDefault();
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/profile/change_info/`, { 'name': name, 'age': parseInt(age), 'about_me': about_me, 'interests': interests, 'achievements_and_trophies': achievements_and_trophies}, config)
-      console.log(res.data);
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/profile/change_info/`, { 'name': name, 'age': parseInt(age), 'about_me': about_me, 'interests': interests, 'achievements_and_trophies': achievements_and_trophies }, config)
+
+      if (props.fotoUsuario) {
+
+        const config2 = {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            'Authorization': `JWT ${localStorage.getItem('access')}`,
+            'Accept': 'application/json',
+          }
+        }
+
+        const formData = new FormData();
+        formData.append("profile_photo", image, image.name);
+        //formData.append("profile_photo", newFile);
+        const resProfilePhoto = await axios.post(`${process.env.REACT_APP_API_URL}/api/profile/upload_profile_photo/`, formData, config2);
+        console.log(resProfilePhoto);
+      }
+
       Swal.fire({
         timer: 3000,
         timerProgressBar: true,
         icon: 'success',
-        title: `Se actualizaron los cambios de manera exitosa!!`,
+        title: `¡Se actualizaron los cambios de manera exitosa!`,
       })
       navigate('/profile');
     } catch (error) {
@@ -67,6 +90,17 @@ export default function CardSettings(props) {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    setFormData({
+      name: props.nombre,
+      age: props.edad,
+      about_me: props.aboutMe,
+      interests: props.intereses,
+      achievements_and_trophies: props.logros_y_trofeos,
+      codePhoto: "",
+    });
+  }, []);
 
   return (
     <>
@@ -83,9 +117,9 @@ export default function CardSettings(props) {
           </div>
         </div>
         <div className="flex flex-wrap justify-center">
-            <h6 className="text-blueGray-400 text-sm mt-3 mb-6 m-2 font-bold uppercase">
-              Foto de perfil:
-            </h6>
+          <h6 className="text-blueGray-400 text-sm mt-3 mb-6 m-2 font-bold uppercase">
+            Foto de perfil:
+          </h6>
           <input
             accept="image/*"
             type="file"
@@ -246,6 +280,6 @@ export default function CardSettings(props) {
           </form>
         </div>
       </div>
-    </>
-  );
+    </>
+  );
 }

@@ -4,14 +4,15 @@ services:
     image: containrrr/watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: --interval 5 frontend backend
+    command: --interval 60 frontend backend
     restart: always  
     depends_on:
       - frontend
       - backend
 
   frontend:
-    image: julianv08/fireflyfrontend:latest
+    build:
+      context: ./frontend  # Specify the directory containing frontend Dockerfile
     container_name: frontend
     deploy:
       resources:
@@ -23,7 +24,7 @@ services:
           memory: 2G
     restart: always
     environment:
-      REACT_APP_API_URL: https://backend.onlinefirefly.social    
+      REACT_APP_API_URL: http://backend:8000 
     links:
       - backend
     ports:
@@ -32,7 +33,8 @@ services:
       - fireflynet
 
   backend:
-    image: julianv08/fireflybackend:latest
+    build:
+      context: ./backend  # Specify the directory containing backend Dockerfile
     container_name: backend
     deploy:
       resources:
@@ -45,12 +47,13 @@ services:
     restart: always
     environment:
       PORT: 8000
+    volumes:
+      - ./media:/app/media 
     ports:
       - 8000:8000
-    volumes:
-      - /root/media:/app/media
     networks:
       - fireflynet
+
 networks:
   fireflynet:
     driver: bridge

@@ -39,26 +39,28 @@ const SuggestedGames = () => {
       )
     }
     return (
-    <div className="text-center">
-        <h3 className='text-white mb-4 font-bold'>Juegos sugeridos:</h3>
-            <div className="flex w-full h-40">
-                {suggestedGames.map((game) => (
-                    <div key={game.id_game} className="col-md-4">
-                        <div className="flex flex-col mx-2 text-white bg-friend-list p-3 box-border shadow-md">
-                            <img src={game.img} className="w-40 h-32" alt={game.title} />
-                            <div className="card-body w-40 rounded-lg">
-                            <h5 className="my-4 truncate" >
-                                {game.title}
-                            </h5>
-                                <button onClick={() => handleSelectGame(game.id_game)} className="border rounded-md p-2 hover:bg-dark-purple">
-                                    Seleccionar
-                                </button>
-                            </div>
-                          </div>
-                    </div>
-                ))}
-            </div>
-    </div>
+<div className="text-center">
+  <h3 className="text-white mb-4 font-bold">Juegos sugeridos:</h3>
+  <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
+    {suggestedGames.map((game) => (
+      <div key={game.id_game} className="text-white bg-friend-list p-3 box-border shadow-md">
+        <img src={game.img} className="w-40 h-32 object-cover mx-auto mb-4" alt={game.title} />
+        <div className="card-body">
+          <h5 className="my-2 truncate">{game.title}</h5>
+          <button
+            onClick={() => handleSelectGame(game.id_game)}
+            className="border rounded-md p-2 hover:bg-dark-purple"
+          >
+            Seleccionar
+          </button>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+
+    
   );
 };
 

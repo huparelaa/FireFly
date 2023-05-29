@@ -13,6 +13,8 @@ function Profile() {
     const { id } = useParams();
     const Navigate = useNavigate();
     const [usuario, setUsuario] = useState(null);
+    const [loading, setLoading] = useState(true);
+
     const [viewData, setViewData] = useState({ data: "", title: "" });
     const [requestSent, setRequestSent] = useState(false);
     const config = {
@@ -46,18 +48,20 @@ function Profile() {
 
     useEffect(() => {
         async function fetchUser() {
+            setLoading(true);
             const res = await axios.post(
                 `${process.env.REACT_APP_API_URL}/profile/${id}/`,
                 {"id_friend":id},
                 config
                 );
             setUsuario(res.data.info);
-            console.log(usuario)
+            console.log(res.data.info)
             setViewData({ data: res.data.info.intereses, title: "Intereses" });
+            setLoading(false);
         }
         fetchUser();
     }, [id]);
-    if (!usuario) {
+    if (!usuario && loading) {
         return (
             <div className="flex w-screen items-center justify-center h-screen" id="contenedor">
                 <div className="flex flex-col">
@@ -82,7 +86,7 @@ function Profile() {
                     <div className="profileCenter">
                         <div className="profileCenterTop">
                             <img
-                                src={"https://www.xtrafondos.com/wallpapers/control-de-playstation-10819.jpg"}
+                                src={usuario.background_photo?`${process.env.REACT_APP_API_URL}${usuario.background_photo}`:"https://www.xtrafondos.com/wallpapers/control-de-playstation-10819.jpg"}
                                 alt="coverphoto"
                                 className="coverPhoto"
                             />
@@ -91,7 +95,7 @@ function Profile() {
                             <div className="profileCenterDownCont">
                                 <div className="profilePhotoCont">
                                     <img
-                                        src={ProfileIcon}
+                                        src={usuario.photo ? `${process.env.REACT_APP_API_URL}${usuario.photo}` : ProfileIcon}
                                         alt="profiephoto"
                                         className="profilePhoto"
                                     />

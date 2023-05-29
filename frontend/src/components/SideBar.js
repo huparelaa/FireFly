@@ -86,7 +86,7 @@ function SideBar() {
         { title: "Logout", src: logout, gap: true, path: "/logout" },
     ];
     return (
-        <div className="flex shadow-sm">
+        <div className="flex shadow-sm h-screen">
             <div
                 className={` ${open ? "w-72" : "w-20 "
                     } bg-dark-bg h-full p-5 rounded-md pt-10 -bottom-0 relative duration-300 `}

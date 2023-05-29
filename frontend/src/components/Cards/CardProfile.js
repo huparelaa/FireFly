@@ -1,8 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import defaultProfile from "../../assets/defaultProfile.jpg"
 // components
 
 export default function CardProfile(props) {
+
+  const [selectedImage, setSelectedImage] = useState(defaultProfile);
+
+  useEffect(() => {
+    console.log("new photo")
+    if(props.newFotoUsuario){
+      setSelectedImage(props.fotoUsuario);
+    }
+  }, [props.newFotoUsuario]);
+
+  useEffect(() => {
+    if(props.fotoUsuario){
+      setSelectedImage(`${process.env.REACT_APP_API_URL}${props.fotoUsuario}`)
+    }
+  }, []);
+
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-16">
@@ -10,19 +26,11 @@ export default function CardProfile(props) {
           <div className="flex flex-wrap justify-center">
             <div className="w-full px-4 flex justify-center">
               <div className="relative">
-                {props.fotoUsuario ?
-                  <img
-                    alt="..."
-                    src={props.fotoUsuario}
-                    className="shadow-xl rounded-full h-auto align-middle border-none relative   max-w-150-px"
-                  />
-                  :
-                  <img
-                    alt="..."
-                    src={defaultProfile}
-                    className="shadow-xl rounded-full h-auto align-middle border-none relative   max-w-150-px"
-                  />
-                }
+                <img
+                  alt="..."
+                  src={selectedImage}
+                  className="shadow-xl rounded-full h-auto align-middle border-none relative   max-w-150-px"
+                />
               </div>
             </div>
           </div>

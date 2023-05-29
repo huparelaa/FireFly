@@ -39,7 +39,7 @@ function UserInfo() {
                 <img
                     alt="..."
                     className="rounded-full align-middle border-none shadow-lg"
-                    src={ProfileIcon}
+                    src={usuario.photo?`${process.env.REACT_APP_API_URL}${usuario.photo}`:ProfileIcon}
                 />
             </span>
             <Link to="/profile">

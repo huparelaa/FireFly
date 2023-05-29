@@ -86,7 +86,7 @@ const MatchRecomendations = ({ similarUsers, setSimilarUsers }) => {
               <img
                 alt="..."
                 className="rounded-md align-middle border-none bg-cover shadow-lg w-24 h-24 mb-4"
-                src={defaultProfile}
+                src={user.photo?`${process.env.REACT_APP_API_URL}${user.photo}`:defaultProfile}
               />
               <p className="text-white">
                 {" "}

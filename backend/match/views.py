@@ -38,11 +38,14 @@ def match(request):
     count = 0
     for user, similarity in similar_users:
         if similarity >= 0 and count < 3:
+            photo= None
+            if(user.profile_photo):
+                photo = user.profile_photo.url
             serialized_user = {
                 'id': user.id,
                 'email': user.email,
                 'name': user.name,
-                'profile_photo': user.profile_photo,
+                'photo': photo,
                 'age': user.age,
                 'similarity': similarity,
             }

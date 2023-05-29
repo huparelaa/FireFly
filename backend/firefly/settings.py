@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'roomChat',
     #---review---
-    'review'
+    'review',
+    'drf_spectacular'
 ]
 
 MIDDLEWARE = [
@@ -112,7 +113,7 @@ WSGI_APPLICATION = 'firefly.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'FireFly1',
+        'NAME': 'FireFly2',
         'CLIENT': {
             'host': 'mongodb+srv://julianv12:Julian.12@cluster0.qckjtl4.mongodb.net/test',
             'username': 'julianv12',
@@ -173,9 +174,15 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20
 }
+
+SPECTACULAR_SETTINGS={
+    'TITLE':'FireFly Api',
+}
+
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
     'BLACKLIST_AFTER_ROTATION': False,
@@ -211,3 +218,6 @@ SITE_NAME = 'FireFly'
 SECRET_KEY = 'sTu^th#j-9z=_e8l)fo@p@f$&m0nq3c%*-r+2!f0n$k9ah6)v^'
 AUTH_USER_MODEL =  'accounts.UserAccount'
 CSRF_COOKIE_NAME = 'csrf_token'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')

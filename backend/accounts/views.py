@@ -36,11 +36,20 @@ def get_user_profile(request):
     # favorite_games = [obj for obj in user.favorite_games.get(useraccount = user_id)]
     # print(favorite_games)
     # serializers_favorite_games = serializers.serialize('json', favorite_games)
+
+    background_photo= None
+    photo= None
+    if(user.background_photo):
+        background_photo = user.background_photo.url
+    if(user.profile_photo):
+        photo = user.profile_photo.url
+
     profile = {
         'name': user.name,
         'email': user.email,
         'age': user.age,
-        'photo': user.profile_photo,
+        'photo': photo,
+        'background_photo': background_photo,
         'about_me': user.about_me,
         'intereses': user.intereses,
         'logros_y_trofeos': user.logros_y_trofeos
@@ -87,9 +96,14 @@ def user_games_by_id(request, **kwargs):
 def get_user_name_photo(request): 
     user_id = get_user_id(request)
     user = UserAccount.objects.get(id = user_id)
+
+    photo = None
+    if(user.profile_photo):
+        photo = user.profile_photo.url
+
     photo_name = {
         'name': user.name, 
-        'photo': user.profile_photo,
+        'photo': photo,
     }
     return JsonResponse(photo_name)
 
@@ -126,6 +140,78 @@ def change_user_info(request):
     user.save()
     return JsonResponse({ 'Confirm': 'Info changed succesfull' })
 
+
+@api_view(['POST'])
+def upload_profile_photo(request):
+    user_id = get_user_id(request)
+    user = UserAccount.objects.get(id=user_id)
+
+    profile_photo_file = request.FILES.get('profile_photo')
+
+    if profile_photo_file:
+        if user.profile_photo:
+            # Delete the existing profile photo
+            user.profile_photo.delete(save=False)
+
+        # Get the file extension
+        extension = profile_photo_file.name.split('.')[-1]
+        # Rename the file
+        profile_photo_file.name = f"profile_photo.{extension}"
+
+        # Save the renamed file to the user's profile_photo field
+        user.profile_photo = profile_photo_file
+        user.save()
+
+    return JsonResponse({'Confirm': 'Profile photo uploaded successfully'})
+
+@api_view(['POST'])
+def upload_background_photo(request):
+    user_id = get_user_id(request)
+    user = UserAccount.objects.get(id=user_id)
+
+    background_photo_file = request.FILES.get('background_photo')
+
+    if background_photo_file:
+        if user.background_photo:
+            # Delete the existing background photo
+            user.background_photo.delete(save=False)
+
+        # Get the file extension
+        extension = background_photo_file.name.split('.')[-1]
+        # Rename the file
+        background_photo_file.name = f"background_photo.{extension}"
+
+        # Save the renamed file to the user's background_photo field
+        user.background_photo = background_photo_file
+        user.save()
+
+    return JsonResponse({'Confirm': 'Background photo uploaded successfully'})
+
+@api_view(['GET'])
+def get_profile_photo_url(request):
+    user_id = get_user_id(request)
+    user = UserAccount.objects.get(id=user_id)
+
+    if user.profile_photo:
+        profile_photo_url = user.profile_photo.url
+    else:
+        profile_photo_url = None
+
+    return JsonResponse({'profile_photo_url': profile_photo_url})
+
+
+@api_view(['GET'])
+def get_background_photo_url(request):
+    user_id = get_user_id(request)
+    user = UserAccount.objects.get(id=user_id)
+
+    if user.background_photo:
+        background_photo_url = user.background_photo.url
+    else:
+        background_photo_url = None
+
+    return JsonResponse({'background_photo_url': background_photo_url})
+
 def get_user_by_search(request):
     name = request.GET.get('name')
     if name:
@@ -141,6 +227,14 @@ def get_user_by_id(request, **kwargs):
     amigo_id = body.get('id_friend')
     is_friend = search_specific_friend(request, amigo_id)
     user = UserAccount.objects.get(id=amigo_id)
+    
+    photo = None
+    background_photo = None
+
+    if(user.background_photo):
+        background_photo = user.background_photo.url
+    if(user.profile_photo):
+        photo = user.profile_photo.url
 
     userInfo = {
         'name': user.name, 
@@ -149,8 +243,9 @@ def get_user_by_id(request, **kwargs):
         'about_me': user.about_me,
         'intereses': user.intereses,
         'logros_y_trofeos': user.logros_y_trofeos,
-        'is_friend': is_friend
-
+        'is_friend': is_friend,
+        'photo': photo,
+        'background_photo': background_photo,
     }
     return JsonResponse({'info': userInfo})
 

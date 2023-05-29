@@ -18,9 +18,13 @@ def get_friends(request):
     amigos_data = []
     if friends:
         for friend in friends:
-            try:                
+            try:        
                 amigo = UserAccount.objects.get(id=friend.amigo_id)
-                amigos_data.append((amigo.name, amigo.lastname, amigo.id, amigo.email, amigo.is_online))
+                photo= None
+                if(amigo.profile_photo):
+                    photo = amigo.profile_photo.url
+
+                amigos_data.append((amigo.name, amigo.lastname, amigo.id, amigo.email, amigo.is_online, photo))
             except UserAccount.DoesNotExist: 
                 continue
     

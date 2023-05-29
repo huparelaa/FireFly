@@ -33,6 +33,7 @@ const getState = async () => {
         },
       }
     );
+    console.log(response.data)
     setAmigos(response.data.friends);
   }
   catch(err){
@@ -79,7 +80,7 @@ const getState = async () => {
   }
 
   return (
-    <div className="text-white w-2/4 h-full flex flex-col bg-friend-list rounded-3xl shadow-sm" >
+    <div className="text-white w-full h-full flex flex-col bg-friend-list rounded-3xl shadow-sm" >
       <h2 className="font-bold ml-5 mt-5 botto">Mis amigos:</h2>
       <ul className="flex flex-col m-2">
         {amigos.map((friend, index) => (
@@ -87,7 +88,7 @@ const getState = async () => {
                 <img
                     alt="..."
                     className="rounded-full align-middle border-none shadow-lg w-7 h-7 mr-3"
-                    src={defaultProfile}
+                    src={friend[5] ? `${process.env.REACT_APP_API_URL}${friend[5]}` : defaultProfile}
                 /> 
                 <p>{friend[0]} {friend[1]}</p>
                 <span className="ml-4">{(friend[4]== "true") ? <RadioButtonCheckedTwoToneIcon sx={{ fontSize: 15, color: "green" }} /> : <RadioButtonUncheckedTwoToneIcon sx={{ fontSize: 15, color: "red" }} />}</span>
