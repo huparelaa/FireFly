@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../apiConnection';
 import { Navigate } from 'react-router-dom';
 import { MdSearch } from 'react-icons/md';
 

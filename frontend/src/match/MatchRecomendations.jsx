@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Swal from "sweetalert2";
+import axios from "../apiConnection";
 import defaultProfile from "../assets/defaultProfile.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import Confetti from "react-confetti";

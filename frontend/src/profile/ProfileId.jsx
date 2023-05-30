@@ -3,7 +3,7 @@ import "./Profile.css";
 import Feed from "../components/feed/Feed";
 import { Link } from "react-router-dom";
 import { SideBar } from "../components/SideBar";
-import axios from 'axios'
+import axios from '../apiConnection'
 import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import ProfileIcon from '../assets/profileicon.jpg'

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../apiConnection";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner, faUsers, faUser } from "@fortawesome/free-solid-svg-icons";
 

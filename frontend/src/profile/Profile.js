@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios'
+import axios from '../apiConnection'
 import Navbar from "../components/Navbars/AuthNavbar.js";
 import { Footer } from "../home/Footer.js"
 import { useNavigate } from 'react-router-dom'

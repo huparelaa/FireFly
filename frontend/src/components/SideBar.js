@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import emailjs from '@emailjs/browser';
-import axios from 'axios'
+import axios from '../apiConnection'
 
 import control from "../assets/control.png"
 import home from "../assets/home.svg"

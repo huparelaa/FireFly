@@ -1,15 +1,11 @@
 import React, { useEffect, useState, } from "react";
-import axios from "axios";
-import defaultProfile from "../assets/defaultProfile.jpg"
+import axios from "../apiConnection";
 import { useParams } from 'react-router-dom'
-import { Link } from "react-router-dom";
-import { MdArrowBackIos } from "react-icons/md";
 import Navbar from "../components/Navbars/AuthNavbar.js";
 import { useNavigate } from 'react-router-dom'
 import UserInformation from './UserInformation';
 import UserIntereses from "./UserIntereses.jsx";
 import UserLogros from "./UserLogros.jsx";
-import { Footer } from "../home/Footer.js"
 import UserGames from "./UserGames.jsx";
 import ProfileIcon from '../assets/profileicon.jpg'
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../apiConnection";
 import Swal from "sweetalert2";
 import { SideBar } from "../components/SideBar";
 import RecentMatches from './RecentMatches'

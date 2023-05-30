@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom'
-import axios from "axios"
+import axios from "../apiConnection"
 import ProfileIcon from '../assets/profileicon.jpg'
 
 function UserInfo() {

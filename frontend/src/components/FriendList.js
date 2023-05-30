@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../apiConnection";
 import { Link, Navigate } from "react-router-dom";
 import defaultProfile from "../assets/defaultProfile.jpg"
 import RadioButtonCheckedTwoToneIcon from '@mui/icons-material/RadioButtonCheckedTwoTone';

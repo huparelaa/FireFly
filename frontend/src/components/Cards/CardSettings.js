@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { changeUserInfo } from "../../auth/actions/auth"
-import axios from "axios";
+import axios from "../../apiConnection";
 import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom";
 import defaultProfile from "../../assets/defaultProfile.jpg"

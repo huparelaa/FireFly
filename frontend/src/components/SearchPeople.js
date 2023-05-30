@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from 'axios'
+import axios from '../apiConnection'
 import { MdSearch } from 'react-icons/md';
 
 function SearchPeople() {

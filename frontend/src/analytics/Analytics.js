@@ -1,5 +1,5 @@
 import react, {useState, useEffect} from 'react'
-import axios from 'axios'
+import axios from '../apiConnection'
 
 function Analytics(){
     const [data, setData] = useState(null)
