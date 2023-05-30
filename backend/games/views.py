@@ -123,7 +123,7 @@ def recommended_games(request):
     for game in most_played_games_sorted:
         if game not in user_games:
             recommended_games.append(game)
-        if len(recommended_games) == 10:
+        if len(recommended_games) == 8:
             break
     # Convertir los objetos Game a diccionarios para la respuesta JSON
     response_data = {'juegos_recomendados': []}

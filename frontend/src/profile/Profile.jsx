@@ -90,7 +90,7 @@ function Profile() {
                     setViewData({
                         data: response.data.intereses,
                         title: (
-                            <span className="underline ">
+                            <span className="">
                                 Intereses
                             </span>
                         ),
@@ -109,7 +109,7 @@ function Profile() {
             data: usuario.intereses,
             title: (
                 <span>
-                    <span className="underline ">Intereses</span>
+                    <span className="">Intereses</span>
                 </span>
             ),
         });
@@ -120,7 +120,7 @@ function Profile() {
             data: usuario.logros_y_trofeos,
             title: (
                 <span>
-                    <span className="underline">Logros y trofeos</span>
+                    <span className="">Logros y trofeos</span>
                 </span>
             ),
         });
@@ -131,7 +131,7 @@ function Profile() {
         return (
             <div className="flex w-screen items-center justify-center h-screen" id="contenedor">
                 <div className="flex flex-col">
-                    <div className="loaderChatSide" id="loaderChatSide"> </div>
+                    <div className="loader" id="loader"> </div>
                     <h1 className="text-white font-bold"> Cargando perfil de usuario...</h1>
                 </div>
             </div>
@@ -236,7 +236,7 @@ function Profile() {
                         <div className="profileBottom ">
                             <div className="profileBottomLeft bg-info-home">
                                 <div className="profileUserInfo text-zinc-100">
-                                    <h2 className="aboutMeHeading text-white border-white underline mt-3">Acerca de mí</h2>
+                                    <h2 className="aboutMeHeading text-white border-white mt-3">Acerca de mí</h2>
                                     <div className="aboutMeText m-4 text-lg text-justify">{usuario.about_me}</div>
                                 </div>
                             </div>
