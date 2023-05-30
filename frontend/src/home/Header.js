@@ -99,7 +99,8 @@ function Header() {
                                                             src={usuario.photo ? `${process.env.REACT_APP_API_URL}${usuario.photo}` : ProfileIcon}
                                                         />
                                                     </span>
-                                                    <p className="text-white"> {usuario.name} </p>
+                                                    <p className="text-white ml-auto">{usuario.name} {usuario.lastname}</p>
+
                                                 </div>
                                             </Link>
                                         </div>
@@ -153,7 +154,7 @@ function Header() {
                                             className=" ease-in-out p-4 flex items-center mr-6"
                                         >
                                             <Link to="/dashboard">
-                                                <div className="flex justify-center items-center">
+                                                <div className="flex justify-center items-center hover:bg-login-button hover:shadow-xl p-4 transition rounded-full">
                                                     <span className="w-10 h-12 mr-5 flex items-center rounded-full">
                                                         <img
                                                             alt="..."
@@ -161,8 +162,9 @@ function Header() {
                                                             src={usuario.photo ? `${process.env.REACT_APP_API_URL}${usuario.photo}` : ProfileIcon}
                                                         />
                                                     </span>
-                                                    <p className="text-white"> {usuario.name} </p>
+                                                    <p className="text-white ml-auto">{usuario.name} {usuario.lastname}</p>
                                                 </div>
+
                                             </Link>
                                         </div>
                                         :
@@ -189,7 +191,7 @@ function Header() {
                                             className=" ease-in-out p-4 flex items-center mr-6"
                                         >
                                             <Link to="/dashboard">
-                                                <div className="flex justify-center items-center">
+                                            <div className="flex justify-center items-center hover:bg-login-button hover:shadow-xl p-4 transition rounded-full">
                                                     <span className="w-10 h-12 mr-5 flex items-center rounded-full">
                                                         <img
                                                             alt="..."
@@ -197,7 +199,7 @@ function Header() {
                                                             src={usuario.photo ? `${process.env.REACT_APP_API_URL}${usuario.photo}` : ProfileIcon}
                                                         />
                                                     </span>
-                                                    <p className="text-white"> {usuario.name} </p>
+                                                    <p className="text-white ml-auto">{usuario.name} {usuario.lastname}</p>
                                                 </div>
                                             </Link>
                                         </div>
