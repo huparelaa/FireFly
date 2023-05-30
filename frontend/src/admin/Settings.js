@@ -8,6 +8,7 @@ import CardProfile from "../components/Cards/CardProfile.js";
 
 export default function Settings() {
   const [nombre, setNombre] = useState("")
+  const [apellidos, setApellidos] = useState("")
   const [edad, setEdad] = useState("")
   const [aboutMe, setAboutMe] = useState("")
   const [intereses, setIntereses] = useState("")
@@ -36,6 +37,7 @@ export default function Settings() {
           setUsuario(response.data);
           console.log(response.data)
           setNombre(response.data.name || '');
+          setApellidos(response.data.lastname || '');
           setEdad(response.data.age || 0);
           setIntereses(response.data.intereses || '');
           setAboutMe(response.data.about_me || '');
@@ -73,7 +75,9 @@ export default function Settings() {
             logros_y_trofeos={logros_y_trofeos}
             fotoUsuario={fotoUsuario}
             codigoFoto={codigoFoto}
+            apellidos={apellidos}
             setNombre={setNombre}
+            setApellidos={setApellidos}
             setEdad={setEdad}
             setAboutMe={setAboutMe}
             setIntereses={setIntereses}
@@ -81,11 +85,13 @@ export default function Settings() {
             setFotoUsuario={setFotoUsuario}
             setCodigoFoto={setCodigoFoto}
             setNewFotoUsuario={setNewFotoUsuario}
+            newFotoUsuario={newFotoUsuario}
           />
         </div>
         <div className="w-full lg:w-4/12 px-4 ">
           <CardProfile
             nombre={nombre}
+            apellidos={apellidos}
             edad={edad}
             aboutMe={aboutMe}
             intereses={intereses}

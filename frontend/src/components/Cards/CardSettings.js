@@ -29,9 +29,10 @@ export default function CardSettings(props) {
   };
 
   const navigate = useNavigate()
-  var { nombre, edad, aboutMe, setNombre, setEdad, setAboutMe } = props
+  var { nombre, apellidos, edad, aboutMe, setNombre, setEdad, setAboutMe } = props
   const [formData, setFormData] = useState({
     name: "",
+    lastname: "",
     age: 0,
     about_me: "",
     interests: "",
@@ -39,7 +40,7 @@ export default function CardSettings(props) {
     codePhoto: "",
   });
 
-  const { name, age, about_me, interests, achievements_and_trophies } = formData;
+  const { name, lastname, age, about_me, interests, achievements_and_trophies } = formData;
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -54,9 +55,9 @@ export default function CardSettings(props) {
     }
     e.preventDefault();
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/profile/change_info/`, { 'name': name, 'age': parseInt(age), 'about_me': about_me, 'interests': interests, 'achievements_and_trophies': achievements_and_trophies }, config)
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/profile/change_info/`, { 'name': name, 'lastname':lastname, 'age': parseInt(age), 'about_me': about_me, 'interests': interests, 'achievements_and_trophies': achievements_and_trophies }, config)
 
-      if (props.fotoUsuario) {
+      if (props.fotoUsuario && props.newFotoUsuario) {
 
         const config2 = {
           headers: {
@@ -70,7 +71,6 @@ export default function CardSettings(props) {
         formData.append("profile_photo", image, image.name);
         //formData.append("profile_photo", newFile);
         const resProfilePhoto = await axios.post(`${process.env.REACT_APP_API_URL}/api/profile/upload_profile_photo/`, formData, config2);
-        console.log(resProfilePhoto);
       }
 
       Swal.fire({
@@ -150,6 +150,28 @@ export default function CardSettings(props) {
                     onChange={
                       e => {
                         props.setNombre(e.target.value);
+                        onChange(e)
+                      }
+                    }
+                  />
+                </div>
+                <div className="relative w-full mb-3">
+                  <label
+                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    htmlFor="grid-password"
+                  >
+                    Apellidos
+                  </label>
+                  <input
+                    type="text"
+                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    placeholder="Apellidos"
+                    name='lastname'
+                    value={lastname}
+                    autoComplete="off"
+                    onChange={
+                      e => {
+                        props.setApellidos(e.target.value);
                         onChange(e)
                       }
                     }

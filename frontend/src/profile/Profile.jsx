@@ -186,7 +186,7 @@ function Profile() {
                                     />
                                 </div>
                                 <h4 className="profileUsername">
-                                    {usuario.name}{" "}
+                                    {usuario.name} {usuario.lastname}{" "}
                                     {usuario.age &&
                                         <p style={{ fontSize: "16px", margin: "0", opacity: "0.5" }}>
                                             {usuario.age} años

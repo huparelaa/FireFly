@@ -22,6 +22,8 @@ function Logout(){
         }
     }
     if (!isLoading) {
+            localStorage.setItem('access', '');
+            localStorage.setItem('refreshToken', '');
             Swal.fire({
                 timer: 1000,
                 timerProgressBar: true,

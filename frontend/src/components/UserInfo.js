@@ -43,7 +43,7 @@ function UserInfo() {
                 />
             </span>
             <Link to="/profile">
-                <p className="text-white"> {usuario.name} </p> 
+                <p className="text-white"> {usuario.name} {usuario.lastname} </p> 
             </Link>
         </div>
 

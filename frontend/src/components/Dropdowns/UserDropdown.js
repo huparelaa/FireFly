@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "../../apiConnection"
 import { createPopper } from "@popperjs/core";
 import { Link } from 'react-router-dom'
 import ProfileIcon from '../../assets/profileicon.jpg'
+import { useNavigate } from "react-router-dom";
 
 const UserDropdown = (props) => {
   // dropdown props
@@ -17,15 +19,45 @@ const UserDropdown = (props) => {
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
   };
+
+  const navigate = useNavigate();
+
+  const [usuario, setUsuario] = useState(null);
+  const config = {
+    headers: {
+      'Content-type': 'application/json',
+      'Authorization': `JWT ${localStorage.getItem('access')}`,
+      'Accept': 'application/json',
+    }
+  };
+  useEffect(() => {
+    async function getPhotoName() {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/get_name_photo/`, config)
+        .then(response => {
+          setUsuario(response.data);
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+    getPhotoName()
+  }, []);
+  if (!usuario) {
+    return (
+      <div className="flex w-full items-center justify-end mr-10" id="contenedor">
+        <div className="loaderPerfil" id="loaderPerfil"> </div>
+        <p className="text-white"> Cargando usuario... </p>
+      </div>
+    )
+  }
   return (
     <>
       <a
         className="text-blueGray-500 block"
-        href="#pablo"
         ref={btnDropdownRef}
-        onClick={(e) => {
-          e.preventDefault();
-          dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
+        onClick={() => {
+          navigate('/profile')
         }}
       >
         <div className="items-center flex">
@@ -33,40 +65,11 @@ const UserDropdown = (props) => {
             <img
               alt="..."
               className="w-full rounded-full align-middle border-none shadow-lg"
-              src={ProfileIcon}
+              src={usuario.photo ? `${process.env.REACT_APP_API_URL}${usuario.photo}` : ProfileIcon}
             />
           </span>
         </div>
       </a>
-      <div
-        ref={popoverDropdownRef}
-        className={
-          (dropdownPopoverShow ? "block " : "hidden ") +
-          "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
-        }
-      >
-        {props.name && (
-          <>
-            <Link to="/profile"
-              className={
-                "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-              }
-            >
-              <p>{props.name}</p>
-            </Link>
-            <div className="h-0 my-2 border border-solid border-blueGray-100" />
-          </>
-        )}
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Cerrar sesion
-        </a>
-      </div>
     </>
   );
 };

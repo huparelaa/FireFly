@@ -46,6 +46,7 @@ def get_user_profile(request):
 
     profile = {
         'name': user.name,
+        'lastname': user.lastname,
         'email': user.email,
         'age': user.age,
         'photo': photo,
@@ -103,6 +104,7 @@ def get_user_name_photo(request):
 
     photo_name = {
         'name': user.name, 
+        'lastname': user.lastname,
         'photo': photo,
     }
     return JsonResponse(photo_name)
@@ -113,6 +115,7 @@ def change_user_info(request):
     user = UserAccount.objects.get(id = user_id)
     data = json.loads(request.body.decode('utf-8'))
     name = data.get('name')
+    lastname = data.get('lastname')
     age = data.get('age')
     about_me = data.get('about_me')
     interests = data.get('interests')
@@ -121,6 +124,10 @@ def change_user_info(request):
         user.name = name
     else:
         user.name = user.name
+    if(lastname):
+        user.lastname = lastname
+    else:
+        user.lastname = user.lastname
     if(about_me):
         user.about_me = about_me
     else:
@@ -238,6 +245,7 @@ def get_user_by_id(request, **kwargs):
 
     userInfo = {
         'name': user.name, 
+        'lastname': user.lastname,
         'age': user.age, 
         'email' : user.email,
         'about_me': user.about_me,

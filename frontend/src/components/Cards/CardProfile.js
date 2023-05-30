@@ -36,10 +36,10 @@ export default function CardProfile(props) {
           </div>
           <div className="text-center mt-12">
             <h1 className="text-xl font-semibold leading-normal text-blueGray-700 mb-2" >
-              Nombre
+              Nombre Completo
             </h1>
             <h3 className="text-xl  leading-normal text-blueGray-700 mb-2">
-              {props.nombre}
+              {props.nombre} {props.apellidos}
             </h3>
           </div>
           <div className="text-center mt-12">
