@@ -25,7 +25,7 @@ axiosInstance.interceptors.response.use((response) => {
                 let refreshValue = localStorage.getItem("refreshToken")
                 if(refreshValue==="" ||refreshValue === undefined||refreshValue===null)
                 {
-                    window.location = "/login";
+                    return Promise.reject()
                 }
                 let res = await refresh_token();
                 if (res.data['access']) {
@@ -35,8 +35,8 @@ axiosInstance.interceptors.response.use((response) => {
                 }else if(res.response.status === 401){
                     Swal.fire({
                         icon: 'error',
-                        title: 'La sesión se ha cerrado',
-                        footer: '<a href="/login">Inicia sesión nuevamente</a>',
+                        title: 'La sesion se ha cerrado',
+                        footer: '<a href="/login">Inicia sesion nuevamente</a>',
                         allowEscapeKey: false,
                     }).then(function () {
                         localStorage.setItem('access', "");
@@ -46,19 +46,6 @@ axiosInstance.interceptors.response.use((response) => {
                 }
                 return axiosInstance(config);
             } catch (err) {
-                const refresh_token = localStorage.getItem('refreshToken');
-                if(refresh_token !== "" && refresh_token !== undefined && refresh_token !== null){
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'La sesión se ha cerrado',
-                        footer: '<a href="/login">Inicia sesión nuevamente</a>',
-                        allowEscapeKey: false,
-                    }).then(function () {
-                        localStorage.setItem('access', "");
-                        localStorage.setItem('refreshToken', "");
-                        window.location = "/login";
-                    });
-                }
                 return Promise.reject(err)
             }
         }

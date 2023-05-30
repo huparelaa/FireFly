@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import logoPrincipal from "../assets/Logo-principal.svg"
 import btn1_enter from "../assets/enter.svg"
 import { useMediaQuery } from 'react-responsive'
+import axios from "../apiConnectionLanding";
+import ProfileIcon from '../assets/profileicon.jpg'
 
 function Header() {
     const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 1024px)' })
@@ -12,6 +14,9 @@ function Header() {
     const isPortrait = useMediaQuery({ query: '(orientation: portrait)' })
 
     const [showMenu, setShowMenu] = useState(false)
+    const [usuario, setUsuario] = useState(null);
+    const [loading, setLoading] = useState(true);
+
     const toggleMenu = () => {
         setShowMenu((prevShowMenu) => !prevShowMenu);
     }
@@ -25,6 +30,29 @@ function Header() {
             document.body.classList.remove('overflow-hidden');
         }
     }, [showMenu]);
+
+    const config = {
+        headers: {
+            'Content-type': 'application/json',
+            'Authorization': `JWT ${localStorage.getItem('access')}`,
+            'Accept': 'application/json',
+        }
+    };
+
+    useEffect(() => {
+        async function getPhotoName() {
+            setLoading(true);
+            await axios.get(`${process.env.REACT_APP_API_URL}/api/get_name_photo/`, config)
+                .then(response => {
+                    setUsuario(response.data);
+                })
+                .catch(error => {
+                    console.error("error");
+                });
+            setLoading(false);
+        }
+        getPhotoName()
+    }, []);
 
     function Menu() {
         return (
@@ -55,13 +83,39 @@ function Header() {
                             </Link>
                         </div>
                         <div className="flex flex-col mb-10 md:mb-20">
-                            <Link to="/login">
-                                <button className="bg-login-button-hover transition duration-500 ease-in-out 
-                                    p-4 flex items-center rounded-full shadow-xl hover:bg-login-button-hover mr-6 w-48">
-                                    <img src={btn1_enter} className="w-5  mr-3" lt="" />
-                                    Iniciar Sesión
-                                </button>
-                            </Link>
+
+                            {!loading &&
+                                <>
+                                    {usuario ?
+                                        <div
+                                            className=" ease-in-out p-4 flex items-center mr-6 w-48"
+                                        >
+                                            <Link to="/dashboard">
+                                                <div className="flex justify-center items-center">
+                                                    <span className="w-10 h-12 mr-5 flex items-center rounded-full">
+                                                        <img
+                                                            alt="..."
+                                                            className="rounded-full align-middle border-none shadow-lg"
+                                                            src={usuario.photo ? `${process.env.REACT_APP_API_URL}${usuario.photo}` : ProfileIcon}
+                                                        />
+                                                    </span>
+                                                    <p className="text-white"> {usuario.name} </p>
+                                                </div>
+                                            </Link>
+                                        </div>
+                                        :
+                                        <Link to="/login">
+                                            <button
+                                                className="bg-login-button transition duration-500 ease-in-out p-4 flex items-center rounded-full shadow-xl hover:bg-blue-900 mr-6"
+                                            >
+                                                <img src={btn1_enter} className="w-5 mr-3" alt="" />
+                                                Iniciar Sesión
+                                            </button>
+                                        </Link>
+                                    }
+                                </>
+                            }
+
                             <Link to="/signup">
                                 <button className="w-48 bg-blue-600 transition duration-500 ease-in-out 
                                 p-4 text-center rounded-full shadow-xl hover:bg-blue-900 mt-3">
@@ -92,25 +146,73 @@ function Header() {
                                     Comunidad
                                 </Link>
                             </div>
-                            <Link to="/login">
-                                <button className="bg-login-button transition duration-500 ease-in-out 
-                                p-4 flex items-center rounded-full shadow-xl hover:bg-blue-900 mr-6">
-                                    <img src={btn1_enter} className="w-5 mr-3" alt="" />
-                                    Iniciar Sesión
-                                </button>
-                            </Link>
-
+                            {!loading &&
+                                <>
+                                    {usuario ?
+                                        <div
+                                            className=" ease-in-out p-4 flex items-center mr-6"
+                                        >
+                                            <Link to="/dashboard">
+                                                <div className="flex justify-center items-center">
+                                                    <span className="w-10 h-12 mr-5 flex items-center rounded-full">
+                                                        <img
+                                                            alt="..."
+                                                            className="rounded-full align-middle border-none shadow-lg"
+                                                            src={usuario.photo ? `${process.env.REACT_APP_API_URL}${usuario.photo}` : ProfileIcon}
+                                                        />
+                                                    </span>
+                                                    <p className="text-white"> {usuario.name} </p>
+                                                </div>
+                                            </Link>
+                                        </div>
+                                        :
+                                        <Link to="/login">
+                                            <button
+                                                className="bg-login-button transition duration-500 ease-in-out p-4 flex items-center rounded-full shadow-xl hover:bg-blue-900 mr-6"
+                                            >
+                                                <img src={btn1_enter} className="w-5 mr-3" alt="" />
+                                                Iniciar Sesión
+                                            </button>
+                                        </Link>
+                                    }
+                                </>
+                            }
                         </>
                     )}
                     {(isTablet) && (
                         <div className="flex items-center">
-                            <Link to="/login">
-                                <button className="bg-login-button transition duration-500 ease-in-out 
-                                p-4 flex items-center rounded-full shadow-xl hover:bg-login-button-hover mr-6">
-                                    <img src={btn1_enter} className="w-5 mr-3" alt="" />
-                                    Iniciar Sesión
-                                </button>
-                            </Link>
+
+                            {!loading &&
+                                <>
+                                    {usuario ?
+                                        <div
+                                            className=" ease-in-out p-4 flex items-center mr-6"
+                                        >
+                                            <Link to="/dashboard">
+                                                <div className="flex justify-center items-center">
+                                                    <span className="w-10 h-12 mr-5 flex items-center rounded-full">
+                                                        <img
+                                                            alt="..."
+                                                            className="rounded-full align-middle border-none shadow-lg"
+                                                            src={usuario.photo ? `${process.env.REACT_APP_API_URL}${usuario.photo}` : ProfileIcon}
+                                                        />
+                                                    </span>
+                                                    <p className="text-white"> {usuario.name} </p>
+                                                </div>
+                                            </Link>
+                                        </div>
+                                        :
+                                        <Link to="/login">
+                                            <button
+                                                className="bg-login-button transition duration-500 ease-in-out p-4 flex items-center rounded-full shadow-xl hover:bg-blue-900 mr-6"
+                                            >
+                                                <img src={btn1_enter} className="w-5 mr-3" alt="" />
+                                                Iniciar Sesión
+                                            </button>
+                                        </Link>
+                                    }
+                                </>
+                            }
                             <button className="mb-2" onClick={toggleMenu}>
                                 <svg width="40" height="40" viewBox="0 0 40 40">
                                     <path fill="currentColor" fillRule="evenodd" clipRule="evenodd"
@@ -126,7 +228,7 @@ function Header() {
                             <button className="mb-3" onClick={toggleMenu}>
                                 <svg width="40" height="40" viewBox="0 0 40 40">
                                     <path fill="currentColor" fillRule="evenodd" clipRule="evenodd"
-                                        d="M33.3327 10H6.66602V15H33.3327V10ZM6.66602 18.3317H33.3327V23.3317H6.66602V18.3317ZM6.66602 26.665H33.3327V31.665H6.66602V26.665Z">
+                                        d="M33. 10H6.66602V133275H33.3327V10ZM6.66602 18.3317H33.3327V23.3317H6.66602V18.3317ZM6.66602 26.665H33.3327V31.665H6.66602V26.665Z">
                                     </path>
                                 </svg>
                             </button>
