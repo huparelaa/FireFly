@@ -24,6 +24,18 @@
     position: relative;
 }
 
+.userEditBtn {
+    width: 41%;
+    height: 75%;
+    position: relative;
+}
+
+.userAboutBtn {
+    width: 80%;
+    height: 75%;
+    position: relative;
+}
+
 .coverPhoto {
     width: 100%;
     height: 100%;
@@ -34,15 +46,15 @@
 }
 
 .editCoverPhotoBtn {
-
+    margin-top: 1.5%;
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
     border: none;
     position: absolute;
-    right: 20px;
-    bottom: 10px;
+    right: 0px;
+
     
 
 }
@@ -75,7 +87,7 @@
     height: 160px;
     width: 160px;
     border-radius: 50%;
-    border: 4px solid rgb(53, 5, 72);
+    border: 4px solid rgb(31, 6, 40);
     position: relative;
 }
 
@@ -99,7 +111,7 @@
     display: flex;
     justify-content: center;
     position: absolute;
-    top: 450px;
+    top: 500px;
 }
 
 .buttonSettings {

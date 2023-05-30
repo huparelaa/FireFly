@@ -90,7 +90,7 @@ function Profile() {
                     setViewData({
                         data: response.data.intereses,
                         title: (
-                            <span className="underline">
+                            <span className="underline ">
                                 Intereses
                             </span>
                         ),
@@ -109,7 +109,7 @@ function Profile() {
             data: usuario.intereses,
             title: (
                 <span>
-                    <span className="underline">Intereses</span>
+                    <span className="underline ">Intereses</span>
                 </span>
             ),
         });
@@ -174,17 +174,15 @@ function Profile() {
                                 />
                                 {/* <CameraAltIcon /> */}
                                 <b>Subir <span className="editPicText">fondo</span></b>
-
                             </button>
-
                         </div>
-                        <div className="profileCenterDown ">
+                        <div className="profileCenterDown  ">
                             <div className="profileCenterDownCont">
                                 <div className="profilePhotoCont">
                                     <img
                                         src={usuario.photo ? `${process.env.REACT_APP_API_URL}${usuario.photo}` : ProfileIcon}
                                         alt="profiephoto"
-                                        className="profilePhoto bg-login-button-hover" // Aplica la clase aquí
+                                        className="profilePhoto " // Aplica la clase aquí
                                     />
                                 </div>
                                 <h4 className="profileUsername">
@@ -195,13 +193,26 @@ function Profile() {
                                             {/* 209 friends */}
                                         </p>
                                     }
+
                                 </h4>
                             </div>
+                            <div className="profilePhoto">
+                            </div>
                         </div>
-
-                        <div className="profileBottom ">
-                            <div className="profileBottomLeft bg-info-home">
-                                <div className="flex items-center justify-center">
+                        <div className="userAboutBtn ">
+                            <div className="flex  ">
+                                <div className="userEditBtn">
+                                    <button
+                                        className="bg-login-button-hover active:bg-blueGray-600 text-white text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                        type="submit"
+                                        onClick={(e) => {
+                                            Navigate("/profile/edit");
+                                        }}
+                                    >
+                                        Editar perfil
+                                    </button>
+                                </div>
+                                <div >
                                     <button
                                         className="bg-login-button-hover active:bg-blueGray-600 text-white text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="submit "
@@ -212,29 +223,24 @@ function Profile() {
 
 
                                     <button
-                                        className="bg-login-button-hover active:bg-blueGray-600 text-white font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                        className="bg-login-button-hover active:bg-blueGray-600 text-white text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="submit"
                                         onClick={showLogros}
                                     >
                                         Logros y trofeos
                                     </button>
                                 </div>
+
+                            </div>
+                        </div>
+                        <div className="profileBottom ">
+                            <div className="profileBottomLeft bg-info-home">
                                 <div className="profileUserInfo text-zinc-100">
-                                    <h2 className="aboutMeHeading text-white border-white underline">Acerca de mí</h2>
-                                    <div className="aboutMeText">{usuario.about_me}</div>
-                                </div>
-                                <div className="flex items-center justify-center">
-                                    <button
-                                        className="bg-login-button-hover active:bg-blueGray-600 text-white font-bold uppercase px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mb-1 w-1/2 mx-auto ease-linear transition-all duration-150"
-                                        type="submit"
-                                        onClick={(e) => {
-                                            Navigate("/profile/edit");
-                                        }}
-                                    >
-                                        Editar perfil
-                                    </button>
+                                    <h2 className="aboutMeHeading text-white border-white underline mt-3">Acerca de mí</h2>
+                                    <div className="aboutMeText m-4 text-lg text-justify">{usuario.about_me}</div>
                                 </div>
                             </div>
+
 
                             <div className="profileBottomRight  ">
                                 <Feed disableShare={true} viewData={viewData} usuario={usuario} id={0} itsMe={true} className="profileFeed" />

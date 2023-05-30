@@ -28,26 +28,26 @@ function Profile() {
     };
     function showIntereses() {
         setViewData({
-          data: usuario.intereses,
-          title: (
-            <span className="underline">
-              Intereses
-            </span>
-          ),
+            data: usuario.intereses,
+            title: (
+                <span className="underline">
+                    Intereses
+                </span>
+            ),
         });
-      }
-      
-      function showLogros() {
+    }
+
+    function showLogros() {
         setViewData({
-          data: usuario.logros_y_trofeos,
-          title: (
-            <span>
-              <span className="underline">Logros y trofeos</span> 
-            </span>
-          ),
+            data: usuario.logros_y_trofeos,
+            title: (
+                <span>
+                    <span className="underline">Logros y trofeos</span> y <span className="underline">trofeos</span>
+                </span>
+            ),
         });
-      }
-      
+    }
+
 
     const handleAddFriend = async () => {
 
@@ -77,12 +77,12 @@ function Profile() {
             setViewData({
                 data: res.data.info.intereses,
                 title: (
-                  <span className="underline">
-                    Intereses
-                  </span>
+                    <span className="underline">
+                        Intereses
+                    </span>
                 ),
-              });
-              
+            });
+
             setLoading(false);
         }
         fetchUser();
@@ -169,31 +169,40 @@ function Profile() {
                                     }
                                 </h4>
                             </div>
+                            <div className="profilePhoto">
+                            </div>
                         </div>
-
-                        <div className="profileBottom">
-
-                            <div className="profileBottomLeft  bg-info-home">
-                                <div className="flex items-center justify-center">
+                        <div className="userAboutBtn ">
+                            <div className="flex  ">
+                                <div className="userEditBtn">
+                                </div>
+                                <div >
                                     <button
-                                        className="bg-login-button-hover active:bg-blueGray-600 text-white font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                        type="submit"
+                                        className="bg-login-button-hover active:bg-blueGray-600 text-white text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                        type="submit "
                                         onClick={showIntereses}
                                     >
                                         Intereses
                                     </button>
 
+
                                     <button
-                                        className="bg-login-button-hover active:bg-blueGray-600 text-white font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                        className="bg-login-button-hover active:bg-blueGray-600 text-white text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="submit"
                                         onClick={showLogros}
                                     >
                                         Logros y trofeos
                                     </button>
                                 </div>
+
+                            </div>
+                        </div>
+                        <div className="profileBottom">
+
+                            <div className="profileBottomLeft  bg-info-home">
                                 <div className="profileUserInfo text-zinc-100">
-                                    <h2 className="aboutMeHeading text-white border-b border-white">Acerca de mí</h2>
-                                    <div className="aboutMeText">{usuario.about_me}</div>
+                                    <h2 className="aboutMeHeading text-white border-white underline mt-3">Acerca de mí</h2>
+                                    <div className="aboutMeText m-4 text-lg text-justify">{usuario.about_me}</div>
                                 </div>
                             </div>
                             <div className="profileBottomRight">

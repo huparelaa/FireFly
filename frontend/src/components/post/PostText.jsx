@@ -8,7 +8,7 @@ export default function PostText({ title, description }) {
       <div className="postWrapper bg-info-home">
         <div className="postCenter">
           <h2 className="postTitle"><b>{title}</b></h2>
-          <span className="postText">{description}</span>
+          <span className="postText text-lg">{description}</span>
         </div>
       </div>
     </div>
