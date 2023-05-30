@@ -57,7 +57,7 @@ function Profile() {
         if (res) {
             Swal.fire({
                 icon: 'success',
-                title: 'Amigo agregado de forma exitosa',
+                title: 'Amigo agregado exitosamente',
                 allowEscapeKey: false,
             })
         }

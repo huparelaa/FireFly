@@ -29,7 +29,7 @@ function Logout(){
                 timerProgressBar: true,
                 icon: 'success',
                 title: `Sesión cerrada`,
-                text: `Fue en un placer verte en FireFly, ¡Te esperamos de nuevo!`,
+                text: `Fue un placer verte en FireFly. ¡Te esperamos de nuevo!`,
             })
             return navigate("/")
         } 

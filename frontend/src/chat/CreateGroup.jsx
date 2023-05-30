@@ -55,7 +55,7 @@ function CreateGroup({ setModalIsOpen }) {
     );
     if (selectedPeople.length === 0) {
       Swal.fire({
-        title: "¿Por qué tan solito?",
+        title: "¿Por qué estás tan solito?",
         text: "Debes seleccionar al menos un amigo",
         icon: "error",
       });

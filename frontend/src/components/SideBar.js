@@ -51,14 +51,14 @@ function SideBar() {
     const Report = () => {
         const MySwal = withReactContent(Swal)
         MySwal.fire({
-            title: 'Reporte de Error del Sistema',
+            title: 'Reporte de error del sistema',
             html:
                 <form ref={form} onSubmit={sendEmail}>
                     <input className="h-12 bg-slate-200 w-8/12" type="hidden" name="user_name" value={usuario.name}/>
                     <input className="h-12 bg-slate-200 w-8/12" type="hidden" name="user_email" value={usuario.email}/>
                     <label>Mensaje:</label> <br/>
                     <textarea className="h-12 bg-slate-200 w-8/12" name="message" required/> <br/><br/>
-                    <button type="submit" className="text-white bg-teal-700 border border-blue-200 border-4 border-style:solid rounded-md p-2 hover:bg-teal-800"> Guargar Mensaje </button>
+                    <button type="submit" className="text-white bg-teal-700 border border-blue-200 border-4 border-style:solid rounded-md p-2 hover:bg-teal-800"> Guardar reporte </button>
                 </form>,
             confirmButtonText: 'Confirmar',
             confirmButtonColor: '#0e756e',
@@ -72,8 +72,8 @@ function SideBar() {
 
     const submitReview = () => {
         Swal.fire({
-            title: 'Gracias!',
-            text: 'Su reporte se envió de forma exitosa!',
+            title: '¡Gracias!',
+            text: 'Tu reporte se ha enviado de forma exitosa',
             icon: 'success'
         });
     };

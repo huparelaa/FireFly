@@ -77,7 +77,7 @@ export default function CardSettings(props) {
         timer: 3000,
         timerProgressBar: true,
         icon: 'success',
-        title: `¡Se actualizaron los cambios de manera exitosa!`,
+        title: `¡Los cambios se actualizaron exitosamente!`,
       })
       navigate('/profile');
     } catch (error) {
@@ -85,7 +85,7 @@ export default function CardSettings(props) {
         timer: 3000,
         timerProgressBar: true,
         icon: 'fail',
-        title: `Opps ocurrio un error al actualizar los cambios`,
+        title: `¡Oops! Ocurrió un error al actualizar los cambios`,
       })
       console.error(error);
     }
@@ -107,7 +107,7 @@ export default function CardSettings(props) {
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0 bg-info-home ">
         <div className="rounded-t mb-0 px-6 py-6">
           <div className="text-center">
-            <h6 className="text-blueGray-700 text-2xl font-bold text-white underline mx-auto uppercase">Edita mi perfil</h6>
+            <h6 className="text-blueGray-700 text-2xl font-bold text-white underline mx-auto uppercase">Editar perfil</h6>
 
           </div>
         </div>
