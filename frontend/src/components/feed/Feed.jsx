@@ -6,8 +6,8 @@ import UserGames from "../../profile/UserGames";
 
 export default function Feed({ changeState, disableShare, viewData, usuario, id, itsMe }) {
   return (
-    <div className="feed">
-      <div className="feedWrapper">
+    <div className="feed  ">
+      <div className="feedWrapper ">
         {!disableShare&&<Share changeState={changeState} />}
         <PostText key={2} title={viewData.title} description={viewData.data} />
         <UserGames usuario={usuario} itsMe={itsMe} id={id}/>

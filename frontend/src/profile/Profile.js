@@ -73,7 +73,7 @@ export default function Profile() {
       <main className="profile-page bg-dark-purple flex items-center justify-center">
         <section
           className="py-80 w-full">
-          <div className="container mx-auto px-10">
+          <div className=" container mx-auto px-10">
             <div className="relative flex flex-col min-w-0 break-words bg-white w-full shadow-xl rounded-lg ">
               <div className="px-6">
                 <div className="container ">

@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import ProfileIcon from '../assets/profileicon.jpg'
 import Swal from 'sweetalert2'
+import AddPersonIcon from '../assets/agregar-usuario.png'
+import MensajeIcon from '../assets/comentario.png'
 
 function Profile() {
     const { id } = useParams();
@@ -25,14 +27,30 @@ function Profile() {
         }
     };
     function showIntereses() {
-        setViewData({ data: usuario.intereses, title: "Intereses" });
-    }
-    function showLogros() {
-        setViewData({ data: usuario.logros_y_trofeos, title: "Logros y trofeos" });
-    }
+        setViewData({
+          data: usuario.intereses,
+          title: (
+            <span className="underline">
+              Intereses
+            </span>
+          ),
+        });
+      }
+      
+      function showLogros() {
+        setViewData({
+          data: usuario.logros_y_trofeos,
+          title: (
+            <span>
+              <span className="underline">Logros y trofeos</span> 
+            </span>
+          ),
+        });
+      }
+      
 
     const handleAddFriend = async () => {
-        
+
         const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/add_friends/`, {
             'user_id': id // el ID del user al que se le quiere enviar la solicitud
         }, config);
@@ -51,12 +69,20 @@ function Profile() {
             setLoading(true);
             const res = await axios.post(
                 `${process.env.REACT_APP_API_URL}/profile/${id}/`,
-                {"id_friend":id},
+                { "id_friend": id },
                 config
-                );
+            );
             setUsuario(res.data.info);
             console.log(res.data.info)
-            setViewData({ data: res.data.info.intereses, title: "Intereses" });
+            setViewData({
+                data: res.data.info.intereses,
+                title: (
+                  <span className="underline">
+                    Intereses
+                  </span>
+                ),
+              });
+              
             setLoading(false);
         }
         fetchUser();
@@ -84,12 +110,45 @@ function Profile() {
                 </div>
                 <div className="profileContainer">
                     <div className="profileCenter">
-                        <div className="profileCenterTop">
+                        <div className="profileCenterTop ">
                             <img
-                                src={usuario.background_photo?`${process.env.REACT_APP_API_URL}${usuario.background_photo}`:"https://www.xtrafondos.com/wallpapers/control-de-playstation-10819.jpg"}
+                                src={usuario.background_photo ? `${process.env.REACT_APP_API_URL}${usuario.background_photo}` : "https://www.xtrafondos.com/wallpapers/control-de-playstation-10819.jpg"}
                                 alt="coverphoto"
                                 className="coverPhoto"
+
                             />
+                            <div className="flex editCoverPhotoBtn">
+                                {!requestSent && !usuario.is_friend && (
+                                    <button
+                                        className="bg-login-button-hover text-white flex items-center justify-center w-[140px] h-[40px]"
+                                        type="submit"
+                                        onClick={handleAddFriend}
+                                    >
+                                        <img
+                                            src={AddPersonIcon}
+                                            alt="Agregar persona"
+                                            className="mr-2"
+                                        />
+                                        Añadir amigo
+                                    </button>
+                                )}
+                                <button
+                                    className="bg-login-button-hover text-white flex items-center justify-center ml-4 w-[110px] h-[40px]"
+                                    onClick={(e) => {
+                                        Navigate(`../chat/${id}`);
+                                    }}
+                                >
+                                    <img
+                                        src={MensajeIcon}
+                                        alt="Agregar persona"
+                                        className="mr-2"
+                                    />
+                                    Mensaje
+                                </button>
+
+                            </div>
+
+
                         </div>
                         <div className="profileCenterDown">
                             <div className="profileCenterDownCont">
@@ -112,46 +171,29 @@ function Profile() {
                             </div>
                         </div>
 
-                        <div className="buttonSettings">
-                            <button
-                                className="bg-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                type="submit"
-                                onClick={showIntereses}
-                            >
-                                Intereses
-                            </button>
-
-                            <button
-                                className="bg-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                type="submit"
-                                onClick={showLogros}
-                            >
-                                Logros y trofeos
-                            </button>
-                            <button
-                                className="bg-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                onClick={(e) => {
-                                    Navigate(`../chat/${id}`);
-                                }}
-                            >
-                                Enviar mensaje
-                            </button>
-                        </div>
-
                         <div className="profileBottom">
 
-                            <div className="profileBottomLeft">
-                                <div className="profileUserInfo">
-                                    <h2 className="aboutMeHeading">Acerca de mí</h2>
+                            <div className="profileBottomLeft  bg-info-home">
+                                <div className="flex items-center justify-center">
+                                    <button
+                                        className="bg-login-button-hover active:bg-blueGray-600 text-white font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                        type="submit"
+                                        onClick={showIntereses}
+                                    >
+                                        Intereses
+                                    </button>
+
+                                    <button
+                                        className="bg-login-button-hover active:bg-blueGray-600 text-white font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                        type="submit"
+                                        onClick={showLogros}
+                                    >
+                                        Logros y trofeos
+                                    </button>
+                                </div>
+                                <div className="profileUserInfo text-zinc-100">
+                                    <h2 className="aboutMeHeading text-white border-b border-white">Acerca de mí</h2>
                                     <div className="aboutMeText">{usuario.about_me}</div>
-                                    {!requestSent && !usuario.is_friend &&
-                                        <button className="bg-gray active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mb-1 w-full ease-linear transition-all duration-150"
-                                            type="submit"
-                                            onClick={handleAddFriend}
-                                        >
-                                            Añadir amigo
-                                        </button>
-                                    }
                                 </div>
                             </div>
                             <div className="profileBottomRight">

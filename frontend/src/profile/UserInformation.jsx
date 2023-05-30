@@ -17,7 +17,7 @@ const UserInformation = ({ usuario }) => {
                 </p>
             </div>
 
-            <div className="mt-10 py-10 border-t border-blueGray-200">
+            <div className="mt-10 py-10 border-t border-blueGray-200 ">
                 <div className="w-full lg:w-9/12 px-4">
                     <p className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
                         Acerca de mí:

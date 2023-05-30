@@ -52,14 +52,13 @@ function HeaderComunidad() {
                             >
                                 ¿Necesitas ayuda?
                             </Link>
-                            <a href="https://discord.gg/SPdaPuhdKH"
+                            <Link 
                                 className="mr-8 hover:bg-login-button hover:shadow-xl p-4 transition rounded-full duration-500"
                                 style={{ boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.5)" }}
-                                target="_blank"
-                                rel="noopener noreferrer"
+
                             >
                                 Comunidad
-                            </a>
+                            </Link>
 
 
                         </div>
@@ -100,14 +99,13 @@ function HeaderComunidad() {
                                     ¿Necesitas ayuda?
                                 </Link>
 
-                                <a href="https://discord.gg/SPdaPuhdKH"
+                                <Link 
                                     className="mr-8 hover:bg-login-button hover:shadow-xl p-4 transition rounded-full duration-500"
                                     style={{ boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.5)" }}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+
                                 >
                                     Comunidad
-                                </a>
+                                </Link>
 
 
                             </div>
