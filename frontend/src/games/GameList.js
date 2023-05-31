@@ -71,13 +71,10 @@ function PreferenceForm() {
     return (
         <div className='flex items-center justify-center flex-col '>
             {redirectToDashboard && <Navigate to='/dashboard'/>}
-            <h2 className='form-title'>Selecciona tus juegos favoritos</h2>
-            <div className=' bg-dark-bg w-4/5 my-8 flex items-center justify-center rounded-full shadow-lg' onChange={handleChange}>
-                <MdSearch className="bg-no-repeat bg-center ml-3 bg-contain w-5 h-5 mx-1 text-white" />
-                <input className="text-white h-14 bg-inherit w-full border-transparent outline-none" type="text" placeholder="Busca tus juegos favoritos"/>
-            </div>
-        <form className='form-games mb-8 bg-dark-bg' onSubmit={handleSubmit}>
-            <div className='container-games'>
+            <h2 className='mt-5 form-title font-bold text-lg'>Selecciona tus juegos favoritos: </h2>
+            
+        <form className='form-games mt-5 mb-2 bg-dark-bg' onSubmit={handleSubmit}>
+            <div className='container-games mt-3'>
                 {games.length > 0 ? (
                     games
                         .filter((game) =>
