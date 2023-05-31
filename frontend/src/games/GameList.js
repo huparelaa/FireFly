@@ -9,7 +9,6 @@ function PreferenceForm() {
     const [searchTerm, setSearchTerm] = useState('')
     const [selectedGames, setSelectedGames] = useState([]);
     const [redirectToDashboard, setRedirectToDashboard] = useState(false);
-
     const config = {
         headers: { 
             'Content-type': 'application/json',
@@ -46,24 +45,36 @@ function PreferenceForm() {
         async function fetchedGames()  {
             try {
                 const response = await axios.get(url);
-                setGames(response.data.results);
-                console.log(response.data.results)
+                setGames([...games,...response.data.results])
+                console.log(games)
+                setPage(page+1)
             } catch (error) {
                 console.error(error);
             }
         }
         fetchedGames()
     }, [page]);
-    const handlePageChange = (newPage) => {
-        setPage(newPage);
-    };
+    
+    useEffect(()=>{
+        const handleScroll = (e) =>{
+            const scrollHeight = e.target.documentElement.scrollHeight
+            const currentHeight = e.target.documentElement.scrollTop + window.innerHeight
+            if(currentHeight+1>= scrollHeight){
+                setPage(page+1)
+            }
+            window.addEventListener("scroll",handleScroll);
+            return ()=> window.removeEventListener("scroll",handleScroll)
+        }
+        
+    },[page])
+    
     return (
         <div className='flex items-center justify-center flex-col '>
             {redirectToDashboard && <Navigate to='/dashboard'/>}
             <h2 className='form-title'>Selecciona tus juegos favoritos</h2>
-            <div className=' bg-dark-bg w-3/5 my-8 flex items-center justify-center rounded-full shadow-lg' onChange={handleChange}>
-                <MdSearch className="bg-no-repeat bg-center bg-contain w-5 h-5 mx-1 text-white" />
-                <input className="text-white h-14 bg-inherit w-9/12 border-transparent outline-none" type="text" placeholder="Busca tus juegos favoritos"/>
+            <div className=' bg-dark-bg w-4/5 my-8 flex items-center justify-center rounded-full shadow-lg' onChange={handleChange}>
+                <MdSearch className="bg-no-repeat bg-center ml-3 bg-contain w-5 h-5 mx-1 text-white" />
+                <input className="text-white h-14 bg-inherit w-full border-transparent outline-none" type="text" placeholder="Busca tus juegos favoritos"/>
             </div>
         <form className='form-games mb-8 bg-dark-bg' onSubmit={handleSubmit}>
             <div className='container-games'>
@@ -93,18 +104,18 @@ function PreferenceForm() {
                     <p>No se encontraron juegos</p>
                 )}
             </div>
-            <button type="submit mt-6">Continuar</button>
+            {selectedGames.length<3 && 
+            <div>
+                <button className='m-2' type="submit mt-6" disabled={true}>Juegos seleccionados: {selectedGames.length}/3</button>
+            </div>
+            }
+            {selectedGames.length>=3 &&
+                <button type="submit mt-6" disabled={selectedGames.length<3}>Finalizar selección</button>
+
+            }
+            
         </form>
-        <div className="pagination w-full flex justify-center mt-6 text-white">
-            <button
-                disabled={page === 1}
-                onClick={() => handlePageChange(page - 1)}
-                className='mr-5 hover:bg-slate-500 cursor-pointer'
-            >
-                Anterior
-            </button>
-            <button onClick={() => handlePageChange(page + 1)} className={"hover:bg-slate-500"}>Siguiente</button>
-        </div>
+        
     </div>
     );
 }

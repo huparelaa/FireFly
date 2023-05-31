@@ -66,7 +66,7 @@ function ChatSideBar() {
           className="bg-green-600 rounded-lg p-1"
           onClick={() => setModalIsOpen(true)}
         >
-          Create group
+          Crear grupo
         </button>
       </div>
       <Modal //Ventana emergente
