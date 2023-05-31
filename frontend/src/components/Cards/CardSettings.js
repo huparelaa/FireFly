@@ -94,6 +94,7 @@ export default function CardSettings(props) {
   useEffect(() => {
     setFormData({
       name: props.nombre,
+      lastname: props.apellidos,
       age: props.edad,
       about_me: props.aboutMe,
       interests: props.intereses,
@@ -104,25 +105,40 @@ export default function CardSettings(props) {
 
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0 bg-info-home ">
-        <div className="rounded-t mb-0 px-6 py-6">
+      <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-dark-purple border-0 bg-info-home ">
+        <div className="bg-violet-950 rounded-t mb-0 px-6 py-6">
           <div className="text-center">
             <h6 className="text-blueGray-700 text-2xl font-bold text-white underline mx-auto uppercase">Editar perfil</h6>
 
           </div>
-        </div>
-
+        </div><br/>
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
           <form onSubmit={(e) => onSubmit(e)}>
-            <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase text-white underline">
-              Información Personal
+            <h6
+              className="flex flex-wrap justify-center uppercase text-blueGray-600 text-base font-bold mb-2 text-white">
+              Cambiar foto de perfil:
             </h6>
-
+            <div className="flex flex-wrap justify-center items-center space-x-3">
+              <div class="shrink-0">
+                <img class="h-20 w-20 object-cover rounded-full" src={defaultProfile} alt="Current profile photo" />
+              </div>
+              <label className="mr-4 py-4 px-8 rounded-full border-0 text-sm font-semibold bg-white text-violet-700 hover:bg-violet-100 block w-30 text-lg text-slate-500" for="files">Seleccionar nueva foto de perfil</label>
+                <input
+                  id="files"
+                  accept="image/*"
+                  type="file"
+                  onChange={imageChange}
+                  class="hidden"
+                />
+            </div><br/>
+            <h6 className="text-blueGray-400 text-lg mt-3 mb-6 font-bold uppercase text-white">
+              Información Personal:
+            </h6>
             <div className="flex flex-wrap">
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2 text-white"
+                    className="block uppercase text-blueGray-600 text-sm font-bold mb-2 text-white"
                     htmlFor="grid-password "
                   >
                     Nombre
@@ -144,7 +160,31 @@ export default function CardSettings(props) {
                 </div>
                 <div className="relative w-full mb-3">
                   <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2 text-white"
+                    className="block uppercase text-blueGray-600 text-sm font-bold mb-2 text-white"
+                    htmlFor="grid-password"
+                  >
+                    Edad
+                  </label>
+                  <input
+                    type="number"
+                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-login-button-hover text-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    placeholder="Edad"
+                    name="age"
+                    value={age}
+                    min={12}
+                    max={99}
+                    onChange={(e) => {
+                      props.setEdad(e.target.value);
+                      onChange(e);
+                    }
+                    }
+                  />
+                </div>
+              </div>
+              <div className="w-full lg:w-6/12 px-4">
+                <div className="relative w-full mb-3">
+                  <label
+                    className="block uppercase text-blueGray-600 text-sm font-bold mb-2 text-white"
                     htmlFor="grid-password"
                   >
                     Apellidos
@@ -165,55 +205,15 @@ export default function CardSettings(props) {
                   />
                 </div>
               </div>
-              <div className="w-full lg:w-6/12 px-4">
-                <div className="relative w-full mb-3">
-                  <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2 text-white"
-                    htmlFor="grid-password"
-                  >
-                    Edad
-                  </label>
-                  <input
-                    type="number"
-                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-login-button-hover text-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    placeholder="Edad"
-                    name="age"
-                    value={age}
-                    min={12}
-                    max={99}
-                    onChange={(e) => {
-                      props.setEdad(e.target.value);
-                      onChange(e);
-                    }
-                    }
-                  />
-                </div>
-                <div className="flex flex-wrap justify-center">
-                  <h6
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2 text-white">
-                    Foto de perfil
-                  </h6>
-                  <input
-                    accept="image/*"
-                    type="file"
-                    onChange={imageChange}
-                    className="bg-login-button-hover hover:bg-login-button text-white font-bold py-2 px-4 rounded w-full"
-                  />
-                </div>
-              </div>
             </div>
             <hr className="mt-6 border-b-1 border-blueGray-300" />
-            <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase text-white underline">
-              About Me
-            </h6>
-
+            <br/>
             <div className="flex flex-wrap">
               <div className="w-full lg:w-12/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2 text-white"
-                    htmlFor="grid-password"
-                  >
+                    className="block uppercase text-blueGray-600 text-base font-bold mb-2 text-white"
+                    htmlFor="grid-password">
                     descripción sobre tí
                   </label>
                   <textarea
@@ -234,15 +234,12 @@ export default function CardSettings(props) {
               </div>
             </div>
             <hr className="mt-6 border-b-1 border-blueGray-300" />
-            <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase text-white underline">
-              Intereses
-            </h6>
-
+            <br/>
             <div className="flex flex-wrap">
               <div className="w-full lg:w-12/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2 text-white"
+                    className="block uppercase text-blueGray-600 text-base font-bold mb-2 text-white"
                     htmlFor="grid-password"
                   >
                     tus intereses
@@ -265,15 +262,12 @@ export default function CardSettings(props) {
               </div>
             </div>
             <hr className="mt-6 border-b-1 border-blueGray-300" />
-            <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase text-white underline">
-              Logros y Trofeos
-            </h6>
-
+            <br/>
             <div className="flex flex-wrap ">
               <div className="w-full lg:w-12/12 px-4 ">
                 <div className="relative w-full mb-3 ">
                   <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2 text-white "
+                    className="block uppercase text-blueGray-600 text-base font-bold mb-2 text-white "
                     htmlFor="grid-password"
                   >
                     tus logros y trofeos
@@ -295,8 +289,9 @@ export default function CardSettings(props) {
                 </div>
               </div>
             </div>
+            <br/>
             <button
-              className="bg-login-button-hover active:bg-blueGray-600 text-sm font-bold  text-white uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+              className="bg-violet-950 active:bg-blueGray-600 text-sm font-bold  text-white uppercase px-6 py-3 rounded shadow hover:shadow-lg hover:bg-indigo-950 outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
               type="submit"
             >
               Guardar Cambios

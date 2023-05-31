@@ -1,4 +1,4 @@
-import React,{ useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
@@ -18,34 +18,39 @@ function SideBar() {
     const [usuario, setUsuario] = useState(null);
     const config = {
         headers: {
-          'Content-type': 'application/json',
-          'Authorization': `JWT ${localStorage.getItem('access')}`,
-          'Accept': 'application/json',
+            'Content-type': 'application/json',
+            'Authorization': `JWT ${localStorage.getItem('access')}`,
+            'Accept': 'application/json',
         }
-      };
+    };
 
     useEffect(() => {
         async function getUser() {
-          await axios.get(`${process.env.REACT_APP_API_URL}/api/profile/`, config)
-            .then(response => {
-              setUsuario(response.data);
-            })
-            .catch(error => {
-              console.error(error);
-            });
+            await axios.get(`${process.env.REACT_APP_API_URL}/api/profile/`, config)
+                .then(response => {
+                    setUsuario(response.data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
         }
         getUser()
-      }, []);
+    }, []);
 
-    const form = useRef();
     const sendEmail = (event) => {
         event.preventDefault();
-        emailjs.sendForm('service_wsmvq0j', 'template_04co69t', form.current, 'k8ix7MNKP0nIkPwYA')
+        emailjs.sendForm('service_wsmvq0j', 'template_04co69t', event.target, 'k8ix7MNKP0nIkPwYA')
             .then((result) => {
                 console.log(result.text);
             }, (error) => {
                 console.log(error.text);
             });
+        Swal.close();
+        Swal.fire({
+            title: '¡Gracias!',
+            text: 'Tu reporte se ha enviado de forma exitosa',
+            icon: 'success'
+        });
     };
 
     const Report = () => {
@@ -53,29 +58,31 @@ function SideBar() {
         MySwal.fire({
             title: 'Reporte de error del sistema',
             html:
-                <form ref={form} onSubmit={sendEmail}>
-                    <input className="h-12 bg-slate-200 w-8/12" type="hidden" name="user_name" value={usuario.name}/>
-                    <input className="h-12 bg-slate-200 w-8/12" type="hidden" name="user_email" value={usuario.email}/>
-                    <label>Mensaje:</label> <br/>
-                    <textarea className="h-12 bg-slate-200 w-8/12" name="message" required/> <br/><br/>
-                    <button type="submit" className="text-white bg-teal-700 border border-blue-200 border-4 border-style:solid rounded-md p-2 hover:bg-teal-800"> Guardar reporte </button>
+                <form onSubmit={sendEmail}>
+                    <input className="h-12 bg-slate-200 w-8/12" type="hidden" name="user_name" value={usuario.name} />
+                    <input className="h-12 bg-slate-200 w-8/12" type="hidden" name="user_email" value={usuario.email} />
+                    <label className="font-medium"> Mensaje: </label> <br/><br/>
+                    <textarea placeholder="Escribe tu reporte" className="px-4 py-3 text-black h-12 bg-slate-200 w-8/12" name="message" required /> <br /><br />
+                    <button type="submit" className="text-base font-medium text-white bg-indigo-900 rounded-md p-3 w-2/8 hover:bg-indigo-800"> Enviar Reporte </button>
                 </form>,
-            confirmButtonText: 'Confirmar',
-            confirmButtonColor: '#0e756e',
-            preConfirm: submitReview,
+            color: '#ffffff',
+            background: '#17152a',
+            showConfirmButton: false,
             showCancelButton: true,
             cancelButtonText: 'Cancelar',
+            cancelButtonColor: '#E02424',
             showLoaderOnConfirm: true,
             allowOutsideClick: () => !Swal.isLoading()
-        });
-    };
-
-    const submitReview = () => {
-        Swal.fire({
-            title: '¡Gracias!',
-            text: 'Tu reporte se ha enviado de forma exitosa',
-            icon: 'success'
-        });
+        }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire({
+                    title: 'Cancelado!',
+                    text: 'Su reporte fue cancelado!',
+                    icon: 'error',
+                    timer: 800
+                });
+            }
+        })
     };
 
     const [open, setOpen] = useState(false);

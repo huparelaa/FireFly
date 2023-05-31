@@ -29,12 +29,12 @@ const UserGames = ({itsMe,id}) => {
 
   if (!loading) {
     return (
-      <div id="a">
-        <br />
-        
-        <p className="text-black"> Cargando Juegos... </p>
-        <br />
+      <div className="flex w-full items-center justify-center mr-auto" id="contenedor">
+      <div className="self-auto flex items-center mr-4">
+          <div className="loader"></div>
+          <p className="text-white ml-3 font-bold"> Cargando juegos favoritos... </p> 
       </div>
+  </div>
     )
   }
 

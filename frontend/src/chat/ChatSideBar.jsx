@@ -45,10 +45,12 @@ function ChatSideBar() {
 
   if (isLoading) {
         return (
-      <div className="flex w-1/5 items-center justify-end mr-10" id="contenedor">
-        <div className="loaderChatSide" id="loaderChatSide"> </div>
-        <p className="text-white"> Cargando Contactos Recientes...</p> 
-      </div>
+          <div className="flex w-1/8 items-center justify-start mr-auto" id="contenedor">
+          <div className="self-auto flex items-center mr-4 ml-10">
+            <div className="loader"></div>
+            <p className="text-white ml-3 font-bold text-base"> Cargando chats recientes... </p>
+          </div>
+        </div>
     );
   }
 

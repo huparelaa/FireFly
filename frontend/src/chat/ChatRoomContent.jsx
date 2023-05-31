@@ -64,7 +64,7 @@ const ChatRoomContent = () => {
       <div className="flex w-screen items-center justify-center h-screen" id="contenedor">
         <div className="flex flex-col">
           <div className="loaderChatSide" id="loaderChatSide"> </div>
-          <h1 className="text-white font-bold"> Cargando mensajes del grupo...</h1>
+          <h1 className="text-white text-lg font-bold"> Cargando mensajes del grupo...</h1>
         </div>
       </div>
     )

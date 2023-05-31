@@ -90,7 +90,7 @@ function Profile() {
         return (
             <div className="flex w-screen items-center justify-center h-screen" id="contenedor">
                 <div className="flex flex-col">
-                    <div className="loaderChatSide" id="loaderChatSide"> </div>
+                    <div className="loader" id="loader"> </div>
                     <h1 className="text-white font-bold"> Cargando perfil de usuario...</h1>
                 </div>
             </div>
