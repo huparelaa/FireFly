@@ -44,7 +44,7 @@ function Signup() {
         UserApi.signup(data)
         .then(res => {
             Swal.fire({
-                timer: 3000,
+                timer: 3500,
                 timerProgressBar: true,
                 icon: 'success',
                 title: `Registro exitoso`,
@@ -55,7 +55,7 @@ function Signup() {
             const email = err.response.data.email[0]  
             if(email === "user account with this email already exists."){
                 Swal.fire({
-                    timer: 2000,
+                    timer: 3000,
                     timerProgressBar: true,
                     icon: 'error',
                     title: 'Error',

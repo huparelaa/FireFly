@@ -79,7 +79,7 @@ function SideBar() {
                     title: 'Cancelado!',
                     text: 'Su reporte fue cancelado!',
                     icon: 'error',
-                    timer: 800,
+                    timer: 1000,
                     showConfirmButton: false,
                 });
             }
