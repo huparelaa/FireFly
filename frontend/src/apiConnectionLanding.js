@@ -35,7 +35,7 @@ axiosInstance.interceptors.response.use((response) => {
                 }else if(res.response.status === 401){
                     Swal.fire({
                         icon: 'error',
-                        title: 'La sesion se ha cerrado',
+                        title: 'La sesión se ha cerrado',
                         footer: '<a href="/login">Inicia sesion nuevamente</a>',
                         allowEscapeKey: false,
                     }).then(function () {

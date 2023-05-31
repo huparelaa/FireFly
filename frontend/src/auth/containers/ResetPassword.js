@@ -11,8 +11,8 @@ const ResetPassword = () => {
     const navigate = useNavigate();
     const schema = Yup.object().shape({
         email: Yup.string()
-            .required("El correo es requerido")
-            .email("Correo invalido"),
+            .required("Se requiere un correo electrónico")
+            .email("Correo electrónico inválido"),
     });
 
     function submit(data) {
@@ -25,7 +25,7 @@ const ResetPassword = () => {
                 icon: 'success',
                 title: '¡Correo enviado con éxito!',
                 text:
-                'Se ha enviado un correo electrónico a tu cuenta con las instrucciones para restablecer la contraseña. Puede que el correo llegue a spam.',
+                'Se ha enviado un correo electrónico a tu cuenta con las instrucciones para restablecer la contraseña. Es posible que el correo llegue a la carpeta de spam.',
             }).then(() => navigate('/login'));
         }).catch(err => {
             console.log(err);

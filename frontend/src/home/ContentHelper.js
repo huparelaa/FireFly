@@ -24,13 +24,14 @@ import img19 from "../assets/dashboard3.png"
 import img20 from "../assets/amigos.png"
 import img21 from "../assets/perfil.png"
 import img22 from "../assets/perfil2.png"
-
+import img23 from "../assets/comunidad.png"
+import img24 from "../assets/comunidad2.png"
 
 // TODO - Poner las img en un tamaño menos pesado
 
 function ContentHelper() {
     const images = [img1, img2, img3]; // Asegúrate de tener las imágenes importadas o sus rutas correctas
-    const images1 = [img4, img5, img6, img7, img8];
+    const images1 = [ img4, img23, img24, img5, img6, img7, img8];
     const images2 = [img9, img10];
     const images3 = [img10, img11, img12, img13, img14, img15, img16, img17, img18];
     const images4 = [img19, img20, img21, img22];
@@ -41,6 +42,8 @@ function ContentHelper() {
     ];
     const descriptions1 = [
         'Vista general de la página de inicio que ofrece las opciones de registrarse o iniciar sesión. Si deseas acceder a las funciones, hay unos botones que especifican cada función y te redirigen a la sección correspondiente.',
+        'Contamos con una vista de comunidad que contiene imágenes que explican nuestro servidor de Discord y, a su vez, incluye el enlace de invitación.',
+        'Enlace de invitación para nuestro servidor de Discord.',
         'Para iniciar sesión, tienes la opción de recuperar tu contraseña o registrarte. Cuenta con un botón que te redirige a la función deseada.',
         'Vista de recuperación de contraseña en la que recibirás un correo electrónico para reactivar tu cuenta. Al oprimir el botón, serás redirigido/a a la vista correspondiente de la función.',
         'En la vista de registro, encontrarás un formulario con campos para nombre, apellido, correo electrónico, contraseña y confirmación de contraseña. Además, se proporciona un enlace para acceder a la vista de inicio de sesión en caso de que ya tengas una cuenta registrada.',
@@ -54,18 +57,18 @@ function ContentHelper() {
         'Vista general del panel de control.',
         'Donde tienes la opción de "match" y "chats".',
         'Al presionar la opción "match", aparece un botón para encontrar a tu compañero con gustos similares.',
-        'Aparece una cuenta regresiva.',
-        'Y aparecen 3 perfiles con mayor % de similitud.',
-        'Al presionar el nombre, se muestra el perfil de la persona en el que puedes agregarlo como amigo o enviarle un mensaje.',
+        'Tienes la opción de cancelar el match al presionar el botón.',
+        'Y aparecen 3 perfiles con mayor % de similitud, y al hacer el match te redirige al perfil del usuario con quien tuviste coincidencia, o cuentas con un historial de match en el que al presionar el nombre te redirige al perfil."',
+        'Al presionar el nombre, se muestra el perfil de la persona, en el cual puedes agregarla como amigo o enviarle un mensaje. En esa vista, se cuenta con la información personal del usuario, como acerca de mí, intereses, logros y juegos favoritos.',
         'Vista previa del chat de la persona seleccionada.',
         'Historial de chats en el que cuentas con una función adicional, como la creación de grupos.',
-        'Para crear grupos privados, es necesario tener amigos a los que seleccionas y creas el grupo.',
+        'Para crear grupos privados, es necesario tener amigos a los cuales seleccionas en esta vista, escribiendo el nombre del grupo y seleccionando a los amigos. Posteriormente, al presionar "Crear grupo", se te permite crear el grupo.',
     ];
     const descriptions4 = [
         'Vista general del panel de control que cuenta con un buscador para encontrar personas registradas en nuestra aplicación.',
         'También cuenta con la opción de lista de amigos, donde puedes ver el perfil de tus amigos y eliminarlos. Además, en la esquina superior aparece tu nombre, y al hacer clic en él, se muestra tu perfil de usuario.',
-        'Al presionar tu nombre de usuario, se muestra la vista de perfil de usuario, que cuenta con la opción de editar perfil.',
-        'En esta vista, encontrarás varias opciones para completar tu información personal, como tu nombre, edad, descripción, intereses o logros.',
+        'Al presionar tu nombre de usuario, se muestra la vista de perfil de usuario, que cuenta con la opción de editar tú perfil y subir tu fondo de perfil.',
+        'En esta vista encontrarás varias opciones para completar tu información personal, como tu nombre, apellido, edad, foto de perfil, descripción, intereses y logros.',
     ];
     return (
         <div className="carousel-container">
@@ -91,6 +94,50 @@ function ContentHelper() {
                         <p className="description custom-color description-container" style={{ width: '100%', height: '90px', fontSize: '22px' }}>
                             {descriptions1[index]}
                         </p>
+                        {index === 1 && (
+                            <a href="https://onlinefirefly.social/comunidad" target="_blank" rel="noopener noreferrer">
+                                <button
+                                    style={{
+                                        position: 'absolute',
+                                        top: '70%',
+                                        left: '50%',
+                                        transform: 'translate(-50%, -50%)',
+                                        boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+                                        backgroundColor: 'darkviolet',
+                                        color: 'white',
+                                        padding: '10px 20px',
+                                        fontSize: '16px',
+                                        borderRadius: '5px',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                    }}
+                                >
+                                    Ir a comunidad
+                                </button>
+                            </a>
+                        )}
+                        {index === 2 && (
+                            <a href="https://discord.gg/SPdaPuhdKH" target="_blank" rel="noopener noreferrer">
+                                <button
+                                    style={{
+                                        position: 'absolute',
+                                        top: '70%',
+                                        left: '50%',
+                                        transform: 'translate(-50%, -50%)',
+                                        boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
+                                        backgroundColor: 'darkviolet',
+                                        color: 'white',
+                                        padding: '10px 20px',
+                                        fontSize: '16px',
+                                        borderRadius: '5px',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                    }}
+                                >
+                                    Únete a nuestro servidor
+                                </button>
+                            </a>
+                        )}
                         {index === 0 && (
                             <div>
                                 <a href="https://onlinefirefly.social/login" target="_blank" rel="noopener noreferrer">
@@ -137,7 +184,7 @@ function ContentHelper() {
                             </div>
                         )}
 
-                        {index === 1 && (
+                        {index === 3 && (
                             <a href="https://onlinefirefly.social/login" target="_blank" rel="noopener noreferrer">
                                 <button
                                     style={{
@@ -159,7 +206,7 @@ function ContentHelper() {
                                 </button>
                             </a>
                         )}
-                        {index === 2 && (
+                        {index === 4 && (
                             <a href="https://onlinefirefly.social/reset-password" target="_blank" rel="noopener noreferrer">
                                 <button
                                     style={{
@@ -181,7 +228,7 @@ function ContentHelper() {
                                 </button>
                             </a>
                         )}
-                        {index === 3 && (
+                        {index === 5 && (
                             <a href="https://onlinefirefly.social/signup" target="_blank" rel="noopener noreferrer">
                                 <button
                                     style={{
@@ -211,14 +258,14 @@ function ContentHelper() {
                 {images2.map((image, index) => (
                     <div key={index}>
                         <img src={image} alt={`Imagen ${index}`} />
-                        <p className="description custom-color description-container" style={{ width: '100%', height: '60px', fontSize: '22px'  }}>{descriptions2[index]}</p>
+                        <p className="description custom-color description-container" style={{ width: '100%', height: '60px', fontSize: '22px' }}>{descriptions2[index]}</p>
                         {index === 1 && (
                             <a href="https://onlinefirefly.social/dashboard" target="_blank" rel="noopener noreferrer">
                                 <button
                                     style={{
                                         position: 'absolute',
-                                        top: '80%',
-                                        left: '50%',
+                                        top: '50%',
+                                        left: '90%',
                                         transform: 'translate(-50%, -50%)',
                                         boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
                                         backgroundColor: 'darkviolet',
@@ -302,8 +349,8 @@ function ContentHelper() {
                                 <button
                                     style={{
                                         position: 'absolute',
-                                        top: '20%',
-                                        left: '65%',
+                                        top: '38%',
+                                        left: '50%',
                                         transform: 'translate(-50%, -50%)',
                                         boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
                                         backgroundColor: 'darkviolet',
@@ -324,8 +371,8 @@ function ContentHelper() {
                                 <button
                                     style={{
                                         position: 'absolute',
-                                        top: '85%',
-                                        left: '82%',
+                                        top: '70%',
+                                        left: '84%',
                                         transform: 'translate(-50%, -50%)',
                                         boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)',
                                         backgroundColor: 'darkviolet',

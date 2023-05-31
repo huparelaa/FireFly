@@ -47,8 +47,8 @@ function SideBar() {
             });
         Swal.close();
         Swal.fire({
-            title: 'Gracias!',
-            text: 'Su reporte se envió de forma exitosa!',
+            title: '¡Gracias!',
+            text: 'Tu reporte se ha enviado de forma exitosa',
             icon: 'success'
         });
     };

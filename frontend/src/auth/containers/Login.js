@@ -16,12 +16,12 @@ function Login() {
 
     const schema = Yup.object().shape({
         email: Yup.string()
-            .required("El correo es requerido")
-            .email("Correo invalido"),
+            .required("Se requiere el correo electrónico")
+            .email("Correo inválido"),
         password: Yup.string()
-            .required("La contraseña es requerida")
+            .required("Se requiere la contraseña")
             .min(8, "La contraseña debe tener al menos 8 caracteres")
-            .max(100, "La contraseña debe tener maximo 50 caracteres"),
+            .max(100, "La contraseña debe tener máximo 50 caracteres"),
     });
 
     function submit(data) {

@@ -53,7 +53,7 @@ function Match() {
     setSimilarUsers([]);
     Swal.fire({
       icon: "info",
-      title: "Match cancelado",
+      title: "El match ha sido cancelado",
     });
   };
 

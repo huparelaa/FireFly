@@ -18,12 +18,12 @@ function ResetPasswordConfirm() {
     const schema = Yup.object().shape({
         new_password: Yup
             .string()
-            .matches(passwordRules, { message: "Crea una contraseña más segura por favor" })
-            .required("La contraseña es requerida"),
+            .matches(passwordRules, { message: "Por favor, crea una contraseña más segura" })
+            .required("Se requiere una contraseña"),
         re_new_password: Yup
             .string()
             .oneOf([Yup.ref("new_password"), null], "Las contraseñas deben coincidir")
-            .required("Por favor confirma tu contraseña"),
+            .required("Por favor, confirma tu contraseña"),
     })
     function submit(data){
         const uid = routeParams.uid

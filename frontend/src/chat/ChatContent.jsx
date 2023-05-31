@@ -79,7 +79,7 @@ const ChatContent = () => {
 
   const showReviewDialog = () => {
     MySwal.fire({
-      title: 'Danos tu opinión aquí ',
+      title: 'Danos tu opinión aquí',
       html:
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
           <Rating
@@ -125,15 +125,15 @@ const ChatContent = () => {
         console.log("Comentario:", review);
 
         Swal.fire({
-          title: 'Gracias!',
-          text: 'Su retroalimentacion se se envio de forma exitosa',
+          title: '¡Gracias!',
+          text: 'Tu retroalimentación se envió de forma exitosa',
           icon: 'success'
         });
       })
       .catch(error => {
         Swal.fire({
           title: 'Oops...',
-          text: 'Ocurrio un error al enviar la retroalimentacion',
+          text: 'Ocurrió un error al enviar la retroalimentación',
           icon: 'error'
         });
       });

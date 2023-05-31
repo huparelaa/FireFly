@@ -17,24 +17,24 @@ function Signup() {
     const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
     const schema = Yup.object().shape({
         name: Yup.string()
-            .min(4, "El nombre de usuario requiere minimo 4 caracteres")
-            .max(50, "El nombre de usuario requiere maximo 50 caracteres")
-            .required("El nombre de usuario es requerido"),
+            .min(4, "El nombre de usuario requiere un mínimo de 4 caracteres")
+            .max(50, "El nombre de usuario requiere un máximo de 50 caracteres")
+            .required("Se requiere el nombre de usuario"),
         lastname: Yup.string()
-            .min(4, "El apellido de usuario requiere minimo 4 caracteres")
-            .max(50, "El apellido de usuario requiere maximo 50 caracteres")
-            .required("El apellido de usuario es requerido"),
+            .min(4, "El apellido requiere un mínimo de 4 caracteres")
+            .max(50, "El apellido requiere un máximo de 50 caracteres")
+            .required("Se requiere el apellido del usuario"),
         email: Yup.string()
-            .required("El correo es requerido")
-            .email("Correo invalido"),
+            .required("Se requiere un correo electrónico")
+            .email("Correo electrónico inválido"),
         password: Yup
             .string()
-            .matches(passwordRules, { message: "Crea una contraseña más segura por favor" })
-            .required("La contraseña es requerida"),
+            .matches(passwordRules, { message: "Por favor, crea una contraseña más segura" })
+            .required("Se requiere una contraseña"),
         re_password: Yup
             .string()
             .oneOf([Yup.ref("password"), null], "Las contraseñas deben coincidir")
-            .required("Por favor confirma tu contraseña"),
+            .required("Por favor, confirma tu contraseña"),
         })
     function submit(data){
         if(localStorage.getItem('access')){
@@ -48,7 +48,7 @@ function Signup() {
                 timerProgressBar: true,
                 icon: 'success',
                 title: `Registro exitoso`,
-                text: `¡Te llegará un correo de activación a tu correo!`,
+                text: `¡Recibirás un correo de activación en tu bandeja de entrada. Si no lo recibes, verifica en la carpeta de spam!`,
             }).then(() => navigate('/login'));
         }).catch(err => {
             console.log(err.response)
@@ -59,7 +59,7 @@ function Signup() {
                     timerProgressBar: true,
                     icon: 'error',
                     title: 'Error',
-                    text: 'Tu correo ya existe, por favor ingresa otro',
+                    text: 'Tu correo ya existe. Por favor, ingresa otro',
                 })
             } else {
                 Swal.fire({

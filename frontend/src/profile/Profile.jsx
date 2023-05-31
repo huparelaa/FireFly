@@ -76,7 +76,7 @@ function Profile() {
                     timer: 3000,
                     timerProgressBar: true,
                     icon: 'success',
-                    title: `¡Se actualizo el fondo de perfil!`,
+                    title: `¡Se ha actualizado el fondo de perfil!`,
                 })
             }
         });
