@@ -39,7 +39,6 @@ def select_gamesRecommended(request):
         data = json.loads(request.body.decode('utf-8'))
         id_juego = data.get('id')
         game = Game.objects.get(id_game = id_juego)
-    
         user.favorite_games.add(game.id)
         user.save()
         # Devolver una respuesta JSON con un mensaje de éxito
@@ -47,6 +46,23 @@ def select_gamesRecommended(request):
     except:
         return JsonResponse({'message': 'Juego ya guardado'})
 
+
+@csrf_exempt
+@api_view(['POST'])
+def block_gamesRecommended(request): 
+    try: 
+        user_id = get_user_id(request)
+        user = UserAccount.objects.get(id = user_id)
+        data = json.loads(request.body.decode('utf-8'))
+        id_juego = data.get('id')
+        game = Game.objects.get(id_game = id_juego)
+        user.blocked_games.add(game.id)
+        user.save()
+        # Devolver una respuesta JSON con un mensaje de éxito
+        return JsonResponse({'message': 'Juego bloqueado correctamente'})
+    except:
+        return JsonResponse({'message': 'Juego ya bloqueado'})
+    
 def agregar_juegos(request):
     # Usa la API de RAWG para obtener información sobre los juegos
     i = 1
@@ -111,17 +127,18 @@ def recommended_games(request):
     user_id = get_user_id(request)
     user = UserAccount.objects.get(id=user_id)
     # Obtener los juegos más populares
-    popular_games = Game.objects.annotate(num_users=Count('useraccount')).order_by('-num_users')
+    popular_games = Game.objects.annotate(num_users=Count('favorited_by')).order_by('-num_users')
     most_played_games = []
     for game in popular_games:
         num_users = UserAccount.favorite_games.through.objects.filter(game_id = game.id).count()
         game.count = num_users  # Agregamos el atributo 'count' al objeto Game
         most_played_games.append(game)
     most_played_games_sorted = sorted(most_played_games, key=attrgetter('count'), reverse=True)
-    user_games = user.favorite_games.all() 
+    user_games = user.favorite_games.all()
+    blocked_games = user.blocked_games.all()
     recommended_games = []
     for game in most_played_games_sorted:
-        if game not in user_games:
+        if ((game not in user_games) and (game not in blocked_games)):
             recommended_games.append(game)
         if len(recommended_games) == 8:
             break
