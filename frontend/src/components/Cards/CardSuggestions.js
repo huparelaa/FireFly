@@ -55,7 +55,7 @@ const SuggestedGames = () => {
 
               <button
                 onClick={() => handleSelectGame(game.id_game)}
-                className="border rounded-md p-2 hover:bg-info-home bg-login-button shadow-xl"
+                className="text-base font-medium text-white bg-indigo-950 rounded-md p-3 w-2/8 hover:bg-indigo-900 border rounded-md"
               >
                 Seleccionar
               </button>
