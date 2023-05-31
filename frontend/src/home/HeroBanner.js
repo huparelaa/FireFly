@@ -24,8 +24,8 @@ function HeroBanner(){
             <div className="w-full relative xl:-top-40 md:-top-28 -top-40">
                 <div className="flex flex-col items-center text-white relative">
                     <div className="flex flex-col items-center text-center"> 
-                        <h3 className="font-extrabold font-roboto xl:text-3xl md:txt-3xl sm:text-xl mx-6">
-                            ¿QUIERES ENCONTRAR A TU COMPAÑERO DE JUEGO IDEAL?
+                    <h3 className="font-extrabold font-roboto xl:text-4xl md:text-3xl sm:text-xl mx-6">
+                            ENCUENTRA A TU COMPAÑERO DE JUEGO IDEAL
                         </h3>
                         <p className="font-light my-6 mx-6">
                             ¡En FireFly puedes hacer ese sueño realidad! 
