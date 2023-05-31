@@ -94,7 +94,7 @@ function SideBar() {
         { title: "Logout", src: logout, gap: true, path: "/logout" },
     ];
     return (
-        <div className="flex shadow-sm h-screen ">
+        <div className="flex shadow-sm h-screen fixed z-50">
             <div
                 className={` ${open ? "w-72" : "w-20 "
                     } bg-dark-bg h-full p-5 rounded-md pt-10 -bottom-0 relative duration-300 `}
@@ -126,7 +126,7 @@ function SideBar() {
                             to={Menu.path}
                             key={index}
                             className={`flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
-                        ${Menu.gap ? "mt-96" : "mt-2"}`} >
+                        ${Menu.gap ? "mt-80" : "mt-2"}`} >
                             <img src={`${Menu.src}`} className="w-6" alt="" />
                             <span className={`${!open && "hidden"} origin-left duration-200`}>
                                 {Menu.title}

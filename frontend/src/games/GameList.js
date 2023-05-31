@@ -93,7 +93,6 @@ function PreferenceForm() {
                                         value={game.id}
                                         onChange={handleGameSelection}
                                         checked={selectedGames.includes(game.id)}
-
                                     />
                                     <img src={game.background_image} alt={game.name} />
                                     <span>{game.name}</span>

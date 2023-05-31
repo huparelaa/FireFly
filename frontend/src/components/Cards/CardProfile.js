@@ -21,7 +21,7 @@ export default function CardProfile(props) {
 
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words bg-info-home w-full mb-6 shadow-xl rounded-lg mt-0">
+      <div className="relative flex flex-col min-w-0 break-words bg-info-home w-full mb-6 shadow-xl rounded-lg mt-0 ml-5">
         <div className="px-6">
           <div className="flex flex-wrap justify-center">
             <div className="w-full px-4 flex justify-center">

@@ -101,7 +101,7 @@ function Profile() {
         <div className="flex w-full h-full">
             <SideBar />
 
-            <div className="profile">
+            <div className="profile flex ">
                 <div className="fbIcon">
                     <Link to="/" style={{ textDecoration: 'none' }}>
                         <img height='60px' src={"../assets/icon.png"} alt="" />

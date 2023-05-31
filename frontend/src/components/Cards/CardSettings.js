@@ -105,8 +105,8 @@ export default function CardSettings(props) {
 
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-dark-purple border-0 bg-info-home ">
-        <div className="bg-violet-950 rounded-t mb-0 px-6 py-6">
+      <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-dark-purple border-0 bg-info-home ml-10">
+        <div className="bg-violet-950 rounded-t mb-0 px-3 py-6">
           <div className="text-center">
             <h6 className="text-blueGray-700 text-2xl font-bold text-white underline mx-auto uppercase">Editar perfil</h6>
 

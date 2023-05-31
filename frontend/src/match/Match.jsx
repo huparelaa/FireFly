@@ -59,46 +59,44 @@ function Match() {
 
   
   return (
-    <div className="flex" style={{ width: "100%", height: "100%" }}>
+    <div className="flex" style={{ width: "100vw", height: "100vh" }}>
       <SideBar />
-      <div className=" w-screen flex justify-center items-center">
-        {!isButtonPressed && !isLoading && (
-          <div className="w-80 h-80 rounded-lg flex flex-col justify-center items-center text-center">
-            <p className=" text-white font-bold mb-4">
-              Oprime el botón para hacer el match
-            </p>
-            <button
-              onClick={handleClick}
-              className="botonMatch"
-            >
-              Match
-            </button>
+        <div className=" w-full flex justify-center items-center">
+          {!isButtonPressed && !isLoading && (
+            <div className="w-80 h-80 rounded-lg flex flex-col justify-center items-center text-center">
+              <p className=" text-white font-bold mb-4">
+                Oprime el botón para hacer el match
+              </p>
+              <button
+                onClick={handleClick}
+                className="botonMatch"
+              >
+                Match
+              </button>
+            </div>
+          )}
+          {isLoading && (
+            <div className="w-100 h-100 rounded-lg flex flex-col justify-center items-center">
+              <p className="text-white font-bold mb-4">
+                Buscando los mejores compañeros de juego para ti...
+              </p>
+              <button
+                onClick={handleCancel}
+                className="botoCancelar"
+              >
+                Cancelar
+              </button>
+            </div>
+          )}
+          {isButtonPressed && similarUsers.length > 0 && (
+            // PONER LA GRID PARA QUE APAREZCAN SOLO LOS USUARIOS
+          <div>
+            <MatchRecomendations similarUsers={similarUsers} setSimilarUsers={setSimilarUsers}/>
+            <RecentMatches/>
           </div>
-        )}
-        {isLoading && (
-          <div className="w-100 h-100 rounded-lg flex flex-col justify-center items-center">
-            <p className="text-white font-bold mb-4">
-              Buscando los mejores compañeros de juego para ti...
-            </p>
-            <button
-              onClick={handleCancel}
-              className="botoCancelar"
-            >
-              Cancelar
-            </button>
-          </div>
-        )}
-        {isButtonPressed && similarUsers.length > 0 && (
-          // PONER LA GRID PARA QUE APAREZCAN SOLO LOS USUARIOS
-        <div>
-          <MatchRecomendations similarUsers={similarUsers} setSimilarUsers={setSimilarUsers}/>
-          <RecentMatches/>
-
+          )}
         </div>
-
-        )}
       </div>
-    </div>
   );
 }
 export default Match;
