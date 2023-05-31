@@ -5,7 +5,7 @@ const SuggestedGames = () => {
   const [loading, setLoading] = useState(false);
   const [suggestedGames, setSuggestedGames] = useState([]);
   const [currentGame, setCurrentGame] = useState(null);
-
+  const [clicked, setClicked] = useState(true);
   const config = {
     headers: {
       Authorization: `JWT ${localStorage.getItem("access")}`,
@@ -24,7 +24,7 @@ const SuggestedGames = () => {
       console.log(response.data.juegos_recomendados);
     };
     fetchSuggestedGames();
-  }, []);
+  }, [clicked]);
 
   const handleSelectGame = async (gameIdP) => {
     const gameId = parseInt(gameIdP);
@@ -37,7 +37,7 @@ const SuggestedGames = () => {
       { id: gameId },
       config
     );
-
+    setClicked(!clicked)
     const updatedGames = suggestedGames.filter((game) => game.id_game !== gameIdP);
     setSuggestedGames(updatedGames);
 
@@ -49,10 +49,16 @@ const SuggestedGames = () => {
     }
   };
 
-  const handleRemoveGame = (gameIdP) => {
+  const handleRemoveGame = async (gameIdP) => {
     const updatedGames = suggestedGames.filter((game) => game.id_game !== gameIdP);
     setSuggestedGames(updatedGames);
-
+    const gameId = parseInt(gameIdP);
+    await axios.post(
+      `${process.env.REACT_APP_API_URL}/api/games_blocked_recommended/`,
+      { id: gameId },
+      config
+    );
+    setClicked(!clicked)
     // Seleccionar un nuevo juego de la lista
     if (updatedGames.length > 0) {
       setCurrentGame(updatedGames[0]);
