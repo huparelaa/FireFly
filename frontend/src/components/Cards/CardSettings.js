@@ -3,7 +3,7 @@ import { changeUserInfo } from "../../auth/actions/auth"
 import axios from "../../apiConnection";
 import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom";
-import defaultProfile from "../../assets/defaultProfile.jpg"
+import ProfileIcon from '../../assets/profileicon.jpg'
 
 // components
 export default function CardSettings(props) {
@@ -120,9 +120,9 @@ export default function CardSettings(props) {
             </h6>
             <div className="flex flex-wrap justify-center items-center space-x-3">
               <div class="shrink-0">
-                <img class="h-20 w-20 object-cover rounded-full" src={defaultProfile} alt="Current profile photo" />
+                <img class="h-20 w-20 object-cover rounded-full" src={ProfileIcon} alt="Current profile photo" />
               </div>
-              <label className="mr-4 py-4 px-8 rounded-full border-0 text-sm font-semibold bg-white text-violet-700 hover:bg-violet-100 block w-30 text-lg text-slate-500" for="files">Seleccionar nueva foto de perfil</label>
+              <label className="mr-4 py-4 px-8 rounded-full border-0 text-sm font-semibold bg-white text-violet-700 hover:bg-violet-100 block w-30 text-lg text-slate-500" for="files">Subir nueva foto de perfil</label>
                 <input
                   id="files"
                   accept="image/*"
