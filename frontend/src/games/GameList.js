@@ -9,7 +9,7 @@ function PreferenceForm() {
     const [searchTerm, setSearchTerm] = useState('')
     const [selectedGames, setSelectedGames] = useState([]);
     const [redirectToDashboard, setRedirectToDashboard] = useState(false);
-
+    const [offset, setOffset] = useState(0);
     const config = {
         headers: { 
             'Content-type': 'application/json',
@@ -46,14 +46,28 @@ function PreferenceForm() {
         async function fetchedGames()  {
             try {
                 const response = await axios.get(url);
-                setGames(response.data.results);
-                console.log(response.data.results)
+                setGames(pre=>[...pre, ...response.data.results])
+                console.log(games)
+                setPage(page+1)
             } catch (error) {
                 console.error(error);
             }
         }
         fetchedGames()
     }, [page]);
+    
+    useEffect(()=>{
+        const handleScroll = (e) =>{
+            const scrollHeight = e.target.documentElement.scrollHeight
+            const currentHeight = e.target.documentElement.scrollTop + window.innerHeight
+            if(currentHeight+1>= scrollHeight){
+                setPage(page+1)
+            }
+            window.addEventListener("scroll",handleScroll);
+            return ()=> window.removeEventListener("scroll",handleScroll)
+        }
+        
+    },[page])
     const handlePageChange = (newPage) => {
         setPage(newPage);
     };
@@ -82,7 +96,6 @@ function PreferenceForm() {
                                         value={game.id}
                                         onChange={handleGameSelection}
                                         checked={selectedGames.includes(game.id)}
-
                                     />
                                     <img src={game.background_image} alt={game.name} />
                                     <span>{game.name}</span>

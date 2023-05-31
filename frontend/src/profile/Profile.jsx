@@ -139,9 +139,9 @@ function Profile() {
     }
 
     return (
-        <div className="flex w-full h-full overflow-hidden">
+        <div className="flex w-full h-full">
             <SideBar />
-            <div className="profile ">
+            <div className="profile">
                 <div className="fbIcon ">
                     <Link to="/" style={{ textDecoration: 'none' }}>
                         <img height='60px' src={"../assets/icon.png"} alt="" />
@@ -199,8 +199,8 @@ function Profile() {
                             <div className="profilePhoto">
                             </div>
                         </div>
-                        <div className="userAboutBtn ">
-                            <div className="flex  ">
+                        <div className="userAboutBtn ml-12">
+                            <div className="flex">
                                 <div className="userEditBtn">
                                     <button
                                         className="bg-login-button-hover active:bg-blueGray-600 text-white text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -212,7 +212,7 @@ function Profile() {
                                         Editar perfil
                                     </button>
                                 </div>
-                                <div >
+                                <div className="flex justify-center items-center w-4/5">
                                     <button
                                         className="bg-login-button-hover active:bg-blueGray-600 text-white text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="submit "

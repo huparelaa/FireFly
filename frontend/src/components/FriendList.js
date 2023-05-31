@@ -82,19 +82,21 @@ function FriendList() {
   }
 
   return (
-    <div className="text-white w-full h-full flex flex-col bg-friend-list rounded-3xl shadow-sm" >
+    <div className="text-white w-full h-3/4 flex flex-col bg-friend-list rounded-3xl shadow-sm" >
       <h2 className="font-bold ml-5 mt-5 botto">Mis amigos:</h2>
       <ul className="flex flex-col m-2">
         {amigos.map((friend, index) => (
-          <li className="m-2 h-8 flex items-center hover:bg-light-white rounded-md p-2" key={friend[2]}>
+          <li className="m-2 h-10 flex items-center hover:bg-light-white rounded-md hover:py-5" key={friend[2]}>
+            <Link to={`../profile/${friend[2]}`} className="flex">
             <img
               alt="..."
               className="rounded-full align-middle border-none shadow-lg w-7 h-7 mr-3"
               src={friend[5] ? `${process.env.REACT_APP_API_URL}${friend[5]}` : defaultProfile}
             />
-            <p>{friend[0]} {friend[1]}</p>
-            <span className="ml-4">{(friend[4] == "true") ? <RadioButtonCheckedTwoToneIcon sx={{ fontSize: 15, color: "green" }} /> : <RadioButtonUncheckedTwoToneIcon sx={{ fontSize: 15, color: "red" }} />}</span>
-            <div className="ml-auto relative">
+            <p className="truncate" >{friend[0]} {friend[1]}</p>
+            </Link>
+            <span className="mx-2 relative bottom-0.5">{(friend[4] == "true") ? <RadioButtonCheckedTwoToneIcon sx={{ fontSize: 15, color: "green" }} /> : <RadioButtonUncheckedTwoToneIcon sx={{ fontSize: 15, color: "red" }} />}</span>
+            <div className="ml-auto relative top-0.5">
               <button className="bg-transparent border-0 text-gray-400 hover:text-white focus:outline-none" onClick={() => toggleDropdown(index)}>
                 <svg viewBox="0 0 20 20" fill="currentColor" className="w-6 h-6">
                   <path fillRule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"></path>

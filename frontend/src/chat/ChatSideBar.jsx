@@ -48,7 +48,7 @@ function ChatSideBar() {
           <div className="flex w-1/8 items-center justify-start mr-auto" id="contenedor">
           <div className="self-auto flex items-center mr-4 ml-10">
             <div className="loader"></div>
-            <p className="text-white ml-3 font-bold text-base"> Cargando chats recientes... </p>
+            <p className="text-white ml-3 font-bold text-base ml-20"> Cargando chats recientes... </p>
           </div>
         </div>
     );
@@ -59,7 +59,7 @@ function ChatSideBar() {
   }
 
   return (
-    <div className="flex flex-col h-screen w-1/4  ">
+    <div className="flex flex-col h-screen w-1/4 ml-20 ">
       <div className="bg-dark-purple text-white text-lg font-bold p-4 border-white border text-center">
         <div> CHATS RECIENTES</div>
         <button

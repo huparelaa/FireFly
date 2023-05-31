@@ -39,19 +39,19 @@ const UserGames = ({itsMe,id}) => {
   }
 
   return (
-    <div className="py-10 border-t border-blueGray-200 text-center">
-      <h4 class="text-3xl text-white">Juegos favoritos: </h4> <br/>
+    <div className="py-10 border-t border-blueGray-200 text-center mt-10">
+      <h4 class="text-3xl text-white font-roboto"> Juegos favoritos: </h4> <br />
       <div className="flex flex-wrap justify-center">
           {favoriteGames.map((game) => (
-             <div key={game.id_game} className="col-md-4 m-1">
-             <div className="flex flex-col mx-2 text-white bg-friend-list p-3 box-border shadow-md">
-                 <img src={game.img} className="w-40 h-32" alt={game.title} />
-                 <div className="card-body w-40 rounded-lg">
-                 <h5 className="my-4 truncate" >
-                     {game.title}
-                 </h5>
+              <div key={game.id_game} className="col-md-4 m-1">
+              <div className="flex flex-col mx-2 text-white bg-friend-list p-3 box-border shadow-md">
+                  <img src={game.img} className="w-40 h-32" alt={game.title} />
+                  <div className="card-body w-40 rounded-lg">
+                  <h5 className="my-4 truncate" >
+                      {game.title}
+                  </h5>
+                  </div>
                 </div>
-              </div>
             </div>
           ))}
         </div>
