@@ -63,7 +63,8 @@ function SideBar() {
                     <input className="h-12 bg-slate-200 w-8/12" type="hidden" name="user_email" value={usuario.email} />
                     <label className="font-medium"> Mensaje: </label> <br/><br/>
                     <textarea placeholder="Escribe tu reporte" className="px-4 py-3 text-black h-12 bg-slate-200 w-8/12" name="message" required /> <br /><br />
-                    <button type="submit" className="text-base font-medium text-white bg-indigo-900 rounded-md p-3 w-2/8 hover:bg-indigo-700"> Enviar Reporte </button>
+                    <button type="submit" 
+                    className="text-base font-medium text-white bg-indigo-900 rounded-md hover:bg-indigo-700" style={{padding:"0.75rem"}}> Enviar Reporte </button>
                 </form>,
             color: '#ffffff',
             background: '#17152a',
