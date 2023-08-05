@@ -33,7 +33,6 @@ function FriendList() {
           },
         }
       );
-      console.log(response.data)
       setAmigos(response.data.friends);
     }
     catch (err) {

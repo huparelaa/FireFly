@@ -17,7 +17,6 @@ function UserInfo() {
             const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/get_name_photo/`, config)
                 .then(response => {
                     setUsuario(response.data);
-                    console.log(response.data);
                 })
                 .catch(error => {
                     console.error(error);

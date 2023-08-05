@@ -7,7 +7,6 @@ export default function CardProfile(props) {
   const [selectedImage, setSelectedImage] = useState(defaultProfile);
 
   useEffect(() => {
-    console.log("new photo")
     if (props.newFotoUsuario) {
       setSelectedImage(props.fotoUsuario);
     }

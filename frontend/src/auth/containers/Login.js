@@ -28,7 +28,7 @@ function Login() {
         UserApi.login(data).then(res => {
             localStorage.setItem('access', res.data.access);
             localStorage.setItem('refreshToken', res.data.refresh);
-            UserApi.stateOnline().then(res => { console.log(res);})
+            UserApi.stateOnline().then(res => {})
             UserApi.verify().then(() => {
                 Swal.fire({
                     timer: 1000,
@@ -39,7 +39,7 @@ function Login() {
                 }).then(() => navigate('/check-first-login'));
             })
         }).catch(err => {
-            console.log(err)
+            console.error(err)
             Swal.fire({
                 timer: 2000,
                 timerProgressBar: true,

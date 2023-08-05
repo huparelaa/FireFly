@@ -66,7 +66,6 @@ function Profile() {
                 };
                 reader.readAsDataURL(uploadedPhoto);
 
-                console.log(uploadedPhoto);
 
                 const formData = new FormData();
                 formData.append("background_photo", uploadedPhoto, uploadedPhoto.name);

@@ -107,7 +107,6 @@ const ChatContent = () => {
   const submitReview = () => {
     const review = MySwal.getPopup().querySelector('#review').value
     const rating = localStorage.getItem('rating')
-    // console.log(MySwal.getPopup().querySelector('#rate').value)
     const config = {
       headers: {
         'Content-type': 'application/json',
@@ -118,12 +117,6 @@ const ChatContent = () => {
     const id_person = id
     axios.post(`${process.env.REACT_APP_API_URL}/api/review/`, { rating, review, id_person }, config)
       .then(response => {
-        console.log(response.data)
-        console.log(response.status)
-        // Imprimir el valor de las estrellas y el comentario
-        console.log("Valor de las estrellas:", rating);
-        console.log("Comentario:", review);
-
         Swal.fire({
           title: '¡Gracias!',
           text: 'Tu retroalimentación se envió de forma exitosa',

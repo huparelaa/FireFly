@@ -16,7 +16,6 @@ const ResetPassword = () => {
     });
 
     function submit(data) {
-        console.log(data);
         UserApi.resetPassword(data)
         .then(() => {
             Swal.fire({
@@ -28,7 +27,7 @@ const ResetPassword = () => {
                 'Se ha enviado un correo electrónico a tu cuenta con las instrucciones para restablecer la contraseña. Es posible que el correo llegue a la carpeta de spam.',
             }).then(() => navigate('/login'));
         }).catch(err => {
-            console.log(err);
+            console.error(err);
             Swal.fire({
                 timer: 2000,
                 timerProgressBar: true,

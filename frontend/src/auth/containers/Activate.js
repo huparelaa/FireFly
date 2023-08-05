@@ -19,7 +19,7 @@ function Activate() {
           text: ``,
       }).then(() => navigate('/login'));
     }).catch(err => {
-      console.log(err)
+      console.error(err)
       Swal.fire({
           timer: 2000,
           timerProgressBar: true,

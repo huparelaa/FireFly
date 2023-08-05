@@ -7,10 +7,9 @@ function Analytics(){
         async function getAnalytics(){
             const res =  await axios.get(`${process.env.REACT_APP_API_URL}/analytics/more_played_games/`)
             try {
-                console.log(res);
                 setData(res.data.juegos_populares)
             } catch (err){
-                console.log(err);
+                console.error(err);
             }
         }
         getAnalytics()

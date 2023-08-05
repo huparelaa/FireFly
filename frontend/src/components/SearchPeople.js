@@ -11,8 +11,6 @@ function SearchPeople() {
             .then(response => response.data.users)
             .then(data => setUsuarios(data));
     }
-    console.log('nombre', nombre)
-    console.log('usuarios', usuarios);
     return (
         <div className="bg-dark-bg w-6/12 ml-5 flex items-center justify-center rounded-full shadow-lg">
             <MdSearch className="bg-no-repeat bg-center bg-contain w-5 h-5 mx-1 text-white" />

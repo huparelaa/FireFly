@@ -35,7 +35,6 @@ export default function Settings() {
       await axios.get(`${process.env.REACT_APP_API_URL}/api/profile/`, config)
         .then(response => {
           setUsuario(response.data);
-          console.log(response.data)
           setNombre(response.data.name || '');
           setApellidos(response.data.lastname || '');
           setEdad(response.data.age || 0);

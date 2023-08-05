@@ -21,7 +21,6 @@ function PreferenceForm() {
     }
     const handleGameSelection = (e) => {
         const gameId = parseInt(e.target.value)
-        console.log(gameId, selectedGames);
         setSelectedGames(prevSelectedGames => {
             if (prevSelectedGames.includes(gameId)) {
                 return prevSelectedGames.filter(id => id !== gameId);
@@ -34,7 +33,6 @@ function PreferenceForm() {
         e.preventDefault();
         try {
             const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/games_selected/`, { "id": selectedGames }, config) ;
-            console.log(response.data);
             setRedirectToDashboard(true);
         } catch (error) {
             console.error(error);
@@ -46,7 +44,6 @@ function PreferenceForm() {
             try {
                 const response = await axios.get(url);
                 setGames([...games,...response.data.results])
-                console.log(games)
                 setPage(page+1)
             } catch (error) {
                 console.error(error);

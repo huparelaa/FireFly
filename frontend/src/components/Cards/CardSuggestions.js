@@ -21,14 +21,12 @@ const SuggestedGames = () => {
       setSuggestedGames(response.data.juegos_recomendados);
       setCurrentGame(response.data.juegos_recomendados[0]); // Asignar el primer juego como juego actual
       setLoading(true);
-      console.log(response.data.juegos_recomendados);
     };
     fetchSuggestedGames();
   }, [clicked]);
 
   const handleSelectGame = async (gameIdP) => {
     const gameId = parseInt(gameIdP);
-    console.log(gameId);
     await axios.post(`${process.env.REACT_APP_API_URL}/api/games_selected_recommended/`, { "id": gameId }, config)
     const amigosActualizados = suggestedGames.filter((game) => game["id_game"] !== gameIdP);
     setSuggestedGames(amigosActualizados);

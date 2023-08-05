@@ -77,7 +77,6 @@ function ContentHelper() {
                 {images.map((image, index) => (
 
                     <div key={index}>
-                        {console.log(image)}
                         <img src={image} alt={`Imagen ${index}`} />
                         <p className="description custom-color description-container" style={{ width: '100%', height: '65px', fontSize: '27px' }}>{descriptions[index]}</p>
                     </div>
@@ -89,7 +88,6 @@ function ContentHelper() {
             <Carousel>
                 {images1.map((image, index) => (
                     <div key={index}>
-                        {console.log(image)}
                         <img src={image} alt={`Imagen ${index}`} />
                         <p className="description custom-color description-container" style={{ width: '100%', height: '90px', fontSize: '22px' }}>
                             {descriptions1[index]}

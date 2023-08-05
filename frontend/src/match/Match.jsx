@@ -31,7 +31,6 @@ function Match() {
       );
       setIsLoading(false);
       setSimilarUsers(response.data.similar_users);
-      console.log(response.data.similar_users);
     } catch (error) {
       setIsLoading(false);
       setIsButtonPressed(false);

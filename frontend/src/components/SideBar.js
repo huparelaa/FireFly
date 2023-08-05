@@ -41,9 +41,8 @@ function SideBar() {
         event.preventDefault();
         emailjs.sendForm('service_wsmvq0j', 'template_04co69t', event.target, 'k8ix7MNKP0nIkPwYA')
             .then((result) => {
-                console.log(result.text);
             }, (error) => {
-                console.log(error.text);
+                console.error(error.text);
             });
         Swal.close();
         Swal.fire({

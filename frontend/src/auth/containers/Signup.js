@@ -51,7 +51,7 @@ function Signup() {
                 text: `¡Recibirás un correo de activación en tu bandeja de entrada. Si no lo recibes, verifica en la carpeta de spam!`,
             }).then(() => navigate('/login'));
         }).catch(err => {
-            console.log(err.response)
+            console.error(err.response)
             const email = err.response.data.email[0]  
             if(email === "user account with this email already exists."){
                 Swal.fire({
