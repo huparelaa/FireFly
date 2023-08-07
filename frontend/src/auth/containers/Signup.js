@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import UserApi from '../actions/auth'
@@ -12,6 +12,7 @@ import Stack from '@mui/material/Stack';
 import RadioButtonCheckedTwoToneIcon from '@mui/icons-material/RadioButtonCheckedTwoTone';
 
 function Signup() { 
+    const [disabled, setDisabled] = useState(false);
     const navigate = useNavigate();
     // min 8 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit.
     const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
@@ -220,9 +221,11 @@ function Signup() {
                     <div className="text-center mt-6">
                         <button
                             className="bg-button-color-principal text-white hover:bg-button-color-pr-hov active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                            onClick={()=>setDisabled(true)}
+                            disabled={disabled}
                             type="submit"
                         >
-                            Continuar
+                            Registrarme
                         </button>
                     </div>
                 </form>
