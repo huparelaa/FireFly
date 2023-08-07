@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import UserApi from '../actions/auth'
@@ -13,7 +13,6 @@ function Login() {
     const isTablet = useMediaQuery({ query: '(min-width: 768px) and (max-width: 1023px)' });
     const isMobile = useMediaQuery({ query: '(min-width: 360px) and (max-width: 767px)' });
     const navigate = useNavigate();
-    const [disabled, setDisabled] = useState(false);
     const schema = Yup.object().shape({
         email: Yup.string()
             .required("Se requiere el correo electrónico")
@@ -126,8 +125,6 @@ function Login() {
                         <button
                             className="text-white bg-blueGray-800 active:bg-blueGray-600 bg-button-color-principal text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg hover:bg-button-color-pr-hov outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                             type="submit"
-                            onClick={()=>setDisabled(true)}
-                            disabled= {disabled}
                         >
                             Iniciar sesión
                         </button>
