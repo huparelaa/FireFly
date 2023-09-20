@@ -27,16 +27,24 @@ const SuggestedGames = () => {
 
   const handleSelectGame = async (gameIdP) => {
     const gameId = parseInt(gameIdP);
-    await axios.post(`${process.env.REACT_APP_API_URL}/api/games_selected_recommended/`, { "id": gameId }, config)
-    const amigosActualizados = suggestedGames.filter((game) => game["id_game"] !== gameIdP);
+    await axios.post(
+      `${process.env.REACT_APP_API_URL}/api/games_selected_recommended/`,
+      { id: gameId },
+      config
+    );
+    const amigosActualizados = suggestedGames.filter(
+      (game) => game["id_game"] !== gameIdP
+    );
     setSuggestedGames(amigosActualizados);
     await axios.post(
       `${process.env.REACT_APP_API_URL}/api/games_selected_recommended/`,
       { id: gameId },
       config
     );
-    setClicked(!clicked)
-    const updatedGames = suggestedGames.filter((game) => game.id_game !== gameIdP);
+    setClicked(!clicked);
+    const updatedGames = suggestedGames.filter(
+      (game) => game.id_game !== gameIdP
+    );
     setSuggestedGames(updatedGames);
 
     // Seleccionar un nuevo juego de la lista
@@ -48,7 +56,9 @@ const SuggestedGames = () => {
   };
 
   const handleRemoveGame = async (gameIdP) => {
-    const updatedGames = suggestedGames.filter((game) => game.id_game !== gameIdP);
+    const updatedGames = suggestedGames.filter(
+      (game) => game.id_game !== gameIdP
+    );
     setSuggestedGames(updatedGames);
     const gameId = parseInt(gameIdP);
     await axios.post(
@@ -56,7 +66,7 @@ const SuggestedGames = () => {
       { id: gameId },
       config
     );
-    setClicked(!clicked)
+    setClicked(!clicked);
     // Seleccionar un nuevo juego de la lista
     if (updatedGames.length > 0) {
       setCurrentGame(updatedGames[0]);
@@ -67,10 +77,16 @@ const SuggestedGames = () => {
 
   if (!loading) {
     return (
-      <div className="flex w-full items-center justify-center mr-auto" id="contenedor">
+      <div
+        className="flex w-full items-center justify-center mr-auto"
+        id="contenedor"
+      >
         <div className="self-auto flex items-center mr-4">
           <div className="loader"></div>
-          <p className="text-white ml-3 font-bold text-base"> Cargando sugerencias... </p>
+          <p className="text-white ml-3 font-bold text-base">
+            {" "}
+            Cargando sugerencias...{" "}
+          </p>
         </div>
       </div>
     );
@@ -78,14 +94,24 @@ const SuggestedGames = () => {
 
   return (
     <div className="text-center">
-      <h3 className="text-white mb-4 font-bold mt-5" style={{ fontSize: "1.5em" }}>
+      <h3
+        className="text-white mb-4 font-bold mt-5"
+        style={{ fontSize: "1.5em" }}
+      >
         Juegos sugeridos:
       </h3>
 
       <div className="grid gap-3 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 ml-10 mr-10">
         {suggestedGames.map((game) => (
-          <div key={game.id_game} className="text-white bg-friend-list w-76 p-3 box-border shadow-md">
-            <img src={game.img} className="w-40 h-32 object-cover mx-auto mb-4" alt={game.title} />
+          <div
+            key={game.id_game}
+            className="text-white bg-friend-list w-76 p-3 box-border shadow-md relative"
+          >
+            <img
+              src={game.img}
+              className="w-40 h-32 object-cover mx-auto mb-4"
+              alt={game.title}
+            />
             <div className="card-body">
               <h5 className="my-2 truncate text-xl">{game.title}</h5>
 
@@ -98,9 +124,9 @@ const SuggestedGames = () => {
 
               <button
                 onClick={() => handleRemoveGame(game.id_game)}
-                className="text-base font-medium text-white bg-indigo-950 rounded-md p-3 w-2/8 hover:bg-red-700 border rounded-md mt-2 ml-2" // Añadimos la clase "ml-2" para dar espacio entre los botones
+                className="text-3xl justify-center h-8 w-8 bg-indigo-950 hover:bg-red-700 border absolute top-2 right-2 flex items-center "
               >
-                <span className="text-white">X</span>
+                ×{" "}
               </button>
             </div>
           </div>
